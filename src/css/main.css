@@ -1,0 +1,12 @@
+html,
+body {
+  font-size: 16px;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden; }
+
+p,
+input,
+textarea {
+  font-size: 16px; }
