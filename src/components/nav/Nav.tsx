@@ -8,7 +8,15 @@ import { AudioPlayer } from '../reusablecomps/AudioPlayer';
 const Nav = (props: any) => {
 	return (
 		<nav className={style.nav}>
-			<div className={style.left}>//logo</div>
+			<div className={style.left}>
+				<NavLink to="/">
+					<img
+						src={`https://res.cloudinary.com/snackmanproductions/image/upload/v1590510319/crash/Crash_the_Calm-white_tatrui.png`}
+						alt="Crash the Calm Logo"
+					/>
+					Crash The Calm
+				</NavLink>
+			</div>
 			<div className={style.center}>
 				<AudioPlayer />
 			</div>
