@@ -1,0 +1,38 @@
+@font-face {
+	font-family: 'Crash';
+	src: url('../../fonts/fairwater_sailor_serif.otf');
+}
+@font-face {
+	font-family: 'Reg';
+	src: url('../../fonts/OldGrowth-Regular.otf');
+}
+
+.nav {
+	min-height: 5rem;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-around;
+	align-items: center;
+	background: #000;
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	z-index: 9999999;
+	box-shadow: 0 1px 5px #111;
+	& .left {
+	}
+	& .right {
+		display: grid;
+		grid-template-columns: repeat(6, auto);
+		grid-template-rows: 1fr;
+		gap: 2rem;
+		justify-items: center;
+		& a {
+			color: #eee;
+			font-size: 1.1rem;
+			font-weight: 300;
+			text-decoration: none;
+		}
+	}
+}

@@ -1,0 +1,54 @@
+@font-face {
+	font-family: 'Crash';
+	src: url('../../fonts/fairwater_sailor_serif.otf');
+}
+@font-face {
+	font-family: 'Reg';
+	src: url('../../fonts/OldGrowth-Regular.otf');
+}
+
+.main_container {
+	display: grid;
+	grid-template-columns: 1fr;
+	grid-template-rows: auto;
+	justify-items: center;
+	gap: 3rem;
+	margin-top: 5rem;
+	& .box {
+		width: 90vw;
+		height: 30vh;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		position: relative;
+		overflow: hidden;
+		& img {
+			background-position: center;
+			width: 100%;
+			position: absolute;
+			z-index: 0;
+			top: 0%;
+			left: 0;
+			transform: translateY(-40%);
+		}
+		& a {
+			z-index: 1;
+			& button {
+				height: 3.5rem;
+				width: 15rem;
+				background: rgba(238, 238, 238, 0.671);
+				border: 2px solid #eee;
+				color: #000;
+				font-family: 'Crash';
+				font-size: 1.5rem;
+				transition: all 0.3s ease;
+				&:hover {
+					cursor: pointer;
+					background: #eee;
+					color: #000;
+					box-shadow: 0 1px 10px #111;
+				}
+			}
+		}
+	}
+}

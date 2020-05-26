@@ -21,7 +21,7 @@ export const Header = () => {
 						<p>Crash The Calm</p>
 					</div>
 					<div className={style.box}>
-						<h1>Welcome To "Nowhere".</h1>
+						<h1>Welcome To "Nowhere."</h1>
 						<p>a new album by crash the calm.</p>
 						<NavLink to="/main">
 							<button>enter</button>
@@ -37,8 +37,8 @@ export const Header = () => {
 						<p>Crash The Calm</p>
 					</div>
 					<div className={style.box}>
-						<h1>Welcome To "Nowhere".</h1>
-						<p>a new album by crash the calm.</p>
+						<h1>Something different will go here</h1>
+						<p>lorem ipsum dolor bagel</p>
 						<NavLink to="/main">
 							<button>enter</button>
 						</NavLink>

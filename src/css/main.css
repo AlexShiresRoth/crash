@@ -1,12 +1,16 @@
+@import url("https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&display=swap");
 html,
 body {
   font-size: 16px;
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  overflow-x: hidden; }
+  overflow-x: hidden;
+  font-family: 'Lato'; }
 
+a,
 p,
 input,
 textarea {
-  font-size: 16px; }
+  font-size: 16px;
+  font-family: 'Lato'; }
