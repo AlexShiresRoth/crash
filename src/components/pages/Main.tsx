@@ -6,7 +6,6 @@ import Nav from '../nav/Nav';
 export const Main = () => {
 	return (
 		<Layout>
-			<Nav />
 			<Hub />
 		</Layout>
 	);

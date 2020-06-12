@@ -1,0 +1,62 @@
+@import '../../../sass/variables';
+
+@font-face {
+	font-family: 'Crash';
+	src: url('../../fonts/fairwater_sailor_serif.otf');
+}
+@font-face {
+	font-family: 'Reg';
+	src: url('../../fonts/OldGrowth-Regular.otf');
+}
+.box {
+	width: 100%;
+	height: 100vh;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	position: relative;
+	overflow: hidden;
+	background: darken($brand-dark, 3%);
+	& .container {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		& img {
+			max-width: 20rem;
+		}
+		& h2 {
+			font-size: 3rem;
+			color: $brand-secondary;
+			font-weight: 100;
+		}
+		& form {
+			& .input_row {
+				display: grid;
+				grid-template-columns: repeat(2, auto);
+				gap: 1rem;
+				height: 3rem;
+				& input {
+					width: 20rem;
+					padding: 0;
+					border: 2px solid $brand-text;
+					background: $brand-text;
+					color: $brand-secondary;
+				}
+				& button {
+					width: 10rem;
+					font-size: 1rem;
+					border: 2px solid $brand-secondary;
+					text-transform: uppercase;
+					background: transparent;
+					color: $brand-secondary;
+					transition: all 0.3s ease;
+					&:hover {
+						cursor: pointer;
+						background: $brand-secondary;
+						color: $brand-text;
+					}
+				}
+			}
+		}
+	}
+}

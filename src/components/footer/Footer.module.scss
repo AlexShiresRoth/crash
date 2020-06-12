@@ -1,0 +1,54 @@
+@import '../../../sass/variables';
+
+.footer {
+	width: 100%;
+	display: grid;
+	grid-template-columns: repeat(4, auto);
+	gap: 1rem;
+	background: lighten($brand-dark, 1%);
+	justify-items: center;
+	padding: 2rem;
+	& .col {
+		display: flex;
+		flex-direction: column;
+		& h3 {
+			color: $brand-text;
+			opacity: 0.5;
+			font-weight: 700;
+			font-size: 1.1rem;
+			text-transform: uppercase;
+		}
+		& a {
+			text-decoration: none;
+			color: $brand-text;
+			font-size: 1rem;
+			&:hover {
+				color: $brand-main;
+			}
+		}
+		& svg {
+			text-decoration: none;
+			color: $brand-text;
+			font-size: 1.5rem;
+			padding: 0.5rem;
+			margin: 0 0.5rem;
+			border-radius: 50%;
+			background: lighten($brand-dark, 5%);
+		}
+	}
+	& .logo {
+		display: flex;
+		flex-direction: column;
+		& img {
+			max-width: 4rem;
+			margin-right: 0.5rem;
+		}
+		& a {
+			text-decoration: none;
+			color: $brand-text;
+			font-size: 1rem;
+			display: flex;
+			align-items: center;
+		}
+	}
+}

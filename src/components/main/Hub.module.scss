@@ -1,3 +1,5 @@
+@import '../../../sass/variables';
+
 @font-face {
 	font-family: 'Crash';
 	src: url('../../fonts/fairwater_sailor_serif.otf');
@@ -12,43 +14,9 @@
 	grid-template-columns: 1fr;
 	grid-template-rows: auto;
 	justify-items: center;
-	gap: 3rem;
-	margin-top: 5rem;
-	& .box {
-		width: 90vw;
-		height: 30vh;
-		display: flex;
-		justify-content: center;
-		align-items: center;
-		position: relative;
-		overflow: hidden;
-		& img {
-			background-position: center;
-			width: 100%;
-			position: absolute;
-			z-index: 0;
-			top: 0%;
-			left: 0;
-			transform: translateY(-40%);
-		}
-		& a {
-			z-index: 1;
-			& button {
-				height: 3.5rem;
-				width: 15rem;
-				background: rgba(238, 238, 238, 0.671);
-				border: 3px solid #eee;
-				color: #000;
-				font-family: 'Crash';
-				font-size: 1.5rem;
-				transition: all 0.3s ease;
-				&:hover {
-					cursor: pointer;
-					background: #eee;
-					color: #000;
-					box-shadow: 0 1px 10px #111;
-				}
-			}
-		}
-	}
+	padding-top: 6rem;
+	overflow: hidden;
+	background: url('https://res.cloudinary.com/snackmanproductions/image/upload/c_scale,q_53,w_2378/v1590459306/crash/cristian-guanipa-DhnnfJnjb7I-unsplash_whnct7.jpg');
+	background-size: cover;
+	background-attachment: fixed;
 }

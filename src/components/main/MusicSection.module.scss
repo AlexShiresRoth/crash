@@ -1,0 +1,79 @@
+@import '../../../sass/variables';
+
+@font-face {
+	font-family: 'Crash';
+	src: url('../../fonts/fairwater_sailor_serif.otf');
+}
+@font-face {
+	font-family: 'Reg';
+	src: url('../../fonts/OldGrowth-Regular.otf');
+}
+.box {
+	width: 100%;
+	height: 90vh;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	position: relative;
+
+	& .overlay {
+		width: 100%;
+		height: 100%;
+		position: absolute;
+		z-index: 2;
+		display: block;
+		top: 0%;
+		left: 0;
+		opacity: 0.9;
+		background: linear-gradient(120deg, $brand-main 70%, #eeeeee4b 70.1%);
+	}
+
+	& .grid {
+		z-index: 5;
+		display: grid;
+		grid-template-columns: repeat(2, auto);
+		align-items: center;
+		grid-template-rows: auto;
+		& a {
+			z-index: 5;
+			text-decoration: none;
+			color: $brand-text;
+			font-family: ltc-pabst-oldstyle, serif;
+			font-weight: 100;
+			font-style: normal;
+			font-size: 5.5rem;
+			transition: all 0.3s ease;
+			text-transform: uppercase;
+			&::after {
+				content: '';
+				width: 0%;
+				display: block;
+				height: 4px;
+				background: transparent;
+				transition: all 0.3s ease;
+			}
+			&:hover {
+				cursor: pointer;
+				&::after {
+					content: '';
+					width: 100%;
+					display: block;
+					height: 4px;
+					background: $brand-text;
+				}
+			}
+		}
+		& .imgs {
+			display: flex;
+
+			& img {
+				margin: 1rem;
+				max-width: 25rem;
+				box-shadow: 0 1px 5px darken($brand-dark, 5%);
+			}
+			& img:nth-child(2) {
+				transform: translate(-5rem, 2rem);
+			}
+		}
+	}
+}

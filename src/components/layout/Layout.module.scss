@@ -1,4 +1,6 @@
+@import '../../../sass/variables';
+
 .main {
-	background: #111;
+	background: $brand-dark;
 	min-height: 100vh;
 }

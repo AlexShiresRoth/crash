@@ -30,12 +30,13 @@
 		transform-style: preserve-3d;
 
 		& .container {
-			height: 90%;
-			width: 95%;
+			height: 100%;
+			width: 100%;
 			-webkit-backface-visibility: hidden; /* Safari */
 			backface-visibility: hidden;
 			display: flex;
 			flex-direction: column;
+			justify-content: center;
 			align-items: center;
 			background: url('https://res.cloudinary.com/snackmanproductions/image/upload/c_scale,q_60,w_2287/v1590347091/crash/Screenshot_2020-04-28_21.12.42-min_wcypos.png');
 			background-size: cover;
@@ -44,16 +45,12 @@
 			padding: 2rem;
 			position: absolute;
 			& .logo_box {
-				width: 100%;
 				display: flex;
 				justify-content: space-between;
 				align-items: center;
+				margin: 1rem;
 				& img {
-					max-width: 5rem;
-				}
-				& p {
-					font-family: 'Crash';
-					font-size: 2rem;
+					max-width: 10rem;
 				}
 			}
 			& .box {
@@ -63,7 +60,9 @@
 				align-items: center;
 
 				& h1 {
-					font-family: 'Crash';
+					font-family: 'ltc-pabst-oldstyle', serif;
+					font-weight: 400;
+					font-style: normal;
 					font-size: 5rem;
 					color: #000;
 					margin: 0.5rem 0;
@@ -83,7 +82,7 @@
 						background: #000;
 						color: #eee;
 						box-shadow: 0 1px 10px #000;
-						border: 2px solid rgba(218, 113, 15, 0.5);
+						border: 0;
 						transition: all 0.3s ease;
 						margin-top: 3rem;
 						&:hover {
@@ -121,9 +120,10 @@
 			backface-visibility: hidden;
 			display: flex;
 			flex-direction: column;
+			justify-content: center;
 			align-items: center;
-			height: 90%;
-			width: 95%;
+			height: 100%;
+			width: 100%;
 			background-size: cover;
 			background-repeat: no-repeat;
 			background-position: center;
