@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import style from './Footer.module.scss';
 import { Link } from 'react-router-dom';
 import { TiSocialFacebook, TiSocialYoutube, TiSocialTwitter, TiSocialInstagram } from 'react-icons/ti';
@@ -12,14 +11,13 @@ const Footer = () => {
 						src={`https://res.cloudinary.com/snackmanproductions/image/upload/v1590510319/crash/Crash_the_Calm-white_tatrui.png`}
 						alt="Crash the Calm Logo"
 					/>
-					Crash The Calm
 				</Link>
 			</div>
 			<div className={style.col}>
 				<h3>Contact</h3>
 				<a href="mailto:crashthecalm@gmail.com">Booking</a>
-				<a>Press</a>
-				<a>Request A Show</a>
+				<a href="!#">Press</a>
+				<a href="!#">Request A Show</a>
 			</div>
 			<div className={style.col}>
 				<h3>Site</h3>
@@ -33,16 +31,16 @@ const Footer = () => {
 			<div className={style.col}>
 				<h3>Social</h3>
 				<div>
-					<a>
+					<a href="!#">
 						<TiSocialFacebook />
 					</a>
-					<a>
+					<a href="!#">
 						<TiSocialYoutube />
 					</a>
-					<a>
+					<a href="!#">
 						<TiSocialTwitter />
 					</a>
-					<a>
+					<a href="!#">
 						<TiSocialInstagram />
 					</a>
 				</div>
@@ -50,7 +48,5 @@ const Footer = () => {
 		</footer>
 	);
 };
-
-Footer.propTypes = {};
 
 export default Footer;

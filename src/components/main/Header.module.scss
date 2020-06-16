@@ -8,3 +8,52 @@
 	font-family: 'Reg';
 	src: url('../../fonts/OldGrowth-Regular.otf');
 }
+
+.header {
+	height: 100vh;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+	align-items: center;
+	background: url('https://res.cloudinary.com/snackmanproductions/image/upload/c_scale,w_1500/v1591990942/crash/crash_k9pr4a.jpg');
+	width: 100%;
+	background-position: center;
+	background-attachment: fixed;
+	position: relative;
+
+	& .overlay {
+		height: 100%;
+		width: 100%;
+		position: absolute;
+		top: 0;
+		left: 0;
+		background: $brand-main;
+		opacity: 0.5;
+		display: block;
+		z-index: 0;
+		filter: grayscale(100%);
+	}
+	& img {
+		filter: invert(100%) brightness(100%);
+	}
+	& a {
+		justify-self: flex-end;
+		z-index: 2;
+		& button {
+			border: 3px solid $brand-text;
+			background: transparent;
+			color: $brand-text;
+			height: 3.5rem;
+			width: 15rem;
+			font-size: 1.2rem;
+			text-transform: uppercase;
+			transition: all 0.3s ease;
+			font-weight: 700;
+			&:hover {
+				cursor: pointer;
+				background: $brand-text;
+				color: $brand-main;
+			}
+		}
+	}
+}

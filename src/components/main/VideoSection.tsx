@@ -19,6 +19,10 @@ const VideoSection = ({ fetchVideos, youtube: { videos, loading } }: Props) => {
 		fetchVideos();
 	}, [fetchVideos]);
 	//figure out how to get actual videos
+
+	//url for youtube embed
+	const videoSource = `https://www.youtube.com/embed/`;
+
 	console.log(videos);
 	return !loading && videos.length > 0 ? (
 		<section className={style.box} key={section.id}>
@@ -27,12 +31,12 @@ const VideoSection = ({ fetchVideos, youtube: { videos, loading } }: Props) => {
 				{videos
 					.map((video: any, i: number) => {
 						return (
-							<div className={style.video_container}>
-								<img src={video.snippet.thumbnails.medium.url} alt={video.description} />
+							<div className={style.video_container} key={i}>
+								<iframe title="Video" src={videoSource + video.id.videoId} frameBorder="0" />
 							</div>
 						);
 					})
-					.slice(0, 2)}
+					.slice(1, 3)}
 			</div>
 		</section>
 	) : (

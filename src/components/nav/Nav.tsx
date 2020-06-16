@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import style from './Nav.module.scss';
 import { navLinks } from './navLinks';
 import { NavLink } from 'react-router-dom';
@@ -11,10 +10,9 @@ const Nav = (props: any) => {
 			<div className={style.left}>
 				<NavLink to="/">
 					<img
-						src={`https://res.cloudinary.com/snackmanproductions/image/upload/v1590510319/crash/Crash_the_Calm-white_tatrui.png`}
+						src={`https://res.cloudinary.com/snackmanproductions/image/upload/v1592331145/crash/CTC_Logo_Export_n4ra8j.png`}
 						alt="Crash the Calm Logo"
 					/>
-					Crash The Calm
 				</NavLink>
 			</div>
 			<div className={style.center}>
@@ -32,7 +30,5 @@ const Nav = (props: any) => {
 		</nav>
 	);
 };
-
-Nav.propTypes = {};
 
 export default Nav;

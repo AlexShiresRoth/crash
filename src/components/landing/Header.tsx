@@ -5,13 +5,13 @@ import { NavLink } from 'react-router-dom';
 export const Header = () => {
 	const logo = (
 		<img
-			src={`https://res.cloudinary.com/snackmanproductions/image/upload/v1590349233/crash/Crash_the_Calm_mpmchc.png`}
-			alt="crash the calm logo"
+			src={`https://res.cloudinary.com/snackmanproductions/image/upload/v1592331145/crash/CTC_Logo_Export_n4ra8j.png`}
+			alt="Crash the Calm Logo"
 		/>
 	);
 
 	const [reverse, setReverse] = useState(false);
-	console.log(reverse);
+
 	return (
 		<header className={reverse ? `${style.header_reverse} ${style.header}` : style.header}>
 			<div className={style.inner}>

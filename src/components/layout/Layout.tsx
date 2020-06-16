@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import style from './Layout.module.scss';
 import Nav from '../nav/Nav';
 import Footer from '../footer/Footer';
@@ -17,7 +16,5 @@ const Layout = ({ children }: Props) => {
 		</main>
 	);
 };
-
-Layout.propTypes = {};
 
 export default Layout;

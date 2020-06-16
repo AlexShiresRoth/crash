@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import style from './MusicSection.module.scss';
 import { sections } from './sections';
 import { Link } from 'react-router-dom';
@@ -27,7 +26,5 @@ const MusicSection = () => {
 		</section>
 	);
 };
-
-MusicSection.propTypes = {};
 
 export default MusicSection;
