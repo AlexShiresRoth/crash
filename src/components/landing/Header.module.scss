@@ -32,13 +32,13 @@
 		& .container {
 			height: 100%;
 			width: 100%;
+			background: url('https://res.cloudinary.com/snackmanproductions/image/upload/q_63/v1592860362/crash/album_art_full_1_oxpvqy.jpg');
 			-webkit-backface-visibility: hidden; /* Safari */
 			backface-visibility: hidden;
 			display: flex;
 			flex-direction: column;
 			justify-content: center;
 			align-items: center;
-			background: url('https://res.cloudinary.com/snackmanproductions/image/upload/c_scale,q_60,w_2287/v1590347091/crash/Screenshot_2020-04-28_21.12.42-min_wcypos.png');
 			background-size: cover;
 			background-repeat: no-repeat;
 			background-position: center;
@@ -115,7 +115,7 @@
 		}
 
 		& .reverse_container {
-			background: url('https://res.cloudinary.com/snackmanproductions/image/upload/c_scale,q_60,w_2287/v1590351280/crash/Screenshot_2020-04-28_21.12.55-min_qkvyrz.png');
+			background: url('https://res.cloudinary.com/snackmanproductions/image/upload/q_65/v1592860464/crash/album_art_full_1_ui2wtd.jpg');
 			-webkit-backface-visibility: hidden; /* Safari */
 			backface-visibility: hidden;
 			display: flex;
@@ -126,7 +126,7 @@
 			width: 100%;
 			background-size: cover;
 			background-repeat: no-repeat;
-			background-position: center;
+			background-position: -100% 50%;
 			padding: 2rem;
 			position: absolute;
 			transform: rotateY(180deg);

@@ -10,17 +10,16 @@ const MusicSection = () => {
 			<div className={style.overlay}></div>
 			<div className={style.grid}>
 				<Link to={section.path}>explore music</Link>
-				<div className={style.imgs}>
-					<img
-						src={
-							'https://res.cloudinary.com/snackmanproductions/image/upload/c_scale,q_63,w_650/v1591992252/crash/crash-split_ux42mr.jpg'
-						}
-						alt="album"
-					/>
-					<img
-						src={`https://res.cloudinary.com/snackmanproductions/image/upload/c_scale,q_65,w_650/v1591992250/crash/crash-record_g3l2e2.jpg`}
-						alt="album"
-					/>
+				<div className={style.embeds}>
+					<iframe
+						title="spotify embed"
+						src="https://open.spotify.com/embed/artist/4z0T4u61g7AUCjxoygPCAT"
+						width="300"
+						height="380"
+						frameBorder="0"
+						allowTransparency={true}
+						allow="encrypted-media"
+					></iframe>
 				</div>
 			</div>
 		</section>

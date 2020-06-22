@@ -36,24 +36,21 @@
 	& img {
 		filter: invert(100%) brightness(100%);
 	}
-	& a {
-		justify-self: flex-end;
+
+	& .actions {
 		z-index: 2;
-		& button {
-			border: 3px solid $brand-text;
-			background: transparent;
+		display: grid;
+		grid-template-columns: repeat(5, 1fr);
+		justify-items: center;
+		align-items: center;
+		& a {
+			font-size: 1.5rem;
 			color: $brand-text;
-			height: 3.5rem;
-			width: 15rem;
-			font-size: 1.2rem;
-			text-transform: uppercase;
-			transition: all 0.3s ease;
-			font-weight: 700;
-			&:hover {
-				cursor: pointer;
-				background: $brand-text;
-				color: $brand-main;
-			}
+			text-decoration: none;
+		}
+		& span {
+			color: $brand-text;
+			font-size: 2rem;
 		}
 	}
 }

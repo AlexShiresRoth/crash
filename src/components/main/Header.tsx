@@ -10,9 +10,13 @@ export const Header = () => {
 				src={`https://res.cloudinary.com/snackmanproductions/image/upload/v1592331145/crash/CTC_Logo_Export_n4ra8j.png`}
 				alt="Crash the Calm Logo"
 			/>
-			<Link to="/tour">
-				<button>Tour Dates</button>
-			</Link>
+			<div className={style.actions}>
+				<Link to="/music">Listen</Link>
+				<span>|</span>
+				<Link to="/videos">Watch</Link>
+				<span>|</span>
+				<Link to="/tour">Tour</Link>
+			</div>
 		</header>
 	);
 };

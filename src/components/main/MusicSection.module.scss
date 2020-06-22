@@ -63,16 +63,13 @@
 				}
 			}
 		}
-		& .imgs {
+		& .embeds {
 			display: flex;
 
-			& img {
+			& iframe {
 				margin: 1rem;
 				max-width: 25rem;
 				box-shadow: 0 1px 5px darken($brand-dark, 5%);
-			}
-			& img:nth-child(2) {
-				transform: translate(-5rem, 2rem);
 			}
 		}
 	}
