@@ -13,9 +13,7 @@ oauth2.accessToken = process.env.SQUARE_TOKEN;
 router.get('/', async (req, res) => {
 	const api = new SquareConnect.CatalogApi();
 
-	const body = new SquareConnect.SearchCatalogObjectsRequest();
 	let opts = {
-		include_related_objects: true,
 		types: 'ITEM,ITEM_VARIATION,MODIFIER,MODIFIER_LIST,CATEGORY,TAX,IMAGE',
 	};
 	try {
