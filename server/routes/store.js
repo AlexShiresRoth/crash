@@ -14,7 +14,7 @@ router.get('/', async (req, res) => {
 	const api = new SquareConnect.CatalogApi();
 
 	let opts = {
-		types: 'ITEM,ITEM_VARIATION,MODIFIER,MODIFIER_LIST,CATEGORY,TAX,IMAGE',
+		types: 'ITEM,IMAGE',
 	};
 	try {
 		const response = await api.listCatalog(opts);

@@ -3,6 +3,7 @@ import style from './Store.module.scss';
 import { connect } from 'react-redux';
 import { fetchStoreItems } from '../../actions/store';
 import StoreItem from './StoreItem';
+import LoadingSpinner from '../reusablecomps/LoadingSpinner';
 
 interface Props {
 	store: {
@@ -17,9 +18,11 @@ const Store = ({ store: { catalog, loading }, fetchStoreItems }: Props) => {
 		fetchStoreItems();
 	}, [fetchStoreItems]);
 
-	const storeItems = catalog.map((item: any, i: number) => {
-		return <StoreItem item={item} key={i} index={i} />;
-	});
+	const storeItems = catalog
+		.filter((item) => item.type === 'ITEM')
+		.map((item: any, i: number) => {
+			return <StoreItem item={item} key={i} index={i} />;
+		});
 
 	return !loading ? (
 		<section className={style.section}>
@@ -28,6 +31,7 @@ const Store = ({ store: { catalog, loading }, fetchStoreItems }: Props) => {
 	) : (
 		<section className={style.section}>
 			<p>Loading...</p>
+			<LoadingSpinner />
 		</section>
 	);
 };

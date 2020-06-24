@@ -8,3 +8,71 @@
 	font-family: 'Reg';
 	src: url('../../fonts/OldGrowth-Regular.otf');
 }
+
+.item {
+	background: #fff;
+	box-shadow: 0 1px 15px darken(#fff, 15%);
+	padding: 1rem;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	& .heading {
+		border-bottom: 1px solid #eee;
+		& p {
+			font-weight: 900;
+			color: $brand-dark;
+		}
+	}
+	& .variations {
+		display: flex;
+		flex-direction: column;
+		border-bottom: 1px solid #eee;
+		padding: 1rem 0;
+		& .row {
+			display: flex;
+			flex-wrap: wrap;
+			& p {
+				color: $brand-secondary;
+			}
+			& button {
+				background: #eee;
+				border: 1px solid #eee;
+				color: $brand-dark;
+				margin-top: 0.5rem;
+				margin-right: 0.5rem;
+				height: 2.5rem;
+				transition: all 0.3s ease;
+				&:hover,
+				&:active,
+				&:focus {
+					cursor: pointer;
+					background: $brand-secondary;
+					color: #fff;
+					outline: 0px solid transparent;
+					border: 1px solid $brand-secondary;
+				}
+			}
+		}
+	}
+	& .actions {
+		display: flex;
+		justify-content: flex-start;
+		margin: 1rem 0;
+		& button {
+			height: 3rem;
+			width: 100%;
+			background: $brand-dark;
+			border: 1px solid $brand-dark;
+			color: #fff;
+			&:hover,
+			&:active,
+			&:focus {
+				cursor: pointer;
+				background: $brand-secondary;
+				color: #fff;
+				outline: 0px solid transparent;
+				border: 1px solid $brand-secondary;
+			}
+		}
+	}
+}
