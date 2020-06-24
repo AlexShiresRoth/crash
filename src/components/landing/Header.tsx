@@ -1,15 +1,9 @@
 import React, { useState } from 'react';
 import style from './Header.module.scss';
 import { NavLink } from 'react-router-dom';
+import { logo } from '../svgs/logo';
 
 export const Header = () => {
-	const logo = (
-		<img
-			src={`https://res.cloudinary.com/snackmanproductions/image/upload/v1592331145/crash/CTC_Logo_Export_n4ra8j.png`}
-			alt="Crash the Calm Logo"
-		/>
-	);
-
 	const [reverse, setReverse] = useState(false);
 
 	return (
@@ -18,7 +12,7 @@ export const Header = () => {
 				<div className={style.container}>
 					<div className={style.box}>
 						<div className={style.logo_box}>{logo}</div>
-						<h1>Welcome To "Nowhere."</h1>
+						<h1>Welcome To Nowhere.</h1>
 						<p>a new album by crash the calm.</p>
 						<NavLink to="/main">
 							<button>enter</button>

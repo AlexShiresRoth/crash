@@ -21,30 +21,27 @@
 	left: 0;
 	width: 100%;
 	z-index: 9999999;
-	box-shadow: 0 1px 5px $brand-dark;
 	& .left {
 		display: flex;
 		flex-direction: row;
 		align-items: center;
-
 		& a {
 			display: flex;
 			flex-direction: row;
 			align-items: center;
 			justify-content: space-around;
 			color: #eee;
-			font-family: ltc-pabst-oldstyle, serif;
 			font-style: normal;
-			font-weight: 100;
+			font-weight: 700;
 			font-style: normal;
 			text-transform: uppercase;
 			text-decoration: none;
 			font-size: 1.2rem;
 			height: 100%;
-			& img {
-				max-width: 15rem;
-				margin-right: 0.5rem;
-				filter: brightness(1) contrast(95%) invert(100%);
+			& svg {
+				fill: #fff;
+				width: 100%;
+				height: auto;
 			}
 		}
 	}
@@ -55,10 +52,14 @@
 		gap: 2rem;
 		justify-items: center;
 		& a {
-			color: #eee;
+			color: #bbb;
 			font-size: 1.1rem;
-			font-weight: 300;
+			font-weight: 700;
 			text-decoration: none;
+			transition: all 0.3s ease;
+			&:hover {
+				color: $brand-accent;
+			}
 		}
 	}
 }

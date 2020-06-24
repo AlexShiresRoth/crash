@@ -27,7 +27,7 @@
 		}
 		& h2 {
 			font-size: 3rem;
-			color: $brand-secondary;
+			color: $brand-accent;
 			font-weight: 100;
 		}
 		& form {
@@ -41,19 +41,19 @@
 					padding: 0;
 					border: 2px solid $brand-text;
 					background: $brand-text;
-					color: $brand-secondary;
+					color: $brand-accent;
 				}
 				& button {
 					width: 10rem;
 					font-size: 1rem;
-					border: 2px solid $brand-secondary;
+					border: 2px solid $brand-accent;
 					text-transform: uppercase;
 					background: transparent;
-					color: $brand-secondary;
+					color: $brand-accent;
 					transition: all 0.3s ease;
 					&:hover {
 						cursor: pointer;
-						background: $brand-secondary;
+						background: $brand-accent;
 						color: $brand-text;
 					}
 				}

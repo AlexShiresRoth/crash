@@ -2,17 +2,13 @@ import React from 'react';
 import style from './Nav.module.scss';
 import { navLinks } from './navLinks';
 import { NavLink } from 'react-router-dom';
+import { logo } from '../svgs/logo';
 
 const Nav = (props: any) => {
 	return (
 		<nav className={style.nav}>
 			<div className={style.left}>
-				<NavLink to="/">
-					<img
-						src={`https://res.cloudinary.com/snackmanproductions/image/upload/v1592331145/crash/CTC_Logo_Export_n4ra8j.png`}
-						alt="Crash the Calm Logo"
-					/>
-				</NavLink>
+				<NavLink to="/main">{logo}</NavLink>
 			</div>
 
 			<div className={style.right}>

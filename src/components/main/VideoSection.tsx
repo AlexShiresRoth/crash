@@ -23,10 +23,9 @@ const VideoSection = ({ fetchVideos, youtube: { videos, loading } }: Props) => {
 	//url for youtube embed
 	const videoSource = `https://www.youtube.com/embed/`;
 
-	console.log(videos);
 	return !loading && videos.length > 0 ? (
 		<section className={style.box} key={section.id}>
-			<Link to={section.path}>View Music Videos</Link>
+			<Link to={section.path}>Watch all music videos/interviews</Link>
 			<div className={style.video_grid}>
 				{videos
 					.map((video: any, i: number) => {

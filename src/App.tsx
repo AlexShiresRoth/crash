@@ -5,6 +5,7 @@ import { HashRouter as Router, Route, Switch } from 'react-router-dom';
 import { Main } from './components/pages/Main';
 import { Provider } from 'react-redux';
 import store from './store';
+import StorePage from './components/pages/StorePage';
 
 function App() {
 	return (
@@ -13,6 +14,7 @@ function App() {
 				<Switch>
 					<Route exact path="/" component={Landing} />
 					<Route exact path="/main" component={Main} />
+					<Route exact path="/store" component={StorePage} />
 				</Switch>
 			</Router>
 		</Provider>

@@ -49,8 +49,8 @@
 				justify-content: space-between;
 				align-items: center;
 				margin: 1rem;
-				& img {
-					max-width: 20rem;
+				& svg {
+					width: 15rem;
 				}
 			}
 			& .box {
@@ -60,7 +60,7 @@
 				align-items: center;
 
 				& h1 {
-					font-family: 'ltc-pabst-oldstyle', serif;
+					font-family: ltc-pabst-oldstyle, serif;
 					font-weight: 400;
 					font-style: normal;
 					font-size: 5rem;
@@ -74,6 +74,7 @@
 					opacity: 0.6;
 				}
 				& a {
+					margin-top: 3rem;
 					& button {
 						height: 3.5rem;
 						width: 15rem;
@@ -84,7 +85,7 @@
 						box-shadow: 0 1px 10px #000;
 						border: 0;
 						transition: all 0.3s ease;
-						margin-top: 3rem;
+
 						&:hover {
 							cursor: pointer;
 							box-shadow: 0 1px 25px #000;
@@ -136,8 +137,8 @@
 				display: flex;
 				justify-content: space-between;
 				align-items: center;
-				& img {
-					max-width: 5rem;
+				& svg {
+					width: 15rem;
 				}
 				& p {
 					font-family: 'Crash';
@@ -148,9 +149,12 @@
 				margin-top: 5rem;
 				display: flex;
 				flex-direction: column;
+				justify-content: center;
 				align-items: center;
 				& h1 {
-					font-family: 'Crash';
+					font-family: ltc-pabst-oldstyle, serif;
+					font-weight: 400;
+					font-style: normal;
 					font-size: 5rem;
 					color: #000;
 					margin: 0.5rem 0;
@@ -162,6 +166,7 @@
 					opacity: 0.6;
 				}
 				& a {
+					margin-top: 3rem;
 					& button {
 						height: 3.5rem;
 						width: 15rem;
@@ -172,7 +177,7 @@
 						box-shadow: 0 1px 10px #000;
 						border: 2px solid rgba(218, 113, 15, 0.5);
 						transition: all 0.3s ease;
-						margin-top: 3rem;
+
 						&:hover {
 							cursor: pointer;
 							box-shadow: 0 1px 25px #000;
