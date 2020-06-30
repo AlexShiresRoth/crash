@@ -21,6 +21,7 @@
 	left: 0;
 	width: 100%;
 	z-index: 9999999;
+	box-shadow: 0 1px 5px darken($brand-dark, 2%);
 	& .left {
 		display: flex;
 		flex-direction: row;
@@ -42,6 +43,7 @@
 				fill: #fff;
 				width: 100%;
 				height: auto;
+				max-width: 15rem;
 			}
 		}
 	}

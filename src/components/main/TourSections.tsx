@@ -36,10 +36,26 @@ const TourSections = ({ fetchEvents, events: { events } }: Props) => {
 
 	return (
 		<section className={style.box}>
+			<div className={style.banner}></div>
 			<div className={style.heading} ref={tourRef}>
-				<h2>Tour</h2>
+				<h2>Tour Dates</h2>
 			</div>
-
+			<div className={style.actions}>
+				<a
+					href="https://www.bandsintown.com/a/12532766-crash-the-calm?came_from=267&app_id=4703739fab56fda2bbd9f63bfaad612d&trigger=track"
+					target="_blank"
+					rel="noopener noreferrer"
+				>
+					<button>Track</button>
+				</a>
+				<a
+					href="https://www.bandsintown.com/a/12532766-crash-the-calm?came_from=267&app_id=4703739fab56fda2bbd9f63bfaad612d&trigger=request"
+					target="_blank"
+					rel="noopener noreferrer"
+				>
+					<button>Ask to play</button>
+				</a>
+			</div>
 			<div className={style.events_container}>{eventArray}</div>
 			{!loading ? (
 				<button onClick={() => handleToggleEvents()}>

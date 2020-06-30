@@ -10,7 +10,7 @@
 
 .box {
 	width: 100%;
-	padding: 4rem 0;
+	padding-bottom: 4rem;
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
@@ -18,6 +18,13 @@
 	position: relative;
 	overflow: hidden;
 	background: $brand-secondary;
+	& .banner {
+		height: 30rem;
+		width: 100%;
+		background: url('https://res.cloudinary.com/snackmanproductions/image/upload/v1591990942/crash/crash_k9pr4a.jpg');
+		background-position: 50% 60%;
+		filter: sepia(20%);
+	}
 	& .heading {
 		z-index: 2;
 		display: flex;
@@ -34,12 +41,21 @@
 			text-transform: uppercase;
 		}
 	}
+	& .actions {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		gap: 2rem;
+		& button {
+			width: 12rem;
+		}
+	}
 	& .events_container {
 		display: grid;
 		grid-template-columns: 1fr;
 		grid-template-rows: auto;
 		gap: 4rem;
-		width: 90%;
+		width: 70%;
+		margin-top: 2rem;
 	}
 	& button {
 		width: 20rem;
@@ -47,11 +63,11 @@
 		background: $brand-dark;
 		color: $brand-secondary;
 		height: 3rem;
-		width: 10rem;
 		margin: 2rem 0;
 		text-transform: uppercase;
 		transition: all 0.3s ease;
 		box-shadow: 0 1px 10px darken($brand-dark, 5%);
+		font-weight: 900;
 		&:hover {
 			cursor: pointer;
 			background: $brand-dark;

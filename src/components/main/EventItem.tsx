@@ -11,6 +11,8 @@ interface Props {
 const EventItem = ({ event, index }: Props) => {
 	const eventDate = new Date(event.datetime);
 	const time = format(eventDate, 'PPPP p');
+	console.log(event);
+
 	return (
 		<div className={style.item} key={index}>
 			<div className={style.col}>
@@ -20,13 +22,9 @@ const EventItem = ({ event, index }: Props) => {
 				<p>
 					<span>Date:</span> {time}
 				</p>
-			</div>
-			<div className={style.col}>
 				<p>
 					<span>Venue:</span> {event.venue.name}
 				</p>
-			</div>
-			<div className={style.col}>
 				<p>
 					<span>Location:</span> {event.venue.city}, {event.venue.region}
 				</p>
@@ -35,6 +33,19 @@ const EventItem = ({ event, index }: Props) => {
 				<a href={event.url} rel="noopener noreferrer" target="_blank">
 					<button>Event Page</button>
 				</a>
+				{event.offers.length > 0 ? (
+					event.offers.map((offer: any, i: number) => {
+						return (
+							<a href={offer.url} rel="noopener noreferrer" target="_blank" key={i}>
+								<button>{offer.type}</button>
+							</a>
+						);
+					})
+				) : (
+					<a href={event.url + '&trigger=notify_me'} rel="noopener noreferrer" target="_blank">
+						<button>Notify Me</button>
+					</a>
+				)}
 			</div>
 		</div>
 	);

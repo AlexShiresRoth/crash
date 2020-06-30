@@ -6,7 +6,7 @@ export const fetchVideos = () => async (dispatch: any) => {
 
 	try {
 		const fetch = axios.create({
-			baseURL: 'https://www.googleapis.com/youtube/v3/search',
+			baseURL: `https://www.googleapis.com/youtube/v3/search`,
 		});
 
 		const res = await fetch.get('/', {
@@ -14,7 +14,7 @@ export const fetchVideos = () => async (dispatch: any) => {
 				part: 'snippet',
 				q: 'crash+the+calm',
 				maxResults: 5,
-				key: key,
+				key,
 			},
 		});
 		console.log(res.data);
