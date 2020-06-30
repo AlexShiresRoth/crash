@@ -3,6 +3,7 @@ import style from './Nav.module.scss';
 import { navLinks } from './navLinks';
 import { NavLink } from 'react-router-dom';
 import { logo } from '../svgs/logo';
+import Cart from './cart/Cart';
 
 const Nav = (props: any) => {
 	return (
@@ -19,6 +20,7 @@ const Nav = (props: any) => {
 						</NavLink>
 					);
 				})}
+				<Cart />
 			</div>
 		</nav>
 	);

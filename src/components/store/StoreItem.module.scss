@@ -42,15 +42,22 @@
 				margin-right: 0.5rem;
 				height: 2.5rem;
 				transition: all 0.3s ease;
-				&:hover,
-				&:active,
-				&:focus {
+				&:hover {
 					cursor: pointer;
 					background: $brand-secondary;
 					color: #fff;
 					outline: 0px solid transparent;
 					border: 1px solid $brand-secondary;
 				}
+				&:focus {
+					outline: 0px solid transparent;
+				}
+			}
+			& .selected {
+				background: $brand-secondary;
+				color: #fff;
+				outline: 0px solid transparent;
+				border: 1px solid $brand-secondary;
 			}
 		}
 	}
@@ -64,15 +71,19 @@
 			background: $brand-dark;
 			border: 1px solid $brand-dark;
 			color: #fff;
-			&:hover,
-			&:active,
-			&:focus {
+			&:hover {
 				cursor: pointer;
 				background: $brand-secondary;
 				color: #fff;
 				outline: 0px solid transparent;
 				border: 1px solid $brand-secondary;
 			}
+		}
+		& .in_cart {
+			background: $brand-secondary;
+			color: #fff;
+			outline: 0px solid transparent;
+			border: 1px solid $brand-secondary;
 		}
 	}
 }

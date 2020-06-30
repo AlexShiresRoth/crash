@@ -1,9 +1,11 @@
 import { FETCH_EVENTS, EVENT_ERROR } from './types';
 import api from '../utils/api';
+import { bitId } from '../utils/bit';
 
 export const fetchEvents = () => async (dispatch: any) => {
 	try {
-		const res = await api.get('/events');
+		const res = await api.get(`https://rest.bandsintown.com/artists/crashthecalm/events?app_id=${bitId}&date=all`);
+
 		dispatch({
 			type: FETCH_EVENTS,
 			payload: res.data,

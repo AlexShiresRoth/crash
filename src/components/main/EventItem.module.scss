@@ -1,0 +1,56 @@
+@import '../../../sass/variables';
+
+@font-face {
+	font-family: 'Crash';
+	src: url('../../fonts/fairwater_sailor_serif.otf');
+}
+@font-face {
+	font-family: 'Reg';
+	src: url('../../fonts/OldGrowth-Regular.otf');
+}
+
+.item {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	border-bottom: 1px solid lighten($brand-secondary, 2%);
+	padding: 1rem;
+	& .col {
+		display: flex;
+		flex-direction: column;
+		justify-content: space-around;
+		& button {
+			border: 2px solid $brand-dark;
+			background: transparent;
+			color: $brand-dark;
+			height: 2.8rem;
+			width: 10rem;
+			margin: 0.5rem 0;
+			text-transform: uppercase;
+			transition: all 0.3s ease;
+			box-shadow: 0 0 0;
+			&:hover {
+				cursor: pointer;
+				background: $brand-dark;
+				color: $brand-secondary;
+				box-shadow: 0 1px 10px darken($brand-dark, 5%);
+			}
+		}
+		& button:nth-of-type(2) {
+			margin: 1rem 0;
+		}
+		& p {
+			color: $brand-text;
+			font-weight: 400;
+			font-size: 1.2rem;
+			& span {
+				font-weight: 900;
+				color: $brand-accent;
+			}
+		}
+		& svg {
+			font-size: 3rem;
+			color: $brand-accent;
+		}
+	}
+}

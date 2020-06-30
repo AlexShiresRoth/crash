@@ -5,6 +5,9 @@ import { Link } from 'react-router-dom';
 export const Header = () => {
 	return (
 		<header className={style.header}>
+			<video muted loop autoPlay>
+				<source src={require('../videos/lamp.mp4')} type="video/mp4" />
+			</video>
 			<div className={style.overlay}></div>
 			<img
 				src={`https://res.cloudinary.com/snackmanproductions/image/upload/v1592331145/crash/CTC_Logo_Export_n4ra8j.png`}

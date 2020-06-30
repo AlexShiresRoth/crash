@@ -18,4 +18,45 @@
 	position: relative;
 	overflow: hidden;
 	background: $brand-secondary;
+	& .heading {
+		z-index: 2;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		& h2 {
+			z-index: 5;
+			color: $brand-text;
+			font-family: ltc-pabst-oldstyle, serif;
+			font-weight: 100;
+			font-style: normal;
+			font-size: 3.5rem;
+			transition: all 0.3s ease;
+			text-transform: uppercase;
+		}
+	}
+	& .events_container {
+		display: grid;
+		grid-template-columns: 1fr;
+		grid-template-rows: auto;
+		gap: 4rem;
+		width: 90%;
+	}
+	& button {
+		width: 20rem;
+		border: 2px solid $brand-dark;
+		background: $brand-dark;
+		color: $brand-secondary;
+		height: 3rem;
+		width: 10rem;
+		margin: 2rem 0;
+		text-transform: uppercase;
+		transition: all 0.3s ease;
+		box-shadow: 0 1px 10px darken($brand-dark, 5%);
+		&:hover {
+			cursor: pointer;
+			background: $brand-dark;
+			color: $brand-secondary;
+			box-shadow: 0 1px 20px darken($brand-dark, 5%);
+		}
+	}
 }
