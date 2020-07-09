@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { fetchStoreItems } from '../../actions/store';
 import StoreItem from './StoreItem';
 import LoadingSpinner from '../reusablecomps/LoadingSpinner';
+import SearchBar from './search/SearchBar';
 
 interface Props {
 	store: {
@@ -17,15 +18,16 @@ const Store = ({ store: { catalog, loading }, fetchStoreItems }: Props) => {
 	useEffect(() => {
 		fetchStoreItems();
 	}, [fetchStoreItems]);
-
+	const itemImages = catalog.filter((item) => item.type === 'IMAGE');
 	const storeItems = catalog
 		.filter((item) => item.type === 'ITEM')
 		.map((item: any, i: number) => {
-			return <StoreItem item={item} key={i} index={i} />;
+			return <StoreItem item={item} key={i} index={i} itemImages={itemImages} />;
 		});
 
 	return !loading ? (
 		<section className={style.section}>
+			<SearchBar />
 			<div className={style.store_grid}>{storeItems}</div>
 		</section>
 	) : (

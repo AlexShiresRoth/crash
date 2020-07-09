@@ -1,26 +1,19 @@
 {
-	"name": "server",
-	"version": "1.0.0",
-	"description": "",
-	"main": "server.ts",
-	"scripts": {
-		"start": "node server.js",
-		"test": "npm run test.ts",
-		"tsc": "tsc"
-	},
-	"author": "",
-	"license": "ISC",
-	"dependencies": {
-		"axios": "^0.19.2",
-		"cors": "^2.8.5",
-		"dotenv": "^8.2.0",
-		"express": "^4.17.1",
-		"https": "^1.0.0",
-		"mongoose": "^5.9.20",
-		"square-connect": "^3.20200528.0"
-	},
-	"devDependencies": {
-		"install": "^0.13.0",
-		"npm": "^6.14.5"
-	}
+  "name": "server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "express-validator": "^6.6.0",
+    "mongoose": "^5.9.22",
+    "square-connect": "^4.20200625.0"
+  }
 }

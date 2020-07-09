@@ -14,12 +14,13 @@ router.get('/', async (req, res) => {
 	const api = new SquareConnect.CatalogApi();
 
 	let opts = {
-		types: 'ITEM,IMAGE',
+		types: 'ITEM,ITEM_VARIATION,MODIFIER,MODIFIER_LIST,CATEGORY,TAX,IMAGE',
 	};
 	try {
 		const response = await api.listCatalog(opts);
 
 		const items = response.objects.map((item) => item);
+
 		res.json(items);
 	} catch (error) {
 		console.error(error);

@@ -6,6 +6,7 @@ import { Main } from './components/pages/Main';
 import { Provider } from 'react-redux';
 import store from './store';
 import StorePage from './components/pages/StorePage';
+import Epk from './components/pages/Epk';
 
 function App() {
 	return (
@@ -15,6 +16,7 @@ function App() {
 					<Route exact path="/" component={Landing} />
 					<Route exact path="/main" component={Main} />
 					<Route exact path="/store" component={StorePage} />
+					<Route exact path="/epk" component={Epk} />
 				</Switch>
 			</Router>
 		</Provider>

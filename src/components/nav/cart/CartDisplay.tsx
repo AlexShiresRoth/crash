@@ -22,11 +22,15 @@ const CartDisplay = ({ store: { cart, loading }, removeFromCart, isVisible, setV
 			</div>
 			<div className={style.items}>
 				{cart.map((item: any, i: number) => {
-					console.log(item);
 					const name = item.item_data.name;
 					return (
 						<div key={i}>
 							<p>{name}</p>
+							{item.sizes.length > 0 ? (
+								<div className={style.sizes}>
+									Selected Sizes: {item.sizes.map((size: string) => size)}
+								</div>
+							) : null}
 						</div>
 					);
 				})}

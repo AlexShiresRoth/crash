@@ -13,14 +13,17 @@
 	background: #fff;
 	box-shadow: 0 1px 15px darken(#fff, 15%);
 	padding: 1rem;
-	display: flex;
-	flex-direction: column;
-	justify-content: space-between;
+	display: inline-block;
+	margin: 1rem 0;
 	& .heading {
 		border-bottom: 1px solid #eee;
 		& p {
 			font-weight: 900;
 			color: $brand-dark;
+			font-size: 1.5rem;
+		}
+		& img {
+			max-width: 100%;
 		}
 	}
 	& .variations {
@@ -58,6 +61,15 @@
 				color: #fff;
 				outline: 0px solid transparent;
 				border: 1px solid $brand-secondary;
+			}
+		}
+	}
+	& .price {
+		& p {
+			& span {
+				color: $brand-secondary;
+				font-size: 1.2rem;
+				margin-right: 0.5rem;
 			}
 		}
 	}

@@ -11,7 +11,6 @@ interface Props {
 const EventItem = ({ event, index }: Props) => {
 	const eventDate = new Date(event.datetime);
 	const time = format(eventDate, 'PPPP p');
-	console.log(event);
 
 	return (
 		<div className={style.item} key={index}>

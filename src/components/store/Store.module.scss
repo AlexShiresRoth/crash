@@ -9,10 +9,20 @@
 	justify-content: center;
 	& .store_grid {
 		margin: 4rem;
-		margin-top: 10rem;
-		display: grid;
-		grid-template-columns: repeat(4, 1fr);
-		gap: 2rem;
-		grid-template-rows: auto;
+		margin-top: 2rem;
+		column-count: 4;
+		column-gap: 2rem;
+		column-width: 25%;
+	}
+}
+
+@media screen and (max-width: 1500px) {
+	.section {
+		& .store_grid {
+			margin-top: 2rem;
+			column-count: 3;
+			column-gap: 2rem;
+			column-width: 25%;
+		}
 	}
 }

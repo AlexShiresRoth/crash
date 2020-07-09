@@ -1,10 +1,13 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import Layout from '../layout/Layout';
+import EpkComponent from '../epk/EpkComponent';
 
 const Epk = (props: any) => {
-	return <div></div>;
+	return (
+		<Layout>
+			<EpkComponent />
+		</Layout>
+	);
 };
-
-Epk.propTypes = {};
 
 export default Epk;
