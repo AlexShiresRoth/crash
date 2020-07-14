@@ -1,9 +1,9 @@
 import axios from 'axios';
 
-// const devUrl = 'http://localhost:5000/api';
-const url = `https://crash-the-calm.herokuapp.com/api`;
+const devUrl = 'http://localhost:5000/api';
+// const url = `https://crash-the-calm.herokuapp.com/api`;
 const api = axios.create({
-	baseURL: url,
+	baseURL: devUrl,
 	headers: {
 		'Content-Type': 'application/json',
 	},

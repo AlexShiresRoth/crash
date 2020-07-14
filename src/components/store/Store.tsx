@@ -2,13 +2,13 @@ import React, { useEffect } from 'react';
 import style from './Store.module.scss';
 import { connect } from 'react-redux';
 import { fetchStoreItems } from '../../actions/store';
-import StoreItem from './StoreItem';
 import LoadingSpinner from '../reusablecomps/LoadingSpinner';
 import SearchBar from './search/SearchBar';
+import StoreItems from './StoreItems';
 
 interface Props {
 	store: {
-		catalog: Array<any>;
+		catalog: any;
 		loading: boolean;
 	};
 	fetchStoreItems: () => any;
@@ -18,17 +18,13 @@ const Store = ({ store: { catalog, loading }, fetchStoreItems }: Props) => {
 	useEffect(() => {
 		fetchStoreItems();
 	}, [fetchStoreItems]);
-	const itemImages = catalog.filter((item) => item.type === 'IMAGE');
-	const storeItems = catalog
-		.filter((item) => item.type === 'ITEM')
-		.map((item: any, i: number) => {
-			return <StoreItem item={item} key={i} index={i} itemImages={itemImages} />;
-		});
 
 	return !loading ? (
 		<section className={style.section}>
 			<SearchBar />
-			<div className={style.store_grid}>{storeItems}</div>
+			<div className={style.store_grid}>
+				<StoreItems catalog={catalog} />
+			</div>
 		</section>
 	) : (
 		<section className={style.section}>

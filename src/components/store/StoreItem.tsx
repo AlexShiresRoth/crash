@@ -14,7 +14,14 @@ interface Props {
 }
 
 const StoreItem = ({ item, index, addToCart, removeFromCart, itemImages, store: { cart } }: Props) => {
-	const [sizes, selectSizes] = useState<Array<any>>([]);
+	const [formData, setFormData] = useState({
+		size: '',
+	});
+
+	const { size } = formData;
+
+	const onChange = (e: React.FormEvent<HTMLSelectElement>) =>
+		setFormData({ ...formData, size: e.currentTarget.value });
 
 	//check if item is already in cart
 	const handleIsInCart = (data: any) => cart.filter((cartItem: any) => cartItem.id === data.id).length > 0;
@@ -25,10 +32,10 @@ const StoreItem = ({ item, index, addToCart, removeFromCart, itemImages, store: 
 
 	const handleAddToCart = () => {
 		//add this to cart if item is clothing
-		const itemAndSizes = { ...item, sizes };
+		const itemAndSizes = { ...item, size };
 		//make sure item is cat:clothing to require size addition
 		if (clothingCategories.includes(item.item_data.category_id)) {
-			return sizes.length > 0
+			return size
 				? handleIsInCart(item)
 					? removeFromCart(item.id)
 					: addToCart(itemAndSizes)
@@ -38,16 +45,20 @@ const StoreItem = ({ item, index, addToCart, removeFromCart, itemImages, store: 
 		}
 	};
 
-	const handleSelectSize = (data: any) => {
-		return sizes.includes(data)
-			? selectSizes((prevState) => prevState.splice(prevState.indexOf(data), 1))
-			: selectSizes((prevState) => [data, ...prevState]);
-	};
-
 	const hasImage = () => {
 		return item.image_id
 			? itemImages.filter((image) => item.image_id === image.id)[0].image_data.url
 			: 'https://res.cloudinary.com/snackmanproductions/image/upload/v1594330128/crash/unnamed_jvhuaj.jpg';
+	};
+
+	const handleVariationSelect = () => {
+		let foundIndex = 0;
+
+		item.item_data.variations.map((variation: any, i: number) => {
+			return variation.item_variation_data.name === size ? (foundIndex = i) : null;
+		});
+
+		return foundIndex;
 	};
 
 	return (
@@ -63,23 +74,19 @@ const StoreItem = ({ item, index, addToCart, removeFromCart, itemImages, store: 
 							<p>Sizes/Colors Available</p>
 						</div>
 						<div className={style.row}>
-							{item.item_data.variations.map((variation: any, i: number) => {
-								return (
-									<button
-										onClick={() => handleSelectSize(variation.item_variation_data.name)}
-										className={
-											sizes.length > 0
-												? sizes.includes(variation.item_variation_data.name)
-													? style.selected
-													: ''
-												: ''
-										}
-										key={i}
-									>
-										{variation.item_variation_data.name}
-									</button>
-								);
-							})}
+							<form>
+								<select onChange={(e) => onChange(e)}>
+									<option value=""></option>
+									{item.item_data.variations.map((variation: any, i: number) => {
+										// console.log(variation);
+										return (
+											<option key={i} value={variation.item_variation_data.name}>
+												{variation.item_variation_data.name}
+											</option>
+										);
+									})}
+								</select>
+							</form>
 						</div>
 					</>
 				</div>
@@ -87,8 +94,16 @@ const StoreItem = ({ item, index, addToCart, removeFromCart, itemImages, store: 
 
 			<div className={style.price}>
 				<p>
-					<span>Item Price:</span>$
-					{(parseFloat(item.item_data.variations[0].item_variation_data.price_money.amount) / 100).toFixed(2)}
+					<span>Item Price:</span>
+					{size !== ''
+						? '$' +
+						  (
+								parseFloat(
+									item.item_data.variations[handleVariationSelect()].item_variation_data.price_money
+										.amount
+								) / 100
+						  ).toFixed(2)
+						: 'Choose a size'}
 				</p>
 			</div>
 			<div className={style.actions}>

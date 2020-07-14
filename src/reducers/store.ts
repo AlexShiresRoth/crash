@@ -1,4 +1,4 @@
-import { FETCH_STORE, ADD_TO_CART, STORE_ERROR, REMOVE_FROM_CART } from '../actions/types';
+import { FETCH_STORE, ADD_TO_CART, STORE_ERROR, REMOVE_FROM_CART, SEARCH_STORE } from '../actions/types';
 
 const initialState = {
 	catalog: [],
@@ -12,6 +12,12 @@ export default (state = initialState, action: any) => {
 
 	switch (type) {
 		case FETCH_STORE:
+			return {
+				...state,
+				catalog: payload,
+				loading: false,
+			};
+		case SEARCH_STORE:
 			return {
 				...state,
 				catalog: payload,

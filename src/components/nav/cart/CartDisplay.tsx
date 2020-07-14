@@ -26,11 +26,7 @@ const CartDisplay = ({ store: { cart, loading }, removeFromCart, isVisible, setV
 					return (
 						<div key={i}>
 							<p>{name}</p>
-							{item.sizes.length > 0 ? (
-								<div className={style.sizes}>
-									Selected Sizes: {item.sizes.map((size: string) => size)}
-								</div>
-							) : null}
+							{item.size !== null ? <div className={style.sizes}>Selected Size: {item.size}</div> : null}
 						</div>
 					);
 				})}
