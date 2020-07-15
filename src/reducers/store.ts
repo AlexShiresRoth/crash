@@ -1,7 +1,17 @@
-import { FETCH_STORE, ADD_TO_CART, STORE_ERROR, REMOVE_FROM_CART, SEARCH_STORE } from '../actions/types';
+import {
+	FETCH_STORE,
+	ADD_TO_CART,
+	STORE_ERROR,
+	REMOVE_FROM_CART,
+	SEARCH_STORE,
+	FETCH_IMAGES,
+	FETCH_CATEGORIES,
+} from '../actions/types';
 
 const initialState = {
 	catalog: [],
+	images: [],
+	categories: [],
 	loading: true,
 	cart: [],
 	errors: [],
@@ -15,6 +25,18 @@ export default (state = initialState, action: any) => {
 			return {
 				...state,
 				catalog: payload,
+				loading: false,
+			};
+		case FETCH_IMAGES:
+			return {
+				...state,
+				images: payload,
+				loading: false,
+			};
+		case FETCH_CATEGORIES:
+			return {
+				...state,
+				categories: payload,
 				loading: false,
 			};
 		case SEARCH_STORE:

@@ -1,35 +1,32 @@
 import React, { useEffect } from 'react';
 import style from './Store.module.scss';
 import { connect } from 'react-redux';
-import { fetchStoreItems } from '../../actions/store';
-import LoadingSpinner from '../reusablecomps/LoadingSpinner';
+import { fetchStoreItems, fetchCatalogImages, fetchCategories } from '../../actions/store';
 import SearchBar from './search/SearchBar';
 import StoreItems from './StoreItems';
+import Carousel from './carousel/Carousel';
 
 interface Props {
-	store: {
-		catalog: any;
-		loading: boolean;
-	};
+	store: any;
 	fetchStoreItems: () => any;
+	fetchCatalogImages: () => any;
+	fetchCategories: () => any;
 }
 
-const Store = ({ store: { catalog, loading }, fetchStoreItems }: Props) => {
+const Store = ({ fetchStoreItems, fetchCatalogImages, fetchCategories }: Props) => {
 	useEffect(() => {
 		fetchStoreItems();
-	}, [fetchStoreItems]);
+		fetchCatalogImages();
+		fetchCategories();
+	}, [fetchStoreItems, fetchCatalogImages, fetchCategories]);
 
-	return !loading ? (
+	return (
 		<section className={style.section}>
+			<Carousel />
 			<SearchBar />
 			<div className={style.store_grid}>
-				<StoreItems catalog={catalog} />
+				<StoreItems />
 			</div>
-		</section>
-	) : (
-		<section className={style.section}>
-			<p>Loading...</p>
-			<LoadingSpinner />
 		</section>
 	);
 };
@@ -40,4 +37,4 @@ const mapStateToProps = (state: any) => {
 	};
 };
 
-export default connect(mapStateToProps, { fetchStoreItems })(Store);
+export default connect(mapStateToProps, { fetchStoreItems, fetchCatalogImages, fetchCategories })(Store);

@@ -15,7 +15,7 @@ router.get('/', async (req, res) => {
 	const api = new SquareConnect.CatalogApi();
 
 	let opts = {
-		types: 'ITEM,ITEM_VARIATION,MODIFIER,MODIFIER_LIST,CATEGORY,TAX,IMAGE',
+		types: 'ITEM,ITEM_VARIATION,MODIFIER,MODIFIER_LIST,CATEGORY,TAX',
 	};
 	try {
 		const response = await api.listCatalog(opts);
@@ -24,6 +24,45 @@ router.get('/', async (req, res) => {
 	} catch (error) {
 		console.error(error);
 
+		return res.status(500).json({ msg: 'Internal Server Error' });
+	}
+});
+
+//@route GET Route
+//@desc get catalog images
+//@access public
+router.get('/catalogimages', async (req, res) => {
+	const api = new SquareConnect.CatalogApi();
+
+	let options = {
+		types: 'IMAGE',
+	};
+
+	try {
+		const response = await api.listCatalog(options);
+		console.log(response);
+		res.json(response);
+	} catch (error) {
+		console.error(error);
+		return res.status(500).json({ msg: 'Internal Server Error' });
+	}
+});
+
+//@route GET route
+//@desc retrieve item categories
+//@access public
+router.get('/categories', async (req, res) => {
+	const api = new SquareConnect.CatalogApi();
+
+	let options = {
+		types: 'CATEGORY',
+	};
+
+	try {
+		const response = await api.listCatalog(options);
+		res.json(response);
+	} catch (error) {
+		console.error(error);
 		return res.status(500).json({ msg: 'Internal Server Error' });
 	}
 });

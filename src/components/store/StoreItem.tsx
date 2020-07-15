@@ -10,13 +10,14 @@ interface Props {
 	addToCart: (val: any) => any;
 	store?: any;
 	removeFromCart: (val: any) => any;
-	itemImages: Array<any>;
 }
 
-const StoreItem = ({ item, index, addToCart, removeFromCart, itemImages, store: { cart } }: Props) => {
+const StoreItem = ({ item, index, addToCart, removeFromCart, store: { cart, images } }: Props) => {
 	const [formData, setFormData] = useState({
 		size: '',
 	});
+
+	const itemImages = images.objects.filter((item: any) => item.type === 'IMAGE');
 
 	const { size } = formData;
 
@@ -47,7 +48,7 @@ const StoreItem = ({ item, index, addToCart, removeFromCart, itemImages, store: 
 
 	const hasImage = () => {
 		return item.image_id
-			? itemImages.filter((image) => item.image_id === image.id)[0].image_data.url
+			? itemImages.filter((image: any) => item.image_id === image.id)[0].image_data.url
 			: 'https://res.cloudinary.com/snackmanproductions/image/upload/v1594330128/crash/unnamed_jvhuaj.jpg';
 	};
 

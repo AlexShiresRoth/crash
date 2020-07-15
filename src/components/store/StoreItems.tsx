@@ -1,28 +1,41 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import StoreItem from './StoreItem';
+import { connect } from 'react-redux';
+import LoadingSpinner from '../reusablecomps/LoadingSpinner';
 
 interface Props {
-	catalog: any;
+	store?: any;
 }
 
-const StoreItems = ({ catalog }: Props) => {
-	//when user searches through catalog, the image may come as a related_object
-	const itemImages =
-		catalog.objects.filter((item: any) => item.type === 'IMAGE').length > 0
-			? catalog.objects.filter((item: any) => item.type === 'IMAGE')
-			: catalog.related_objects.filter((item: any) => item.type === 'IMAGE');
-
-	const storeItems = catalog.objects
-		.filter((item: any) => item.type === 'ITEM')
-		.map((item: any, i: number) => {
-			return <StoreItem item={item} key={i} index={i} itemImages={itemImages} />;
-		});
-	return <>{storeItems}</>;
+const StoreItems = ({ store: { catalog, loading } }: Props) => {
+	//TODO figure out how to retrieve catalog objects based upon receiving the category id of a search result
+	const handleCatalog = (item: any, i: number) => {
+		switch (true) {
+			case item.type === 'ITEM':
+				return <StoreItem item={item} key={i} index={i} />;
+			case item.type === 'CATEGORY':
+				return;
+			default:
+				return;
+		}
+	};
+	return (
+		<>
+			{!loading && catalog.objects ? (
+				catalog.objects.map((item: any, i: number) => {
+					return handleCatalog(item, i);
+				})
+			) : (
+				<LoadingSpinner />
+			)}
+		</>
+	);
 };
 
-StoreItems.propTypes = {
-	catalog: PropTypes.object,
+const mapStateToProps = (state: any) => {
+	return {
+		store: state.store,
+	};
 };
 
-export default StoreItems;
+export default connect(mapStateToProps, null)(StoreItems);
