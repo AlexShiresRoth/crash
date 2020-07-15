@@ -10,6 +10,11 @@ import {
 } from './types';
 import { setAlert } from './alert';
 
+const config = {
+	accept: 'application/json',
+	headers: { 'Content-Type': 'application/json' },
+};
+
 export const fetchStoreItems = () => async (dispatch: any) => {
 	try {
 		const res = await api.get('/store');
@@ -72,7 +77,7 @@ export const fetchCategories = () => async (dispatch: any) => {
 
 export const searchCatalog = (data: any) => async (dispatch: any) => {
 	try {
-		const res = await api.post('/store', data);
+		const res = await api.post('/store', data, config);
 
 		dispatch({
 			type: SEARCH_STORE,
