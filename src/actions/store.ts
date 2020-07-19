@@ -7,6 +7,7 @@ import {
 	SEARCH_STORE,
 	FETCH_IMAGES,
 	FETCH_CATEGORIES,
+	CLEAR_SEARCH,
 } from './types';
 import { setAlert } from './alert';
 
@@ -33,6 +34,20 @@ export const fetchStoreItems = () => async (dispatch: any) => {
 			errors.forEach((err: any) => dispatch(setAlert(err.msg, 'danger')));
 			return;
 		}
+		dispatch({
+			type: STORE_ERROR,
+			payload: error.response.data.msg,
+		});
+		dispatch(setAlert(error.response.data.msg, 'danger'));
+	}
+};
+
+export const clearSearch = () => async (dispatch: any) => {
+	try {
+		dispatch({
+			type: CLEAR_SEARCH,
+		});
+	} catch (error) {
 		dispatch({
 			type: STORE_ERROR,
 			payload: error.response.data.msg,

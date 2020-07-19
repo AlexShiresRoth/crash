@@ -6,10 +6,12 @@ import {
 	SEARCH_STORE,
 	FETCH_IMAGES,
 	FETCH_CATEGORIES,
+	CLEAR_SEARCH,
 } from '../actions/types';
 
 const initialState = {
 	catalog: [],
+	searchResults: [],
 	images: [],
 	categories: [],
 	loading: true,
@@ -31,18 +33,16 @@ export default (state = initialState, action: any) => {
 			return {
 				...state,
 				images: payload,
-				loading: false,
 			};
 		case FETCH_CATEGORIES:
 			return {
 				...state,
 				categories: payload,
-				loading: false,
 			};
 		case SEARCH_STORE:
 			return {
 				...state,
-				catalog: payload,
+				searchResults: payload,
 				loading: false,
 			};
 		case ADD_TO_CART:
@@ -55,6 +55,12 @@ export default (state = initialState, action: any) => {
 			return {
 				...state,
 				cart: state.cart.filter((cartItem: any) => cartItem.id !== payload),
+				loading: false,
+			};
+		case CLEAR_SEARCH:
+			return {
+				...state,
+				searchResults: [],
 				loading: false,
 			};
 		case STORE_ERROR:

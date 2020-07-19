@@ -13,7 +13,7 @@ interface Props {
 	removeFromCart: (val: any) => any;
 }
 
-const StoreItem = ({ item, index, addToCart, removeFromCart, store: { cart, images } }: Props) => {
+const StoreItem = ({ item, index, addToCart, removeFromCart, store: { cart, images, categories } }: Props) => {
 	const [formData, setFormData] = useState({
 		size: '',
 	});
@@ -38,13 +38,13 @@ const StoreItem = ({ item, index, addToCart, removeFromCart, store: { cart, imag
 
 	//ids for clothing items from square
 	//other categories like cd's do not need to have a size
-	const clothingCategories = ['YN762CCYIVI5QU265ZBPHCUA', 'P77GQOLSO4ZI5LGXIGLXYPAX', 'VX6DX7KQVPQW5HPQ5NC5XTBH'];
+	const categoryIds = ['YN762CCYIVI5QU265ZBPHCUA', 'P77GQOLSO4ZI5LGXIGLXYPAX', 'VX6DX7KQVPQW5HPQ5NC5XTBH'];
 
 	const handleAddToCart = () => {
 		//add this to cart if item is clothing
 		const itemAndSizes = { ...item, size };
 		//make sure item is cat:clothing to require size addition
-		if (clothingCategories.includes(item.item_data.category_id)) {
+		if (categoryIds.includes(item.item_data.category_id)) {
 			return size
 				? handleIsInCart(item)
 					? removeFromCart(item.id)
@@ -84,7 +84,7 @@ const StoreItem = ({ item, index, addToCart, removeFromCart, store: { cart, imag
 				<p>{item.item_data.name}</p>
 				<img src={hasImage()} alt="None yet" />
 			</div>
-			{clothingCategories.includes(item.item_data.category_id) ? (
+			{categoryIds.includes(item.item_data.category_id) ? (
 				<div className={style.variations}>
 					<>
 						<div className={style.row}>
