@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import style from './StoreItem.module.scss';
 import { connect } from 'react-redux';
 import { addToCart, removeFromCart } from '../../actions/store';
+import StoreAlert from './alerts/StoreAlert';
 
 interface Props {
 	item: any;
@@ -16,6 +17,14 @@ const StoreItem = ({ item, index, addToCart, removeFromCart, store: { cart, imag
 	const [formData, setFormData] = useState({
 		size: '',
 	});
+
+	//Handle alerting user if adding cart to item fails
+	const [alerted, setAlert] = useState({
+		sizeError: false,
+		status: '',
+	});
+
+	const { sizeError, status } = alerted;
 
 	const itemImages = images.objects.filter((item: any) => item.type === 'IMAGE');
 
@@ -40,7 +49,10 @@ const StoreItem = ({ item, index, addToCart, removeFromCart, store: { cart, imag
 				? handleIsInCart(item)
 					? removeFromCart(item.id)
 					: addToCart(itemAndSizes)
-				: alert('Please select a size');
+				: setAlert({
+						sizeError: true,
+						status: 'Please choose a size',
+				  });
 		} else {
 			return handleIsInCart(item) ? removeFromCart(item.id) : addToCart(itemAndSizes);
 		}
@@ -62,6 +74,10 @@ const StoreItem = ({ item, index, addToCart, removeFromCart, store: { cart, imag
 		return foundIndex;
 	};
 
+	useEffect(() => {
+		if (size !== '') setAlert({ sizeError: false, status: '' });
+	}, [size]);
+
 	return (
 		<div className={style.item} key={index}>
 			<div className={style.heading}>
@@ -76,8 +92,13 @@ const StoreItem = ({ item, index, addToCart, removeFromCart, store: { cart, imag
 						</div>
 						<div className={style.row}>
 							<form>
-								<select onChange={(e) => onChange(e)}>
-									<option value=""></option>
+								{sizeError ? <StoreAlert status={status} /> : null}
+								<select
+									onChange={(e) => onChange(e)}
+									style={sizeError ? { border: '2px solid #8f2b2bb0' } : {}}
+									className={style.select_box}
+								>
+									<option>Choose a size</option>
 									{item.item_data.variations.map((variation: any, i: number) => {
 										// console.log(variation);
 										return (
@@ -104,7 +125,10 @@ const StoreItem = ({ item, index, addToCart, removeFromCart, store: { cart, imag
 										.amount
 								) / 100
 						  ).toFixed(2)
-						: 'Choose a size'}
+						: '$' +
+						  (
+								parseFloat(item.item_data.variations[0].item_variation_data.price_money.amount) / 100
+						  ).toFixed(2)}
 				</p>
 			</div>
 			<div className={style.actions}>

@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import LoadingSpinner from '../../reusablecomps/LoadingSpinner';
 import style from './Carousel.module.scss';
 
 interface Props {
@@ -12,6 +11,7 @@ const Carousel = ({ store: { images, loading } }: Props) => {
 	const [moreImgs, addImgs] = useState<Array<any>>([]);
 
 	useEffect(() => {
+		//dupe array to create image slider
 		const handleImageLoading = () => {
 			let max = 4;
 			while (max > 0) {
@@ -33,7 +33,7 @@ const Carousel = ({ store: { images, loading } }: Props) => {
 			<div className={style.right_over}></div>
 		</div>
 	) : (
-		<LoadingSpinner />
+		<p>Loading Images...</p>
 	);
 };
 

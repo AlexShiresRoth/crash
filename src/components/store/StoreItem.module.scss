@@ -31,6 +31,7 @@
 		flex-direction: column;
 		border-bottom: 1px solid #eee;
 		padding: 1rem 0;
+		position: relative;
 		& .row {
 			display: flex;
 			flex-wrap: wrap;
@@ -54,6 +55,14 @@
 				}
 				&:focus {
 					outline: 0px solid transparent;
+				}
+			}
+			& form {
+				& .select_box {
+					border: 2px solid $brand-dark;
+					width: 15rem;
+					height: 2rem;
+					border-radius: 2px;
 				}
 			}
 			& .selected {

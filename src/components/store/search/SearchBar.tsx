@@ -3,7 +3,6 @@ import style from './SearchBar.module.scss';
 import { FaSearch } from 'react-icons/fa';
 import { searchCatalog } from '../../../actions/store';
 import { connect } from 'react-redux';
-import LoadingSpinner from '../../reusablecomps/LoadingSpinner';
 
 interface Props {
 	searchCatalog: (data: any) => any;
@@ -44,7 +43,7 @@ const SearchBar = ({ searchCatalog, store: { categories, loading } }: Props) => 
 						})}
 					</select>
 				) : (
-					<LoadingSpinner />
+					<p>Loading Categories...</p>
 				)}
 
 				<input
