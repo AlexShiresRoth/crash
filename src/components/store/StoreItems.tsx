@@ -33,6 +33,7 @@ const StoreItems = ({ store: { catalog, loading, categories, searchResults } }: 
 						)
 						.map((item: any, i: number) => <StoreItem item={item} key={i} index={i} />);
 				}
+				break;
 			default:
 				return;
 		}
