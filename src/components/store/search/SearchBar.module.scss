@@ -22,6 +22,7 @@
 		display: flex;
 		padding: 0.5rem;
 		margin-right: 5rem;
+
 		& input {
 			border: 0;
 			&:focus {
@@ -33,6 +34,23 @@
 			border: 0;
 			display: flex;
 			align-items: center;
+		}
+	}
+	& .clear_btn {
+		& button {
+			background: #000;
+			height: 3rem;
+			width: 15rem;
+			color: #fff;
+			border: 1px solid #000;
+			transition: all 0.3s ease;
+			&:hover {
+				cursor: pointer;
+				box-shadow: 0 1px 10px #000;
+			}
+			&:active {
+				outline: 0px solid transparent;
+			}
 		}
 	}
 }

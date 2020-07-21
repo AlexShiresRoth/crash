@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import style from './Cart.module.scss';
 import CartDisplay from './CartDisplay';
@@ -9,6 +9,17 @@ interface Props {
 
 const Cart = ({ store: { cart } }: Props) => {
 	const [isVisible, setVisibility] = useState<boolean>(false);
+
+	useEffect(() => {
+		//Show the cart on an update
+		setVisibility(true);
+
+		setTimeout(() => {
+			setVisibility(false);
+		}, 3000);
+
+		return () => clearTimeout();
+	}, [cart.length]);
 
 	return (
 		<div className={style.cart}>

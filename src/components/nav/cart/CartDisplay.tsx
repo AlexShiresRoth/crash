@@ -11,8 +11,8 @@ interface Props {
 	isVisible: boolean;
 }
 
-const CartDisplay = ({ store: { cart, loading }, removeFromCart, isVisible, setVisibility }: Props) => {
-	return (
+const CartDisplay = ({ store: { cart, loading, images }, removeFromCart, isVisible, setVisibility }: Props) => {
+	return !loading ? (
 		<div className={isVisible ? style.container : style.hidden}>
 			<div className={style.close_cart}>
 				<button onClick={() => setVisibility(!isVisible)}>Close X</button>
@@ -22,11 +22,21 @@ const CartDisplay = ({ store: { cart, loading }, removeFromCart, isVisible, setV
 			</div>
 			<div className={style.items}>
 				{cart.map((item: any, i: number) => {
+					const foundImgUrl = images.objects.filter((img: any) => img.id === item.image_id)[0].image_data.url;
 					const name = item.item_data.name;
 					return (
-						<div key={i}>
-							<p>{name}</p>
-							{item.size !== null ? <div className={style.sizes}>Selected Size: {item.size}</div> : null}
+						<div key={i} className={style.item}>
+							<img src={foundImgUrl} alt="cart item" />
+							<div className={style.content}>
+								<p>{name}</p>
+								{item.size !== null ? (
+									<div className={style.sizes}>Selected Size: {item.size}</div>
+								) : null}
+							</div>
+
+							<div className={style.remove}>
+								<button onClick={(e) => removeFromCart(item.id)}>X</button>
+							</div>
 						</div>
 					);
 				})}
@@ -35,7 +45,7 @@ const CartDisplay = ({ store: { cart, loading }, removeFromCart, isVisible, setV
 				<button>Proceed to Checkout</button>
 			</div>
 		</div>
-	);
+	) : null;
 };
 
 CartDisplay.propTypes = {

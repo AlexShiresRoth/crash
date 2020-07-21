@@ -17,6 +17,7 @@ const initialState = {
 	loading: true,
 	cart: [],
 	errors: [],
+	searching: null,
 };
 
 export default (state = initialState, action: any) => {
@@ -44,6 +45,7 @@ export default (state = initialState, action: any) => {
 				...state,
 				searchResults: payload,
 				loading: false,
+				searching: true,
 			};
 		case ADD_TO_CART:
 			return {

@@ -1,15 +1,16 @@
 import React, { useState } from 'react';
 import style from './SearchBar.module.scss';
 import { FaSearch } from 'react-icons/fa';
-import { searchCatalog } from '../../../actions/store';
+import { searchCatalog, clearSearch } from '../../../actions/store';
 import { connect } from 'react-redux';
 
 interface Props {
 	searchCatalog: (data: any) => any;
 	store?: any;
+	clearSearch: () => any;
 }
 
-const SearchBar = ({ searchCatalog, store: { categories, loading } }: Props) => {
+const SearchBar = ({ searchCatalog, clearSearch, store: { categories, loading } }: Props) => {
 	const [formData, setData] = useState({
 		searchTerm: '',
 		category: '',
@@ -56,6 +57,10 @@ const SearchBar = ({ searchCatalog, store: { categories, loading } }: Props) => 
 					<FaSearch />
 				</button>
 			</form>
+
+			<div className={style.clear_btn}>
+				<button onClick={(e) => clearSearch()}>Clear Search</button>
+			</div>
 		</div>
 	);
 };
@@ -66,4 +71,4 @@ const mapStateToProps = (state: any) => {
 	};
 };
 
-export default connect(mapStateToProps, { searchCatalog })(SearchBar);
+export default connect(mapStateToProps, { searchCatalog, clearSearch })(SearchBar);
