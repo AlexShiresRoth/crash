@@ -1,21 +1,25 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import style from './Nav.module.scss';
 import { navLinks } from './navLinks';
-import { NavLink } from 'react-router-dom';
+import { NavLink, withRouter, RouteComponentProps } from 'react-router-dom';
 import { logo } from '../svgs/logo';
 import Cart from './cart/Cart';
 import { connect } from 'react-redux';
 import { clearSearch } from '../../actions/store';
 
-interface Props {
+interface NavProps {
 	clearSearch: () => any;
 }
 
-const Nav = ({ clearSearch }: Props) => {
-	// useEffect(() => {
-	// 	//if location is not the store then don't have the cart popup
-	// 	if (!history.location.pathname.includes('store')) clearSearch();
-	// }, []);
+type Props = RouteComponentProps & NavProps;
+
+const Nav = ({ history, clearSearch }: Props) => {
+	useEffect(() => {
+		//if location is not the store then don't have the cart popup
+		if (!history.location.pathname.includes('store')) {
+			clearSearch();
+		}
+	}, [clearSearch, history.location.pathname]);
 
 	return (
 		<nav className={style.nav}>
@@ -37,6 +41,4 @@ const Nav = ({ clearSearch }: Props) => {
 	);
 };
 
-//TODO fix withRouter error need to add routeProps
-// export default connect(null, { clearSearch })(withRouter(Nav));
-export default connect(null, { clearSearch })(Nav);
+export default connect(null, { clearSearch })(withRouter(Nav));

@@ -7,6 +7,7 @@ import { Provider } from 'react-redux';
 import store from './store';
 import StorePage from './components/pages/StorePage';
 import Epk from './components/pages/Epk';
+import Checkout from './components/pages/Checkout';
 
 function App() {
 	return (
@@ -17,6 +18,7 @@ function App() {
 					<Route exact path="/main" component={Main} />
 					<Route exact path="/store" component={StorePage} />
 					<Route exact path="/epk" component={Epk} />
+					<Route exact path="/checkout" component={Checkout} />
 				</Switch>
 			</Router>
 		</Provider>

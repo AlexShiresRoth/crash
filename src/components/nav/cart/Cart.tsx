@@ -2,12 +2,15 @@ import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import style from './Cart.module.scss';
 import CartDisplay from './CartDisplay';
+import { withRouter, RouteComponentProps } from 'react-router';
 
 interface Props {
 	store?: any;
 }
 
-const Cart = ({ store: { cart } }: Props) => {
+type CartProps = RouteComponentProps & Props;
+
+const Cart = ({ store: { cart }, history }: CartProps) => {
 	const [isVisible, setVisibility] = useState<boolean>(false);
 
 	useEffect(() => {
@@ -20,6 +23,11 @@ const Cart = ({ store: { cart } }: Props) => {
 
 		return () => clearTimeout();
 	}, [cart.length]);
+
+	//do not show the cart if the user is not on the store page
+	useEffect(() => {
+		if (!history.location.pathname.includes('store')) setVisibility(false);
+	}, [history.location.pathname]);
 
 	return (
 		<div className={style.cart}>
@@ -35,4 +43,4 @@ const mapStateToProps = (state: { store: object }) => {
 	};
 };
 
-export default connect(mapStateToProps, null)(Cart);
+export default connect(mapStateToProps, null)(withRouter(Cart));

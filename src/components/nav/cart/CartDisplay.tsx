@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { removeFromCart } from '../../../actions/store';
 import style from './CartDisplay.module.scss';
+import { Link } from 'react-router-dom';
 
 interface Props {
 	store?: any;
@@ -42,7 +43,9 @@ const CartDisplay = ({ store: { cart, loading, images }, removeFromCart, isVisib
 				})}
 			</div>
 			<div className={style.checkout}>
-				<button>Proceed to Checkout</button>
+				<Link to="/checkout">
+					<button>Proceed to Checkout</button>
+				</Link>
 			</div>
 		</div>
 	) : null;

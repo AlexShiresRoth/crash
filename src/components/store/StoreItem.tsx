@@ -13,7 +13,7 @@ interface Props {
 	removeFromCart: (val: any) => any;
 }
 
-const StoreItem = ({ item, index, addToCart, removeFromCart, store: { cart, images, categories } }: Props) => {
+const StoreItem = ({ item, index, addToCart, removeFromCart, store: { cart, images, loading } }: Props) => {
 	const [formData, setFormData] = useState({
 		size: '',
 	});
@@ -26,7 +26,12 @@ const StoreItem = ({ item, index, addToCart, removeFromCart, store: { cart, imag
 
 	const { sizeError, status } = alerted;
 
-	const itemImages = images.objects.filter((item: any) => item.type === 'IMAGE');
+	const [itemImages, setImgs] = useState<Array<any>>([]);
+
+	useEffect(() => {
+		if (images.objects && images.objects.length > 0)
+			setImgs(images.objects.filter((item: any) => item.type === 'IMAGE'));
+	}, [images]);
 
 	const { size } = formData;
 
@@ -59,9 +64,11 @@ const StoreItem = ({ item, index, addToCart, removeFromCart, store: { cart, imag
 	};
 
 	const hasImage = () => {
-		return item.image_id
-			? itemImages.filter((image: any) => item.image_id === image.id)[0].image_data.url
-			: 'https://res.cloudinary.com/snackmanproductions/image/upload/v1594330128/crash/unnamed_jvhuaj.jpg';
+		if (itemImages.filter((image: any) => item.image_id === image.id).length > 0) {
+			return item.image_id
+				? itemImages.filter((image: any) => item.image_id === image.id)[0].image_data.url
+				: 'https://res.cloudinary.com/snackmanproductions/image/upload/v1594330128/crash/unnamed_jvhuaj.jpg';
+		}
 	};
 
 	const handleVariationSelect = () => {
@@ -78,7 +85,7 @@ const StoreItem = ({ item, index, addToCart, removeFromCart, store: { cart, imag
 		if (size !== '') setAlert({ sizeError: false, status: '' });
 	}, [size]);
 
-	return (
+	return !loading ? (
 		<div className={style.item} key={index}>
 			<div className={style.heading}>
 				<p>{item.item_data.name}</p>
@@ -137,7 +144,7 @@ const StoreItem = ({ item, index, addToCart, removeFromCart, store: { cart, imag
 				</button>
 			</div>
 		</div>
-	);
+	) : null;
 };
 
 StoreItem.propTypes = {
