@@ -8,6 +8,8 @@ import {
 	FETCH_IMAGES,
 	FETCH_CATEGORIES,
 	CLEAR_SEARCH,
+	SUBMIT_SHIPPING,
+	SHIPPING_ERROR,
 } from './types';
 import { setAlert } from './alert';
 
@@ -146,5 +148,33 @@ export const removeFromCart = (id: string) => async (dispatch: any) => {
 			payload: error.response.data.msg,
 		});
 		dispatch(setAlert(error.response.data.msg, 'danger'));
+	}
+};
+
+export const submitShippingInfo = (formData: any) => async (dispatch: any) => {
+	try {
+		const res = await api.post('/store/receiveaddress', formData);
+
+		dispatch({
+			type: SUBMIT_SHIPPING,
+			payload: res.data,
+		});
+
+		dispatch(setAlert('We have received your shipping info', 'success'));
+	} catch (error) {
+		const errors = error.response.data.errors;
+		if (errors) {
+			dispatch({
+				type: SHIPPING_ERROR,
+				payload: errors,
+			});
+			errors.forEach((err: any) => dispatch(setAlert(err.msg, 'danger')));
+			return;
+		}
+		dispatch({
+			type: SHIPPING_ERROR,
+			payload: error.response.data.msg,
+		});
+		dispatch(setAlert(error.response.msg, 'danger'));
 	}
 };

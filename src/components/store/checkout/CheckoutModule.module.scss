@@ -14,9 +14,52 @@
 	width: 100%;
 	background: #fff;
 	display: flex;
-	align-items: center;
+	flex-direction: column;
 	justify-content: center;
+	align-items: center;
+	margin: 20vh 0;
 	& .container {
-		width: 90%;
+		display: grid;
+		grid-template-columns: repeat(2, auto);
+		justify-items: center;
+		align-items: center;
+		gap: 4rem;
+		max-width: 90%;
+		& .items {
+			display: grid;
+			grid-template-columns: 1fr;
+			gap: 1rem;
+			& .item_container {
+				background: #fff;
+				box-shadow: 0 1px 10px darken(#eee, 10%);
+				display: grid;
+				grid-template-columns: repeat(3, auto);
+				justify-items: center;
+				align-items: center;
+				gap: 2rem;
+				padding: 1rem;
+				& .img_container {
+					max-width: 10rem;
+					& img {
+						max-width: 100%;
+					}
+				}
+				.btn_container {
+					& button {
+						height: 3rem;
+						width: 10rem;
+						background: $brand-dark;
+						color: #fff;
+						font-size: 1rem;
+						border: 0;
+						transition: all 0.3s ease;
+						&:hover {
+							cursor: pointer;
+							box-shadow: 0 1px 10px $brand-dark;
+						}
+					}
+				}
+			}
+		}
 	}
 }

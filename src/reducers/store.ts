@@ -7,6 +7,8 @@ import {
 	FETCH_IMAGES,
 	FETCH_CATEGORIES,
 	CLEAR_SEARCH,
+	SUBMIT_SHIPPING,
+	SHIPPING_ERROR,
 } from '../actions/types';
 
 const initialState = {
@@ -17,7 +19,9 @@ const initialState = {
 	loading: true,
 	cart: [],
 	errors: [],
+	shippingErrors: [],
 	searching: null,
+	shippingInfo: null,
 };
 
 export default (state = initialState, action: any) => {
@@ -57,6 +61,18 @@ export default (state = initialState, action: any) => {
 			return {
 				...state,
 				cart: state.cart.filter((cartItem: any) => cartItem.id !== payload),
+				loading: false,
+			};
+		case SUBMIT_SHIPPING:
+			return {
+				...state,
+				shippingInfo: payload,
+				loading: false,
+			};
+		case SHIPPING_ERROR:
+			return {
+				...state,
+				shippingErrors: payload,
 				loading: false,
 			};
 		case CLEAR_SEARCH:

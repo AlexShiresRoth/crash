@@ -15,13 +15,11 @@ const Cart = ({ store: { cart }, history }: CartProps) => {
 
 	useEffect(() => {
 		//Show the cart on an update
-		setVisibility(true);
-
-		setTimeout(() => {
-			setVisibility(false);
-		}, 3000);
-
-		return () => clearTimeout();
+		// if (cart.length > 0) setVisibility(true);
+		// setTimeout(() => {
+		// 	setVisibility(false);
+		// }, 3000);
+		// return () => clearTimeout();
 	}, [cart.length]);
 
 	//do not show the cart if the user is not on the store page
