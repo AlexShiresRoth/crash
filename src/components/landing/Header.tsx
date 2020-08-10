@@ -5,7 +5,7 @@ import { logo } from '../svgs/logo';
 
 export const Header = () => {
 	return (
-		<header className={reverse ? `${style.header_reverse} ${style.header}` : style.header}>
+		<header className={style.header}>
 			<video autoPlay muted loop className={style.bg_video}>
 				<source src="rain.mp4" type="video/mp4"></source>
 			</video>
