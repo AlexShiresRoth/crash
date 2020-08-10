@@ -153,7 +153,8 @@ export const removeFromCart = (id: string) => async (dispatch: any) => {
 
 export const submitShippingInfo = (formData: any) => async (dispatch: any) => {
 	try {
-		const res = await api.post('/store/receiveaddress', formData);
+		const res = await api.post('/store/startorder', formData);
+		console.log(res.data);
 
 		dispatch({
 			type: SUBMIT_SHIPPING,

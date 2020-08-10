@@ -3,7 +3,8 @@ const SquareConnect = require('square-connect');
 const defaultClient = SquareConnect.ApiClient.instance;
 const router = express.Router();
 const { check, validationResult } = require('express-validator');
-
+const { v4: uuidv4 } = require('uuid');
+const crypto = require('crypto');
 // Configure OAuth2 access token for authorization: oauth2
 const oauth2 = defaultClient.authentications['oauth2'];
 oauth2.accessToken = process.env.SQUARE_TOKEN;
@@ -99,6 +100,72 @@ router.post('/', [check('searchTerm', 'Please enter a category to search by').no
 	} catch (error) {
 		console.log(error);
 		res.status(500).json({ msg: 'Internal Server Error' });
+	}
+});
+
+//@route POST route
+//@desc retrieve order details
+//@access private
+router.post(
+	'/startorder',
+	[
+		check('email', 'Please enter your email').not().isEmpty(),
+		check('email', 'Please enter a valid email').isEmail(),
+		check('address', 'Please enter your address').not().isEmpty(),
+		check('zipCode', 'Please enter your zipcode').not().isEmpty(),
+		check('name', 'Please enter your name').not().isEmpty(),
+		check('city', 'Please enter your city').not().isEmpty(),
+		check('country', 'Please enter your country').not().isEmpty(),
+		check('state', 'Please enter your state').not().isEmpty(),
+	],
+	async (req, res) => {
+		const errors = validationResult(req);
+
+		if (!errors.isEmpty()) {
+			return res.status(400).json({ errors: errors.array() });
+		}
+
+		const { email, address, zipCode, name, city, country, state } = req.body;
+
+		try {
+			const apiInstance = new SquareConnect.OrdersApi();
+
+			const locationId = process.env.LOCATION_ID; // String | The ID of the business location to associate the order with.
+
+			const request_body = {
+				idempotency_key: crypto.randomBytes(22).toString('hex'),
+			};
+
+			const body = new SquareConnect.CreateOrderRequest(request_body); // CreateOrderRequest | An object containing the fields to POST for the request.  See the corresponding object definition for field details.
+
+			const response = await apiInstance.createOrder(locationId, body);
+			res.json(response);
+		} catch (error) {
+			console.error(error);
+			return res.status(500).json({ msg: error });
+		}
+	}
+);
+
+//@route GET route
+//@desc get locations
+//@access private
+router.get('/locations', async (req, res) => {
+	const apiInstance = new SquareConnect.LocationsApi();
+	try {
+		apiInstance.listLocations().then(
+			function (data) {
+				console.log('API called successfully. Returned data: ' + data);
+				res.json(data);
+			},
+			function (error) {
+				console.error(error);
+				res.status(400).json({ msg: error });
+			}
+		);
+	} catch (error) {
+		console.error(error);
+		return res.status(500).json({ msg: 'Internal Server Error' });
 	}
 });
 

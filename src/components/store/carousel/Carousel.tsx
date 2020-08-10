@@ -33,7 +33,9 @@ const Carousel = ({ store: { images, loading } }: Props) => {
 			<div className={style.right_over}></div>
 		</div>
 	) : (
-		<p>Loading Images...</p>
+		<div className={style.loading_block}>
+			<p>Loading Images...</p>
+		</div>
 	);
 };
 

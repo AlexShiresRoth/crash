@@ -22,6 +22,7 @@ const initialState = {
 	shippingErrors: [],
 	searching: null,
 	shippingInfo: null,
+	returnUrl: null,
 };
 
 export default (state = initialState, action: any) => {
