@@ -3,7 +3,6 @@ const SquareConnect = require('square-connect');
 const defaultClient = SquareConnect.ApiClient.instance;
 const router = express.Router();
 const { check, validationResult } = require('express-validator');
-const { v4: uuidv4 } = require('uuid');
 const crypto = require('crypto');
 // Configure OAuth2 access token for authorization: oauth2
 const oauth2 = defaultClient.authentications['oauth2'];
@@ -134,11 +133,15 @@ router.post(
 
 			const request_body = {
 				idempotency_key: crypto.randomBytes(22).toString('hex'),
+				order: {
+					location_id: locationId,
+				},
 			};
 
 			const body = new SquareConnect.CreateOrderRequest(request_body); // CreateOrderRequest | An object containing the fields to POST for the request.  See the corresponding object definition for field details.
 
 			const response = await apiInstance.createOrder(locationId, body);
+			console.log(response);
 			res.json(response);
 		} catch (error) {
 			console.error(error);

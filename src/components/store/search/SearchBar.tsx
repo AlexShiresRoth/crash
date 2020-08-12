@@ -30,6 +30,14 @@ const SearchBar = ({ searchCatalog, clearSearch, store: { categories, loading } 
 		searchCatalog(formData);
 	};
 
+	const handleClearSearch = () => {
+		clearSearch();
+		setData({
+			searchTerm: '',
+			category: '',
+		});
+	};
+
 	return (
 		<div className={style.search}>
 			<form onSubmit={(e) => formSubmit(e)}>
@@ -59,7 +67,7 @@ const SearchBar = ({ searchCatalog, clearSearch, store: { categories, loading } 
 			</form>
 
 			<div className={style.clear_btn}>
-				<button onClick={(e) => clearSearch()}>Clear Search</button>
+				<button onClick={(e) => handleClearSearch()}>Clear Search</button>
 			</div>
 		</div>
 	);

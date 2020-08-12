@@ -7,7 +7,10 @@ export const Header = () => {
 	return (
 		<header className={style.header}>
 			<video autoPlay muted loop className={style.bg_video}>
-				<source src="rain.mp4" type="video/mp4"></source>
+				<source
+					src="https://res.cloudinary.com/snackmanproductions/video/upload/v1597021662/crash/CTC-Lyric-Test-A_3_n70rxu.mp4"
+					type="video/mp4"
+				></source>
 			</video>
 			<div className={style.inner}>
 				<div className={style.container}>

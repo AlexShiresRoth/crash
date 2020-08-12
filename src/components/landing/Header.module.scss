@@ -18,11 +18,11 @@
 	overflow: hidden;
 	position: relative;
 	& .bg_video {
-		height: 100%;
-		width: 100%;
-		overflow: hidden;
-		position: absolute;
-		display: block;
+		position: fixed;
+		right: 0;
+		bottom: 0;
+		min-width: 100%;
+		min-height: 100%;
 	}
 	& .inner {
 		display: flex;
@@ -46,6 +46,7 @@
 			background-position: center;
 			padding: 2rem;
 			position: absolute;
+			animation: fadein 12s cubic-bezier(0.455, 0.03, 0.515, 0.955) forwards;
 			& .logo_box {
 				display: flex;
 				justify-content: space-between;
@@ -53,6 +54,7 @@
 				margin: 1rem;
 				& svg {
 					width: 15rem;
+					filter: invert(1);
 				}
 			}
 			& .box {
@@ -117,5 +119,14 @@
 				}
 			}
 		}
+	}
+}
+
+@keyframes fadein {
+	0% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 1;
 	}
 }
