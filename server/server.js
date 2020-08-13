@@ -12,6 +12,7 @@ app.use(express.urlencoded({ extended: true }));
 
 app.get('/', (req, res) => res.send('API Is Running'));
 app.use('/api/store', require('./routes/store'));
+app.use('/api/email', require('./routes/email'));
 
 const server = http.createServer(app);
 
