@@ -3,7 +3,7 @@ import style from './Hub.module.scss';
 import MusicSection from './MusicSection';
 import { Header } from './Header';
 import VideoSection from './VideoSection';
-import { EmailSignup } from './EmailSignup';
+import EmailSignup from './EmailSignup';
 import StoreSection from './StoreSection';
 import TourSections from './TourSections';
 const Hub = (props: any) => {

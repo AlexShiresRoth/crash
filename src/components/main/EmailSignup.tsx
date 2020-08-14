@@ -1,7 +1,27 @@
-import React from 'react';
+import React, { useState } from 'react';
 import style from './EmailSignup.module.scss';
+import { emailSignup } from '../../actions/email';
+import { connect } from 'react-redux';
 
-export const EmailSignup = () => {
+interface Props {
+	emailSignup: (val: any) => any;
+}
+
+const EmailSignup = ({ emailSignup }: Props) => {
+	const [data, setData] = useState({
+		email: '',
+	});
+
+	const { email } = data;
+
+	const onChange = (e: React.FormEvent<HTMLInputElement>) =>
+		setData({ ...data, [e.currentTarget.name]: e.currentTarget.value });
+
+	const onSubmit = (e: React.FormEvent) => {
+		e.preventDefault();
+		emailSignup(data);
+	};
+
 	return (
 		<section className={style.box}>
 			<div className={style.container}>
@@ -10,13 +30,21 @@ export const EmailSignup = () => {
 					alt="Crash the Calm Logo"
 				/>
 				<h2>Get in on exclusive content.</h2>
-				<form>
+				<form onSubmit={(e) => onSubmit(e)}>
 					<div className={style.input_row}>
-						<input type="text" name="signup" placeholder="Enter your email" />
-						<button>Join</button>
+						<input
+							type="email"
+							name="email"
+							value={email}
+							onChange={(e) => onChange(e)}
+							placeholder="Enter your email"
+						/>
+						<button onSubmit={(e) => onSubmit(e)}>Join</button>
 					</div>
 				</form>
 			</div>
 		</section>
 	);
 };
+
+export default connect(null, { emailSignup })(EmailSignup);

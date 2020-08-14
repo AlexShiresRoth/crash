@@ -75,10 +75,18 @@ router.post('/signup', [check('email', 'Please enter a valid email').isEmail()],
 
 	const { email } = req.body;
 
-	const run = async () => {
-		const response = await mailchimp.lists.getListSignupForms('list_id');
-		console.log(response);
-	};
+	try {
+		const response = await mailchimp.lists.addListMember(process.env.LIST_ID, {
+			email_address: email,
+			status: 'subscribed',
+		});
+		console.log(response.type);
+		res.json(response);
+	} catch (error) {
+		console.error(JSON.parse(error.response.text));
+		const errorMsg = JSON.parse(error.response.text);
+		res.status(error.response.status).json({ msg: errorMsg.detail });
+	}
 	//TODO create signup
 });
 
