@@ -2,14 +2,25 @@ import React, { useState } from 'react';
 import style from './EmailSignup.module.scss';
 import { emailSignup } from '../../actions/email';
 import { connect } from 'react-redux';
+import Alert from '../alerts/Alert';
+import LoadingSpinner from '../reusablecomps/LoadingSpinner';
 
 interface Props {
 	emailSignup: (val: any) => any;
+	alerts?: any;
 }
 
-const EmailSignup = ({ emailSignup }: Props) => {
+const EmailSignup = ({ emailSignup, alerts }: Props) => {
+	console.log(alerts);
+
 	const [data, setData] = useState({
 		email: '',
+	});
+	const [loading, setLoading] = useState<any>(false);
+
+	const [loaderStyle, setStyle] = useState<any>({
+		color: '',
+		height: '',
 	});
 
 	const { email } = data;
@@ -19,11 +30,21 @@ const EmailSignup = ({ emailSignup }: Props) => {
 
 	const onSubmit = (e: React.FormEvent) => {
 		e.preventDefault();
+		setStyle({
+			color: '#fff',
+			size: '2rem',
+		});
+		setLoading(true);
 		emailSignup(data);
+		setTimeout(() => {
+			setLoading(false);
+			setData(() => ({ email: '' }));
+		}, 3000);
 	};
 
 	return (
 		<section className={style.box}>
+			{alerts.length > 0 ? <Alert /> : null}
 			<div className={style.container}>
 				<img
 					src={`https://res.cloudinary.com/snackmanproductions/image/upload/v1590510319/crash/Crash_the_Calm-white_tatrui.png`}
@@ -39,7 +60,11 @@ const EmailSignup = ({ emailSignup }: Props) => {
 							onChange={(e) => onChange(e)}
 							placeholder="Enter your email"
 						/>
-						<button onSubmit={(e) => onSubmit(e)}>Join</button>
+						{!loading ? (
+							<button onSubmit={(e) => onSubmit(e)}>Join</button>
+						) : (
+							<LoadingSpinner updateStyle={loaderStyle} />
+						)}
 					</div>
 				</form>
 			</div>
@@ -47,4 +72,8 @@ const EmailSignup = ({ emailSignup }: Props) => {
 	);
 };
 
-export default connect(null, { emailSignup })(EmailSignup);
+const mapStateToProps = (state: any) => ({
+	alerts: state.alerts,
+});
+
+export default connect(mapStateToProps, { emailSignup })(EmailSignup);

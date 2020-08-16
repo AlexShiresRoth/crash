@@ -126,25 +126,25 @@ router.post(
 
 		const { email, address, zipCode, name, city, country, state } = req.body;
 
+		const apiInstance = new SquareConnect.OrdersApi();
+
+		const locationId = process.env.LOCATION_ID; // String | The ID of the business location to associate the order with.
+
+		const request_body = {
+			order: {
+				location_id: locationId,
+			},
+			idempotency_key: crypto.randomBytes(22).toString('hex'),
+		};
+		const body = new SquareConnect.CreateOrderRequest(request_body); // CreateOrderRequest | An object containing the fields to POST for the request.  See the corresponding object definition for field details.
+
 		try {
-			const apiInstance = new SquareConnect.OrdersApi();
-
-			const locationId = process.env.LOCATION_ID; // String | The ID of the business location to associate the order with.
-
-			const request_body = {
-				idempotency_key: crypto.randomBytes(22).toString('hex'),
-				order: {
-					location_id: locationId,
-				},
-			};
-
-			const body = new SquareConnect.CreateOrderRequest(request_body); // CreateOrderRequest | An object containing the fields to POST for the request.  See the corresponding object definition for field details.
-
+			console.log('this is the body', body);
 			const response = await apiInstance.createOrder(locationId, body);
-			console.log(response);
+			console.log(response, 'DFTGSDFGSDFGSDFGSDGSDFG');
 			res.json(response);
 		} catch (error) {
-			console.error(error);
+			console.error(error, '564356464645645645');
 			return res.status(500).json({ msg: error });
 		}
 	}

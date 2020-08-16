@@ -8,6 +8,7 @@ import store from './store';
 import StorePage from './components/pages/StorePage';
 import Epk from './components/pages/Epk';
 import Checkout from './components/pages/Checkout';
+import Videos from './components/pages/Videos';
 
 function App() {
 	return (
@@ -19,6 +20,7 @@ function App() {
 					<Route exact path="/store" component={StorePage} />
 					<Route exact path="/epk" component={Epk} />
 					<Route exact path="/checkout" component={Checkout} />
+					<Route exact path="/videos" component={Videos} />
 				</Switch>
 			</Router>
 		</Provider>

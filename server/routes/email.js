@@ -85,7 +85,7 @@ router.post('/signup', [check('email', 'Please enter a valid email').isEmail()],
 	} catch (error) {
 		console.error(JSON.parse(error.response.text));
 		const errorMsg = JSON.parse(error.response.text);
-		res.status(error.response.status).json({ msg: errorMsg.detail });
+		res.status(error.response.status).json({ msg: errorMsg.title });
 	}
 	//TODO create signup
 });
