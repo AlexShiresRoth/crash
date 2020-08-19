@@ -23,6 +23,7 @@
 		bottom: 0;
 		min-width: 100%;
 		min-height: 100%;
+		animation: fadein 3s linear forwards;
 	}
 	& .inner {
 		display: flex;

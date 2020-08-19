@@ -1,5 +1,5 @@
 {
-  "name": "server",
+  "name": "server-vs-koa",
   "version": "1.0.0",
   "description": "",
   "main": "server.js",
@@ -10,16 +10,11 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@mailchimp/mailchimp_marketing": "^3.0.12",
-    "cors": "^2.8.5",
+    "@shopify/koa-shopify-auth": "^3.1.66",
     "dotenv": "^8.2.0",
     "es6-promise": "^4.2.8",
-    "express": "^4.17.1",
-    "express-validator": "^6.6.0",
-    "fetch": "^1.1.0",
     "isomorphic-fetch": "^2.2.1",
-    "mongoose": "^5.9.22",
-    "square-connect": "^4.20200625.0",
-    "uuid": "^8.3.0"
+    "koa": "^2.13.0",
+    "koa-session": "^6.0.0"
   }
 }

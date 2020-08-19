@@ -1,4 +1,4 @@
-// require('dotenv').config();
+require('dotenv').config();
 const express = require('express');
 const http = require('http');
 const cors = require('cors');
@@ -13,6 +13,7 @@ app.use(express.urlencoded({ extended: true }));
 app.get('/', (req, res) => res.send('API Is Running'));
 app.use('/api/store', require('./routes/store'));
 app.use('/api/email', require('./routes/email'));
+app.use('/api/shopifystore', require('./routes/shopify-store'));
 
 const server = http.createServer(app);
 
