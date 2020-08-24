@@ -1,24 +1,26 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import style from './ShippingAddressForm.module.scss';
 import { connect } from 'react-redux';
 import { submitShippingInfo } from '../../../actions/store';
 
 interface Props {
 	submitShippingInfo: (data: any) => any;
+	store?: any;
 }
 
-const ShippingAddressForm = ({ submitShippingInfo }: Props) => {
+const ShippingAddressForm = ({ submitShippingInfo, store: { checkout } }: Props) => {
 	const [formData, setFormData] = useState<any>({
-		email: '',
 		address: '',
 		zipCode: '',
-		name: '',
+		firstName: '',
+		lastName: '',
 		city: '',
 		country: '',
 		state: '',
+		checkoutId: '',
 	});
 
-	const { email, address, zipCode, name, city, country, state } = formData;
+	const { address, zipCode, firstName, lastName, city, country, state } = formData;
 
 	const onChange = (e: React.FormEvent<HTMLInputElement>) =>
 		setFormData({ ...formData, [e.currentTarget.name]: e.currentTarget.value });
@@ -28,6 +30,20 @@ const ShippingAddressForm = ({ submitShippingInfo }: Props) => {
 		submitShippingInfo(formData);
 	};
 
+	useEffect(() => {
+		if (localStorage.getItem('checkout')) {
+			setFormData((prevState: any) => ({
+				address,
+				zipCode,
+				firstName,
+				lastName,
+				city,
+				country,
+				state,
+				checkoutId: localStorage.getItem('checkout'),
+			}));
+		}
+	}, [address, zipCode, firstName, lastName, city, country, state, checkout]);
 	return (
 		<div className={style.form_container}>
 			<h2>Shipping Address Form</h2>
@@ -35,22 +51,22 @@ const ShippingAddressForm = ({ submitShippingInfo }: Props) => {
 				<div className={style.grid}>
 					<div className={style.col}>
 						<div className={style.input_col}>
-							<label>Email</label>
+							<label>First Name</label>
 							<input
-								type="email"
-								value={email}
-								name="email"
-								placeholder="please enter your email"
+								type="text"
+								value={firstName}
+								name="firstName"
+								placeholder="Enter your name"
 								onChange={(e) => onChange(e)}
 								required={true}
 							/>
 						</div>
 						<div className={style.input_col}>
-							<label>Name</label>
+							<label>Last Name</label>
 							<input
 								type="text"
-								value={name}
-								name="name"
+								value={lastName}
+								name="lastName"
 								placeholder="Enter your name"
 								onChange={(e) => onChange(e)}
 								required={true}
@@ -67,7 +83,8 @@ const ShippingAddressForm = ({ submitShippingInfo }: Props) => {
 								required={true}
 							/>
 						</div>
-
+					</div>
+					<div className={style.col}>
 						<div className={style.input_col}>
 							<label>Country/Region</label>
 							<input
@@ -79,8 +96,6 @@ const ShippingAddressForm = ({ submitShippingInfo }: Props) => {
 								required={true}
 							/>
 						</div>
-					</div>
-					<div className={style.col}>
 						<div className={style.input_col}>
 							<label>State</label>
 							<input
@@ -117,11 +132,15 @@ const ShippingAddressForm = ({ submitShippingInfo }: Props) => {
 					</div>
 				</div>
 				<div className={style.btn_col}>
-					<button onSubmit={(e) => formSubmit(e)}>Submit</button>
+					<button onSubmit={(e) => formSubmit(e)}>Save Shipping Info</button>
 				</div>
 			</form>
 		</div>
 	);
 };
 
-export default connect(null, { submitShippingInfo })(ShippingAddressForm);
+const mapStateToProps = (state: any) => ({
+	store: state.store,
+});
+
+export default connect(mapStateToProps, { submitShippingInfo })(ShippingAddressForm);

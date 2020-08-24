@@ -8,22 +8,19 @@
 	align-items: center;
 	justify-content: center;
 	& .store_grid {
-		margin: 4rem;
-		margin-top: 2rem;
-		column-count: 4;
-		column-gap: 2rem;
-		column-width: 25%;
-		min-height: 90vh;
+		display: grid;
+		grid-template-columns: repeat(4, minmax(200px, 350px));
+		gap: 1rem;
+		margin: 2rem 0;
 	}
 }
 
 @media screen and (max-width: 1500px) {
 	.section {
 		& .store_grid {
-			margin-top: 2rem;
+			margin-top: 1rem;
 			column-count: 3;
-			column-gap: 2rem;
-			column-width: 25%;
+			column-gap: 1rem;
 		}
 	}
 }

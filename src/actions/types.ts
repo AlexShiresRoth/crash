@@ -16,3 +16,5 @@ export const SUBMIT_SHIPPING = 'SUBMIT_SHIPPING';
 export const SHIPPING_ERROR = 'SHIPPING_ERROR';
 export const EMAIL_SIGNUP = 'EMAIL_SIGNUP';
 export const EMAIL_ERROR = 'EMAIL_ERROR';
+export const START_ORDER = 'START_ORDER';
+export const FETCH_CHECKOUT = 'FETCH_CHECKOUT';

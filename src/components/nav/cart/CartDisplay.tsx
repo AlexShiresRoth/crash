@@ -23,18 +23,15 @@ const CartDisplay = ({ store: { cart, loading, images }, removeFromCart, isVisib
 			</div>
 			<div className={style.items}>
 				{cart.map((item: any, i: number) => {
-					const foundImgUrl = images.objects.filter((img: any) => img.id === item.image_id)[0].image_data.url;
-					const name = item.item_data.name;
 					return (
 						<div key={i} className={style.item}>
-							<img src={foundImgUrl} alt="cart item" />
+							<img src={item.images[0].src} alt={item.name} />
 							<div className={style.content}>
-								<p>{name}</p>
+								<p>{item.title}</p>
 								{item.size !== null ? (
 									<div className={style.sizes}>Selected Size: {item.size}</div>
 								) : null}
 							</div>
-
 							<div className={style.remove}>
 								<button onClick={(e) => removeFromCart(item.id)}>X</button>
 							</div>

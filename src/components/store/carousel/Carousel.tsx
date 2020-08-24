@@ -15,19 +15,19 @@ const Carousel = ({ store: { images, loading } }: Props) => {
 		const handleImageLoading = () => {
 			let max = 4;
 			while (max > 0) {
-				addImgs((prevState) => [...prevState, images.objects].flat());
+				addImgs((prevState) => [...prevState, images.map((img: any) => img[0])].flat());
 				max--;
 			}
 		};
-		if (images.objects) handleImageLoading();
+		if (images.length > 0) handleImageLoading();
 	}, [images]);
 
-	return !loading && images.objects ? (
+	return !loading && images.length > 0 ? (
 		<div className={style.carousel}>
 			<div className={style.left_over}></div>
 			<div className={style.images}>
 				{moreImgs.map((img: any, i: number) => {
-					return <img src={img.image_data.url} alt={img.image_data.url} key={i} />;
+					return <img src={img} alt={img} key={i} />;
 				})}
 			</div>
 			<div className={style.right_over}></div>

@@ -4,11 +4,12 @@ import {
 	STORE_ERROR,
 	REMOVE_FROM_CART,
 	SEARCH_STORE,
-	FETCH_IMAGES,
 	FETCH_CATEGORIES,
 	CLEAR_SEARCH,
 	SUBMIT_SHIPPING,
 	SHIPPING_ERROR,
+	START_ORDER,
+	FETCH_CHECKOUT,
 } from '../actions/types';
 
 const initialState = {
@@ -18,6 +19,7 @@ const initialState = {
 	categories: [],
 	loading: true,
 	cart: [],
+	checkout: null,
 	errors: [],
 	shippingErrors: [],
 	searching: null,
@@ -33,13 +35,26 @@ export default (state = initialState, action: any) => {
 			return {
 				...state,
 				catalog: payload,
+				images: payload
+					.filter((item: any) => item.images.length > 0)
+					.map((item: any) => item.images.map((img: any) => img.src)),
 				loading: false,
 			};
-		case FETCH_IMAGES:
+		case START_ORDER:
+			localStorage.setItem('checkout', payload.id);
 			return {
 				...state,
-				images: payload,
+				checkout: payload,
+				loading: false,
 			};
+		case FETCH_CHECKOUT: {
+			return {
+				...state,
+				checkout: payload,
+				shippingInfo: payload.shippingAddress !== null ? payload.shippingAddress : null,
+				loading: false,
+			};
+		}
 		case FETCH_CATEGORIES:
 			return {
 				...state,
