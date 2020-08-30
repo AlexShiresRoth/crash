@@ -10,6 +10,9 @@ import {
 	SHIPPING_ERROR,
 	START_ORDER,
 	FETCH_CHECKOUT,
+	SAVE_SHIPPING,
+	ADD_LINEITEM,
+	PROCESS_CHECKOUT,
 } from '../actions/types';
 
 const initialState = {
@@ -24,7 +27,9 @@ const initialState = {
 	shippingErrors: [],
 	searching: null,
 	shippingInfo: null,
+	shippingSaved: false,
 	returnUrl: null,
+	lineItems: [],
 };
 
 export default (state = initialState, action: any) => {
@@ -73,6 +78,12 @@ export default (state = initialState, action: any) => {
 				cart: [...state.cart, payload],
 				loading: false,
 			};
+		case ADD_LINEITEM:
+			return {
+				...state,
+				lineItems: [...state.lineItems, payload],
+				loading: false,
+			};
 		case REMOVE_FROM_CART:
 			return {
 				...state,
@@ -80,9 +91,18 @@ export default (state = initialState, action: any) => {
 				loading: false,
 			};
 		case SUBMIT_SHIPPING:
+			//everyrtime checkout object is returned
+			//the checkout state must also be updated
 			return {
 				...state,
-				shippingInfo: payload,
+				shippingInfo: payload.shippingAddress,
+				checkout: payload,
+				loading: false,
+			};
+		case SAVE_SHIPPING:
+			return {
+				...state,
+				shippingSaved: payload,
 				loading: false,
 			};
 		case SHIPPING_ERROR:
@@ -101,6 +121,13 @@ export default (state = initialState, action: any) => {
 			return {
 				...state,
 				errors: payload,
+				loading: false,
+			};
+		case PROCESS_CHECKOUT:
+			return {
+				...state,
+				returnUrl: payload.webUrl,
+				checkout: payload,
 				loading: false,
 			};
 		default:

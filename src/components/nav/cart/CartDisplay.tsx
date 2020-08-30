@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom';
 
 interface Props {
 	store?: any;
-	removeFromCart: (val: any) => any;
+	removeFromCart: (val: any, variantId: string) => any;
 	setVisibility: (val: boolean) => any;
 	isVisible: boolean;
 }
@@ -23,6 +23,7 @@ const CartDisplay = ({ store: { cart, loading, images }, removeFromCart, isVisib
 			</div>
 			<div className={style.items}>
 				{cart.map((item: any, i: number) => {
+					const itemVariant = item.variants.filter((variant: any) => variant.title === item.size)[0];
 					return (
 						<div key={i} className={style.item}>
 							<img src={item.images[0].src} alt={item.name} />
@@ -33,7 +34,7 @@ const CartDisplay = ({ store: { cart, loading, images }, removeFromCart, isVisib
 								) : null}
 							</div>
 							<div className={style.remove}>
-								<button onClick={(e) => removeFromCart(item.id)}>X</button>
+								<button onClick={(e) => removeFromCart(item.id, itemVariant.id)}>X</button>
 							</div>
 						</div>
 					);

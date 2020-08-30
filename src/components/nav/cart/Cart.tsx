@@ -13,15 +13,6 @@ type CartProps = RouteComponentProps & Props;
 const Cart = ({ store: { cart }, history }: CartProps) => {
 	const [isVisible, setVisibility] = useState<boolean>(false);
 
-	useEffect(() => {
-		//Show the cart on an update
-		// if (cart.length > 0) setVisibility(true);
-		// setTimeout(() => {
-		// 	setVisibility(false);
-		// }, 3000);
-		// return () => clearTimeout();
-	}, [cart.length]);
-
 	//do not show the cart if the user is not on the store page
 	useEffect(() => {
 		if (!history.location.pathname.includes('store')) setVisibility(false);

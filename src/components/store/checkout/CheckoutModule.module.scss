@@ -25,7 +25,7 @@
 		flex-direction: column;
 		& .container {
 			display: grid;
-			grid-template-columns: repeat(2, auto);
+			grid-template-columns: repeat(2, 1fr);
 			gap: 4rem;
 			width: 100%;
 			& .items_container {

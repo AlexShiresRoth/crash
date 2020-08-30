@@ -4,35 +4,28 @@ import { Redirect } from 'react-router';
 import { connect } from 'react-redux';
 import style from './CheckoutModule.module.scss';
 import LoadingSpinner from '../../reusablecomps/LoadingSpinner';
-import { removeFromCart, startOrder, fetchCheckout } from '../../../actions/store';
+import { removeFromCart, fetchCheckout } from '../../../actions/store';
 import ShippingAddressForm from './ShippingAddressForm';
 import TotalDisplay from './TotalDisplay';
 import CheckoutForm from './CheckoutForm';
+import UpdateInfoToggle from './UpdateInfoToggle';
+import UpdateAddress from './UpdateAddress';
 
 interface Props {
-	removeFromCart: (val: any) => any;
+	removeFromCart: (val: any, variantId: string) => any;
 	store?: any;
-	startOrder: () => void;
 	fetchCheckout: (val: string) => any;
 }
 
 const CheckoutModule = ({
-	store: { cart, loading, shippingInfo, checkout },
+	store: { cart, loading, shippingInfo, shippingSaved, checkout },
 	removeFromCart,
-	startOrder,
 	fetchCheckout,
 }: Props) => {
 	useEffect(() => {
-		//if a checkout has not been completed update current
-		if (!localStorage.getItem('checkout')) {
-			console.log('new order');
-			startOrder();
-		} else {
-			console.log('found order', localStorage.getItem('checkout'));
-			const id = localStorage.getItem('checkout') || '';
-			fetchCheckout(id);
-		}
-	}, [startOrder, fetchCheckout]);
+		const id = localStorage.getItem('checkout');
+		if (id) fetchCheckout(id);
+	}, [fetchCheckout]);
 
 	if (cart.length <= 0) {
 		return <Redirect to="/store" />;
@@ -47,6 +40,9 @@ const CheckoutModule = ({
 							<h2>My Order</h2>
 							<div className={style.items}>
 								{cart.map((cartItem: any, i: number) => {
+									const itemVariant = cartItem.variants.filter(
+										(variant: any) => variant.title === cartItem.size
+									)[0];
 									return (
 										<div className={style.item_container} key={i}>
 											<div className={style.img_container}>
@@ -58,7 +54,9 @@ const CheckoutModule = ({
 												<p>${cartItem.variants[0].price}</p>
 											</div>
 											<div className={style.btn_container}>
-												<button onClick={() => removeFromCart(cartItem.id)}>X</button>
+												<button onClick={() => removeFromCart(cartItem.id, itemVariant.id)}>
+													X
+												</button>
 											</div>
 										</div>
 									);
@@ -67,15 +65,18 @@ const CheckoutModule = ({
 							<TotalDisplay />
 						</div>
 						{shippingInfo ? (
-							<>
-								<p>Shipping info is saved!</p>
-								<button>Update Info</button>
-							</>
+							//if update info toggled, show update form
+							//otherwise show that info was saved
+							shippingSaved ? (
+								<UpdateAddress />
+							) : (
+								<UpdateInfoToggle />
+							)
 						) : (
 							<ShippingAddressForm />
 						)}
 					</div>
-					{shippingInfo ? <CheckoutForm /> : <p>Please enter your shpping info before checking out</p>}
+					{shippingInfo ? <CheckoutForm /> : <p>Please enter your shipping info before checking out</p>}
 				</div>
 			) : (
 				<LoadingSpinner />
@@ -92,4 +93,4 @@ const mapStateToProps = (state: any) => ({
 	store: state.store,
 });
 
-export default connect(mapStateToProps, { removeFromCart, startOrder, fetchCheckout })(CheckoutModule);
+export default connect(mapStateToProps, { removeFromCart, fetchCheckout })(CheckoutModule);

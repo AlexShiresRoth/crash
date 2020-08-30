@@ -11,6 +11,9 @@ import {
 	SHIPPING_ERROR,
 	START_ORDER,
 	FETCH_CHECKOUT,
+	SAVE_SHIPPING,
+	ADD_LINEITEM,
+	PROCESS_CHECKOUT,
 } from './types';
 import { setAlert } from './alert';
 
@@ -103,11 +106,17 @@ export const searchCatalog = (data: any) => async (dispatch: any) => {
 	}
 };
 
-export const addToCart = (cartItem: any) => async (dispatch: any) => {
+export const addToCart = (itemVariant: any) => async (dispatch: any) => {
+	const checkoutId = localStorage.getItem('checkout');
+	console.log(itemVariant);
+
+	const body = JSON.stringify({ ...itemVariant });
+
 	try {
+		const res = await api.post(`/shopifystore/addtocart/${checkoutId}`, body);
 		dispatch({
 			type: ADD_TO_CART,
-			payload: cartItem,
+			payload: itemVariant,
 		});
 	} catch (error) {
 		dispatch({
@@ -118,9 +127,15 @@ export const addToCart = (cartItem: any) => async (dispatch: any) => {
 	}
 };
 
-export const removeFromCart = (id: string) => async (dispatch: any) => {
+export const removeFromCart = (id: string, variant: any) => async (dispatch: any) => {
 	//must always receive an id
+	const checkoutId = localStorage.getItem('checkout');
+
+	//variant is the selected item variant
+	const body = JSON.stringify({ ...variant });
 	try {
+		const res = await api.post(`/shopifystore/removefromcart/${checkoutId}`, body);
+
 		dispatch({
 			type: REMOVE_FROM_CART,
 			payload: id,
@@ -155,7 +170,7 @@ export const startOrder = () => async (dispatch: any) => {
 export const fetchCheckout = (id: string) => async (dispatch: any) => {
 	try {
 		const res = await api.get(`/shopifystore/findcheckout/${id}`);
-		console.log(res);
+		console.log('checkout:' + JSON.stringify(res.data));
 		dispatch({
 			type: FETCH_CHECKOUT,
 			payload: res.data,
@@ -169,10 +184,9 @@ export const fetchCheckout = (id: string) => async (dispatch: any) => {
 	}
 };
 
-export const submitShippingInfo = (formData: any) => async (dispatch: any) => {
+export const submitShippingInfo = (formData: any, toggle: boolean) => async (dispatch: any) => {
 	try {
 		const res = await api.post('/shopifystore/updateaddress', formData);
-		console.log(res.data);
 
 		dispatch({
 			type: SUBMIT_SHIPPING,
@@ -180,6 +194,11 @@ export const submitShippingInfo = (formData: any) => async (dispatch: any) => {
 		});
 
 		dispatch(setAlert('We have received your shipping info', 'success'));
+
+		dispatch({
+			type: SAVE_SHIPPING,
+			payload: toggle,
+		});
 	} catch (error) {
 		const errors = error.response.data.errors;
 		if (errors) {
@@ -188,10 +207,66 @@ export const submitShippingInfo = (formData: any) => async (dispatch: any) => {
 				payload: errors,
 			});
 			errors.forEach((err: any) => dispatch(setAlert(err.msg, 'danger')));
+			dispatch({
+				type: SAVE_SHIPPING,
+				payload: false,
+			});
 			return;
 		}
 		dispatch({
 			type: SHIPPING_ERROR,
+			payload: error.response.data.msg,
+		});
+		dispatch(setAlert(error.response.msg, 'danger'));
+		dispatch({
+			type: SAVE_SHIPPING,
+			payload: false,
+		});
+	}
+};
+
+export const toggleShippingModule = (data: boolean) => async (dispatch: any) => {
+	dispatch({
+		type: SAVE_SHIPPING,
+		payload: data,
+	});
+};
+
+export const addLineItem = (item: any) => async (dispatch: any) => {
+	try {
+		const res = await api.post('/shopifystore/addtocart', item);
+		console.log('adding to cart', res.data);
+		dispatch({
+			type: ADD_LINEITEM,
+			payload: res.data,
+		});
+	} catch (error) {
+		dispatch({
+			type: STORE_ERROR,
+			payload: error.response.msg,
+		});
+		dispatch(setAlert(error.response.data.msg, 'danger'));
+	}
+};
+
+export const processCheckout = (formData: any) => async (dispatch: any) => {
+	try {
+		const res = await api.post('/shopifystore/processcheckout', formData);
+		dispatch({
+			type: PROCESS_CHECKOUT,
+			payload: res.data,
+		});
+	} catch (error) {
+		const errors = error.response.data.errors;
+		if (errors) {
+			dispatch({
+				type: STORE_ERROR,
+				payload: errors,
+			});
+			errors.forEach((err: any) => dispatch(setAlert(err.msg, 'danger')));
+		}
+		dispatch({
+			type: STORE_ERROR,
 			payload: error.response.data.msg,
 		});
 		dispatch(setAlert(error.response.msg, 'danger'));

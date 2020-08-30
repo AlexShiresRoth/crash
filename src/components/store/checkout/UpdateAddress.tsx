@@ -1,28 +1,34 @@
 import React, { useState, useEffect } from 'react';
 import style from './ShippingAddressForm.module.scss';
 import { connect } from 'react-redux';
-import { submitShippingInfo } from '../../../actions/store';
+import { submitShippingInfo, toggleShippingModule } from '../../../actions/store';
 import StoreAlert from '../alerts/StoreAlert';
 
 interface Props {
 	submitShippingInfo: (data: any, val: boolean) => any;
 	store?: any;
 	alerts: Array<any>;
+	toggleShippingModule: (val: boolean) => any;
 }
 
-const ShippingAddressForm = ({ submitShippingInfo, store: { checkout }, alerts }: Props) => {
+const UpdateAddress = ({
+	submitShippingInfo,
+	store: { shippingInfo, shippingSaved },
+	alerts,
+	toggleShippingModule,
+}: Props) => {
 	const [formData, setFormData] = useState<any>({
-		address1: '',
+		address1: shippingInfo.address1,
 		address2: '',
-		city: '',
+		city: shippingInfo.city,
 		company: null,
-		country: '',
-		firstName: '',
-		lastName: '',
+		country: shippingInfo.country,
+		firstName: shippingInfo.firstName,
+		lastName: shippingInfo.lastName,
 		phone: '',
-		province: '',
-		zip: '',
-		checkoutId: '',
+		province: shippingInfo.province,
+		zip: shippingInfo.zip,
+		checkoutId: localStorage.getItem('checkout'),
 	});
 
 	const { address1, zip, firstName, lastName, city, country, province } = formData;
@@ -30,34 +36,75 @@ const ShippingAddressForm = ({ submitShippingInfo, store: { checkout }, alerts }
 	const onChange = (e: React.FormEvent<HTMLInputElement>) =>
 		setFormData({ ...formData, [e.currentTarget.name]: e.currentTarget.value });
 
-	const formSubmit = (e: React.FormEvent) => {
+	const [changes, setChangedState] = useState<boolean>(false);
+	const [attempted, setAttempt] = useState<boolean>(false);
+
+	//export this to make use as a reusable function
+	const checkForChanges = () => {
+		const compare1: Array<any> = [];
+		const compare2: Array<any> = [];
+		//use initial shipping info and remove unnecessary extra info
+		const necessaryShippingInfo = {
+			address1: shippingInfo.address1,
+			address2: '',
+			city: shippingInfo.city,
+			company: null,
+			country: shippingInfo.country,
+			firstName: shippingInfo.firstName,
+			lastName: shippingInfo.lastName,
+			phone: '',
+			province: shippingInfo.province,
+			zip: shippingInfo.zip,
+			checkoutId: localStorage.getItem('checkout'),
+		};
+		//loop through inputs to create arrays for comparison
+		for (let [key, value] of Object.entries(formData)) {
+			const newItem = { [key]: value };
+			compare1.push(newItem);
+		}
+		for (let [key, value] of Object.entries(necessaryShippingInfo)) {
+			const newItem = { [key]: value };
+			compare2.push(newItem);
+		}
+		//sort arrays to match
+		const sorted1 = compare1.sort();
+		const sorted2 = compare2.sort();
+		//compare sorted arrays by converting to strings
+		const compareArrays = sorted1.filter((item, i) => {
+			return JSON.stringify(sorted2[i]) === JSON.stringify(item);
+		});
+		console.log(compareArrays);
+		//if matches length is equivelant to the initial shipping info
+		//no changes have been made, so it is unnecessary to send request
+		return compareArrays.length === sorted2.length ? setChangedState(false) : setChangedState(true);
+	};
+
+	const formSubmit = async (e: React.FormEvent) => {
 		e.preventDefault();
-		submitShippingInfo(formData, false);
+		setAttempt(true);
+		if (changes) await submitShippingInfo(formData, !shippingSaved);
 	};
 
 	useEffect(() => {
-		if (localStorage.getItem('checkout')) {
-			setFormData((prevState: any) => ({
-				address1,
-				address2: '',
-				city,
-				company: null,
-				country,
-				firstName,
-				lastName,
-				phone: '',
-				province,
-				zip,
-				checkoutId: localStorage.getItem('checkout'),
-			}));
-		}
-	}, [address1, zip, firstName, lastName, city, country, province, checkout]);
+		checkForChanges();
+	});
+	//if form submit was attempted and no changes were made,
+	//change attempt back to false
+	useEffect(() => {
+		setTimeout(() => {
+			setAttempt(false);
+		}, 5000);
+	}, [attempted]);
 	return (
 		<div className={style.form_container}>
-			<h2>Shipping Address Form</h2>
+			<div className={style.form_header}>
+				<h2>Shipping Address Form</h2>
+				<button onClick={() => toggleShippingModule(!shippingSaved)}>Cancel X</button>
+			</div>
 			{alerts.length > 0
-				? alerts.map((alert, i) => <StoreAlert status={alert.msg} key={i} type={alert.alertType} />)
+				? alerts.map((alert, i) => <StoreAlert status={alert.msg} type={alert.alertType} key={i} />)
 				: null}
+			{!changes && attempted ? <StoreAlert status={'No Changes Were Made'} type={'danger'} /> : null}
 			<form className={style.form} onSubmit={(e) => formSubmit(e)}>
 				<div className={style.grid}>
 					<div className={style.col}>
@@ -155,4 +202,4 @@ const mapStateToProps = (state: any) => ({
 	alerts: state.alerts,
 });
 
-export default connect(mapStateToProps, { submitShippingInfo })(ShippingAddressForm);
+export default connect(mapStateToProps, { submitShippingInfo, toggleShippingModule })(UpdateAddress);

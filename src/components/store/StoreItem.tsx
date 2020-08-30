@@ -10,10 +10,10 @@ interface Props {
 	index: number;
 	addToCart: (val: any) => any;
 	store?: any;
-	removeFromCart: (val: any) => any;
+	removeFromCart: (val: any, id: string) => any;
 }
 
-const StoreItem = ({ item, index, addToCart, removeFromCart, store: { cart, images, loading } }: Props) => {
+const StoreItem = ({ item, index, addToCart, removeFromCart, store: { cart, loading } }: Props) => {
 	const [formData, setFormData] = useState({
 		size: '',
 	});
@@ -35,19 +35,20 @@ const StoreItem = ({ item, index, addToCart, removeFromCart, store: { cart, imag
 	const handleIsInCart = (data: any) => cart.filter((cartItem: any) => cartItem.id === data.id).length > 0;
 
 	const handleAddToCart = () => {
+		const itemVariant = item.variants.filter((variant: any) => variant.title === size)[0];
 		const price = item.variants[0].price;
-		const itemSizePrice = { ...item, size, price };
-		//make sure item is cat:clothing to require size addition
+		const itemSizePrice = { ...item, size, price, itemVariant };
 
 		return size
 			? handleIsInCart(item)
-				? removeFromCart(item.id)
+				? removeFromCart(item.id, itemVariant)
 				: addToCart(itemSizePrice)
 			: setAlert({
 					sizeError: true,
 					status: 'Please choose a size',
 			  });
 	};
+
 	useEffect(() => {
 		if (size !== '') setAlert({ sizeError: false, status: '' });
 	}, [size]);
@@ -65,7 +66,7 @@ const StoreItem = ({ item, index, addToCart, removeFromCart, store: { cart, imag
 					</div>
 					<div className={style.row}>
 						<form>
-							{sizeError ? <StoreAlert status={status} /> : null}
+							{sizeError ? <StoreAlert status={status} type={'danger'} /> : null}
 							<select
 								onChange={(e) => onChange(e)}
 								style={sizeError ? { border: '2px solid #8f2b2bb0' } : {}}

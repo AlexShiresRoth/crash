@@ -2,15 +2,22 @@
 
 .alert_box {
 	width: 100%;
-	background: #8f2b2bb0;
 	border-radius: 2px;
 	top: 0;
 	left: 0;
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	box-shadow: 0 1px 10px #8f2b2bb0;
+
 	& p {
 		color: #fff !important;
 	}
+}
+.danger {
+	background: $alert-danger;
+	box-shadow: 0 1px 10px $alert-danger;
+}
+.success {
+	background: $alert-success;
+	box-shadow: 0 1px 10px $alert-success;
 }
