@@ -13,7 +13,7 @@ interface Props {
 	fetchCheckout: (val: any) => any;
 }
 
-const Store = ({ fetchStoreItems, startOrder, fetchCheckout }: Props) => {
+const Store = ({ fetchStoreItems, startOrder, fetchCheckout, store: { cart } }: Props) => {
 	useEffect(() => {
 		fetchStoreItems();
 	}, [fetchStoreItems]);

@@ -22,6 +22,7 @@ const CheckoutForm = ({ processCheckout, store: { cart, checkout } }: Props) => 
 		e.preventDefault();
 		if (cart.length > 0) {
 			processCheckout(formData);
+			window.location.href = checkout.webUrl;
 		}
 	};
 	return (
@@ -32,6 +33,7 @@ const CheckoutForm = ({ processCheckout, store: { cart, checkout } }: Props) => 
 					<input
 						type="email"
 						value={email}
+						name="email"
 						placeholder="Please enter your email"
 						required={true}
 						onChange={(e) => onChange(e)}

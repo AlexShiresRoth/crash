@@ -32,16 +32,16 @@ router.get('/inventory', async (req, res) => {
 //@desc create lineitem
 //@access private
 router.post('/addtocart/:id', async (req, res) => {
-	const { itemVariant } = req.body;
-
+	const { option } = req.body;
+	console.log(option);
 	const lineItem = {
-		variantId: itemVariant.id,
+		variantId: option,
 		quantity: 1,
 	};
-	console.log(itemVariant.id);
+
 	try {
 		const response = await client.checkout.addLineItems(req.params.id, lineItem);
-		// console.log('this is a response!!!', response);
+		// console.log('this is a response!!!', response.lineItems);
 		res.json(response);
 	} catch (error) {
 		console.error('this is an error' + error);
@@ -53,24 +53,19 @@ router.post('/addtocart/:id', async (req, res) => {
 //@desc remove lineitem
 //@access private
 router.post('/removefromcart/:id', async (req, res) => {
-	const itemsToRemove = { id: 'Z2lkOi8vc2hvcGlmeS9Qcm9kdWN0VmFyaWFudC8zNTgxMjg5Njg5OTIzNA==', quantity: 234 };
-	console.log(req.body.id);
+	const { variant, id } = req.body;
+	const itemsToRemove = [id];
 
-	const foundCheckout = await client.checkout.fetch(req.params.id);
+	console.log(variant.id);
+	try {
+		const response = await client.checkout.removeLineItems(req.params.id, itemsToRemove);
 
-	console.log('first: ' + foundCheckout.lineItems[0].id, 'second: ' + req.body.id);
-	// try {
-	// 	const response = await client.checkout.updateLineItems(
-	// 		'Z2lkOi8vc2hvcGlmeS9DaGVja291dC8yNmQwZWU2ZTUyMDFhMDg2YWYzNTJmYjgwZjViMWZiMz9rZXk9NGRkNzk5ZTY0NTFkNTM5MGI2NjllYTNkZmMxMjBiYTI=',
-	// 		itemsToRemove
-	// 	);
-
-	// 	console.log(JSON.stringify(response));
-	// 	res.json(response);
-	// } catch (error) {
-	// 	console.error(error);
-	// 	res.status(500).json({ msg: 'Internal Server Error' });
-	// }
+		console.log(JSON.stringify(response));
+		res.json(response);
+	} catch (error) {
+		console.error(error);
+		res.status(500).json({ msg: JSON.stringify(error.message) });
+	}
 });
 
 //@route POST route

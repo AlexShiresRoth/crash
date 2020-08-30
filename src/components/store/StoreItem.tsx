@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import { addToCart, removeFromCart } from '../../actions/store';
 import StoreAlert from './alerts/StoreAlert';
 
+//TODO FIGURE OUT THIS FUCKING GARBAGEEEDFZSDFGZDFGFZDGZDFGSZDFGZDFGZSDFG
 interface Props {
 	item: any;
 	index: number;
@@ -14,10 +15,11 @@ interface Props {
 }
 
 const StoreItem = ({ item, index, addToCart, removeFromCart, store: { cart, loading } }: Props) => {
-	const [formData, setFormData] = useState({
-		size: '',
+	const [selectedItem, selectItem] = useState<any>({
+		option: null,
 	});
 
+	const { option } = selectedItem;
 	//Handle alerting user if adding cart to item fails
 	const [alerted, setAlert] = useState({
 		sizeError: false,
@@ -26,23 +28,15 @@ const StoreItem = ({ item, index, addToCart, removeFromCart, store: { cart, load
 
 	const { sizeError, status } = alerted;
 
-	const { size } = formData;
-
 	const onChange = (e: React.FormEvent<HTMLSelectElement>) =>
-		setFormData({ ...formData, size: e.currentTarget.value });
+		selectItem({ ...selectedItem, option: e.currentTarget.value });
 
 	//check if item is already in cart
 	const handleIsInCart = (data: any) => cart.filter((cartItem: any) => cartItem.id === data.id).length > 0;
 
 	const handleAddToCart = () => {
-		const itemVariant = item.variants.filter((variant: any) => variant.title === size)[0];
-		const price = item.variants[0].price;
-		const itemSizePrice = { ...item, size, price, itemVariant };
-
-		return size
-			? handleIsInCart(item)
-				? removeFromCart(item.id, itemVariant)
-				: addToCart(itemSizePrice)
+		return option
+			? addToCart(selectedItem)
 			: setAlert({
 					sizeError: true,
 					status: 'Please choose a size',
@@ -50,8 +44,8 @@ const StoreItem = ({ item, index, addToCart, removeFromCart, store: { cart, load
 	};
 
 	useEffect(() => {
-		if (size !== '') setAlert({ sizeError: false, status: '' });
-	}, [size]);
+		if (option !== '') setAlert({ sizeError: false, status: '' });
+	}, [option]);
 
 	return !loading ? (
 		<div className={style.item} key={index}>
@@ -73,17 +67,13 @@ const StoreItem = ({ item, index, addToCart, removeFromCart, store: { cart, load
 								className={style.select_box}
 							>
 								<option>Choose a size</option>
-								{item.options
-									.filter((option: any) => option.name === 'Size')
-									.map((option: any) => {
-										return option.values.map((size: any, i: number) => {
-											return (
-												<option key={i} value={size.value}>
-													{size.value}
-												</option>
-											);
-										});
-									})}
+								{item.variants.map((variant: any, i: number) => {
+									return (
+										<option key={i} value={variant.id}>
+											{variant.title}
+										</option>
+									);
+								})}
 							</select>
 						</form>
 					</div>

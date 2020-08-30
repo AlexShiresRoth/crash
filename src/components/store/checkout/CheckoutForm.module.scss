@@ -1,0 +1,20 @@
+.checkout {
+	width: 100%;
+	min-height: 40vh;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	& form {
+		display: flex;
+		flex-direction: column;
+		& .input_col {
+			display: flex;
+			flex-direction: column;
+			& input {
+				padding: 0.5rem 1rem;
+			}
+		}
+		& .button_container {
+		}
+	}
+}

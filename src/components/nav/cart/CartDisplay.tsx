@@ -7,12 +7,12 @@ import { Link } from 'react-router-dom';
 
 interface Props {
 	store?: any;
-	removeFromCart: (val: any, variantId: string) => any;
+	removeFromCart: (val: any, variantId: any) => any;
 	setVisibility: (val: boolean) => any;
 	isVisible: boolean;
 }
 
-const CartDisplay = ({ store: { cart, loading, images }, removeFromCart, isVisible, setVisibility }: Props) => {
+const CartDisplay = ({ store: { cart, loading, checkout }, removeFromCart, isVisible, setVisibility }: Props) => {
 	return !loading ? (
 		<div className={isVisible ? style.container : style.hidden}>
 			<div className={style.close_cart}>
@@ -23,18 +23,21 @@ const CartDisplay = ({ store: { cart, loading, images }, removeFromCart, isVisib
 			</div>
 			<div className={style.items}>
 				{cart.map((item: any, i: number) => {
-					const itemVariant = item.variants.filter((variant: any) => variant.title === item.size)[0];
+					const itemToRemove = checkout.lineItems.filter(
+						(lineItem: any) => lineItem.variant.id === item.variant.id
+					)[0];
 					return (
 						<div key={i} className={style.item}>
-							<img src={item.images[0].src} alt={item.name} />
+							<img src={item.variant.image.src} alt={item.title} />
 							<div className={style.content}>
 								<p>{item.title}</p>
+								<p>Quantity: {item.quantity}</p>
 								{item.size !== null ? (
-									<div className={style.sizes}>Selected Size: {item.size}</div>
+									<div className={style.sizes}>Selected Size: {item.variant.title}</div>
 								) : null}
 							</div>
 							<div className={style.remove}>
-								<button onClick={(e) => removeFromCart(item.id, itemVariant.id)}>X</button>
+								<button onClick={(e) => removeFromCart(item.id, itemToRemove)}>X</button>
 							</div>
 						</div>
 					);

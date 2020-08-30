@@ -17,15 +17,16 @@ interface Props {
 	fetchCheckout: (val: string) => any;
 }
 
+//TODO handle loading of line items
 const CheckoutModule = ({
 	store: { cart, loading, shippingInfo, shippingSaved, checkout },
 	removeFromCart,
 	fetchCheckout,
 }: Props) => {
 	useEffect(() => {
-		const id = localStorage.getItem('checkout');
-		if (id) fetchCheckout(id);
-	}, [fetchCheckout]);
+		const id = localStorage.getItem('checkout') || '';
+		fetchCheckout(id);
+	}, [fetchCheckout, cart.length]);
 
 	if (cart.length <= 0) {
 		return <Redirect to="/store" />;
@@ -40,21 +41,26 @@ const CheckoutModule = ({
 							<h2>My Order</h2>
 							<div className={style.items}>
 								{cart.map((cartItem: any, i: number) => {
-									const itemVariant = cartItem.variants.filter(
-										(variant: any) => variant.title === cartItem.size
+									const itemToRemove = checkout.lineItems.filter(
+										(lineItem: any) => lineItem.variant.id === cartItem.variant.id
 									)[0];
 									return (
 										<div className={style.item_container} key={i}>
 											<div className={style.img_container}>
-												<img src={cartItem.images[0].src} alt={cartItem.title} />
+												<img src={cartItem.variant.image.src} alt={cartItem.title} />
 											</div>
 											<div className={style.content}>
 												<h2>{cartItem.title}</h2>
-												<p>{cartItem.size}</p>
-												<p>${cartItem.variants[0].price}</p>
+												<p>{cartItem.variant.title}</p>
+												<p>Quantity: {cartItem.quantity}</p>
+												<p>Item Price:${cartItem.variant.price}</p>
+												<p>
+													Total: $
+													{(cartItem.quantity * parseInt(cartItem.variant.price)).toString()}
+												</p>
 											</div>
 											<div className={style.btn_container}>
-												<button onClick={() => removeFromCart(cartItem.id, itemVariant.id)}>
+												<button onClick={() => removeFromCart(cartItem.id, itemToRemove)}>
 													X
 												</button>
 											</div>

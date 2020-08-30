@@ -12,7 +12,6 @@ import {
 	START_ORDER,
 	FETCH_CHECKOUT,
 	SAVE_SHIPPING,
-	ADD_LINEITEM,
 	PROCESS_CHECKOUT,
 } from './types';
 import { setAlert } from './alert';
@@ -106,17 +105,16 @@ export const searchCatalog = (data: any) => async (dispatch: any) => {
 	}
 };
 
-export const addToCart = (itemVariant: any) => async (dispatch: any) => {
+export const addToCart = (item: string) => async (dispatch: any) => {
 	const checkoutId = localStorage.getItem('checkout');
-	console.log(itemVariant);
 
-	const body = JSON.stringify({ ...itemVariant });
-
+	console.log(item, checkoutId);
 	try {
-		const res = await api.post(`/shopifystore/addtocart/${checkoutId}`, body);
+		const res = await api.post(`/shopifystore/addtocart/${checkoutId}`, item);
+		console.log('added to cart', res.data);
 		dispatch({
 			type: ADD_TO_CART,
-			payload: itemVariant,
+			payload: res.data,
 		});
 	} catch (error) {
 		dispatch({
@@ -128,17 +126,17 @@ export const addToCart = (itemVariant: any) => async (dispatch: any) => {
 };
 
 export const removeFromCart = (id: string, variant: any) => async (dispatch: any) => {
-	//must always receive an id
+	//must always receive an id as first param
+	//second param must be variant object
 	const checkoutId = localStorage.getItem('checkout');
 
-	//variant is the selected item variant
-	const body = JSON.stringify({ ...variant });
+	console.log(variant);
 	try {
-		const res = await api.post(`/shopifystore/removefromcart/${checkoutId}`, body);
+		const res = await api.post(`/shopifystore/removefromcart/${checkoutId}`, variant);
 
 		dispatch({
 			type: REMOVE_FROM_CART,
-			payload: id,
+			payload: { id: id, cart: res.data },
 		});
 		dispatch(setAlert('Item removed from cart', 'success'));
 	} catch (error) {
@@ -170,7 +168,7 @@ export const startOrder = () => async (dispatch: any) => {
 export const fetchCheckout = (id: string) => async (dispatch: any) => {
 	try {
 		const res = await api.get(`/shopifystore/findcheckout/${id}`);
-		console.log('checkout:' + JSON.stringify(res.data));
+		// console.log('checkout:' + JSON.stringify(res.data));
 		dispatch({
 			type: FETCH_CHECKOUT,
 			payload: res.data,
@@ -230,23 +228,6 @@ export const toggleShippingModule = (data: boolean) => async (dispatch: any) => 
 		type: SAVE_SHIPPING,
 		payload: data,
 	});
-};
-
-export const addLineItem = (item: any) => async (dispatch: any) => {
-	try {
-		const res = await api.post('/shopifystore/addtocart', item);
-		console.log('adding to cart', res.data);
-		dispatch({
-			type: ADD_LINEITEM,
-			payload: res.data,
-		});
-	} catch (error) {
-		dispatch({
-			type: STORE_ERROR,
-			payload: error.response.msg,
-		});
-		dispatch(setAlert(error.response.data.msg, 'danger'));
-	}
 };
 
 export const processCheckout = (formData: any) => async (dispatch: any) => {

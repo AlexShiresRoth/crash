@@ -57,6 +57,7 @@ export default (state = initialState, action: any) => {
 				...state,
 				checkout: payload,
 				shippingInfo: payload.shippingAddress !== null ? payload.shippingAddress : null,
+				cart: payload.lineItems,
 				loading: false,
 			};
 		}
@@ -75,19 +76,14 @@ export default (state = initialState, action: any) => {
 		case ADD_TO_CART:
 			return {
 				...state,
-				cart: [...state.cart, payload],
+				cart: [...payload.lineItems],
 				loading: false,
 			};
-		case ADD_LINEITEM:
-			return {
-				...state,
-				lineItems: [...state.lineItems, payload],
-				loading: false,
-			};
+
 		case REMOVE_FROM_CART:
 			return {
 				...state,
-				cart: state.cart.filter((cartItem: any) => cartItem.id !== payload),
+				cart: [...payload.cart.lineItems],
 				loading: false,
 			};
 		case SUBMIT_SHIPPING:
