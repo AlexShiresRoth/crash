@@ -33,7 +33,7 @@ router.get('/inventory', async (req, res) => {
 //@access private
 router.post('/addtocart/:id', async (req, res) => {
 	const { option } = req.body;
-	console.log(option);
+
 	const lineItem = {
 		variantId: option,
 		quantity: 1,
@@ -53,14 +53,12 @@ router.post('/addtocart/:id', async (req, res) => {
 //@desc remove lineitem
 //@access private
 router.post('/removefromcart/:id', async (req, res) => {
-	const { variant, id } = req.body;
+	const { id } = req.body;
 	const itemsToRemove = [id];
 
-	console.log(variant.id);
 	try {
 		const response = await client.checkout.removeLineItems(req.params.id, itemsToRemove);
 
-		console.log(JSON.stringify(response));
 		res.json(response);
 	} catch (error) {
 		console.error(error);
@@ -140,7 +138,7 @@ router.post(
 		};
 		try {
 			const checkoutResponse = await client.checkout.updateShippingAddress(checkoutId, shippingAddress);
-			console.log(JSON.stringify(checkoutResponse));
+			// console.log(JSON.stringify(checkoutResponse));
 
 			res.json(checkoutResponse);
 		} catch (error) {
@@ -154,7 +152,7 @@ router.post(
 //@desc complete checkout and redirect to shopify
 //@access private
 router.post(
-	'/processcheckout',
+	'/processcheckout/:id',
 	[check('email', 'Please enter your email').not().isEmpty(), check('email', 'Please enter a valid email').isEmail()],
 	async (req, res) => {
 		const errors = validationResult(req);
@@ -163,9 +161,21 @@ router.post(
 			return res.status(400).json({ errors: errors.array() });
 		}
 
+		const { email } = req.body;
+
+		const updates = {
+			customAttributes: [{ key: 'email', value: email }],
+		};
 		try {
-			const response = await client.checkout.updateAttributes();
-		} catch (error) {}
+			const response = await client.checkout.updateAttributes(req.params.id, updates);
+
+			console.log(response);
+
+			res.json(response);
+		} catch (error) {
+			console.error(error);
+			res.status(500).json({ msg: 'Internal Server Error' });
+		}
 	}
 );
 

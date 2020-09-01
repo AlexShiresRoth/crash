@@ -11,7 +11,6 @@ import {
 	START_ORDER,
 	FETCH_CHECKOUT,
 	SAVE_SHIPPING,
-	ADD_LINEITEM,
 	PROCESS_CHECKOUT,
 } from '../actions/types';
 
@@ -74,16 +73,20 @@ export default (state = initialState, action: any) => {
 				searching: true,
 			};
 		case ADD_TO_CART:
+			console.log(payload);
 			return {
 				...state,
 				cart: [...payload.lineItems],
+				checkout: payload,
 				loading: false,
 			};
 
 		case REMOVE_FROM_CART:
+			console.log(payload);
 			return {
 				...state,
-				cart: [...payload.cart.lineItems],
+				cart: [...payload.lineItems],
+				checkout: payload,
 				loading: false,
 			};
 		case SUBMIT_SHIPPING:

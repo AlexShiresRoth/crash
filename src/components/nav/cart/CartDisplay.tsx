@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { removeFromCart } from '../../../actions/store';
@@ -26,6 +26,7 @@ const CartDisplay = ({ store: { cart, loading, checkout }, removeFromCart, isVis
 					const itemToRemove = checkout.lineItems.filter(
 						(lineItem: any) => lineItem.variant.id === item.variant.id
 					)[0];
+
 					return (
 						<div key={i} className={style.item}>
 							<img src={item.variant.image.src} alt={item.title} />

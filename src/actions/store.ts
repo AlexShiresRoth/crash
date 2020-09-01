@@ -15,6 +15,7 @@ import {
 	PROCESS_CHECKOUT,
 } from './types';
 import { setAlert } from './alert';
+import { Redirect } from 'react-router';
 
 const config = {
 	accept: 'application/json',
@@ -136,7 +137,7 @@ export const removeFromCart = (id: string, variant: any) => async (dispatch: any
 
 		dispatch({
 			type: REMOVE_FROM_CART,
-			payload: { id: id, cart: res.data },
+			payload: res.data,
 		});
 		dispatch(setAlert('Item removed from cart', 'success'));
 	} catch (error) {
@@ -230,9 +231,9 @@ export const toggleShippingModule = (data: boolean) => async (dispatch: any) => 
 	});
 };
 
-export const processCheckout = (formData: any) => async (dispatch: any) => {
+export const processCheckout = (formData: any, id: string) => async (dispatch: any) => {
 	try {
-		const res = await api.post('/shopifystore/processcheckout', formData);
+		const res = await api.post(`/shopifystore/processcheckout/${id}`, formData);
 		dispatch({
 			type: PROCESS_CHECKOUT,
 			payload: res.data,

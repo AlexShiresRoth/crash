@@ -3,13 +3,14 @@ import React, { useState } from 'react';
 import style from './CheckoutForm.module.scss';
 import { connect } from 'react-redux';
 import { processCheckout } from '../../../actions/store';
+import { Redirect } from 'react-router';
 
 interface Props {
-	processCheckout: (val: any) => any;
+	processCheckout: (val: any, id: string) => any;
 	store?: any;
 }
 
-const CheckoutForm = ({ processCheckout, store: { cart, checkout } }: Props) => {
+const CheckoutForm = ({ processCheckout, store: { cart, checkout, returnUrl } }: Props) => {
 	const [formData, setFormData] = useState<any>({
 		email: '',
 		checkoutId: localStorage.getItem('checkout'),
@@ -19,15 +20,19 @@ const CheckoutForm = ({ processCheckout, store: { cart, checkout } }: Props) => 
 		setFormData({ ...formData, [e.currentTarget.name]: e.currentTarget.value });
 
 	const onSubmit = (e: React.FormEvent) => {
+		const checkoutId = localStorage.getItem('checkout') || '';
 		e.preventDefault();
 		if (cart.length > 0) {
-			processCheckout(formData);
-			window.location.href = checkout.webUrl;
+			processCheckout(formData, checkoutId);
 		}
 	};
+	if (returnUrl !== null) {
+		return <Redirect to={{ pathname: '/redirect', state: { redirect: `${returnUrl}` } }} />;
+	}
+
 	return (
 		<div className={style.checkout}>
-			<form>
+			<form onSubmit={(e) => onSubmit(e)}>
 				<div className={style.input_col}>
 					<label>Email</label>
 					<input
@@ -40,7 +45,7 @@ const CheckoutForm = ({ processCheckout, store: { cart, checkout } }: Props) => 
 					/>
 				</div>
 				<div className={style.btn_container}>
-					<button onSubmit={(e) => onSubmit(e)}>Proceed To Checkout</button>
+					<button onSubmit={(e) => onSubmit(e)}>Proceed To Secure Checkout </button>
 				</div>
 			</form>
 		</div>

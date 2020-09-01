@@ -31,7 +31,6 @@ const CheckoutModule = ({
 	if (cart.length <= 0) {
 		return <Redirect to="/store" />;
 	}
-	console.log(checkout);
 	return (
 		<section className={style.section}>
 			{!loading && cart.length > 0 ? (
@@ -44,6 +43,7 @@ const CheckoutModule = ({
 									const itemToRemove = checkout.lineItems.filter(
 										(lineItem: any) => lineItem.variant.id === cartItem.variant.id
 									)[0];
+									console.log(checkout);
 									return (
 										<div className={style.item_container} key={i}>
 											<div className={style.img_container}>
