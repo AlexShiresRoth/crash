@@ -15,7 +15,6 @@ import {
 	PROCESS_CHECKOUT,
 } from './types';
 import { setAlert } from './alert';
-import { Redirect } from 'react-router';
 
 const config = {
 	accept: 'application/json',
