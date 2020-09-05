@@ -92,6 +92,7 @@ const UpdateAddress = ({
 				<h2>Shipping Address Form</h2>
 				<button onClick={() => toggleShippingModule(!shippingSaved)}>Cancel X</button>
 			</div>
+			<p>Currently, only shipping within the US</p>
 			{alerts.length > 0
 				? alerts.map((alert, i) => <StoreAlert status={alert.msg} type={alert.alertType} key={i} />)
 				: null}

@@ -11,6 +11,11 @@ interface Props {
 
 const ItemPage = ({ fetchCheckout }: Props) => {
 	useEffect(() => {
+		setTimeout(() => {
+			window.scrollTo(0, 0);
+		}, 100);
+	}, []);
+	useEffect(() => {
 		console.log('found order', localStorage.getItem('checkout'));
 		const id = localStorage.getItem('checkout') || '';
 		fetchCheckout(id);

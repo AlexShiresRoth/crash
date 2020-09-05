@@ -26,6 +26,10 @@
 					& img {
 						max-width: 100%;
 						object-fit: cover;
+						transition: all 0.3s ease;
+						&:hover {
+							transform: scale(1.05);
+						}
 					}
 				}
 				& .item_desc {

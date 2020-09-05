@@ -53,6 +53,7 @@ const ShippingAddressForm = ({ submitShippingInfo, store: { checkout }, alerts }
 	return (
 		<div className={style.form_container}>
 			<h2>Shipping Address Form</h2>
+			<p>Currently, only shipping within the US</p>
 			{alerts.length > 0
 				? alerts.map((alert, i) => <StoreAlert status={alert.msg} key={i} type={alert.alertType} />)
 				: null}

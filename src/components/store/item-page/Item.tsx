@@ -14,11 +14,17 @@ interface Props {
 	findStoreItem: (id: string) => any;
 	addToCart: (val: any) => any;
 	removeFromCart: (val: any, id: string) => any;
+	alerts?: any;
 }
 
 type AllProps = Props & RouteComponentProps;
 
-const Item = ({ store: { loading, foundItem }, match, findStoreItem, addToCart }: AllProps) => {
+const Item = ({ store: { loading, foundItem }, match, findStoreItem, addToCart, alerts }: AllProps) => {
+	useEffect(() => {
+		setTimeout(() => {
+			window.scrollTo(0, 0);
+		}, 100);
+	}, [match.params.id]);
 	useEffect(() => {
 		findStoreItem(match.params.id);
 	}, [match.params.id, findStoreItem]);
@@ -56,6 +62,7 @@ const Item = ({ store: { loading, foundItem }, match, findStoreItem, addToCart }
 		e.preventDefault();
 		handleAddToCart();
 	};
+
 	return !loading && foundItem ? (
 		<div className={style.container}>
 			<div className={style.inner}>
@@ -71,7 +78,7 @@ const Item = ({ store: { loading, foundItem }, match, findStoreItem, addToCart }
 							<h3>{foundItem.description}</h3>
 							<p>
 								Price: $
-								{option
+								{option && foundItem.variants.filter((variant: any) => variant.id === option).length > 0
 									? foundItem.variants.filter((variant: any) => {
 											return variant.id === option;
 									  })[0].price
@@ -80,14 +87,18 @@ const Item = ({ store: { loading, foundItem }, match, findStoreItem, addToCart }
 						</div>
 						<form onSubmit={(e) => onSubmit(e)}>
 							{sizeError ? <StoreAlert status={status} type={'danger'} /> : null}
-							<label>Choose a size</label>
+							{alerts.length > 0
+								? alerts.map((alert: any) => <StoreAlert status={alert.msg} type={alert.alertType} />)
+								: null}
+							<label>Select Type</label>
 							<select
 								onChange={(e) => onChange(e)}
 								style={sizeError ? { border: '2px solid #8f2b2bb0' } : {}}
 								className={style.select_box}
 							>
-								<option>Choose a size</option>
+								<option>Choose Type</option>
 								{foundItem.variants.map((variant: any, i: number) => {
+									console.log(variant);
 									return variant.available ? (
 										<option key={i} value={variant.id}>
 											{variant.title}
@@ -118,6 +129,7 @@ Item.propTypes = {
 
 const mapStateToProps = (state: any) => ({
 	store: state.store,
+	alerts: state.alerts,
 });
 
 export default connect(mapStateToProps, { findStoreItem, addToCart, removeFromCart })(withRouter(Item));

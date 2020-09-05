@@ -16,7 +16,7 @@
 			flex-direction: column;
 			& .grid {
 				display: grid;
-				grid-template-columns: repeat(3, minmax(20rem, 22rem));
+				grid-template-columns: repeat(4, minmax(20rem, 22rem));
 				justify-items: center;
 				gap: 1rem;
 				& .item {
@@ -29,6 +29,14 @@
 						max-width: 100%;
 						& img {
 							max-width: 100%;
+						}
+					}
+					& .item_desc {
+						& h3 {
+							text-transform: uppercase;
+						}
+						& p {
+							color: $brand-main;
 						}
 					}
 					& button {
