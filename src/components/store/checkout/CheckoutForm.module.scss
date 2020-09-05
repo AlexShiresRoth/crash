@@ -1,20 +1,46 @@
+@import '../../../../sass/variables';
+
 .checkout {
 	width: 100%;
-	min-height: 40vh;
 	display: flex;
+	flex-direction: column;
 	justify-content: center;
 	align-items: center;
+	padding: 2rem 0;
 	& form {
 		display: flex;
 		flex-direction: column;
+		margin: 2rem;
+		width: 60%;
 		& .input_col {
 			display: flex;
 			flex-direction: column;
+			width: 100%;
+			& label {
+				margin: 1rem 0;
+			}
 			& input {
-				padding: 0.5rem 1rem;
+				padding: 1rem;
+				border: 1px solid #eee;
+				border-radius: 3px;
 			}
 		}
-		& .button_container {
+		& .btn_container {
+			margin: 1rem 0;
+			width: 100%;
+			& button {
+				width: 100%;
+				padding: 1rem;
+				background: $brand-dark;
+				color: #fff;
+				border: 0;
+				transition: all 0.3s ease-in-out;
+				border-radius: 3px;
+				&:hover {
+					cursor: pointer;
+					box-shadow: 0 1px 10px $brand-dark;
+				}
+			}
 		}
 	}
 }

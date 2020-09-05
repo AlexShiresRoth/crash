@@ -10,7 +10,7 @@ interface Props {
 	clearSearch: () => any;
 }
 
-const SearchBar = ({ searchCatalog, clearSearch, store: { categories, loading } }: Props) => {
+const SearchBar = ({ searchCatalog, clearSearch, store: { catalog, loading } }: Props) => {
 	const [formData, setData] = useState({
 		searchTerm: '',
 		category: '',
@@ -41,12 +41,12 @@ const SearchBar = ({ searchCatalog, clearSearch, store: { categories, loading } 
 	return (
 		<div className={style.search}>
 			<form onSubmit={(e) => formSubmit(e)}>
-				{!loading && categories.objects ? (
+				{!loading && catalog ? (
 					<select onChange={(e) => onSelectChange(e)} name="searchTerm">
-						{categories.objects.map((cat: any, i: number) => {
+						{catalog.map((item: any, i: number) => {
 							return (
-								<option value={cat.category_data.name} key={i}>
-									{cat.category_data.name}
+								<option value={item.productType} key={i}>
+									{item.productType}
 								</option>
 							);
 						})}

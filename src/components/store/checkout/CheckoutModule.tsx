@@ -17,7 +17,6 @@ interface Props {
 	fetchCheckout: (val: string) => any;
 }
 
-//TODO handle loading of line items
 const CheckoutModule = ({
 	store: { cart, loading, shippingInfo, shippingSaved, checkout },
 	removeFromCart,
@@ -43,7 +42,6 @@ const CheckoutModule = ({
 									const itemToRemove = checkout.lineItems.filter(
 										(lineItem: any) => lineItem.variant.id === cartItem.variant.id
 									)[0];
-									console.log(checkout);
 									return (
 										<div className={style.item_container} key={i}>
 											<div className={style.img_container}>

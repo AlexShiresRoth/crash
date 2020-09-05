@@ -4,6 +4,7 @@ import style from './CheckoutForm.module.scss';
 import { connect } from 'react-redux';
 import { processCheckout } from '../../../actions/store';
 import { Redirect } from 'react-router';
+import { FaShopify } from 'react-icons/fa';
 
 interface Props {
 	processCheckout: (val: any, id: string) => any;
@@ -32,6 +33,11 @@ const CheckoutForm = ({ processCheckout, store: { cart, checkout, returnUrl } }:
 
 	return (
 		<div className={style.checkout}>
+			<div className={style.heading}>
+				<h1>
+					Checkout with Shopify <FaShopify />
+				</h1>
+			</div>
 			<form onSubmit={(e) => onSubmit(e)}>
 				<div className={style.input_col}>
 					<label>Email</label>

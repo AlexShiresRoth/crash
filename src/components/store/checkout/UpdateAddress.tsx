@@ -22,7 +22,6 @@ const UpdateAddress = ({
 		address2: '',
 		city: shippingInfo.city,
 		company: null,
-		country: shippingInfo.country,
 		firstName: shippingInfo.firstName,
 		lastName: shippingInfo.lastName,
 		phone: '',
@@ -31,7 +30,7 @@ const UpdateAddress = ({
 		checkoutId: localStorage.getItem('checkout'),
 	});
 
-	const { address1, zip, firstName, lastName, city, country, province } = formData;
+	const { address1, zip, firstName, lastName, city, province } = formData;
 
 	const onChange = (e: React.FormEvent<HTMLInputElement>) =>
 		setFormData({ ...formData, [e.currentTarget.name]: e.currentTarget.value });
@@ -49,7 +48,6 @@ const UpdateAddress = ({
 			address2: '',
 			city: shippingInfo.city,
 			company: null,
-			country: shippingInfo.country,
 			firstName: shippingInfo.firstName,
 			lastName: shippingInfo.lastName,
 			phone: '',
@@ -73,7 +71,6 @@ const UpdateAddress = ({
 		const compareArrays = sorted1.filter((item, i) => {
 			return JSON.stringify(sorted2[i]) === JSON.stringify(item);
 		});
-		console.log(compareArrays);
 		//if matches length is equivelant to the initial shipping info
 		//no changes have been made, so it is unnecessary to send request
 		return compareArrays.length === sorted2.length ? setChangedState(false) : setChangedState(true);
@@ -88,13 +85,7 @@ const UpdateAddress = ({
 	useEffect(() => {
 		checkForChanges();
 	});
-	//if form submit was attempted and no changes were made,
-	//change attempt back to false
-	useEffect(() => {
-		setTimeout(() => {
-			setAttempt(false);
-		}, 5000);
-	}, [attempted]);
+
 	return (
 		<div className={style.form_container}>
 			<div className={style.form_header}>
@@ -143,17 +134,6 @@ const UpdateAddress = ({
 						</div>
 					</div>
 					<div className={style.col}>
-						<div className={style.input_col}>
-							<label>Country/Region</label>
-							<input
-								type="text"
-								value={country}
-								name="country"
-								placeholder="Enter your country"
-								onChange={(e) => onChange(e)}
-								required={true}
-							/>
-						</div>
 						<div className={style.input_col}>
 							<label>State</label>
 							<input

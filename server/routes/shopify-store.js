@@ -28,6 +28,52 @@ router.get('/inventory', async (req, res) => {
 	}
 });
 
+//@route GET route
+//@desc get single item
+//@access public
+router.get('/inventory/:id', async (req, res) => {
+	try {
+		const response = await client.product.fetch(req.params.id);
+
+		if (!response) {
+			return res.status(400).json({ msg: 'Could not locate Item' });
+		}
+		console.log(response);
+		res.json(response);
+	} catch (error) {
+		console.error(error);
+		res.status(500).json({ msg: 'Internal Server Error' });
+	}
+});
+
+//@route POST Route
+//@desc search for products based on user info
+//@access public
+router.post('/search', [check('searchTerm', 'Please enter a word to search by').not().isEmpty()], async (req, res) => {
+	const errors = validationResult(req);
+
+	if (!errors.isEmpty()) {
+		return res.status(400).json({ errors: errors.array() });
+	}
+
+	const { searchTerm } = req.body;
+
+	const inventory = await client.product.fetchAll();
+
+	const foundProducts = inventory.filter((item) => {
+		return item.productType.toLowerCase() === searchTerm.toLowerCase();
+	});
+
+	console.log(foundProducts.map((item) => item.title));
+
+	try {
+		res.json(foundProducts);
+	} catch (error) {
+		console.error(error);
+		res.status(500).json({ msg: error });
+	}
+});
+
 //route POST route
 //@desc create lineitem
 //@access private
@@ -113,7 +159,6 @@ router.post(
 		check('firstName', 'Please enter your first name').not().isEmpty(),
 		check('lastName', 'Please enter your last name').not().isEmpty(),
 		check('city', 'Please enter your city').not().isEmpty(),
-		check('country', 'Please enter your country').not().isEmpty(),
 		check('province', 'Please enter your state').not().isEmpty(),
 	],
 	async (req, res) => {
@@ -122,24 +167,25 @@ router.post(
 		if (!errors.isEmpty()) {
 			return res.status(400).json({ errors: errors.array() });
 		}
-		const { address1, zip, lastName, firstName, city, country, province, checkoutId } = req.body;
+		const { address1, zip, lastName, firstName, city, province, checkoutId } = req.body;
 
 		const shippingAddress = {
 			address1,
 			address2: '',
 			city,
 			company: null,
-			country: country,
+			country: 'United States',
 			firstName,
 			lastName,
 			phone: '',
 			province,
 			zip,
 		};
+		console.log(shippingAddress.province);
 		try {
 			const checkoutResponse = await client.checkout.updateShippingAddress(checkoutId, shippingAddress);
 			// console.log(JSON.stringify(checkoutResponse));
-
+			console.log('response:', checkoutResponse.shippingAddress.province);
 			res.json(checkoutResponse);
 		} catch (error) {
 			console.error(error);

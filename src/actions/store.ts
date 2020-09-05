@@ -5,7 +5,6 @@ import {
 	ADD_TO_CART,
 	REMOVE_FROM_CART,
 	SEARCH_STORE,
-	FETCH_CATEGORIES,
 	CLEAR_SEARCH,
 	SUBMIT_SHIPPING,
 	SHIPPING_ERROR,
@@ -13,6 +12,7 @@ import {
 	FETCH_CHECKOUT,
 	SAVE_SHIPPING,
 	PROCESS_CHECKOUT,
+	FETCH_ITEM,
 } from './types';
 import { setAlert } from './alert';
 
@@ -24,6 +24,7 @@ const config = {
 export const fetchStoreItems = () => async (dispatch: any) => {
 	try {
 		const res = await api.get('/shopifystore/inventory');
+		console.log(res.data);
 		dispatch({
 			type: FETCH_STORE,
 			payload: res.data,
@@ -47,6 +48,22 @@ export const fetchStoreItems = () => async (dispatch: any) => {
 	}
 };
 
+export const findStoreItem = (id: string) => async (dispatch: any) => {
+	try {
+		const res = await api.get(`/shopifystore/inventory/${id}`);
+		dispatch({
+			type: FETCH_ITEM,
+			payload: res.data,
+		});
+	} catch (error) {
+		dispatch({
+			type: STORE_ERROR,
+			payload: error,
+		});
+		dispatch(setAlert(error.response.data.msg, 'danger'));
+	}
+};
+
 export const clearSearch = () => async (dispatch: any) => {
 	try {
 		dispatch({
@@ -61,27 +78,10 @@ export const clearSearch = () => async (dispatch: any) => {
 	}
 };
 
-export const fetchCategories = () => async (dispatch: any) => {
-	try {
-		const res = await api.get('/store/categories');
-
-		dispatch({
-			type: FETCH_CATEGORIES,
-			payload: res.data,
-		});
-	} catch (error) {
-		dispatch({
-			type: STORE_ERROR,
-			payload: error.response.data.msg,
-		});
-		dispatch(setAlert(error.response.data.msg, 'danger'));
-	}
-};
-
 export const searchCatalog = (data: any) => async (dispatch: any) => {
 	try {
-		const res = await api.post('/store', data, config);
-
+		const res = await api.post('/shopifystore/search', data, config);
+		console.log(res.data);
 		dispatch({
 			type: SEARCH_STORE,
 			payload: res.data,
@@ -185,7 +185,7 @@ export const fetchCheckout = (id: string) => async (dispatch: any) => {
 export const submitShippingInfo = (formData: any, toggle: boolean) => async (dispatch: any) => {
 	try {
 		const res = await api.post('/shopifystore/updateaddress', formData);
-
+		console.log(res.data);
 		dispatch({
 			type: SUBMIT_SHIPPING,
 			payload: res.data,

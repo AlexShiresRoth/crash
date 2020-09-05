@@ -7,10 +7,22 @@ interface Props {
 	store?: any;
 }
 
-const StoreItems = ({ store: { catalog, loading, categories, searchResults } }: Props) => {
+const StoreItems = ({ store: { catalog, loading, searchResults } }: Props) => {
 	const handleCatalog = catalog.map((catItem: any, i: number) => <StoreItem item={catItem} index={i} key={i} />);
-
-	return <>{!loading && catalog.length > 0 ? handleCatalog : <LoadingSpinner />}</>;
+	const handleSearch = searchResults.map((item: any, i: number) => <StoreItem item={item} index={i} key={i} />);
+	return (
+		<>
+			{!loading && catalog.length > 0 ? (
+				searchResults.length > 0 ? (
+					handleSearch
+				) : (
+					handleCatalog
+				)
+			) : (
+				<LoadingSpinner />
+			)}
+		</>
+	);
 };
 
 const mapStateToProps = (state: any) => {

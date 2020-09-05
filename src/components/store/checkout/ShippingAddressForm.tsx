@@ -16,7 +16,6 @@ const ShippingAddressForm = ({ submitShippingInfo, store: { checkout }, alerts }
 		address2: '',
 		city: '',
 		company: null,
-		country: '',
 		firstName: '',
 		lastName: '',
 		phone: '',
@@ -25,7 +24,7 @@ const ShippingAddressForm = ({ submitShippingInfo, store: { checkout }, alerts }
 		checkoutId: '',
 	});
 
-	const { address1, zip, firstName, lastName, city, country, province } = formData;
+	const { address1, zip, firstName, lastName, city, province } = formData;
 
 	const onChange = (e: React.FormEvent<HTMLInputElement>) =>
 		setFormData({ ...formData, [e.currentTarget.name]: e.currentTarget.value });
@@ -37,12 +36,11 @@ const ShippingAddressForm = ({ submitShippingInfo, store: { checkout }, alerts }
 
 	useEffect(() => {
 		if (localStorage.getItem('checkout')) {
-			setFormData((prevState: any) => ({
+			setFormData(() => ({
 				address1,
 				address2: '',
 				city,
 				company: null,
-				country,
 				firstName,
 				lastName,
 				phone: '',
@@ -51,7 +49,7 @@ const ShippingAddressForm = ({ submitShippingInfo, store: { checkout }, alerts }
 				checkoutId: localStorage.getItem('checkout'),
 			}));
 		}
-	}, [address1, zip, firstName, lastName, city, country, province, checkout]);
+	}, [address1, zip, firstName, lastName, city, province, checkout]);
 	return (
 		<div className={style.form_container}>
 			<h2>Shipping Address Form</h2>
@@ -96,17 +94,6 @@ const ShippingAddressForm = ({ submitShippingInfo, store: { checkout }, alerts }
 						</div>
 					</div>
 					<div className={style.col}>
-						<div className={style.input_col}>
-							<label>Country/Region</label>
-							<input
-								type="text"
-								value={country}
-								name="country"
-								placeholder="Enter your country"
-								onChange={(e) => onChange(e)}
-								required={true}
-							/>
-						</div>
 						<div className={style.input_col}>
 							<label>State</label>
 							<input

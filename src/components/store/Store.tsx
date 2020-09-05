@@ -7,13 +7,12 @@ import StoreItems from './StoreItems';
 import Carousel from './carousel/Carousel';
 
 interface Props {
-	store: any;
 	fetchStoreItems: () => any;
 	startOrder: () => any;
 	fetchCheckout: (val: any) => any;
 }
 
-const Store = ({ fetchStoreItems, startOrder, fetchCheckout, store: { cart } }: Props) => {
+const Store = ({ fetchStoreItems, startOrder, fetchCheckout }: Props) => {
 	useEffect(() => {
 		fetchStoreItems();
 	}, [fetchStoreItems]);
@@ -39,10 +38,4 @@ const Store = ({ fetchStoreItems, startOrder, fetchCheckout, store: { cart } }: 
 	);
 };
 
-const mapStateToProps = (state: any) => {
-	return {
-		store: state.store,
-	};
-};
-
-export default connect(mapStateToProps, { fetchStoreItems, startOrder, fetchCheckout })(Store);
+export default connect(null, { fetchStoreItems, startOrder, fetchCheckout })(Store);

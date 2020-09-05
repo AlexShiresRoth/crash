@@ -12,11 +12,13 @@ import {
 	FETCH_CHECKOUT,
 	SAVE_SHIPPING,
 	PROCESS_CHECKOUT,
+	FETCH_ITEM,
 } from '../actions/types';
 
 const initialState = {
 	catalog: [],
 	searchResults: [],
+	foundItem: null,
 	images: [],
 	categories: [],
 	loading: true,
@@ -51,6 +53,12 @@ export default (state = initialState, action: any) => {
 				checkout: payload,
 				loading: false,
 			};
+		case FETCH_ITEM:
+			return {
+				...state,
+				foundItem: payload,
+				loading: false,
+			};
 		case FETCH_CHECKOUT: {
 			return {
 				...state,
@@ -82,7 +90,6 @@ export default (state = initialState, action: any) => {
 			};
 
 		case REMOVE_FROM_CART:
-			console.log(payload);
 			return {
 				...state,
 				cart: [...payload.lineItems],

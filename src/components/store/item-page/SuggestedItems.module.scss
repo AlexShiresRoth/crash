@@ -1,0 +1,50 @@
+@import '../../../../sass/variables';
+
+.container {
+	display: flex;
+	width: 100%;
+	flex-direction: column;
+	justify-content: center;
+	background: #eee;
+	padding: 2rem;
+	& .inner {
+		display: flex;
+		justify-content: center;
+		width: 90%;
+		& .column {
+			display: flex;
+			flex-direction: column;
+			& .grid {
+				display: grid;
+				grid-template-columns: repeat(3, minmax(20rem, 22rem));
+				justify-items: center;
+				gap: 1rem;
+				& .item {
+					display: flex;
+					flex-direction: column;
+					justify-content: space-between;
+					background: #fff;
+					padding: 1rem;
+					& .img_container {
+						max-width: 100%;
+						& img {
+							max-width: 100%;
+						}
+					}
+					& button {
+						width: 100%;
+						padding: 0.6rem;
+						background: $brand-dark;
+						border: 0;
+						color: #fff;
+						transition: all 0.3s ease-in-out;
+						&:hover {
+							cursor: pointer;
+							box-shadow: 0 1px 10px $brand-dark;
+						}
+					}
+				}
+			}
+		}
+	}
+}

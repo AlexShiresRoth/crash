@@ -1,16 +1,14 @@
 @import '../../../../sass/variables';
 
 .saved_info {
-	height: 100%;
 	width: 100%;
 	background: #fbfbfb;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
-	& h1 {
-		font-size: 3rem;
-	}
+	padding: 4rem 0;
+
 	& button {
 		min-width: 15rem;
 		background: $brand-dark;

@@ -1,0 +1,70 @@
+@import '../../../../sass/variables';
+.container {
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	min-height: 60vh;
+	margin-top: 10vh;
+	& .inner {
+		width: 90%;
+		display: flex;
+		justify-content: center;
+		margin: 10vh 0;
+		& .item {
+			display: grid;
+			grid-template-columns: repeat(2, auto);
+			gap: 1rem;
+			padding: 2rem;
+			border: 1px solid #eee;
+			border-radius: 3px;
+			& .col {
+				display: flex;
+				flex-direction: column;
+				justify-content: center;
+				& .image_container {
+					max-width: 20rem;
+					& img {
+						max-width: 100%;
+						object-fit: cover;
+					}
+				}
+				& .item_desc {
+					& h1 {
+						text-transform: uppercase;
+					}
+					& h3 {
+						color: $brand-main;
+						font-weight: 200;
+					}
+					& p {
+						font-weight: 700;
+						font-size: 1.5rem;
+					}
+				}
+				& form {
+					display: flex;
+					flex-direction: column;
+					& label {
+						margin: 1rem 0;
+					}
+					& select {
+						margin: 1rem 0;
+						padding: 1rem;
+						border: 1px solid $brand-dark;
+					}
+					& button {
+						min-height: 3rem;
+						background: $brand-dark;
+						color: #fff;
+						border: 0;
+						transition: all 0.3s ease-in-out;
+						&:hover {
+							cursor: pointer;
+							box-shadow: 0 1px 10px $brand-dark;
+						}
+					}
+				}
+			}
+		}
+	}
+}
