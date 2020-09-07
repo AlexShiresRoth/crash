@@ -59,6 +59,7 @@ const EmailSignup = ({ emailSignup, alerts }: Props) => {
 							value={email}
 							onChange={(e) => onChange(e)}
 							placeholder="Enter your email"
+							required={true}
 						/>
 						{!loading ? (
 							<button onSubmit={(e) => onSubmit(e)}>Join</button>

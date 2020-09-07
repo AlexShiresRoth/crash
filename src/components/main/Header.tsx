@@ -9,10 +9,12 @@ export const Header = () => {
 				<source src={require('../videos/lamp.mp4')} type="video/mp4" />
 			</video>
 			<div className={style.overlay}></div>
-			<img
-				src={`https://res.cloudinary.com/snackmanproductions/image/upload/v1592331145/crash/CTC_Logo_Export_n4ra8j.png`}
-				alt="Crash the Calm Logo"
-			/>
+			<div className={style.img_container}>
+				<img
+					src={`https://res.cloudinary.com/snackmanproductions/image/upload/v1592331145/crash/CTC_Logo_Export_n4ra8j.png`}
+					alt="Crash the Calm Logo"
+				/>
+			</div>
 			<div className={style.actions}>
 				<Link to="/music">Listen</Link>
 				<span>|</span>

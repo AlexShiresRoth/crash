@@ -52,6 +52,27 @@
 	min-height: 10rem;
 }
 
+@media screen and (max-width: 900px) {
+	.carousel {
+		width: 100%;
+		display: flex;
+		max-height: 10rem;
+		overflow: hidden;
+		position: relative;
+		margin-top: 6rem;
+
+		& .images {
+			display: flex;
+			align-items: center;
+			transform: translate3d(0, 0, 0);
+			animation: cycle 35s linear infinite;
+			& img {
+				max-width: 15rem;
+			}
+		}
+	}
+}
+
 @keyframes cycle {
 	100% {
 		transform: translate3d(-100vw, 0, 0);

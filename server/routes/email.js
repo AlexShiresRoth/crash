@@ -1,7 +1,6 @@
 const express = require('express');
 const { validationResult, check } = require('express-validator');
 const mailchimp = require('@mailchimp/mailchimp_marketing');
-const { route } = require('./store');
 
 const router = express.Router();
 
@@ -80,12 +79,12 @@ router.post('/signup', [check('email', 'Please enter a valid email').isEmail()],
 			email_address: email,
 			status: 'subscribed',
 		});
-		console.log(response.type);
+		console.log(response);
 		res.json(response);
 	} catch (error) {
 		console.error(JSON.parse(error.response.text));
 		const errorMsg = JSON.parse(error.response.text);
-		res.status(error.response.status).json({ msg: errorMsg.title });
+		res.status(error.response.status).json({ msg: errorMsg.detail });
 	}
 	//TODO create signup
 });

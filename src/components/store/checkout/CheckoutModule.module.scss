@@ -87,3 +87,19 @@
 		}
 	}
 }
+
+@media screen and (max-width: 900px) {
+	.section {
+		& .inner {
+			width: 80%;
+		}
+	}
+}
+
+@media screen and (max-width: 600px) {
+	.section {
+		& .inner {
+			width: 90%;
+		}
+	}
+}

@@ -88,7 +88,9 @@ const Item = ({ store: { loading, foundItem }, match, findStoreItem, addToCart, 
 						<form onSubmit={(e) => onSubmit(e)}>
 							{sizeError ? <StoreAlert status={status} type={'danger'} /> : null}
 							{alerts.length > 0
-								? alerts.map((alert: any) => <StoreAlert status={alert.msg} type={alert.alertType} />)
+								? alerts.map((alert: any, i: number) => (
+										<StoreAlert status={alert.msg} type={alert.alertType} key={i} />
+								  ))
 								: null}
 							<label>Select Type</label>
 							<select
@@ -98,7 +100,6 @@ const Item = ({ store: { loading, foundItem }, match, findStoreItem, addToCart, 
 							>
 								<option>Choose Type</option>
 								{foundItem.variants.map((variant: any, i: number) => {
-									console.log(variant);
 									return variant.available ? (
 										<option key={i} value={variant.id}>
 											{variant.title}

@@ -42,6 +42,7 @@
 			height: 3rem;
 			width: 15rem;
 			color: #fff;
+			border-radius: 3px;
 			border: 1px solid #000;
 			transition: all 0.3s ease;
 			&:hover {
@@ -50,6 +51,44 @@
 			}
 			&:active {
 				outline: 0px solid transparent;
+			}
+		}
+	}
+}
+
+@media screen and (max-width: 700px) {
+	.search {
+		min-height: 5rem;
+		background: #fff;
+		box-shadow: 0 1px 20px darken(#fff, 10%);
+		width: 100%;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		flex-wrap: wrap;
+
+		& form {
+			margin-top: 0.5rem;
+			margin-right: 1rem;
+		}
+
+		& .clear_btn {
+			width: 90%;
+			margin: 0.5rem 0;
+			& button {
+				background: #000;
+				height: 3rem;
+				width: 100%;
+				color: #fff;
+				border: 1px solid #000;
+				transition: all 0.3s ease;
+				&:hover {
+					cursor: pointer;
+					box-shadow: 0 1px 10px #000;
+				}
+				&:active {
+					outline: 0px solid transparent;
+				}
 			}
 		}
 	}

@@ -38,10 +38,14 @@
 				height: 3rem;
 				& input {
 					width: 20rem;
-					padding: 0;
-					border: 2px solid $brand-text;
-					background: $brand-text;
+					padding: 0 0.5rem;
+					border: 1px solid #eee;
+					background: #eee;
 					color: $brand-accent;
+					border-radius: 3px;
+					&::placeholder {
+						color: $brand-dark;
+					}
 				}
 				& button {
 					width: 10rem;
@@ -51,10 +55,58 @@
 					background: transparent;
 					color: $brand-accent;
 					transition: all 0.3s ease;
+					border-radius: 3px;
 					&:hover {
 						cursor: pointer;
 						background: $brand-accent;
 						color: $brand-text;
+					}
+				}
+			}
+		}
+	}
+}
+
+@media screen and (max-width: 700px) {
+	.box {
+		& .container {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			margin: 7rem 0;
+			& img {
+				max-width: 70%;
+			}
+			& h2 {
+				font-size: 8vw;
+				text-align: center;
+			}
+			& form {
+				& .input_row {
+					display: grid;
+					grid-template-columns: repeat(2, auto);
+					gap: 0.4rem;
+					height: 2.7rem;
+					& input {
+						width: 60vw;
+						padding: 0;
+						border: 2px solid $brand-text;
+						background: $brand-text;
+						color: $brand-accent;
+					}
+					& button {
+						width: 30vw;
+						font-size: 1rem;
+						border: 2px solid $brand-accent;
+						text-transform: uppercase;
+						background: transparent;
+						color: $brand-accent;
+						transition: all 0.3s ease;
+						&:hover {
+							cursor: pointer;
+							background: $brand-accent;
+							color: $brand-text;
+						}
 					}
 				}
 			}

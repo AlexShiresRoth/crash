@@ -30,6 +30,7 @@ const initialState = {
 	shippingInfo: null,
 	shippingSaved: false,
 	returnUrl: null,
+	processed: false,
 	lineItems: [],
 };
 
@@ -127,6 +128,8 @@ export default (state = initialState, action: any) => {
 			return {
 				...state,
 				errors: payload,
+				processed: false,
+				returnUrl: null,
 				loading: false,
 			};
 		case PROCESS_CHECKOUT:
@@ -134,6 +137,7 @@ export default (state = initialState, action: any) => {
 				...state,
 				returnUrl: payload.webUrl,
 				checkout: payload,
+				processed: true,
 				loading: false,
 			};
 		default:

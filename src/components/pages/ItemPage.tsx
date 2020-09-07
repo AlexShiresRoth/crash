@@ -16,7 +16,6 @@ const ItemPage = ({ fetchCheckout }: Props) => {
 		}, 100);
 	}, []);
 	useEffect(() => {
-		console.log('found order', localStorage.getItem('checkout'));
 		const id = localStorage.getItem('checkout') || '';
 		fetchCheckout(id);
 	}, [fetchCheckout]);

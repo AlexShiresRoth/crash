@@ -13,6 +13,7 @@ export default (state = initialState, action: any) => {
 			return {
 				...state,
 				emailResponse: payload,
+				errors: null,
 				loading: false,
 			};
 		case EMAIL_ERROR:

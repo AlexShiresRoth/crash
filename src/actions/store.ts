@@ -24,7 +24,6 @@ const config = {
 export const fetchStoreItems = () => async (dispatch: any) => {
 	try {
 		const res = await api.get('/shopifystore/inventory');
-		console.log(res.data);
 		dispatch({
 			type: FETCH_STORE,
 			payload: res.data,

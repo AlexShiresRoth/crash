@@ -1,17 +1,28 @@
 import React, { useState } from 'react';
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 import style from './CheckoutForm.module.scss';
 import { connect } from 'react-redux';
 import { processCheckout } from '../../../actions/store';
 import { Redirect } from 'react-router';
 import { FaShopify } from 'react-icons/fa';
+import { emailSignup } from '../../../actions/email';
+import StoreAlert from '../alerts/StoreAlert';
 
 interface Props {
 	processCheckout: (val: any, id: string) => any;
 	store?: any;
+	emailSignup: (data: any) => any;
+	alerts?: any;
+	email?: any;
 }
 
-const CheckoutForm = ({ processCheckout, store: { cart, checkout, returnUrl } }: Props) => {
+const CheckoutForm = ({
+	processCheckout,
+	store: { cart, returnUrl, processed },
+	email: { errors },
+	emailSignup,
+	alerts,
+}: Props) => {
 	const [formData, setFormData] = useState<any>({
 		email: '',
 		checkoutId: localStorage.getItem('checkout'),
@@ -24,11 +35,15 @@ const CheckoutForm = ({ processCheckout, store: { cart, checkout, returnUrl } }:
 		const checkoutId = localStorage.getItem('checkout') || '';
 		e.preventDefault();
 		if (cart.length > 0) {
+			emailSignup(formData);
 			processCheckout(formData, checkoutId);
 		}
 	};
-	if (returnUrl !== null) {
-		return <Redirect to={{ pathname: '/redirect', state: { redirect: `${returnUrl}` } }} />;
+
+	//do not allow for redirect if there are any errors
+	if (returnUrl !== null && processed) {
+		console.log(errors);
+		if (!errors) return <Redirect to={{ pathname: '/redirect', state: { redirect: `${returnUrl}` } }} />;
 	}
 
 	return (
@@ -37,6 +52,11 @@ const CheckoutForm = ({ processCheckout, store: { cart, checkout, returnUrl } }:
 				<h1>
 					Checkout with Shopify <FaShopify />
 				</h1>
+				{alerts.length > 0
+					? alerts.map((alert: any, i: number) => (
+							<StoreAlert type={alert.alertType} status={alert.msg} key={i} />
+					  ))
+					: null}
 			</div>
 			<form onSubmit={(e) => onSubmit(e)}>
 				<div className={style.input_col}>
@@ -58,10 +78,14 @@ const CheckoutForm = ({ processCheckout, store: { cart, checkout, returnUrl } }:
 	);
 };
 
-// CheckoutForm.propTypes = {};
+CheckoutForm.propTypes = {
+	store: PropTypes.object,
+};
 
 const mapStateToProps = (state: any) => ({
 	store: state.store,
+	alerts: state.alerts,
+	email: state.email,
 });
 
-export default connect(mapStateToProps, { processCheckout })(CheckoutForm);
+export default connect(mapStateToProps, { processCheckout, emailSignup })(CheckoutForm);

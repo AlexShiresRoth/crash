@@ -6,6 +6,7 @@ import { logo } from '../svgs/logo';
 import Cart from './cart/Cart';
 import { connect } from 'react-redux';
 import { clearSearch } from '../../actions/store';
+import MobileNav from './MobileNav';
 
 interface NavProps {
 	clearSearch: () => any;
@@ -22,22 +23,25 @@ const Nav = ({ history, clearSearch }: Props) => {
 	}, [clearSearch, history.location.pathname]);
 
 	return (
-		<nav className={style.nav}>
-			<div className={style.left}>
-				<NavLink to="/main">{logo}</NavLink>
-			</div>
+		<>
+			<nav className={style.nav}>
+				<div className={style.left}>
+					<NavLink to="/main">{logo}</NavLink>
+				</div>
 
-			<div className={style.right}>
-				{navLinks.map((item) => {
-					return (
-						<NavLink to={item.path} key={item.id}>
-							{item.name}
-						</NavLink>
-					);
-				})}
-				<Cart />
-			</div>
-		</nav>
+				<div className={style.right}>
+					{navLinks.map((item) => {
+						return (
+							<NavLink to={item.path} key={item.id}>
+								{item.name}
+							</NavLink>
+						);
+					})}
+					<Cart />
+				</div>
+			</nav>
+			<MobileNav />
+		</>
 	);
 };
 

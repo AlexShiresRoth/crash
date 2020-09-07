@@ -52,3 +52,57 @@
 		}
 	}
 }
+
+@media screen and (max-width: 750px) {
+	.footer {
+		width: 100%;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		padding: 2rem 0;
+		& .col {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			& h3 {
+				color: $brand-text;
+				opacity: 0.5;
+				font-weight: 700;
+				font-size: 1.6rem;
+				text-transform: uppercase;
+			}
+			& a {
+				text-decoration: none;
+				color: $brand-text;
+				font-size: 1.2rem;
+				&:hover {
+					color: $brand-main;
+				}
+			}
+			& svg {
+				text-decoration: none;
+				color: $brand-text;
+				font-size: 1.5rem;
+				padding: 0.5rem;
+				margin: 0 0.5rem;
+				border-radius: 50%;
+				background: lighten($brand-dark, 5%);
+			}
+		}
+		& .logo {
+			display: flex;
+			flex-direction: column;
+			& img {
+				max-width: 7rem;
+				margin-right: 0.5rem;
+			}
+			& a {
+				text-decoration: none;
+				color: $brand-text;
+				font-size: 1rem;
+				display: flex;
+				align-items: center;
+			}
+		}
+	}
+}

@@ -104,19 +104,38 @@
 					}
 				}
 			}
-			& .reverse_btn {
-				position: absolute;
-				bottom: 5%;
-				right: 2%;
-				-webkit-backface-visibility: hidden; /* Safari */
-				backface-visibility: hidden;
-				background: transparent;
-				border: 0;
-				font-family: 'Reg';
-				transition: all 0.3s ease;
-				&:hover {
-					cursor: pointer;
-					color: #eee;
+		}
+	}
+}
+
+@media screen and (max-width: 900px) {
+	.header {
+		& .inner {
+			& .container {
+				& .box {
+					margin-top: 5rem;
+					display: flex;
+					flex-direction: column;
+					align-items: center;
+
+					& h1 {
+						font-family: ltc-pabst-oldstyle, serif;
+						font-weight: 400;
+						font-style: normal;
+						font-size: 3rem;
+						color: #fff;
+						margin: 0.5rem 0;
+						text-align: center;
+					}
+					& p {
+						font-family: 'Reg';
+						font-size: 1.2rem;
+						font-weight: 100;
+						opacity: 0.6;
+						color: #eee;
+						text-align: center;
+						max-width: 80%;
+					}
 				}
 			}
 		}
