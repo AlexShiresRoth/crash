@@ -82,3 +82,15 @@
 		}
 	}
 }
+
+@media screen and (max-width: 750px) {
+	.form_container {
+		& .form {
+			& .grid {
+				display: grid;
+				grid-template-columns: 1fr;
+				gap: 0rem;
+			}
+		}
+	}
+}

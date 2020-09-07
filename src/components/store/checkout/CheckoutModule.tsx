@@ -44,20 +44,22 @@ const CheckoutModule = ({
 									)[0];
 									return (
 										<div className={style.item_container} key={i}>
-											<div className={style.img_container}>
+											<div className={style.col}>
 												<img src={cartItem.variant.image.src} alt={cartItem.title} />
 											</div>
-											<div className={style.content}>
-												<h2>{cartItem.title}</h2>
-												<p>{cartItem.variant.title}</p>
+											<div className={style.col}>
+												<h3>{cartItem.title}</h3>
 												<p>Quantity: {cartItem.quantity}</p>
+											</div>
+											<div className={style.col}>
+												<p>Size: {cartItem.variant.title}</p>
 												<p>Item Price:${cartItem.variant.price}</p>
 												<p>
 													Total: $
 													{(cartItem.quantity * parseInt(cartItem.variant.price)).toString()}
 												</p>
 											</div>
-											<div className={style.btn_container}>
+											<div className={style.col}>
 												<button onClick={() => removeFromCart(cartItem.id, itemToRemove)}>
 													X
 												</button>

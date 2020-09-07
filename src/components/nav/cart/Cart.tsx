@@ -32,6 +32,7 @@ const Cart = ({ store: { cart }, history }: CartProps) => {
 		setTimeout(() => {
 			setNewAddition(() => false);
 		}, 2000);
+		return () => clearTimeout();
 	}, [cartLength]);
 
 	return (
