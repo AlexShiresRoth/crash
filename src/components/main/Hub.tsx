@@ -12,8 +12,8 @@ const Hub = (props: any) => {
 			<Header />
 			<MusicSection />
 			<VideoSection />
-			<TourSections />
 			<StoreSection />
+			<TourSections />
 			<EmailSignup />
 		</section>
 	);
