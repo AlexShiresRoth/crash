@@ -13,8 +13,9 @@ export const Header = () => {
 				playing={true}
 				muted={true}
 				className={style.bg_video}
-				height='100vh'
+				height="100vh"
 				width="100vw"
+				playsinline={true}
 				url="https://res.cloudinary.com/snackmanproductions/video/upload/v1597021662/crash/CTC-Lyric-Test-A_3_n70rxu.mp4"
 			></ReactPlayer>
 			<div className={style.inner}>

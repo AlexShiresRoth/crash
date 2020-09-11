@@ -22,11 +22,11 @@ const MobileNav = (props: any) => {
 				<NavLink to="/main">{logo}</NavLink>
 			</div>
 			<div className={style.right}>
-				<button className={style.menu} onClick={(e) => toggleMenu(!menuOpen)}>
+				<div className={style.menu} onClick={(e) => toggleMenu(!menuOpen)}>
 					<span className={menuOpen ? style.rotated : ''}></span>
 					<span className={menuOpen ? style.rotated : ''}></span>
 					<span className={menuOpen ? style.rotated : ''}></span>
-				</button>
+				</div>
 			</div>
 			<div className={menuOpen ? style.open : style.hidden}>
 				{menu}

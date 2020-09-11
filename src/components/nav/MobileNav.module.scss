@@ -48,7 +48,7 @@
 			display: flex;
 			margin-right: 2rem;
 			z-index: 99999;
-			& button {
+			& .menu {
 				height: 1.5rem;
 				width: 2rem;
 				display: flex;
@@ -106,6 +106,7 @@
 				text-transform: uppercase;
 				opacity: 1;
 				transition: all 3s ease;
+				font-size:1.2rem;
 			}
 		}
 		& .hidden {
@@ -128,6 +129,7 @@
 				text-transform: uppercase;
 				opacity: 0;
 				transition: 2s ease;
+				font-size:1.2rem;
 			}
 		}
 	}
