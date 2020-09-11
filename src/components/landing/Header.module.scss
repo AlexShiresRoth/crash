@@ -1,152 +1,152 @@
 @font-face {
-	font-family: 'Crash';
-	src: url('../../fonts/fairwater_sailor_serif.otf');
+  font-family: "Crash";
+  src: url("../../fonts/fairwater_sailor_serif.otf");
 }
 @font-face {
-	font-family: 'Reg';
-	src: url('../../fonts/OldGrowth-Regular.otf');
+  font-family: "Reg";
+  src: url("../../fonts/OldGrowth-Regular.otf");
 }
 
 .header {
-	display: flex;
-	flex-direction: column;
-	height: 100vh;
-	width: 100vw;
-	align-items: center;
-	justify-content: center;
-	background: #000;
-	overflow: hidden;
-	position: relative;
-	& .bg_video {
-		position: fixed;
-		right: 0;
-		bottom: 0;
-		min-width: 100%;
-		min-height: 100%;
-		animation: fadein 3s linear forwards;
-	}
-	& .inner {
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		justify-content: center;
-		position: relative;
-		width: 100%;
-		height: 100%;
-		transition: transform 0.8s;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  width: 100vw;
+  align-items: center;
+  justify-content: center;
+  background: #000;
+  overflow: hidden;
+  position: relative;
+  & .bg_video {
+    position: fixed;
+	top: 0;
+	left:0;
+    min-width: 100%;
+    min-height: 100%;
+    animation: fadein 3s linear forwards;
+  }
+  & .inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.8s;
 
-		& .container {
-			height: 100%;
-			width: 100%;
-			display: flex;
-			flex-direction: column;
-			justify-content: center;
-			align-items: center;
-			background-size: cover;
-			background-repeat: no-repeat;
-			background-position: center;
-			padding: 2rem;
-			position: absolute;
-			animation: fadein 12s cubic-bezier(0.455, 0.03, 0.515, 0.955) forwards;
-			& .logo_box {
-				display: flex;
-				justify-content: space-between;
-				align-items: center;
-				margin: 1rem;
-				& svg {
-					width: 15rem;
-					filter: invert(1);
-				}
-			}
-			& .box {
-				margin-top: 5rem;
-				display: flex;
-				flex-direction: column;
-				align-items: center;
+    & .container {
+      height: 100%;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center;
+      padding: 2rem;
+      position: absolute;
+      animation: fadein 12s cubic-bezier(0.455, 0.03, 0.515, 0.955) forwards;
+      & .logo_box {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin: 1rem;
+        & svg {
+          width: 15rem;
+          filter: invert(1);
+        }
+      }
+      & .box {
+        margin-top: 5rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
 
-				& h1 {
-					font-family: ltc-pabst-oldstyle, serif;
-					font-weight: 400;
-					font-style: normal;
-					font-size: 5rem;
-					color: #fff;
-					margin: 0.5rem 0;
-				}
-				& p {
-					font-family: 'Reg';
-					font-size: 1.4rem;
-					font-weight: 100;
-					opacity: 0.6;
-					color: #eee;
-				}
-				& a {
-					margin-top: 3rem;
-					& button {
-						height: 3.5rem;
-						width: 15rem;
-						font-size: 1rem;
-						font-family: 'Reg';
-						background: #000;
-						color: #eee;
-						box-shadow: 0 1px 10px #000;
-						border: 0;
-						transition: all 0.3s ease;
+        & h1 {
+          font-family: ltc-pabst-oldstyle, serif;
+          font-weight: 400;
+          font-style: normal;
+          font-size: 5rem;
+          color: #fff;
+          margin: 0.5rem 0;
+        }
+        & p {
+          font-family: "Reg";
+          font-size: 1.4rem;
+          font-weight: 100;
+          opacity: 0.6;
+          color: #eee;
+        }
+        & a {
+          margin-top: 3rem;
+          & button {
+            height: 3.5rem;
+            width: 15rem;
+            font-size: 1rem;
+            font-family: "Reg";
+            background: #000;
+            color: #eee;
+            box-shadow: 0 1px 10px #000;
+            border: 0;
+            transition: all 0.3s ease;
 
-						&:hover {
-							cursor: pointer;
-							box-shadow: 0 1px 25px #000;
-							background: #000;
-							color: #eee;
-						}
-						&:focus {
-							outline: 1px solid rgb(218, 113, 15);
-						}
-					}
-				}
-			}
-		}
-	}
+            &:hover {
+              cursor: pointer;
+              box-shadow: 0 1px 25px #000;
+              background: #000;
+              color: #eee;
+            }
+            &:focus {
+              outline: 1px solid rgb(218, 113, 15);
+            }
+          }
+        }
+      }
+    }
+  }
 }
 
 @media screen and (max-width: 900px) {
-	.header {
-		& .inner {
-			& .container {
-				& .box {
-					margin-top: 5rem;
-					display: flex;
-					flex-direction: column;
-					align-items: center;
+  .header {
+    & .inner {
+      & .container {
+        & .box {
+          margin-top: 5rem;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
 
-					& h1 {
-						font-family: ltc-pabst-oldstyle, serif;
-						font-weight: 400;
-						font-style: normal;
-						font-size: 3rem;
-						color: #fff;
-						margin: 0.5rem 0;
-						text-align: center;
-					}
-					& p {
-						font-family: 'Reg';
-						font-size: 1.2rem;
-						font-weight: 100;
-						opacity: 0.6;
-						color: #eee;
-						text-align: center;
-						max-width: 80%;
-					}
-				}
-			}
-		}
-	}
+          & h1 {
+            font-family: ltc-pabst-oldstyle, serif;
+            font-weight: 400;
+            font-style: normal;
+            font-size: 3rem;
+            color: #fff;
+            margin: 0.5rem 0;
+            text-align: center;
+          }
+          & p {
+            font-family: "Reg";
+            font-size: 1.2rem;
+            font-weight: 100;
+            opacity: 0.6;
+            color: #eee;
+            text-align: center;
+            max-width: 80%;
+          }
+        }
+      }
+    }
+  }
 }
 
 @keyframes fadein {
-	0% {
-		opacity: 0;
-	}
-	100% {
-		opacity: 1;
-	}
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }

@@ -2,12 +2,10 @@
 
 .mobile_nav {
 	display: none;
-	visibility: hidden;
 }
 @media screen and (max-width: 1000px) {
 	.mobile_nav {
 		display: flex;
-		visibility: visible;
 		min-height: 6rem;
 		display: flex;
 		flex-direction: row;
