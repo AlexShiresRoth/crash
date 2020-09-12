@@ -22,6 +22,7 @@
 	width: 100%;
 	z-index: 9999999;
 	box-shadow: 0 1px 5px darken($brand-dark, 2%);
+	transition: all 0.3s ease;
 	& .left {
 		display: flex;
 		flex-direction: row;
@@ -44,6 +45,7 @@
 				width: 100%;
 				height: auto;
 				max-width: 15rem;
+				transition: all 0.3s ease;
 			}
 		}
 	}
@@ -66,7 +68,25 @@
 		}
 	}
 }
-
+.nav_scrolling {
+	background: rgba(17, 17, 17, 0.719);
+	transition: all 0.3s ease;
+	min-height: 4rem;
+	& .left {
+		& a {
+			& svg {
+				max-width: 10rem;
+				transition: all 0.3s ease;
+			}
+		}
+	}
+	& .right {
+		& a {
+			font-size: 0.9rem;
+			transition: all 0.3s ease;
+		}
+	}
+}
 @media screen and (max-width: 1000px) {
 	.nav {
 		display: none;

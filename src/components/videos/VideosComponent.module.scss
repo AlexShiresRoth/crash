@@ -10,14 +10,14 @@
 	& .video_grid {
 		max-width: 100%;
 		margin: 15vh 0;
-		display: grid;
-		grid-template-columns: repeat(4, minmax(25rem, 40rem));
-		justify-items: center;
-		gap: 1rem;
+		display: flex;
+		justify-content: center;
+		flex-wrap: wrap;
 		& .video_container {
-			width: 95%;
+			width: 100%;
 			border: 2px solid $brand-dark;
 			height: 15rem;
+			max-width: 25rem;
 			& iframe {
 				height: 100%;
 				width: 100%;

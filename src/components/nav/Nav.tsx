@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import style from './Nav.module.scss';
 import { navLinks } from './navLinks';
 import { NavLink, withRouter, RouteComponentProps } from 'react-router-dom';
@@ -15,6 +15,7 @@ interface NavProps {
 type Props = RouteComponentProps & NavProps;
 
 const Nav = ({ history, clearSearch }: Props) => {
+	const [isScrolling, setScrolling] = useState(false);
 	useEffect(() => {
 		//if location is not the store then don't have the cart popup
 		if (!history.location.pathname.includes('store')) {
@@ -22,9 +23,13 @@ const Nav = ({ history, clearSearch }: Props) => {
 		}
 	}, [clearSearch, history.location.pathname]);
 
+	useEffect(() => {
+		window.addEventListener('scroll', () => setScrolling(() => window.pageYOffset > 0));
+	}, []);
+	console.log(isScrolling);
 	return (
 		<>
-			<nav className={style.nav}>
+			<nav className={!isScrolling ? style.nav : `${style.nav} ${style.nav_scrolling}`}>
 				<div className={style.left}>
 					<NavLink to="/main">{logo}</NavLink>
 				</div>
