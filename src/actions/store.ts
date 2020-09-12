@@ -115,6 +115,7 @@ export const addToCart = (item: string) => async (dispatch: any) => {
 			type: ADD_TO_CART,
 			payload: res.data,
 		});
+		dispatch(setAlert('Added to cart', 'success'));
 	} catch (error) {
 		dispatch({
 			type: STORE_ERROR,

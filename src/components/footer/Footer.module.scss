@@ -26,14 +26,19 @@
 				color: $brand-main;
 			}
 		}
-		& svg {
-			text-decoration: none;
-			color: $brand-text;
-			font-size: 1.5rem;
-			padding: 0.5rem;
-			margin: 0 0.5rem;
-			border-radius: 50%;
-			background: lighten($brand-dark, 5%);
+		& .social {
+			display: grid;
+			grid-template-columns: repeat(4, 1fr);
+			grid-template-rows: repeat(2, 1fr);
+			gap: 0.5rem;
+			& svg {
+				text-decoration: none;
+				color: $brand-text;
+				font-size: 1.5rem;
+				padding: 0.5rem;
+				border-radius: 50%;
+				background: lighten($brand-dark, 5%);
+			}
 		}
 	}
 	& .logo {
