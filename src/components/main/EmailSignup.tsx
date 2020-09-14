@@ -43,14 +43,14 @@ const EmailSignup = ({ emailSignup, alerts }: Props) => {
 	};
 
 	return (
-		<section className={style.box}>
-			{alerts.length > 0 ? <Alert /> : null}
+		<section className={style.box}>	
 			<div className={style.container}>
 				<img
 					src={`https://res.cloudinary.com/snackmanproductions/image/upload/v1590510319/crash/Crash_the_Calm-white_tatrui.png`}
 					alt="Crash the Calm Logo"
 				/>
 				<h2>Get in on exclusive content.</h2>
+				{alerts.length > 0 ? <Alert /> : null}
 				<form onSubmit={(e) => onSubmit(e)}>
 					<div className={style.input_row}>
 						<input
