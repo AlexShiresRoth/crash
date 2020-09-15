@@ -33,22 +33,24 @@ const Nav = ({ history, clearSearch }: Props) => {
 			<nav className={!isScrolling ? style.nav : `${style.nav} ${style.nav_scrolling}`}>
 				<div className={style.left}>
 					<NavLink to="/main">{logo}</NavLink>
-					<a href=" http://facebook.com/crashthecalmband" rel="noopener noreferrer" target="_blank">
-						<TiSocialFacebook />
-					</a>
-					<a
-						href="http://youtube.com/channel/UCAEhEbQ5bgCoyCDWczfmuyA"
-						rel="noopener noreferrer"
-						target="_blank"
-					>
-						<TiSocialYoutube />
-					</a>
-					<a href="http://twitter.com/crashthecalmny" rel="noopener noreferrer" target="_blank">
-						<TiSocialTwitter />
-					</a>
-					<a href="http://instagram.com/crashthecalmny" rel="noopener noreferrer" target="_blank">
-						<TiSocialInstagram />
-					</a>
+					<div className={style.social}>
+						<a href=" http://facebook.com/crashthecalmband" rel="noopener noreferrer" target="_blank">
+							<TiSocialFacebook />
+						</a>
+						<a
+							href="http://youtube.com/channel/UCAEhEbQ5bgCoyCDWczfmuyA"
+							rel="noopener noreferrer"
+							target="_blank"
+						>
+							<TiSocialYoutube />
+						</a>
+						<a href="http://twitter.com/crashthecalmny" rel="noopener noreferrer" target="_blank">
+							<TiSocialTwitter />
+						</a>
+						<a href="http://instagram.com/crashthecalmny" rel="noopener noreferrer" target="_blank">
+							<TiSocialInstagram />
+						</a>
+					</div>
 				</div>
 
 				<div className={style.right}>

@@ -49,6 +49,15 @@
 				transition: all 0.3s ease;
 			}
 		}
+		& .social {
+			display: flex;
+			justify-content: space-around;
+			& a {
+				& svg {
+					max-width: auto;
+				}
+			}
+		}
 	}
 	& .right {
 		display: grid;
