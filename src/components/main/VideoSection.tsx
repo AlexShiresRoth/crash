@@ -19,6 +19,7 @@ const VideoSection = ({ fetchVideos, youtube: { videos, loading } }: Props) => {
 	}, [fetchVideos]);
 
 	const section = sections.filter((section) => section.name === 'videos')[0];
+	const [filteredVideos, filterVideos] = useState([]);
 	const videoRef = createRef<HTMLDivElement>();
 	const videoContainerRef = createRef<HTMLDivElement>();
 
@@ -33,15 +34,18 @@ const VideoSection = ({ fetchVideos, youtube: { videos, loading } }: Props) => {
 	useEffect(() => {
 		const handleResize = () => {
 			setIndex(0);
-			if (videoContainerRef.current) videoContainerRef.current.style.transform = `translate3d(0px, 0,0)`;
+			if (videoContainerRef.current !== null) videoContainerRef.current.style.transform = `translate3d(0px,0,0)`;
 			//need to fix width adjustment on resize
+			setScrollWidth((prevState) =>
+				videoRef.current !== null ? videoRef.current.getBoundingClientRect().width : prevState
+			);
 		};
 		window.addEventListener('resize', () => handleResize());
 	}, [videoRef, videoContainerRef]);
 
 	const handleIndexChange = (val: any) => {
 		const min = 0;
-		const max = videos.filter((video: any) => video.id.videoId !== undefined).length - 1;
+		const max = filteredVideos.length - 1;
 
 		if (val) {
 			if (currentIndex >= max) {
@@ -72,10 +76,13 @@ const VideoSection = ({ fetchVideos, youtube: { videos, loading } }: Props) => {
 		handleScroll();
 	}, [currentIndex, scrollWidth, videoContainerRef, videoRef]);
 
+	useEffect(() => {
+		if (videos.length > 0) filterVideos(videos.filter((video: any) => video.id.videoId !== undefined));
+	}, [videos]);
 	//url for youtube embed
 	const videoSource = `https://www.youtube.com/embed/`;
 
-	console.log(currentIndex);
+	console.log(videoWidth, videoContainerRef, currentIndex, scrollWidth);
 	return !loading && videos.length > 0 ? (
 		<section className={style.box} key={section.id}>
 			<Link to={section.path}>Watch all music videos/interviews</Link>
