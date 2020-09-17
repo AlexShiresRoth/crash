@@ -8,8 +8,20 @@
 	& .inner {
 		width: 90%;
 		display: flex;
+		flex-direction: column;
+		align-items: center;
 		justify-content: center;
 		margin: 10vh 0;
+		& .back_btn {
+			display: flex;
+			margin: 1rem 0;
+			& a {
+				text-decoration: none;
+				color: $brand-dark;
+				display: flex;
+				align-items: center;
+			}
+		}
 		& .item {
 			display: grid;
 			grid-template-columns: repeat(2, auto);
@@ -17,6 +29,9 @@
 			padding: 2rem;
 			border: 1px solid #eee;
 			border-radius: 3px;
+			& .col:nth-child(1) {
+				border-right: 1px solid #eee;
+			}
 			& .col {
 				display: flex;
 				flex-direction: column;
@@ -62,10 +77,48 @@
 						background: $brand-dark;
 						color: #fff;
 						border: 0;
+						border-radius: 3px;
 						transition: all 0.3s ease-in-out;
 						&:hover {
 							cursor: pointer;
 							box-shadow: 0 1px 10px $brand-dark;
+						}
+					}
+				}
+				& .checkout_box {
+					display: flex;
+					flex-direction: column;
+					align-items: center;
+					margin: 1rem 0;
+					width: 100%;
+					& .divider {
+						width: 100%;
+						display: flex;
+						justify-content: center;
+						align-items: center;
+						margin: 1rem 0;
+						& span {
+							width: 90%;
+							height: 1px;
+							background: $brand-main;
+							display: block;
+							margin: 0 0.5rem;
+						}
+					}
+					& a {
+						width: 100%;
+						& button {
+							width: 100%;
+							min-height: 3rem;
+							background: $brand-main;
+							color: #fff;
+							border: 0;
+							border-radius: 3px;
+							transition: all 0.3s ease;
+							&:hover {
+								cursor: pointer;
+								box-shadow: 0 1px 10px $brand-main;
+							}
 						}
 					}
 				}
@@ -93,6 +146,9 @@
 				padding: 2rem;
 				border: 1px solid #eee;
 				border-radius: 3px;
+				& .col:nth-child(1) {
+					border-right: 0;
+				}
 				& .col {
 					display: flex;
 					flex-direction: column;

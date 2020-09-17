@@ -65,7 +65,7 @@ router.get('/audience', async (req, res) => {
 //@route POST Route
 //@desc send signup email
 //@access private
-router.post('/signup', [check('email', 'Please enter a valid email').isEmail()], async (req, res) => {
+router.put('/signup', [check('email', 'Please enter a valid email').isEmail()], async (req, res) => {
 	const errors = validationResult(req);
 
 	if (!errors.isEmpty()) {
@@ -83,8 +83,7 @@ router.post('/signup', [check('email', 'Please enter a valid email').isEmail()],
 		res.json(response);
 	} catch (error) {
 		console.error(JSON.parse(error.response.text));
-		const errorMsg = JSON.parse(error.response.text);
-		res.status(error.response.status).json({ msg: errorMsg.detail });
+		res.status(error.response.status).json({ msg: 'Internal Server Error' });
 	}
 	//TODO create signup
 });

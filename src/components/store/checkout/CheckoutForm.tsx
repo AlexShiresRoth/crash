@@ -41,6 +41,7 @@ const CheckoutForm = ({
 	};
 
 	//do not allow for redirect if there are any errors
+	//TODO fix for when user has already signed up. Need to create an md5 hash of user email
 	if (returnUrl !== null && processed) {
 		console.log(errors);
 		if (!errors) return <Redirect to={{ pathname: '/redirect', state: { redirect: `${returnUrl}` } }} />;

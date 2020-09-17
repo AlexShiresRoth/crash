@@ -21,7 +21,8 @@ const Alert = ({ alerts }: Props) => {
 					</div>
 				</div>
 			);
-		});
+		})
+		.slice(0, 2);
 };
 
 const mapStateToProps = (state: any) => ({

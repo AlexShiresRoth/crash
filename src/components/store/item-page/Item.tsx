@@ -2,11 +2,12 @@ import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import style from './Item.module.scss';
 import { connect } from 'react-redux';
-import { withRouter, RouteComponentProps } from 'react-router-dom';
+import { withRouter, RouteComponentProps, Link } from 'react-router-dom';
 import { findStoreItem } from '../../../actions/store';
 import { addToCart, removeFromCart } from '../../../actions/store';
 import LoadingSpinner from '../../reusablecomps/LoadingSpinner';
 import StoreAlert from '../alerts/StoreAlert';
+import { FaChevronLeft } from 'react-icons/fa';
 
 interface Props {
 	store?: any;
@@ -19,7 +20,7 @@ interface Props {
 
 type AllProps = Props & RouteComponentProps;
 
-const Item = ({ store: { loading, foundItem }, match, findStoreItem, addToCart, alerts }: AllProps) => {
+const Item = ({ store: { loading, foundItem, cart }, match, findStoreItem, addToCart, alerts }: AllProps) => {
 	useEffect(() => {
 		setTimeout(() => {
 			window.scrollTo(0, 0);
@@ -66,6 +67,12 @@ const Item = ({ store: { loading, foundItem }, match, findStoreItem, addToCart, 
 	return !loading && foundItem ? (
 		<div className={style.container}>
 			<div className={style.inner}>
+				<div className={style.back_btn}>
+					<Link to="/store">
+						<FaChevronLeft />
+						Back to store
+					</Link>
+				</div>
 				<div className={style.item}>
 					<div className={style.col}>
 						<div className={style.image_container}>
@@ -87,11 +94,9 @@ const Item = ({ store: { loading, foundItem }, match, findStoreItem, addToCart, 
 						</div>
 						<form onSubmit={(e) => onSubmit(e)}>
 							{sizeError ? <StoreAlert status={status} type={'danger'} /> : null}
-							{alerts.length > 0
-								? alerts.map((alert: any, i: number) => (
-										<StoreAlert status={alert.msg} type={alert.alertType} key={i} />
-								  ))
-								: null}
+							{alerts.length > 0 ? (
+								<StoreAlert status={alerts[0].msg} type={alerts[0].alertType} />
+							) : null}
 							<label>Select Type</label>
 							<select
 								onChange={(e) => onChange(e)}
@@ -111,6 +116,18 @@ const Item = ({ store: { loading, foundItem }, match, findStoreItem, addToCart, 
 							</select>
 							<button onSubmit={(e) => onSubmit(e)}>Add To Cart</button>
 						</form>
+						{cart.length > 0 ? (
+							<div className={style.checkout_box}>
+								<div className={style.divider}>
+									<span></span>
+									OR
+									<span></span>
+								</div>
+								<Link to="/Checkout">
+									<button>Checkout Now</button>
+								</Link>
+							</div>
+						) : null}
 					</div>
 				</div>
 			</div>

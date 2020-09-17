@@ -4,7 +4,7 @@ import { setAlert } from './alert';
 
 export const emailSignup = (data: any) => async (dispatch: any) => {
 	try {
-		const res = await api.post('/email/signup', data);
+		const res = await api.put('/email/signup', data);
 		console.log(res.data);
 
 		dispatch({

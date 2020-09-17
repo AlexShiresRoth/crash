@@ -82,7 +82,6 @@ export default (state = initialState, action: any) => {
 				searching: true,
 			};
 		case ADD_TO_CART:
-			console.log(payload);
 			return {
 				...state,
 				cart: [...payload.lineItems],

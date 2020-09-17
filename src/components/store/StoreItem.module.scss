@@ -16,89 +16,36 @@
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
+	& .img_container {
+		max-width: 100%;
+		width: 100%;
+		display: flex;
+		justify-content: center;
+		& img {
+			object-fit: contain;
+			max-width: 15rem;
+		}
+	}
 	& .heading {
 		border-bottom: 1px solid #eee;
 		display: flex;
 		flex-direction: column;
+		align-items: center;
 		justify-content: space-between;
-		min-height: 400px;
-		max-height: 410px;
 		& p {
 			font-weight: 400;
 			color: $brand-dark;
 			font-size: 1.2rem;
 			text-transform: uppercase;
 			max-width: 80%;
-		}
-		& img {
-			max-width: 100%;
+			text-align: center;
 		}
 	}
-	& .variations {
-		display: flex;
-		flex-direction: column;
-		border-bottom: 1px solid #eee;
-		padding: 1rem 0;
-		position: relative;
-		& .row {
-			display: flex;
-			flex-wrap: wrap;
-			& p {
-				color: $brand-secondary;
-			}
-			& button {
-				background: #eee;
-				border: 1px solid #eee;
-				color: $brand-dark;
-				margin-top: 0.5rem;
-				margin-right: 0.5rem;
-				height: 2.5rem;
-				transition: all 0.3s ease;
-				&:hover {
-					cursor: pointer;
-					background: $brand-secondary;
-					color: #fff;
-					outline: 0px solid transparent;
-					border: 1px solid $brand-secondary;
-				}
-				&:focus {
-					outline: 0px solid transparent;
-				}
-			}
-			& ul {
-				display: flex;
-				flex-wrap: wrap;
-				width: 100%;
-				padding: 0;
-				align-items: flex-start;
-				justify-content: flex-start;
-				& li {
-					list-style: none;
-					padding: 0.5rem 1rem;
-					background: #eee;
-					border-radius: 3px;
-					margin: 0.5rem;
-					text-transform: uppercase;
-					font-size: 0.9rem;
-				}
-			}
-			& form {
-				& .select_box {
-					border: 2px solid $brand-dark;
-					width: 15rem;
-					height: 2rem;
-					border-radius: 2px;
-				}
-			}
-			& .selected {
-				background: $brand-secondary;
-				color: #fff;
-				outline: 0px solid transparent;
-				border: 1px solid $brand-secondary;
-			}
-		}
-	}
+
 	& .price {
+		display: flex;
+		justify-content: center;
+		width: 100%;
 		& p {
 			& span {
 				color: $brand-secondary;
@@ -120,6 +67,7 @@
 			background: $brand-dark;
 			border: 1px solid $brand-dark;
 			color: #fff;
+			border-radius: 3px;
 			&:hover {
 				cursor: pointer;
 				background: $brand-secondary;
