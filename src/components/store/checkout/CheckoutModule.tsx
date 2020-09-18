@@ -6,7 +6,6 @@ import style from './CheckoutModule.module.scss';
 import LoadingSpinner from '../../reusablecomps/LoadingSpinner';
 import { removeFromCart, fetchCheckout } from '../../../actions/store';
 import ShippingAddressForm from './ShippingAddressForm';
-import TotalDisplay from './TotalDisplay';
 import CheckoutForm from './CheckoutForm';
 import UpdateInfoToggle from './UpdateInfoToggle';
 import UpdateAddress from './UpdateAddress';
@@ -36,7 +35,10 @@ const CheckoutModule = ({
 				<div className={style.inner}>
 					<div className={style.container}>
 						<div className={style.items_container}>
-							<h2>My Order</h2>
+							<div className={style.heading}>
+								<h2>Shopping Cart</h2>
+								<p>Item count in cart: {cart.length}</p>
+							</div>
 							<div className={style.items}>
 								{cart.map((cartItem: any, i: number) => {
 									const itemToRemove = checkout.lineItems.filter(
@@ -68,7 +70,6 @@ const CheckoutModule = ({
 									);
 								})}
 							</div>
-							<TotalDisplay />
 						</div>
 						{shippingInfo ? (
 							//if update info toggled, show update form
@@ -82,7 +83,7 @@ const CheckoutModule = ({
 							<ShippingAddressForm />
 						)}
 					</div>
-					{shippingInfo ? <CheckoutForm /> : <p>Please enter your shipping info before checking out</p>}
+					<CheckoutForm shippingInfo={shippingInfo} />
 				</div>
 			) : (
 				<LoadingSpinner />

@@ -124,8 +124,6 @@ router.post(
 			return res.status(400).json({ errors: errors.array() });
 		}
 
-		const { email, address, zipCode, name, city, country, state } = req.body;
-
 		const apiInstance = new SquareConnect.OrdersApi();
 
 		const locationId = process.env.LOCATION_ID; // String | The ID of the business location to associate the order with.

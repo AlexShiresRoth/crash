@@ -7,7 +7,7 @@ interface Props {
 	store?: any;
 }
 
-const TotalDisplay = ({ store: { cart, loading, checkout } }: Props) => {
+const TotalDisplay = ({ store: { cart, checkout } }: Props) => {
 	const getTotal = () => {
 		return cart.reduce((acc: any, item: any) => {
 			return (acc += parseInt(item.variant.price));
@@ -20,9 +20,13 @@ const TotalDisplay = ({ store: { cart, loading, checkout } }: Props) => {
 
 	return (
 		<div className={style.total_display}>
-			<p>
-				<span>subtotal:</span> ${checkout.paymentDue}
-			</p>
+			<div className={style.inner}>
+				<p>
+					<span>estimated subtotal:</span> {` `}${checkout.paymentDue}
+				</p>
+				<p>estimated shipping: $5.00+</p>
+				<p>estimated total: ${(parseFloat(checkout.paymentDue) + 5).toFixed(2)}</p>
+			</div>
 		</div>
 	);
 };

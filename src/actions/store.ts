@@ -230,9 +230,9 @@ export const toggleShippingModule = (data: boolean) => async (dispatch: any) => 
 	});
 };
 
-export const processCheckout = (formData: any, id: string) => async (dispatch: any) => {
+export const processCheckout = (id: string) => async (dispatch: any) => {
 	try {
-		const res = await api.post(`/shopifystore/processcheckout/${id}`, formData);
+		const res = await api.post(`/shopifystore/processcheckout/${id}`);
 		dispatch({
 			type: PROCESS_CHECKOUT,
 			payload: res.data,

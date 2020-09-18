@@ -10,8 +10,8 @@ const RedirectExternal = ({ location }: Props) => {
 	const locationState = location.state;
 
 	useEffect(() => {
-		if (locationState || locationState !== null) window.location = location.state.redirect;
-	}, [location.state.redirect, locationState]);
+		if (locationState && locationState.redirect) window.location = locationState.redirect;
+	}, [locationState]);
 
 	if (!locationState || locationState === null) {
 		return <Redirect to="/store" />;

@@ -197,32 +197,20 @@ router.post(
 //@route POST route
 //@desc complete checkout and redirect to shopify
 //@access private
-router.post(
-	'/processcheckout/:id',
-	[check('email', 'Please enter your email').not().isEmpty(), check('email', 'Please enter a valid email').isEmail()],
-	async (req, res) => {
-		const errors = validationResult(req);
-
-		if (!errors.isEmpty()) {
-			return res.status(400).json({ errors: errors.array() });
+router.post('/processcheckout/:id', async (req, res) => {
+	try {
+		const response = await client.checkout.fetch(req.params.id);
+		if (!response) {
+			return res.status(400).json({ msg: 'Could not locate a checkout process' });
 		}
 
-		const { email } = req.body;
+		console.log(response);
 
-		const updates = {
-			customAttributes: [{ key: 'email', value: email }],
-		};
-		try {
-			const response = await client.checkout.updateAttributes(req.params.id, updates);
-
-			console.log(response);
-
-			res.json(response);
-		} catch (error) {
-			console.error(error);
-			res.status(500).json({ msg: 'Internal Server Error' });
-		}
+		res.json(response);
+	} catch (error) {
+		console.error(error);
+		res.status(500).json({ msg: 'Internal Server Error' });
 	}
-);
+});
 
 module.exports = router;
