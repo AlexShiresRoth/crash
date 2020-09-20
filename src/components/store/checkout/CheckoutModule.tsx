@@ -39,11 +39,16 @@ const CheckoutModule = ({
 								<h2>Shopping Cart</h2>
 								<p>Item count in cart: {cart.length}</p>
 							</div>
+							<div className={style.sub_heading}>
+								<p>Item</p>
+								<p>Price</p>
+							</div>
 							<div className={style.items}>
 								{cart.map((cartItem: any, i: number) => {
 									const itemToRemove = checkout.lineItems.filter(
 										(lineItem: any) => lineItem.variant.id === cartItem.variant.id
 									)[0];
+									console.log(cartItem);
 									return (
 										<div className={style.item_container} key={i}>
 											<div className={style.col}>
@@ -51,19 +56,34 @@ const CheckoutModule = ({
 											</div>
 											<div className={style.col}>
 												<h3>{cartItem.title}</h3>
-												<p>Quantity: {cartItem.quantity}</p>
+												<p>
+													<span>
+														{cartItem.variant.selectedOptions.filter(
+															(variant: any) => variant.name.toLowerCase() === 'size'
+														).length > 0
+															? 'Size:'
+															: 'Type:'}
+													</span>{' '}
+													{cartItem.variant.title}
+												</p>
 											</div>
 											<div className={style.col}>
-												<p>Size: {cartItem.variant.title}</p>
-												<p>Item Price:${cartItem.variant.price}</p>
 												<p>
-													Total: $
-													{(cartItem.quantity * parseInt(cartItem.variant.price)).toString()}
+													<span>Quantity:</span> {cartItem.quantity}
+												</p>
+												<p>
+													<span>Item Price</span>${cartItem.variant.price}
+												</p>
+												<p>
+													<span>Total:</span> $
+													{(cartItem.quantity * parseFloat(cartItem.variant.price))
+														.toFixed(2)
+														.toString()}
 												</p>
 											</div>
 											<div className={style.col}>
 												<button onClick={() => removeFromCart(cartItem.id, itemToRemove)}>
-													X
+													Remove X
 												</button>
 											</div>
 										</div>

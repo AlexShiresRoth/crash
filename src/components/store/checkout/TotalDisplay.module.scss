@@ -22,3 +22,17 @@
 		}
 	}
 }
+
+@media screen and (max-width: 900px) {
+	.total_display {
+		& .inner {
+			& p {
+				justify-content: flex-start;
+				& span {
+					text-transform: uppercase;
+					font-weight: 700;
+				}
+			}
+		}
+	}
+}

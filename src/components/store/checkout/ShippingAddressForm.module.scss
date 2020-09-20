@@ -80,6 +80,7 @@
 				color: #fff;
 				transition: all 0.3s ease;
 				border: 0;
+				border-radius: 3px;
 				&:hover {
 					cursor: pointer;
 					box-shadow: 0 1px 10px $brand-dark;
@@ -91,11 +92,17 @@
 
 @media screen and (max-width: 750px) {
 	.form_container {
+		& .form_header {
+			flex-direction: column;
+			align-items: flex-start;
+			padding: 1rem 0;
+		}
 		& .form {
 			& .grid {
 				display: grid;
 				grid-template-columns: 1fr;
 				gap: 0rem;
+				padding: 0;
 			}
 		}
 	}
