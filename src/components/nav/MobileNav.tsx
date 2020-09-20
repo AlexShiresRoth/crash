@@ -30,26 +30,40 @@ const MobileNav = (props: any) => {
 				</div>
 			</div>
 			<div className={menuOpen ? style.open : style.hidden}>
-				<div className={style.social}>
-					<a href=" http://facebook.com/crashthecalmband" rel="noopener noreferrer" target="_blank">
-						<TiSocialFacebook />
-					</a>
-					<a
-						href="http://youtube.com/channel/UCAEhEbQ5bgCoyCDWczfmuyA"
-						rel="noopener noreferrer"
-						target="_blank"
-					>
-						<TiSocialYoutube />
-					</a>
-					<a href="http://twitter.com/crashthecalmny" rel="noopener noreferrer" target="_blank">
-						<TiSocialTwitter />
-					</a>
-					<a href="http://instagram.com/crashthecalmny" rel="noopener noreferrer" target="_blank">
-						<TiSocialInstagram />
-					</a>
+				<div className={style.top_bar}>
+					<div className={style.left}>
+						<NavLink to="/main">{logo}</NavLink>
+					</div>
+					<div className={style.right}>
+						<div className={style.menu} onClick={(e) => toggleMenu(!menuOpen)}>
+							<span className={menuOpen ? style.rotated : ''}></span>
+							<span className={menuOpen ? style.rotated : ''}></span>
+							<span className={menuOpen ? style.rotated : ''}></span>
+						</div>
+					</div>
 				</div>
-				{menu}
-				<Cart />
+				<div className={style.centered}>
+					<div className={style.social}>
+						<a href=" http://facebook.com/crashthecalmband" rel="noopener noreferrer" target="_blank">
+							<TiSocialFacebook />
+						</a>
+						<a
+							href="http://youtube.com/channel/UCAEhEbQ5bgCoyCDWczfmuyA"
+							rel="noopener noreferrer"
+							target="_blank"
+						>
+							<TiSocialYoutube />
+						</a>
+						<a href="http://twitter.com/crashthecalmny" rel="noopener noreferrer" target="_blank">
+							<TiSocialTwitter />
+						</a>
+						<a href="http://instagram.com/crashthecalmny" rel="noopener noreferrer" target="_blank">
+							<TiSocialInstagram />
+						</a>
+					</div>
+					{menu}
+					<Cart />
+				</div>
 			</div>
 		</nav>
 	);

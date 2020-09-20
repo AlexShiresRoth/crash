@@ -52,14 +52,14 @@
 	min-height: 10rem;
 }
 
-@media screen and (max-width: 900px) {
+@media screen and (max-width: 1000px) {
 	.carousel {
 		width: 100%;
 		display: flex;
 		max-height: 10rem;
 		overflow: hidden;
 		position: relative;
-		margin-top: 6rem;
+		margin-top: 4rem;
 
 		& .images {
 			display: flex;

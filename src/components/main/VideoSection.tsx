@@ -27,21 +27,29 @@ const VideoSection = ({ fetchVideos, youtube: { videos, loading } }: Props) => {
 	const [videoWidth, setVideoWidth] = useState(0);
 	const [scrollWidth, setScrollWidth] = useState(0);
 
+	//Set initial width on component load
 	useEffect(() => {
 		if (videoRef.current) setVideoWidth(videoRef.current.getBoundingClientRect().width);
 	}, [videoRef]);
 
+	//Handle resize by reverting index to first video
+	//Then the video width needs to be reset to window size scaling
 	useEffect(() => {
 		const handleResize = () => {
 			setIndex(0);
 			if (videoContainerRef.current !== null) videoContainerRef.current.style.transform = `translate3d(0px,0,0)`;
-			//need to fix width adjustment on resize
-			setScrollWidth((prevState) =>
-				videoRef.current !== null ? videoRef.current.getBoundingClientRect().width : prevState
-			);
+			if (videoRef.current !== null) setVideoWidth(videoRef.current.getBoundingClientRect().width);
 		};
 		window.addEventListener('resize', () => handleResize());
+
+		return () => window.removeEventListener('resize', () => handleResize());
 	}, [videoRef, videoContainerRef]);
+
+	//once video width is updated, update scroll width
+	useEffect(() => {
+		const max = filterVideos.length - 1;
+		setScrollWidth(-(max * videoWidth));
+	}, [videoWidth]);
 
 	const handleIndexChange = (val: any) => {
 		const min = 0;
@@ -82,7 +90,7 @@ const VideoSection = ({ fetchVideos, youtube: { videos, loading } }: Props) => {
 	//url for youtube embed
 	const videoSource = `https://www.youtube.com/embed/`;
 
-	console.log(videoWidth, videoContainerRef, currentIndex, scrollWidth);
+	console.log(videoWidth, scrollWidth);
 	return !loading && videos.length > 0 ? (
 		<section className={style.box} key={section.id}>
 			<Link to={section.path}>Watch all music videos/interviews</Link>
