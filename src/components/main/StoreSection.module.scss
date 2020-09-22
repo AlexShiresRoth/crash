@@ -10,13 +10,16 @@
 }
 .box {
 	width: 100%;
-	padding: 4rem 0;
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
 	position: relative;
 	min-height: 100vh;
+	background: url('https://res.cloudinary.com/snackmanproductions/image/upload/v1600733769/crash/ctc-hero_n6mhxg.jpg');
+	background-position: center;
+	background-size: cover;
+	background-repeat: no-repeat;
 	& a {
 		z-index: 5;
 		text-decoration: none;
@@ -52,24 +55,15 @@
 		z-index: 5;
 		position: relative;
 		margin-top: 2rem;
-		& img {
-			max-width: 30rem;
-		}
-		& img:nth-of-type(1) {
-			transform: translate(10rem, 0);
-		}
-		& img:nth-of-type(2) {
-			z-index: 2;
-			transform: translate(0rem, 10rem);
-		}
-		& img:nth-of-type(3) {
-			z-index: 0;
-			transform: translate(-10rem, 0);
-		}
 	}
 }
 @media screen and (max-width: 1000px) {
 	.box {
+		background: url('https://res.cloudinary.com/snackmanproductions/image/upload/v1600734688/crash/ctc-hero-mobile_qlkkjz.jpg');
+		background-position: center;
+		background-size: cover;
+		background-repeat: no-repeat;
+		min-height: 100vh;
 		& a {
 			font-size: 8vw;
 			text-align: center;
@@ -79,20 +73,6 @@
 			flex-direction: column;
 			align-items: center;
 			justify-content: center;
-			& img {
-				max-width: 80%;
-			}
-			& img:nth-of-type(1) {
-				transform: translate(0);
-			}
-			& img:nth-of-type(2) {
-				z-index: 2;
-				transform: translate(0);
-			}
-			& img:nth-of-type(3) {
-				z-index: 0;
-				transform: translate(0);
-			}
 		}
 	}
 }
