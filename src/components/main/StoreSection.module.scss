@@ -64,6 +64,8 @@
 		background-size: cover;
 		background-repeat: no-repeat;
 		min-height: 100vh;
+		justify-content: flex-start;
+		padding: 2rem 0;
 		& a {
 			font-size: 8vw;
 			text-align: center;
