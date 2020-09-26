@@ -34,63 +34,6 @@ const CheckoutModule = ({
 			{!loading && cart.length > 0 ? (
 				<div className={style.inner}>
 					<div className={style.container}>
-						<div className={style.items_container}>
-							<div className={style.heading}>
-								<h2>Shopping Cart</h2>
-								<p>Item count in cart: {cart.length}</p>
-							</div>
-							<div className={style.sub_heading}>
-								<p>Item</p>
-								<p>Price</p>
-							</div>
-							<div className={style.items}>
-								{cart.map((cartItem: any, i: number) => {
-									const itemToRemove = checkout.lineItems.filter(
-										(lineItem: any) => lineItem.variant.id === cartItem.variant.id
-									)[0];
-									console.log(cartItem);
-									return (
-										<div className={style.item_container} key={i}>
-											<div className={style.col}>
-												<img src={cartItem.variant.image.src} alt={cartItem.title} />
-											</div>
-											<div className={style.col}>
-												<h3>{cartItem.title}</h3>
-												<p>
-													<span>
-														{cartItem.variant.selectedOptions.filter(
-															(variant: any) => variant.name.toLowerCase() === 'size'
-														).length > 0
-															? 'Size:'
-															: 'Type:'}
-													</span>{' '}
-													{cartItem.variant.title}
-												</p>
-											</div>
-											<div className={style.col}>
-												<p>
-													<span>Quantity:</span> {cartItem.quantity}
-												</p>
-												<p>
-													<span>Item Price</span>${cartItem.variant.price}
-												</p>
-												<p>
-													<span>Total:</span> $
-													{(cartItem.quantity * parseFloat(cartItem.variant.price))
-														.toFixed(2)
-														.toString()}
-												</p>
-											</div>
-											<div className={style.col}>
-												<button onClick={() => removeFromCart(cartItem.id, itemToRemove)}>
-													Remove X
-												</button>
-											</div>
-										</div>
-									);
-								})}
-							</div>
-						</div>
 						{shippingInfo ? (
 							//if update info toggled, show update form
 							//otherwise show that info was saved
@@ -102,8 +45,40 @@ const CheckoutModule = ({
 						) : (
 							<ShippingAddressForm />
 						)}
+						<CheckoutForm shippingInfo={shippingInfo} />
 					</div>
-					<CheckoutForm shippingInfo={shippingInfo} />
+					<div className={style.container}>
+						<div className={style.items_container}>
+							<div className={style.heading}>
+								<h2>Shopping Cart</h2>
+								<p>Item count in cart: {cart.length}</p>
+							</div>
+
+							<div className={style.items}>
+								{cart.map((cartItem: any, i: number) => {
+									const itemToRemove = checkout.lineItems.filter(
+										(lineItem: any) => lineItem.variant.id === cartItem.variant.id
+									)[0];
+
+									return (
+										<div className={style.item_container} key={i}>
+											<div className={style.col}>
+												<img src={cartItem.variant.image.src} alt={cartItem.title} />
+											</div>
+											<div className={style.col}>
+												<h3>{cartItem.title}</h3>
+											</div>
+											<div className={style.col}>
+												<button onClick={() => removeFromCart(cartItem.id, itemToRemove)}>
+													Remove X
+												</button>
+											</div>
+										</div>
+									);
+								})}
+							</div>
+						</div>
+					</div>
 				</div>
 			) : (
 				<LoadingSpinner />

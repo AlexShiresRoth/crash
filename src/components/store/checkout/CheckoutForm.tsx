@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import style from './CheckoutForm.module.scss';
 import { connect } from 'react-redux';
 import { processCheckout } from '../../../actions/store';
-import { Redirect } from 'react-router';
 import StoreAlert from '../alerts/StoreAlert';
 import TotalDisplay from './TotalDisplay';
 
@@ -17,13 +16,7 @@ interface Props {
 
 const storageToken = localStorage.getItem('checkout') || '';
 
-const CheckoutForm = ({
-	processCheckout,
-	shippingInfo,
-	store: { cart, returnUrl, processed },
-	email: { errors },
-	alerts,
-}: Props) => {
+const CheckoutForm = ({ processCheckout, shippingInfo, store: { cart, checkout }, alerts }: Props) => {
 	const [checkoutId, setId] = useState<string>('');
 
 	useEffect(() => {
@@ -33,14 +26,11 @@ const CheckoutForm = ({
 		e.preventDefault();
 		if (cart.length > 0 && checkoutId !== '') {
 			processCheckout(checkoutId);
+			if (checkout) window.open(checkout.webUrl);
 		}
 	};
 
-	//do not allow for redirect if there are any errors
-	if (returnUrl !== null && processed) {
-		console.log(errors);
-		if (!errors) return <Redirect to={{ pathname: '/redirect', state: { redirect: `${returnUrl}` } }} />;
-	}
+	console.log(checkout);
 
 	return (
 		<div className={style.checkout}>

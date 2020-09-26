@@ -32,6 +32,7 @@
 			width: 100%;
 			& .heading {
 				display: flex;
+				flex-direction: column;
 				align-items: center;
 				justify-content: space-between;
 				border-bottom: 1px solid #eee;
@@ -48,6 +49,7 @@
 				border: 1px solid #eee;
 				background: #fff;
 				box-shadow: 0 1px 10px #eee;
+				min-width: 20vw;
 				& .items {
 					display: grid;
 					grid-template-columns: 1fr;
@@ -58,7 +60,7 @@
 					& .item_container {
 						background: #fff;
 						display: grid;
-						grid-template-columns: repeat(4, auto);
+						grid-template-columns: 1fr;
 						gap: 1rem;
 						justify-items: center;
 						border: 1px solid #eee;
@@ -83,9 +85,10 @@
 								width: 100%;
 								font-size: 1rem;
 								margin: 0rem 0;
+								text-align: center;
 							}
 							& img {
-								max-width: 70%;
+								max-width: 8rem;
 							}
 
 							& button {
@@ -139,6 +142,7 @@
 				width: 100%;
 				& .items_container {
 					padding: 0.5rem;
+					width: 100%;
 					& .heading {
 						flex-direction: column;
 						align-items: flex-start;
