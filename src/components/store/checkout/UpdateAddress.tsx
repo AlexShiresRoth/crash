@@ -3,9 +3,11 @@ import style from './ShippingAddressForm.module.scss';
 import { connect } from 'react-redux';
 import { submitShippingInfo, toggleShippingModule } from '../../../actions/store';
 import StoreAlert from '../alerts/StoreAlert';
+import { states } from '../../reusablecomps/states';
+import LoadingSpinner from '../../reusablecomps/LoadingSpinner';
 
 interface Props {
-	submitShippingInfo: (data: any, val: boolean) => any;
+	submitShippingInfo: (data: any) => any;
 	store?: any;
 	alerts: Array<any>;
 	toggleShippingModule: (val: boolean) => any;
@@ -13,7 +15,7 @@ interface Props {
 
 const UpdateAddress = ({
 	submitShippingInfo,
-	store: { shippingInfo, shippingSaved },
+	store: { shippingInfo, shippingSaved, loading },
 	alerts,
 	toggleShippingModule,
 }: Props) => {
@@ -32,59 +34,59 @@ const UpdateAddress = ({
 
 	const { address1, zip, firstName, lastName, city, province } = formData;
 
-	const onChange = (e: React.FormEvent<HTMLInputElement>) =>
+	const onChange = (e: React.FormEvent<HTMLInputElement> | React.FormEvent<HTMLSelectElement>) =>
 		setFormData({ ...formData, [e.currentTarget.name]: e.currentTarget.value });
 
 	const [changes, setChangedState] = useState<boolean>(false);
 	const [attempted, setAttempt] = useState<boolean>(false);
 
-	//export this to make use as a reusable function
-	const checkForChanges = () => {
-		const compare1: Array<any> = [];
-		const compare2: Array<any> = [];
-		//use initial shipping info and remove unnecessary extra info
-		const necessaryShippingInfo = {
-			address1: shippingInfo.address1,
-			address2: '',
-			city: shippingInfo.city,
-			company: null,
-			firstName: shippingInfo.firstName,
-			lastName: shippingInfo.lastName,
-			phone: '',
-			province: shippingInfo.province,
-			zip: shippingInfo.zip,
-			checkoutId: localStorage.getItem('checkout'),
+	useEffect(() => {
+		//export this to make use as a reusable function
+		const checkForChanges = () => {
+			const compare1: Array<any> = [];
+			const compare2: Array<any> = [];
+			//use initial shipping info and remove unnecessary extra info
+			const necessaryShippingInfo = {
+				address1: shippingInfo.address1,
+				address2: '',
+				city: shippingInfo.city,
+				company: null,
+				firstName: shippingInfo.firstName,
+				lastName: shippingInfo.lastName,
+				phone: '',
+				province: shippingInfo.province,
+				zip: shippingInfo.zip,
+				checkoutId: localStorage.getItem('checkout'),
+			};
+			//loop through inputs to create arrays for comparison
+			for (let value of Object.values(formData)) {
+				compare1.push(value);
+			}
+			for (let value of Object.values(necessaryShippingInfo)) {
+				compare2.push(value);
+			}
+			//sort arrays to match
+			const sorted1 = compare1.sort();
+			const sorted2 = compare2.sort();
+
+			const compareArrays = sorted1.filter((item, i) => {
+				console.log(item !== sorted2[i]);
+				return item !== sorted2[i];
+			}).length;
+			// console.log(compareArrays);
+			//if compare arrays values are exact match, no changes were made
+			//no changes have been made, so it is unnecessary to send request
+			return compareArrays > 0 ? setChangedState(true) : setChangedState(false);
 		};
-		//loop through inputs to create arrays for comparison
-		for (let [key, value] of Object.entries(formData)) {
-			const newItem = { [key]: value };
-			compare1.push(newItem);
-		}
-		for (let [key, value] of Object.entries(necessaryShippingInfo)) {
-			const newItem = { [key]: value };
-			compare2.push(newItem);
-		}
-		//sort arrays to match
-		const sorted1 = compare1.sort();
-		const sorted2 = compare2.sort();
-		//compare sorted arrays by converting to strings
-		const compareArrays = sorted1.filter((item, i) => {
-			return JSON.stringify(sorted2[i]) === JSON.stringify(item);
-		});
-		//if matches length is equivelant to the initial shipping info
-		//no changes have been made, so it is unnecessary to send request
-		return compareArrays.length === sorted2.length ? setChangedState(false) : setChangedState(true);
-	};
+
+		checkForChanges();
+	});
 
 	const formSubmit = async (e: React.FormEvent) => {
 		e.preventDefault();
 		setAttempt(true);
-		if (changes) await submitShippingInfo(formData, !shippingSaved);
+		if (changes) await submitShippingInfo(formData);
 	};
-
-	useEffect(() => {
-		checkForChanges();
-	});
 
 	return (
 		<div className={style.form_container}>
@@ -137,14 +139,16 @@ const UpdateAddress = ({
 					<div className={style.col}>
 						<div className={style.input_col}>
 							<label>State</label>
-							<input
-								type="text"
-								value={province}
-								name="province"
-								placeholder="Enter your state"
-								onChange={(e) => onChange(e)}
-								required={true}
-							/>
+							<select name="province" value={province} onChange={(e) => onChange(e)} required={true}>
+								<option>Select your State</option>
+								{states.map((state: any, i: number) => {
+									return (
+										<option value={state.name} key={i}>
+											{state.name}
+										</option>
+									);
+								})}
+							</select>
 						</div>
 						<div className={style.input_col}>
 							<label>City</label>
@@ -171,7 +175,11 @@ const UpdateAddress = ({
 					</div>
 				</div>
 				<div className={style.btn_col}>
-					<button onSubmit={(e) => formSubmit(e)}>Save Shipping Info</button>
+					{!loading ? (
+						<button onSubmit={(e) => formSubmit(e)}>Save Shipping Info</button>
+					) : (
+						<LoadingSpinner />
+					)}
 				</div>
 			</form>
 		</div>

@@ -3,6 +3,7 @@ import style from './ShippingAddressForm.module.scss';
 import { connect } from 'react-redux';
 import { submitShippingInfo } from '../../../actions/store';
 import StoreAlert from '../alerts/StoreAlert';
+import { states } from '../../reusablecomps/states';
 
 interface Props {
 	submitShippingInfo: (data: any, val: boolean) => any;
@@ -26,7 +27,7 @@ const ShippingAddressForm = ({ submitShippingInfo, store: { checkout }, alerts }
 
 	const { address1, zip, firstName, lastName, city, province } = formData;
 
-	const onChange = (e: React.FormEvent<HTMLInputElement>) =>
+	const onChange = (e: React.FormEvent<HTMLInputElement> | React.FormEvent<HTMLSelectElement>) =>
 		setFormData({ ...formData, [e.currentTarget.name]: e.currentTarget.value });
 
 	const formSubmit = (e: React.FormEvent) => {
@@ -50,6 +51,8 @@ const ShippingAddressForm = ({ submitShippingInfo, store: { checkout }, alerts }
 			}));
 		}
 	}, [address1, zip, firstName, lastName, city, province, checkout]);
+
+	console.log(formData);
 	return (
 		<div className={style.form_container}>
 			<h2>Shipping Address Form</h2>
@@ -97,14 +100,16 @@ const ShippingAddressForm = ({ submitShippingInfo, store: { checkout }, alerts }
 					<div className={style.col}>
 						<div className={style.input_col}>
 							<label>State</label>
-							<input
-								type="text"
-								value={province}
-								name="province"
-								placeholder="Enter your state"
-								onChange={(e) => onChange(e)}
-								required={true}
-							/>
+							<select name="province" value={province} onChange={(e) => onChange(e)} required={true}>
+								<option>Select your State</option>
+								{states.map((state: any, i: number) => {
+									return (
+										<option value={state.name} key={i}>
+											{state.name}
+										</option>
+									);
+								})}
+							</select>
 						</div>
 						<div className={style.input_col}>
 							<label>City</label>

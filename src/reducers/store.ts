@@ -103,6 +103,7 @@ export default (state = initialState, action: any) => {
 				...state,
 				shippingInfo: payload.shippingAddress,
 				checkout: payload,
+				shippingSaved: true,
 				loading: false,
 			};
 		case SAVE_SHIPPING:
@@ -115,6 +116,7 @@ export default (state = initialState, action: any) => {
 			return {
 				...state,
 				shippingErrors: payload,
+				shippingSaved: false,
 				loading: false,
 			};
 		case CLEAR_SEARCH:

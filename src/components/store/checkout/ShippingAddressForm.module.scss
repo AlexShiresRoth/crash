@@ -45,9 +45,10 @@
 		& .grid {
 			display: grid;
 			grid-template-columns: repeat(2, 1fr);
-			gap: 4rem;
-			justify-items: center;
+			gap: 2rem;
+			align-items: center;
 			padding: 2rem 0;
+			border-bottom: 1px solid #eee;
 			& .col {
 				width: 100%;
 				& .input_col {
@@ -58,11 +59,15 @@
 					& label {
 						margin: 0.5rem 0;
 					}
-					& input {
-						padding: 0rem;
-						min-height: 2.5rem;
-						border: 2px solid lighten($brand-dark, 30%);
+					& input,
+					& select {
+						font-size: 16px;
+						padding: 0 0;
+						height: 2.5rem;
+						border: 1px solid lighten($brand-dark, 30%);
 						width: 100%;
+						border-radius: 3px;
+						text-indent: 5px;
 					}
 				}
 			}

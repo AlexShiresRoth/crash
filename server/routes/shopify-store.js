@@ -181,11 +181,15 @@ router.post(
 			province,
 			zip,
 		};
-		console.log(shippingAddress.province);
+
+		const checkoutResponse = await client.checkout.updateShippingAddress(checkoutId, shippingAddress);
+		console.log(checkoutResponse.userErrors.map((err) => err.message));
+
+		if (checkoutResponse.userErrors.length > 0) {
+			return res.status(400).json({ errors: checkoutResponse.userErrors.map((err) => ({ msg: err.message })) });
+		}
 		try {
-			const checkoutResponse = await client.checkout.updateShippingAddress(checkoutId, shippingAddress);
 			// console.log(JSON.stringify(checkoutResponse));
-			console.log('response:', checkoutResponse.shippingAddress.province);
 			res.json(checkoutResponse);
 		} catch (error) {
 			console.error(error);

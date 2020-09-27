@@ -30,8 +30,6 @@ const CheckoutForm = ({ processCheckout, shippingInfo, store: { cart, checkout }
 		}
 	};
 
-	console.log(checkout);
-
 	return (
 		<div className={style.checkout}>
 			<div className={style.heading}>

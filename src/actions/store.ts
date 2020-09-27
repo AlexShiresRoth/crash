@@ -182,7 +182,7 @@ export const fetchCheckout = (id: string) => async (dispatch: any) => {
 	}
 };
 
-export const submitShippingInfo = (formData: any, toggle: boolean) => async (dispatch: any) => {
+export const submitShippingInfo = (formData: any) => async (dispatch: any) => {
 	try {
 		const res = await api.post('/shopifystore/updateaddress', formData);
 		console.log(res.data);
@@ -192,11 +192,6 @@ export const submitShippingInfo = (formData: any, toggle: boolean) => async (dis
 		});
 
 		dispatch(setAlert('We have received your shipping info', 'success'));
-
-		dispatch({
-			type: SAVE_SHIPPING,
-			payload: toggle,
-		});
 	} catch (error) {
 		const errors = error.response.data.errors;
 		if (errors) {
@@ -205,10 +200,7 @@ export const submitShippingInfo = (formData: any, toggle: boolean) => async (dis
 				payload: errors,
 			});
 			errors.forEach((err: any) => dispatch(setAlert(err.msg, 'danger')));
-			dispatch({
-				type: SAVE_SHIPPING,
-				payload: false,
-			});
+
 			return;
 		}
 		dispatch({
@@ -216,10 +208,6 @@ export const submitShippingInfo = (formData: any, toggle: boolean) => async (dis
 			payload: error.response.data.msg,
 		});
 		dispatch(setAlert(error.response.msg, 'danger'));
-		dispatch({
-			type: SAVE_SHIPPING,
-			payload: false,
-		});
 	}
 };
 

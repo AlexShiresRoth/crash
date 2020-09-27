@@ -29,6 +29,7 @@ const CheckoutModule = ({
 	if (cart.length <= 0) {
 		return <Redirect to="/store" />;
 	}
+
 	return (
 		<section className={style.section}>
 			{!loading && cart.length > 0 ? (
@@ -36,8 +37,8 @@ const CheckoutModule = ({
 					<div className={style.container}>
 						{shippingInfo ? (
 							//if update info toggled, show update form
-							//otherwise show that info was saved
-							shippingSaved ? (
+							//otherwise show the address form
+							!shippingSaved ? (
 								<UpdateAddress />
 							) : (
 								<UpdateInfoToggle />
