@@ -48,7 +48,7 @@ const SuggestedItems = ({ store: { catalog, loading }, fetchStoreItems, match: {
 			<div className={style.inner}>
 				<div className={style.column}>
 					<div className={style.suggested_heading}>
-						<h2>Suggested</h2>
+						<h2>You may also like</h2>
 					</div>
 					<div className={style.grid}>{suggests}</div>
 				</div>

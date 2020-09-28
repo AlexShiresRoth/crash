@@ -64,6 +64,14 @@ const Item = ({ store: { loading, foundItem, cart }, match, findStoreItem, addTo
 		handleAddToCart();
 	};
 
+	useEffect(() => {
+		if(sizeError) {
+			setTimeout(() => {
+				setAlert({sizeError: false, status:''})
+			},5000)
+		}
+	},[sizeError])
+
 	return !loading && foundItem ? (
 		<div className={style.container}>
 			<div className={style.inner}>

@@ -22,3 +22,4 @@ export const EMAIL_ERROR = 'EMAIL_ERROR';
 export const START_ORDER = 'START_ORDER';
 export const FETCH_CHECKOUT = 'FETCH_CHECKOUT';
 export const SAVE_SHIPPING = 'SAVE_SHIPPING';
+export const CHECKOUT_ERROR = 'CHECKOUT_ERROR;'

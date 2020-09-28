@@ -16,7 +16,7 @@ interface Props {
 
 const storageToken = localStorage.getItem('checkout') || '';
 
-const CheckoutForm = ({ processCheckout, shippingInfo, store: { cart, checkout }, alerts }: Props) => {
+const CheckoutForm = ({ processCheckout, shippingInfo, store: { cart, checkout, checkoutErrors }, alerts }: Props) => {
 	const [checkoutId, setId] = useState<string>('');
 
 	useEffect(() => {
@@ -34,7 +34,7 @@ const CheckoutForm = ({ processCheckout, shippingInfo, store: { cart, checkout }
 		<div className={style.checkout}>
 			<div className={style.heading}>
 				<TotalDisplay />
-				{alerts.length > 0
+				{checkoutErrors.length > 0
 					? alerts.map((alert: any, i: number) => (
 							<StoreAlert type={alert.alertType} status={alert.msg} key={i} />
 					  ))

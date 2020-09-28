@@ -9,7 +9,7 @@ interface Props {
 const Alert = ({ alerts }: Props) => {
 	console.log(alerts);
 	return alerts
-		.filter((alert: any, i: number) => alert.msg !== undefined)
+		.filter((alert: any) => alert.msg !== undefined)
 		.map((alert: any, i: number) => {
 			return (
 				<div

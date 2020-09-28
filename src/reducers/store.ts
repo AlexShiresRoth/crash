@@ -13,6 +13,7 @@ import {
 	SAVE_SHIPPING,
 	PROCESS_CHECKOUT,
 	FETCH_ITEM,
+	CHECKOUT_ERROR
 } from '../actions/types';
 
 const initialState = {
@@ -32,6 +33,7 @@ const initialState = {
 	returnUrl: null,
 	processed: false,
 	lineItems: [],
+	checkoutErrors: []
 };
 
 export default (state = initialState, action: any) => {
@@ -141,6 +143,13 @@ export default (state = initialState, action: any) => {
 				processed: true,
 				loading: false,
 			};
+		case CHECKOUT_ERROR:
+			return {
+				...state,
+				checkoutErrors: payload,
+				loading: false
+			}
+		
 		default:
 			return state;
 	}

@@ -11,7 +11,7 @@ interface Props {
 	alerts: Array<any>;
 }
 
-const ShippingAddressForm = ({ submitShippingInfo, store: { checkout }, alerts }: Props) => {
+const ShippingAddressForm = ({ submitShippingInfo, store: { checkout, shippingErrors }, alerts }: Props) => {
 	const [formData, setFormData] = useState<any>({
 		address1: '',
 		address2: '',
@@ -52,13 +52,12 @@ const ShippingAddressForm = ({ submitShippingInfo, store: { checkout }, alerts }
 		}
 	}, [address1, zip, firstName, lastName, city, province, checkout]);
 
-	console.log(formData);
+	console.log();
 	return (
 		<div className={style.form_container}>
 			<h2>Shipping Address Form</h2>
 			<p>Currently, only shipping within the US</p>
-			{alerts.length > 0
-				? alerts.map((alert, i) => <StoreAlert status={alert.msg} key={i} type={alert.alertType} />)
+			{shippingErrors.length > 0 ? alerts.map((alert, i) => <StoreAlert status={alert.msg} key={i} type={alert.alertType} />)
 				: null}
 			<form className={style.form} onSubmit={(e) => formSubmit(e)}>
 				<div className={style.grid}>
