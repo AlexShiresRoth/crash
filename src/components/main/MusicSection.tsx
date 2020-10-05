@@ -2,7 +2,7 @@ import React from 'react';
 import style from './MusicSection.module.scss';
 import { sections } from './sections';
 import { Link } from 'react-router-dom';
-import { FaSpotify, FaApple, FaBandcamp } from 'react-icons/fa';
+import { FaSpotify, FaApple } from 'react-icons/fa';
 const MusicSection = () => {
 	const section = sections.filter((section) => section.name === 'music')[0];
 	return (
@@ -50,7 +50,7 @@ const MusicSection = () => {
 							src="https://embed.music.apple.com/us/album/howve-you-been/1234046324?app=music"
 						></iframe>
 					</div>
-					<div className={style.iframe_container}>
+					{/* <div className={style.iframe_container}>
 						<div className={style.col}>
 							<a
 								href="https://crashthecalm.bandcamp.com/album/howve-you-been"
@@ -67,7 +67,7 @@ const MusicSection = () => {
 							title="bandcamp"
 							frameBorder="0"
 						></iframe>
-					</div>
+					</div> */}
 				</div>
 			</div>
 		</section>

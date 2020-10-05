@@ -5,9 +5,10 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { fetchVideos } from '../../actions/youtube';
 import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
+import ReactPlayer from 'react-player/lazy';
 
 interface Props {
-	fetchVideos: () => any;
+	fetchVideos: (val: number) => any;
 	youtube: {
 		videos: any;
 		loading: boolean;
@@ -15,11 +16,10 @@ interface Props {
 }
 const VideoSection = ({ fetchVideos, youtube: { videos, loading } }: Props) => {
 	useEffect(() => {
-		fetchVideos();
+		fetchVideos(5);
 	}, [fetchVideos]);
 
 	const section = sections.filter((section) => section.name === 'videos')[0];
-	const [filteredVideos, filterVideos] = useState([]);
 	const videoRef = createRef<HTMLDivElement>();
 	const videoContainerRef = createRef<HTMLDivElement>();
 
@@ -47,13 +47,13 @@ const VideoSection = ({ fetchVideos, youtube: { videos, loading } }: Props) => {
 
 	//once video width is updated, update scroll width
 	useEffect(() => {
-		const max = filterVideos.length - 1;
+		const max = videos.length - 1;
 		setScrollWidth(-(max * videoWidth));
-	}, [videoWidth]);
+	}, [videoWidth,videos.length]);
 
 	const handleIndexChange = (val: any) => {
 		const min = 0;
-		const max = filteredVideos.length - 1;
+		const max = videos.length - 1;
 
 		if (val) {
 			if (currentIndex >= max) {
@@ -84,28 +84,25 @@ const VideoSection = ({ fetchVideos, youtube: { videos, loading } }: Props) => {
 		handleScroll();
 	}, [currentIndex, scrollWidth, videoContainerRef, videoRef]);
 
-	useEffect(() => {
-		if (videos.length > 0) filterVideos(videos.filter((video: any) => video.id.videoId !== undefined));
-	}, [videos]);
-	//url for youtube embed
-	const videoSource = `https://www.youtube.com/embed/`;
 
-	console.log(videoWidth, scrollWidth);
+	//url for youtube embed
+	const videoSource = `https://www.youtube.com/watch?v=`;
+
+	console.log(currentIndex)
 	return !loading && videos.length > 0 ? (
 		<section className={style.box} key={section.id}>
-			<Link to={section.path}>Watch all music videos/interviews</Link>
+			<Link to={section.path}>Watch all music videos</Link>
 			<div className={style.wide_box}>
 				<button onClick={() => handleIndexChange(null)}>
 					<FaChevronLeft />
 				</button>
 				<div className={style.video_grid} ref={videoRef}>
 					<div className={style.videos} ref={videoContainerRef}>
-						{videos
-							.filter((video: any) => video.id.videoId !== undefined)
+						{videos.sort()
 							.map((video: any, i: number) => {
 								return (
 									<div className={style.video_container} key={i}>
-										<iframe title="Video" src={videoSource + video.id.videoId} frameBorder="0" />
+										<ReactPlayer url={videoSource + video.snippet.resourceId.videoId} width={'100%'} height={'100%'}/>
 									</div>
 								);
 							})}
@@ -117,8 +114,8 @@ const VideoSection = ({ fetchVideos, youtube: { videos, loading } }: Props) => {
 			</div>
 		</section>
 	) : (
-		<p>Loading...</p>
-	);
+			<p>Loading...</p>
+		);
 };
 
 const mapStateToProps = (state: any) => {

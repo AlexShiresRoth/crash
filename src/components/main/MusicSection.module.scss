@@ -71,18 +71,21 @@
 			& .iframe_container {
 				background: $brand-dark;
 				display: flex;
-				min-height: 25rem;
-				height: 40vh;
+				flex-direction: column;
+				align-items: center;
+				min-height: 50vh;
 				box-shadow: 0 1px 5px $brand-dark;
 				margin: 2rem;
+				width:100%;
+				width:40vw;
+				border-radius:3px;
 				& .col {
 					display: flex;
 					flex-direction: column;
 					justify-content: center;
 					align-items: center;
-					height: 100%;
 					margin: 1rem;
-					width: 10rem;
+					width:100%;
 					padding: 0 1rem;
 					& a {
 						font-size: 1rem;
@@ -106,6 +109,8 @@
 				& iframe {
 					box-shadow: 0 1px 5px darken($brand-dark, 5%);
 					overflow: hidden;
+					height:60vh;
+					width:100%;
 				}
 			}
 		}

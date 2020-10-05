@@ -5,7 +5,7 @@ import { Header } from './Header';
 import VideoSection from './VideoSection';
 import EmailSignup from './EmailSignup';
 import StoreSection from './StoreSection';
-import TourSections from './TourSections';
+// import TourSections from './TourSections';
 const Hub = (props: any) => {
 	return (
 		<section className={style.main_container}>
@@ -13,7 +13,7 @@ const Hub = (props: any) => {
 			<MusicSection />
 			<VideoSection />
 			<StoreSection />
-			<TourSections />
+			{/* <TourSections /> */}
 			<EmailSignup />
 		</section>
 	);

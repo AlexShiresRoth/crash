@@ -1,54 +1,31 @@
-import { FETCH_VIDEOS } from './types';
-import axios from 'axios';
+import { FETCH_VIDEOS } from "./types";
+import axios from "axios";
 
-export const fetchVideos = () => async (dispatch: any) => {
-	const key = 'AIzaSyDFmPHtUMdOvCkSkI2XAGZ5t-Gjy42kFZM';
+export const fetchVideos = (max:number) => async (dispatch: any) => {
+  const key = "AIzaSyDFmPHtUMdOvCkSkI2XAGZ5t-Gjy42kFZM";
 
-	try {
-		const fetch = axios.create({
-			baseURL: `https://www.googleapis.com/youtube/v3/search`,
-		});
+  try {
+    const fetch = axios.create({
+      baseURL: `https://www.googleapis.com/youtube/v3/playlistItems`,
+      //   headers: "Access-Control-Allow-Origin",
+    });
 
-		const res = await fetch.get('/', {
-			params: {
-				part: 'snippet',
-				q: 'crash+the+calm',
-				maxResults: 5,
-				key,
-			},
-		});
-		console.log(res.data);
-		dispatch({
-			type: FETCH_VIDEOS,
-			payload: res.data.items,
-		});
-	} catch (error) {
-		console.log(error.response);
-	}
+    const res = await fetch.get("/", {
+      params: {
+        part: "snippet",
+        playlistId: "PLk8oy35jC2LW5KpLxYupwAy-mJ5MBt3Fs",
+        q: "crash+the+calm",
+        maxResults: max,
+        key,
+      },
+    });
+    dispatch({
+      type: FETCH_VIDEOS,
+      payload: res.data.items,
+    });
+  } catch (error) {
+    console.log(error.response);
+  }
 };
 
-export const fetchAllvideos = () => async (dispatch: any) => {
-	const key = 'AIzaSyDFmPHtUMdOvCkSkI2XAGZ5t-Gjy42kFZM';
 
-	try {
-		const fetch = axios.create({
-			baseURL: `https://www.googleapis.com/youtube/v3/search`,
-		});
-
-		const res = await fetch.get('/', {
-			params: {
-				part: 'snippet',
-				q: 'crash+the+calm',
-				maxResults: 20,
-				key,
-			},
-		});
-		console.log(res.data);
-		dispatch({
-			type: FETCH_VIDEOS,
-			payload: res.data.items,
-		});
-	} catch (error) {
-		console.log(error.response);
-	}
-};
