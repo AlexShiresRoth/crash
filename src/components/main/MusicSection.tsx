@@ -1,14 +1,13 @@
 import React from 'react';
 import style from './MusicSection.module.scss';
 import { sections } from './sections';
-import { Link } from 'react-router-dom';
 import { FaSpotify, FaApple } from 'react-icons/fa';
 const MusicSection = () => {
 	const section = sections.filter((section) => section.name === 'music')[0];
 	return (
 		<section className={style.box} key={section.id}>
 			<div className={style.heading}>
-				<Link to={section.path}>listen On the streaming platform of your choosing</Link>
+				<p>listen On the streaming platform of your choosing</p>
 			</div>
 			<div className={style.grid}>
 				<div className={style.embeds}>

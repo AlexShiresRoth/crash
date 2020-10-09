@@ -48,13 +48,12 @@ const VideoSection = ({ fetchVideos, youtube: { videos, loading } }: Props) => {
 	//once video width is updated, update scroll width
 	useEffect(() => {
 		const max = videos.length - 1;
-		setScrollWidth(-(max * videoWidth));
-	}, [videoWidth,videos.length]);
+		if (videoWidth) setScrollWidth(-(max * videoWidth));
+	}, [videoWidth, videos.length]);
 
 	const handleIndexChange = (val: any) => {
 		const min = 0;
 		const max = videos.length - 1;
-
 		if (val) {
 			if (currentIndex >= max) {
 				setIndex(min);
@@ -76,19 +75,25 @@ const VideoSection = ({ fetchVideos, youtube: { videos, loading } }: Props) => {
 	};
 
 	useEffect(() => {
-		const handleScroll = () => {
-			if (videoRef.current && videoContainerRef.current) {
-				videoContainerRef.current.style.transform = `translate3d(${scrollWidth}px, 0,0)`;
-			}
-		};
-		handleScroll();
-	}, [currentIndex, scrollWidth, videoContainerRef, videoRef]);
+		const max = videos.length - 1;
+		console.log('max:', max * videoWidth, -scrollWidth);
+		if (videoRef.current && videoContainerRef.current) {
+			videoContainerRef.current.style.transform = `translate3d(${scrollWidth}px, 0,0)`;
 
+			//if scrolling width grows past max width of container, reset everything
+			if (-scrollWidth > max * videoWidth) {
+				videoContainerRef.current.style.transform = `translate3d(0px, 0,0)`;
+				setIndex(0);
+				setScrollWidth(0);
+			}
+		}
+	}, [currentIndex, scrollWidth, videoContainerRef, videoRef, videos.length, videoWidth]);
 
 	//url for youtube embed
 	const videoSource = `https://www.youtube.com/watch?v=`;
 
-	console.log(currentIndex)
+	console.log('videoWidth:', videoWidth, 'scrollwidth:', scrollWidth, 'currentIndex:', currentIndex);
+
 	return !loading && videos.length > 0 ? (
 		<section className={style.box} key={section.id}>
 			<Link to={section.path}>Watch all music videos</Link>
@@ -98,14 +103,17 @@ const VideoSection = ({ fetchVideos, youtube: { videos, loading } }: Props) => {
 				</button>
 				<div className={style.video_grid} ref={videoRef}>
 					<div className={style.videos} ref={videoContainerRef}>
-						{videos.sort()
-							.map((video: any, i: number) => {
-								return (
-									<div className={style.video_container} key={i}>
-										<ReactPlayer url={videoSource + video.snippet.resourceId.videoId} width={'100%'} height={'100%'}/>
-									</div>
-								);
-							})}
+						{videos.map((video: any, i: number) => {
+							return (
+								<div className={style.video_container} key={i}>
+									<ReactPlayer
+										url={videoSource + video.snippet.resourceId.videoId}
+										width={'100%'}
+										height={'100%'}
+									/>
+								</div>
+							);
+						})}
 					</div>
 				</div>
 				<button onClick={() => handleIndexChange(1)}>
@@ -114,8 +122,8 @@ const VideoSection = ({ fetchVideos, youtube: { videos, loading } }: Props) => {
 			</div>
 		</section>
 	) : (
-			<p>Loading...</p>
-		);
+		<p>Loading...</p>
+	);
 };
 
 const mapStateToProps = (state: any) => {
