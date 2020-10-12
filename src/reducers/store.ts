@@ -13,7 +13,8 @@ import {
 	SAVE_SHIPPING,
 	PROCESS_CHECKOUT,
 	FETCH_ITEM,
-	CHECKOUT_ERROR
+	CHECKOUT_ERROR,
+	CLEAR_CHECKOUT,
 } from '../actions/types';
 
 const initialState = {
@@ -33,7 +34,7 @@ const initialState = {
 	returnUrl: null,
 	processed: false,
 	lineItems: [],
-	checkoutErrors: []
+	checkoutErrors: [],
 };
 
 export default (state = initialState, action: any) => {
@@ -147,9 +148,20 @@ export default (state = initialState, action: any) => {
 			return {
 				...state,
 				checkoutErrors: payload,
-				loading: false
-			}
-		
+				loading: false,
+			};
+		case CLEAR_CHECKOUT:
+			localStorage.removeItem('checkout');
+			return {
+				...state,
+				loading: false,
+				cart: [],
+				checkout: null,
+				shippingInfo: null,
+				shippingSaved: false,
+				lineItems: [],
+			};
+
 		default:
 			return state;
 	}

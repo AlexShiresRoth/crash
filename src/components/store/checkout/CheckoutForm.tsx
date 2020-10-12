@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import style from './CheckoutForm.module.scss';
 import { connect } from 'react-redux';
-import { processCheckout } from '../../../actions/store';
+import { clearCheckout, processCheckout } from '../../../actions/store';
 import StoreAlert from '../alerts/StoreAlert';
 import TotalDisplay from './TotalDisplay';
 
@@ -12,11 +12,18 @@ interface Props {
 	alerts?: any;
 	email?: any;
 	shippingInfo: boolean;
+	clearCheckout: (val: any) => void;
 }
 
 const storageToken = localStorage.getItem('checkout') || '';
 
-const CheckoutForm = ({ processCheckout, shippingInfo, store: { cart, checkout, checkoutErrors }, alerts }: Props) => {
+const CheckoutForm = ({
+	processCheckout,
+	shippingInfo,
+	store: { cart, checkout, checkoutErrors },
+	alerts,
+	clearCheckout,
+}: Props) => {
 	const [checkoutId, setId] = useState<string>('');
 
 	useEffect(() => {
@@ -27,6 +34,7 @@ const CheckoutForm = ({ processCheckout, shippingInfo, store: { cart, checkout, 
 		if (cart.length > 0 && checkoutId !== '') {
 			processCheckout(checkoutId);
 			if (checkout) window.open(checkout.webUrl);
+			if (checkout) clearCheckout(null);
 		}
 	};
 
@@ -63,4 +71,4 @@ const mapStateToProps = (state: any) => ({
 	email: state.email,
 });
 
-export default connect(mapStateToProps, { processCheckout })(CheckoutForm);
+export default connect(mapStateToProps, { processCheckout, clearCheckout })(CheckoutForm);

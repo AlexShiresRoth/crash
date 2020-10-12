@@ -9,19 +9,24 @@
 		background: transparent;
 		border: 0px solid transparent;
 		color: #bbb;
-		font-size: 1.2rem;
+		font-size: 1.1rem;
 		font-weight: 700;
 		text-transform: uppercase;
 		display: flex;
 		align-items: center;
 		position: relative;
 		transition: all 0.3s ease;
+		padding: 0;
+
 		&:hover {
 			cursor: pointer;
 			color: $brand-accent;
 		}
 		& .added {
 			color: $alert-success;
+		}
+		& svg {
+			margin-left: 0.5rem;
 		}
 		& span {
 			position: absolute;

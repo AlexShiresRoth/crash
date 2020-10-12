@@ -17,10 +17,19 @@ type Props = RouteComponentProps & NavProps;
 
 const Nav = ({ history, clearSearch }: Props) => {
 	const [isScrolling, setScrolling] = useState(false);
+	const [links, filterLinks] = useState<Array<any>>(navLinks);
+
 	useEffect(() => {
 		//if location is not the store then don't have the cart popup
 		if (!history.location.pathname.includes('store')) {
 			clearSearch();
+		}
+		if (history.location.pathname.includes('single')) {
+			const newLinks = navLinks.filter((item: { name: string; path: string }) => {
+				return item.name === 'store';
+			});
+
+			filterLinks(newLinks);
 		}
 	}, [clearSearch, history.location.pathname]);
 
@@ -54,7 +63,7 @@ const Nav = ({ history, clearSearch }: Props) => {
 				</div>
 
 				<div className={style.right}>
-					{navLinks.map((item) => {
+					{links.map((item) => {
 						return (
 							<NavLink to={item.path} key={item.id}>
 								{item.name}

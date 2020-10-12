@@ -38,6 +38,7 @@ const Cart = ({ store: { cart, checkout }, history }: CartProps) => {
 	return (
 		<div className={style.cart}>
 			<button onClick={() => setVisibility(!isVisible)}>
+				Cart
 				{newAdd ? <FaCartPlus className={style.added} /> : <FaShoppingCart />}
 				{cart.length > 0 ? <span>{cart.length}</span> : null}
 			</button>
