@@ -55,14 +55,14 @@
 			& a {
 				& svg {
 					max-width: 1.3rem;
-					font-size:1.5rem;
+					font-size: 1.5rem;
 				}
 			}
 		}
 	}
 	& .right {
 		display: grid;
-		grid-template-columns: repeat(7, auto);
+		grid-template-columns: repeat(8, auto);
 		grid-template-rows: 1fr;
 		gap: 2rem;
 		justify-items: center;
