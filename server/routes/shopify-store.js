@@ -78,8 +78,8 @@ router.post('/search', [check('searchTerm', 'Please enter a word to search by').
 //@desc create lineitem
 //@access private
 router.post('/addtocart/:id', async (req, res) => {
-	const { option } = req.body;
-
+	const { option, quantity } = req.body;
+	//TODO ADD QUANTITY FUNCTIONALITY
 	const lineItem = {
 		variantId: option,
 		quantity: 1,

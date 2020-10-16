@@ -8,8 +8,21 @@ interface Props {
 }
 
 const StoreItems = ({ store: { catalog, loading, searchResults } }: Props) => {
-	const handleCatalog = catalog.map((catItem: any, i: number) => <StoreItem item={catItem} index={i} key={i} />);
+	//sort catalog by update  date
+	const handleCatalog = catalog
+		.map((catItem: any, i: number) => catItem)
+		.sort((a: any, b: any, i: number) => {
+			const aDate = new Date(a.updatedAt);
+			const bDate = new Date(b.updatedAt);
+			console.log(aDate.getTime(), bDate.getTime());
+			return aDate.getTime() > bDate.getTime() ? 1 : -1;
+		})
+		.map((item: any, i: number) => {
+			return <StoreItem item={item} index={i} key={i} />;
+		});
+
 	const handleSearch = searchResults.map((item: any, i: number) => <StoreItem item={item} index={i} key={i} />);
+
 	return (
 		<>
 			{!loading && catalog.length > 0 ? (
