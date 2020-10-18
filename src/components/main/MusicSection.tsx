@@ -49,24 +49,6 @@ const MusicSection = () => {
 							src="https://embed.music.apple.com/us/album/howve-you-been/1234046324?app=music"
 						></iframe>
 					</div>
-					{/* <div className={style.iframe_container}>
-						<div className={style.col}>
-							<a
-								href="https://crashthecalm.bandcamp.com/album/howve-you-been"
-								target="_blank"
-								rel="noopener noreferrer"
-							>
-								<FaBandcamp />
-								Listen on Bandcamp
-							</a>
-						</div>
-						<iframe
-							src="https://bandcamp.com/EmbeddedPlayer/album=533530733/size=large/bgcol=ffffff/linkcol=333333/tracklist=false/transparent=true/"
-							seamless
-							title="bandcamp"
-							frameBorder="0"
-						></iframe>
-					</div> */}
 				</div>
 			</div>
 		</section>

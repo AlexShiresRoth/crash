@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { submitShippingInfo } from '../../../actions/store';
 import StoreAlert from '../alerts/StoreAlert';
 import { states } from '../../reusablecomps/states';
+import LoadingSpinner from '../../reusablecomps/LoadingSpinner';
 
 interface Props {
 	submitShippingInfo: (data: any, val: boolean) => any;
@@ -32,6 +33,7 @@ const ShippingAddressForm = ({ submitShippingInfo, store: { checkout, shippingEr
 
 	const formSubmit = (e: React.FormEvent) => {
 		e.preventDefault();
+		setProcessing(true);
 		submitShippingInfo(formData, false);
 	};
 
@@ -52,12 +54,18 @@ const ShippingAddressForm = ({ submitShippingInfo, store: { checkout, shippingEr
 		}
 	}, [address1, zip, firstName, lastName, city, province, checkout]);
 
-	console.log();
+	const [processing, setProcessing] = useState<boolean>(false);
+
+	useEffect(() => {
+		if (shippingErrors.length > 0) setProcessing(false);
+	}, [shippingErrors]);
+
 	return (
 		<div className={style.form_container}>
 			<h2>Shipping Address Form</h2>
 			<p>Currently, only shipping within the US</p>
-			{shippingErrors.length > 0 ? alerts.map((alert, i) => <StoreAlert status={alert.msg} key={i} type={alert.alertType} />)
+			{shippingErrors.length > 0
+				? alerts.map((alert, i) => <StoreAlert status={alert.msg} key={i} type={alert.alertType} />)
 				: null}
 			<form className={style.form} onSubmit={(e) => formSubmit(e)}>
 				<div className={style.grid}>
@@ -135,7 +143,13 @@ const ShippingAddressForm = ({ submitShippingInfo, store: { checkout, shippingEr
 					</div>
 				</div>
 				<div className={style.btn_col}>
-					<button onSubmit={(e) => formSubmit(e)}>Save Shipping Info</button>
+					{!processing ? (
+						<button onSubmit={(e) => formSubmit(e)}>Save Shipping Info</button>
+					) : (
+						<>
+							Saving <LoadingSpinner updateStyle={{ size: '1rem', color: '#111' }} />
+						</>
+					)}
 				</div>
 			</form>
 		</div>

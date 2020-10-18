@@ -2,10 +2,10 @@ import React from 'react';
 import style from './LoadingSpinner.module.scss';
 
 interface Props {
-	updateStyle: any;
+	updateStyle?: any;
 }
 
-const LoadingSpinner = ({ updateStyle }: any) => {
+const LoadingSpinner = ({ updateStyle }: Props) => {
 	return (
 		<div
 			className={style.spinner}

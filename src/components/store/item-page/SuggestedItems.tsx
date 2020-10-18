@@ -41,7 +41,7 @@ const SuggestedItems = ({ store: { catalog, loading }, fetchStoreItems, match: {
 				</div>
 			);
 		})
-		.slice(0, 4);
+		.slice(0, 6);
 
 	return !loading ? (
 		<div className={style.container}>

@@ -32,9 +32,10 @@ const Item = ({ store: { loading, foundItem, cart }, match, findStoreItem, addTo
 
 	const [selectedItem, selectItem] = useState<any>({
 		option: null,
+		quantity: 1,
 	});
 
-	const { option } = selectedItem;
+	const { option, quantity } = selectedItem;
 	//Handle alerting user if adding cart to item fails
 	const [alerted, setAlert] = useState({
 		sizeError: false,
@@ -44,7 +45,7 @@ const Item = ({ store: { loading, foundItem, cart }, match, findStoreItem, addTo
 	const { sizeError, status } = alerted;
 
 	const onChange = (e: React.FormEvent<HTMLSelectElement>) =>
-		selectItem({ ...selectedItem, option: e.currentTarget.value });
+		selectItem({ ...selectedItem, [e.currentTarget.name]: e.currentTarget.value });
 
 	useEffect(() => {
 		if (option !== '') setAlert({ sizeError: false, status: '' });
@@ -65,12 +66,12 @@ const Item = ({ store: { loading, foundItem, cart }, match, findStoreItem, addTo
 	};
 
 	useEffect(() => {
-		if(sizeError) {
+		if (sizeError) {
 			setTimeout(() => {
-				setAlert({sizeError: false, status:''})
-			},5000)
+				setAlert({ sizeError: false, status: '' });
+			}, 5000);
 		}
-	},[sizeError])
+	}, [sizeError]);
 
 	return !loading && foundItem ? (
 		<div className={style.container}>
@@ -101,6 +102,19 @@ const Item = ({ store: { loading, foundItem, cart }, match, findStoreItem, addTo
 							</p>
 						</div>
 						<form onSubmit={(e) => onSubmit(e)}>
+							<label>Select Quantity</label>
+							<select
+								onChange={(e) => onChange(e)}
+								className={style.select_box}
+								name="quantity"
+								value={quantity}
+							>
+								<option value="1">1</option>
+								<option value="2">2</option>
+								<option value="3">3</option>
+								<option value="4">4</option>
+								<option value="5">5</option>
+							</select>
 							{sizeError ? <StoreAlert status={status} type={'danger'} /> : null}
 							{alerts.length > 0 ? (
 								<StoreAlert status={alerts[0].msg} type={alerts[0].alertType} />
@@ -110,6 +124,7 @@ const Item = ({ store: { loading, foundItem, cart }, match, findStoreItem, addTo
 								onChange={(e) => onChange(e)}
 								style={sizeError ? { border: '2px solid #8f2b2bb0' } : {}}
 								className={style.select_box}
+								name="option"
 							>
 								<option>Choose Type</option>
 								{foundItem.variants.map((variant: any, i: number) => {

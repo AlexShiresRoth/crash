@@ -38,6 +38,9 @@
 		& .btn_container {
 			margin: 1rem 0;
 			width: 100%;
+			display: flex;
+			border-top: 1px solid #eee;
+			justify-content: center;
 			& button {
 				width: 100%;
 				padding: 1rem;
@@ -49,6 +52,13 @@
 				&:hover {
 					cursor: pointer;
 					box-shadow: 0 1px 10px rgb(19, 55, 216);
+				}
+			}
+			& .disabled {
+				background: rgba(19, 55, 216, 0.397);
+				&:hover {
+					cursor: not-allowed;
+					box-shadow: 0 0 0;
 				}
 			}
 		}

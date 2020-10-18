@@ -82,7 +82,7 @@ router.post('/addtocart/:id', async (req, res) => {
 	//TODO ADD QUANTITY FUNCTIONALITY
 	const lineItem = {
 		variantId: option,
-		quantity: 1,
+		quantity: parseInt(quantity),
 	};
 
 	try {
@@ -92,6 +92,31 @@ router.post('/addtocart/:id', async (req, res) => {
 	} catch (error) {
 		console.error('this is an error' + error);
 		res.status(500).json({ msg: 'Internal Server Error' });
+	}
+});
+
+//@route PUT route
+//@desc update line item
+//@access private
+router.put('/updatelineitem/:id', async (req, res) => {
+	const { option, quantity } = req.body;
+
+	const updateItem = [
+		{
+			id: option,
+			quantity: parseInt(quantity),
+		},
+	];
+
+	console.log(updateItem, req.params.id);
+
+	try {
+		const response = await client.checkout.updateLineItems(req.params.id, updateItem);
+
+		res.json(response);
+	} catch (error) {
+		console.error(error);
+		return res.status(500).json({ msg: 'Internal Server' });
 	}
 });
 
