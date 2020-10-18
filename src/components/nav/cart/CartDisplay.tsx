@@ -16,33 +16,35 @@ interface Props {
 const CartDisplay = ({ store: { cart, loading, checkout }, removeFromCart, isVisible, setVisibility }: Props) => {
 	return !loading ? (
 		<div className={isVisible ? style.container : style.hidden}>
-			<div className={style.close_cart}>
-				<button onClick={() => setVisibility(!isVisible)}>Close X</button>
-			</div>
-			<div className={style.heading}>
-				<h2>In your cart</h2>
-			</div>
-			<div className={style.items}>
-				{cart.map((item: any, i: number) => {
-					const itemToRemove = checkout.lineItems.filter(
-						(lineItem: any) => lineItem.variant.id === item.variant.id
-					)[0];
+			<div className={style.inner}>
+				<div className={style.close_cart}>
+					<button onClick={() => setVisibility(!isVisible)}>Close X</button>
+				</div>
+				<div className={style.heading}>
+					<h2>In your cart</h2>
+				</div>
+				<div className={style.items}>
+					{cart.map((item: any, i: number) => {
+						const itemToRemove = checkout.lineItems.filter(
+							(lineItem: any) => lineItem.variant.id === item.variant.id
+						)[0];
 
-					return (
-						<CartItem
-							itemToRemove={itemToRemove}
-							item={item}
-							index={i}
-							removeFromCart={removeFromCart}
-							key={i}
-						/>
-					);
-				})}
-			</div>
-			<div className={style.checkout}>
-				<Link to="/checkout">
-					<button>Proceed to Checkout</button>
-				</Link>
+						return (
+							<CartItem
+								itemToRemove={itemToRemove}
+								item={item}
+								index={i}
+								removeFromCart={removeFromCart}
+								key={i}
+							/>
+						);
+					})}
+				</div>
+				<div className={style.checkout}>
+					<Link to="/checkout">
+						<button>Proceed to Checkout</button>
+					</Link>
+				</div>
 			</div>
 		</div>
 	) : null;
