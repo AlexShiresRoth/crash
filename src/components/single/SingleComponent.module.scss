@@ -83,3 +83,28 @@
 		}
 	}
 }
+
+@media screen and (max-width: 750px) {
+	.section {
+		& .video_container {
+			& h2 {
+				font-size: 2rem;
+				text-align: center;
+			}
+		}
+		& .img_container {
+			& a {
+				font-size: 2rem;
+				text-align: center;
+			}
+			& .bg_img {
+				margin-top: 2rem;
+				width: 90%;
+				height: 100vh;
+				background: url('https://res.cloudinary.com/snackmanproductions/image/upload/v1603244166/crash/devilsartwork-mobile_n5bbvm.jpg');
+				background-position: 52% 30%;
+				background-size: cover;
+			}
+		}
+	}
+}
