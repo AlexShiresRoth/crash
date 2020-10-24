@@ -14,7 +14,7 @@ const StoreItems = ({ store: { catalog, loading, searchResults } }: Props) => {
 		.sort((a: any, b: any, i: number) => {
 			const aDate = new Date(a.updatedAt);
 			const bDate = new Date(b.updatedAt);
-			console.log(aDate.getTime(), bDate.getTime());
+			// console.log(aDate.getTime(), bDate.getTime());
 			return aDate.getTime() > bDate.getTime() ? 1 : -1;
 		})
 		.map((item: any, i: number) => {

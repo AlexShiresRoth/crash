@@ -43,7 +43,7 @@ const Footer = () => {
 					>
 						<TiSocialYoutube />
 					</a>
-					<a href="http://twitter.com/crashthecalmny" rel="noopener noreferrer" target="_blank">
+					<a href="http://twitter.com/crashthecalm" rel="noopener noreferrer" target="_blank">
 						<TiSocialTwitter />
 					</a>
 					<a href="http://instagram.com/crashthecalmny" rel="noopener noreferrer" target="_blank">

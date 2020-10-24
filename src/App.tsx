@@ -12,6 +12,7 @@ import Videos from './components/pages/Videos';
 import RedirectExternal from './components/reusablecomps/RedirectExternal';
 import ItemPage from './components/pages/ItemPage';
 import Single from './components/pages/Single';
+import MusicPage from './components/pages/MusicPage';
 
 function App() {
 	return (
@@ -26,7 +27,8 @@ function App() {
 					<Route exact path="/videos" component={Videos} />
 					<Route exact path="/redirect" component={RedirectExternal} />
 					<Route exact path="/store/viewitem/:id" component={ItemPage} />
-					<Route exact path="/single" component={Single} />
+					<Route exact path="/devils" component={Single} />
+					<Route exact path="/music" component={MusicPage} />
 				</Switch>
 			</Router>
 		</Provider>

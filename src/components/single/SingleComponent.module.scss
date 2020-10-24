@@ -1,3 +1,63 @@
+@import '../../../sass/variables';
+
+.overlay,
+.hidden {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	position: fixed;
+	min-height: 100vh;
+	width: 100vw;
+	overflow: hidden;
+	background: linear-gradient(-45deg, $brand-main, $brand-secondary, $brand-accent);
+	background-size: 400% 400%;
+	z-index: 9999999999999999999;
+	top: 0;
+	left: 0;
+	transition: all 1.5s ease;
+	-webkit-animation: background 30s ease infinite;
+	-moz-animation: background 30s ease infinite;
+	animation: background 30s ease infinite;
+	& .inner {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		width: 90%;
+		height: 100%;
+		position: relative;
+		& img {
+			object-fit: contain;
+			width: 100%;
+			max-width: 30rem;
+		}
+		& button {
+			width: 14rem;
+			background: transparent;
+			color: #fff;
+			padding: 1rem;
+			font-size: 1rem;
+			border: 0;
+			border-radius: 3px;
+			text-transform: uppercase;
+			font-weight: 700;
+			transition: all 0.3s ease-in-out;
+			letter-spacing: 2px;
+			animation: bg-color 60s ease infinite;
+			&:hover {
+				cursor: pointer;
+				color: #fff;
+				box-shadow: 0 1px 20px $brand-accent;
+			}
+		}
+	}
+}
+.hidden {
+	opacity: 0;
+	visibility: hidden;
+	display: flex;
+}
 .section {
 	display: flex;
 	flex-direction: column;
@@ -106,5 +166,57 @@
 				background-size: cover;
 			}
 		}
+	}
+}
+
+@-webkit-keyframes background {
+	0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
+}
+@-moz-keyframes background {
+	0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
+}
+@keyframes background {
+	0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
+}
+
+@keyframes bg-color {
+	0% {
+		background: $brand-dark;
+	}
+	25% {
+		background: $brand-secondary;
+	}
+	50% {
+		background: $brand-accent;
+	}
+	75% {
+		background: $brand-main;
+	}
+	100% {
+		background: $brand-dark;
 	}
 }
