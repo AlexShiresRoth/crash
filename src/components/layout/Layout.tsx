@@ -17,8 +17,8 @@ const Layout = ({ children }: Props) => {
 
 	useEffect(() => {
 		if (typeof window !== 'undefined') {
-			console.log(window.location.href.includes('single'));
-			if (window.location.href.includes('single')) hideElement({ nav, footer: true });
+			console.log(window.location.href.includes('devils'));
+			if (window.location.href.includes('devils')) hideElement({ nav, footer: true });
 		}
 	}, [footer, nav]);
 

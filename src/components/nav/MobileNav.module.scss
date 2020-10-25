@@ -36,7 +36,7 @@
 				text-decoration: none;
 				font-size: 1.2rem;
 				height: 100%;
-				margin: 1rem;
+				margin: 0.5rem;
 				& svg {
 					fill: #fff;
 					width: 100%;
@@ -96,10 +96,11 @@
 			flex-direction: column;
 			align-items: center;
 			background: $brand-dark;
+			height: 100vh;
 			min-height: 100vh;
-			height: 100%;
 			width: 100%;
 			top: 0;
+			left: 0;
 			z-index: 10;
 			& .top_bar {
 				display: flex;
@@ -113,8 +114,7 @@
 				display: flex;
 				flex-direction: column;
 				align-items: center;
-				height: 100%;
-				justify-content: center;
+				position: relative;
 				& .social {
 					display: flex;
 					& a {
@@ -143,7 +143,6 @@
 			width: 100%;
 			top: 0;
 			opacity: 0;
-			height: 100%;
 			min-height: 100vh;
 			& .top_bar {
 				display: flex;
@@ -157,7 +156,6 @@
 				display: flex;
 				flex-direction: column;
 				align-items: center;
-				height: 100%;
 				justify-content: center;
 				& .social {
 					display: flex;

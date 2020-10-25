@@ -6,6 +6,6 @@ export const navLinks = [
 	{ path: '/videos', name: 'videos', id: uuidv4() },
 	{ path: '/devils', name: 'devils', id: uuidv4() },
 	{ path: '/tour', name: 'tour', id: uuidv4() },
-	{ path: '/store', name: 'store', id: uuidv4() },
+	{ path: '/merch', name: 'merch', id: uuidv4() },
 	{ path: '/about', name: 'about', id: uuidv4() },
 ];

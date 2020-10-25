@@ -21,12 +21,13 @@ function App() {
 				<Switch>
 					<Route exact path="/" component={Landing} />
 					<Route exact path="/main" component={Main} />
-					<Route exact path="/store" component={StorePage} />
+					<Route exact path="/merch" component={StorePage} />
 					<Route exact path="/epk" component={Epk} />
 					<Route exact path="/checkout" component={Checkout} />
 					<Route exact path="/videos" component={Videos} />
 					<Route exact path="/redirect" component={RedirectExternal} />
-					<Route exact path="/store/viewitem/:id" component={ItemPage} />
+					<Route exact path="/merch/viewitem/:id" component={ItemPage} />
+					<Route exact path="/music/viewitem/:id" component={ItemPage} />
 					<Route exact path="/devils" component={Single} />
 					<Route exact path="/music" component={MusicPage} />
 				</Switch>

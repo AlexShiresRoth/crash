@@ -11,7 +11,7 @@ interface Props {
 
 type CartProps = RouteComponentProps & Props;
 
-const Cart = ({ store: { cart, checkout }, history }: CartProps) => {
+const Cart = ({ store: { cart }, history }: CartProps) => {
 	const [isVisible, setVisibility] = useState<boolean>(false);
 	const [newAdd, setNewAddition] = useState<boolean>(false);
 	const [cartLength, setCartLength] = useState<number>(0);

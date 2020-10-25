@@ -1,5 +1,14 @@
 @import '../../../sass/variables';
 
+@font-face {
+	font-family: 'Crash';
+	src: url('../../fonts/fairwater_sailor_serif.otf');
+}
+@font-face {
+	font-family: 'Reg';
+	src: url('../../fonts/OldGrowth-Regular.otf');
+}
+
 .overlay,
 .hidden {
 	display: flex;
@@ -100,7 +109,7 @@
 			margin-top: 2rem;
 			width: 90%;
 			height: 50rem;
-			background: url('https://res.cloudinary.com/snackmanproductions/image/upload/v1602550027/crash/devilsartwork-notext-Recovered_ux9ekx.png');
+			background: url('https://res.cloudinary.com/snackmanproductions/image/upload/v1603647388/crash/devilsartwork-notext-Recovered_lwje73.png');
 			background-position: 50% 60%;
 			background-size: cover;
 			background-repeat: no-repeat;
@@ -111,7 +120,7 @@
 			align-items: center;
 			&::before {
 				position: absolute;
-				content: 'View Store';
+				content: 'View Merch';
 				font-size: 5rem;
 				color: #fff;
 				opacity: 0;
@@ -144,6 +153,155 @@
 	}
 }
 
+.box {
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	position: relative;
+	padding: 4rem 0;
+	min-height: 100vh;
+	background: linear-gradient(-45deg, $brand-accent, darken($brand-secondary, 10%), $brand-secondary);
+	background-size: 400% 400%;
+	-webkit-animation: background 30s ease infinite;
+	-moz-animation: background 30s ease infinite;
+	animation: background 30s ease infinite;
+	& .heading {
+		z-index: 2;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		& p {
+			z-index: 5;
+			text-decoration: none;
+			color: $brand-text;
+			font-family: ltc-pabst-oldstyle, serif;
+			font-weight: 100;
+			font-style: normal;
+			font-size: 2.5rem;
+			transition: all 0.3s ease;
+			text-transform: uppercase;
+		}
+	}
+
+	& .grid {
+		z-index: 5;
+		display: grid;
+		grid-template-columns: 1fr;
+		align-items: center;
+		grid-template-rows: auto;
+		margin: 2rem;
+		& .embeds {
+			display: flex;
+			justify-content: space-around;
+			flex-wrap: wrap;
+			min-height: 25rem;
+			& .iframe_container {
+				background: $brand-dark;
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				min-height: 50vh;
+				box-shadow: 0 1px 5px $brand-dark;
+				margin: 2rem;
+				width: 100%;
+				width: 30vw;
+				border-radius: 3px;
+				& .col {
+					display: flex;
+					flex-direction: column;
+					justify-content: center;
+					align-items: center;
+					margin: 1rem;
+					width: 100%;
+					padding: 0 1rem;
+					& a {
+						font-size: 1rem;
+						font-family: 'Lato', sans-serif, Arial, Helvetica, sans-serif;
+						color: $brand-text;
+						text-decoration: none;
+						display: flex;
+						flex-direction: column;
+						justify-content: center;
+						align-items: center;
+						text-align: center;
+						&::after {
+							height: 2px;
+						}
+						& svg {
+							font-size: 2rem;
+							color: $brand-main;
+						}
+					}
+				}
+				& iframe {
+					box-shadow: 0 1px 5px darken($brand-dark, 5%);
+					overflow: hidden;
+					height: 40vh;
+					width: 100%;
+				}
+			}
+		}
+	}
+}
+
+@media screen and (max-width: 900px) {
+	.box {
+		& .heading {
+			& p {
+				z-index: 5;
+				font-size: 6vw;
+				max-width: 80%;
+				text-align: center;
+			}
+		}
+
+		& .grid {
+			z-index: 5;
+			display: grid;
+			grid-template-columns: 1fr;
+			align-items: center;
+			grid-template-rows: auto;
+			margin: 2rem;
+			& .embeds {
+				display: flex;
+				justify-content: space-around;
+				flex-wrap: wrap;
+				min-height: 25rem;
+				& .iframe_container {
+					background: $brand-dark;
+					display: flex;
+					flex-direction: column;
+					align-items: center;
+					min-height: 0;
+					height: auto;
+					box-shadow: 0 1px 5px $brand-dark;
+					margin: 2rem;
+					width: 80vw;
+					max-width: 90%;
+					& .col {
+						display: flex;
+						flex-direction: column;
+						justify-content: center;
+						align-items: center;
+						height: auto;
+						margin: 1rem;
+						width: 100%;
+						max-width: 90%;
+						padding: 0 1rem;
+					}
+					& iframe {
+						box-shadow: 0 1px 5px darken($brand-dark, 5%);
+						overflow: hidden;
+						min-height: 400px;
+					}
+				}
+			}
+		}
+	}
+}
+
 @media screen and (max-width: 750px) {
 	.section {
 		& .video_container {
@@ -161,7 +319,7 @@
 				margin-top: 2rem;
 				width: 90%;
 				height: 100vh;
-				background: url('https://res.cloudinary.com/snackmanproductions/image/upload/v1603244166/crash/devilsartwork-mobile_n5bbvm.jpg');
+				background: url('https://res.cloudinary.com/snackmanproductions/image/upload/v1603647388/crash/devilsartwork-mobile.jpg_m3djzb.png');
 				background-position: 52% 30%;
 				background-size: cover;
 			}

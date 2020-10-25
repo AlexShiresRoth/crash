@@ -36,6 +36,7 @@ const initialState = {
 	processed: false,
 	lineItems: [],
 	checkoutErrors: [],
+	musicVendor: 'single music',
 };
 
 export default (state = initialState, action: any) => {
@@ -92,13 +93,13 @@ export default (state = initialState, action: any) => {
 				checkout: payload,
 				loading: false,
 			};
-		case UPDATE_LINE_ITEM: 
-		return {
-			...state,
-			cart:  [...payload.lineItems],
-			checkout: payload,
-			loading: false
-		}
+		case UPDATE_LINE_ITEM:
+			return {
+				...state,
+				cart: [...payload.lineItems],
+				checkout: payload,
+				loading: false,
+			};
 
 		case REMOVE_FROM_CART:
 			return {

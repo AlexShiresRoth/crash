@@ -1,25 +1,27 @@
-@import '../../../sass/variables';
+@import '../../../../sass/variables';
 
 .section {
 	min-height: 100vh;
-	background: #eee;
+	background: $brand-dark;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
+	padding: 4rem 0;
 	& .store_grid {
 		display: grid;
-		grid-template-columns: repeat(4, minmax(200px, 350px));
-		gap: 1rem;
-		margin: 2rem 0;
+		grid-template-columns: repeat(3, minmax(350px, 350px));
+		gap: 2rem;
+		margin: 9rem 0;
 	}
 }
 
 @media screen and (max-width: 1500px) {
 	.section {
+		padding: 6rem 0;
 		& .store_grid {
 			margin-top: 1rem;
-			grid-template-columns: repeat(4, minmax(200px, 300px));
+			grid-template-columns: repeat(3, minmax(200px, 300px));
 		}
 	}
 }
@@ -27,20 +29,14 @@
 @media screen and (max-width: 900px) {
 	.section {
 		& .store_grid {
-			grid-template-columns: repeat(3, minmax(250px, 300px));
-		}
-	}
-}
-@media screen and (max-width: 750px) {
-	.section {
-		& .store_grid {
-			grid-template-columns: repeat(2, minmax(45vw, 45vw));
+			grid-template-columns: repeat(1, minmax(60vw, 70vw));
 		}
 	}
 }
 
 @media screen and (max-width: 550px) {
 	.section {
+		padding: 7rem 0;
 		& .store_grid {
 			grid-template-columns: repeat(1, minmax(90vw, 90vw));
 		}

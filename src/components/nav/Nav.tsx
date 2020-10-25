@@ -24,9 +24,9 @@ const Nav = ({ history, clearSearch }: Props) => {
 		if (!history.location.pathname.includes('store')) {
 			clearSearch();
 		}
-		if (history.location.pathname.includes('single')) {
+		if (history.location.pathname.includes('devils')) {
 			const newLinks = navLinks.filter((item: { name: string; path: string }) => {
-				return item.name === 'store';
+				return item.name === 'merch' || item.name === 'music';
 			});
 
 			filterLinks(newLinks);

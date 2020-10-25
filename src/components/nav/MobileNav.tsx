@@ -6,7 +6,7 @@ import { NavLink } from 'react-router-dom';
 import Cart from './cart/Cart';
 import { TiSocialFacebook, TiSocialYoutube, TiSocialTwitter, TiSocialInstagram } from 'react-icons/ti';
 
-const MobileNav = (props: any) => {
+const MobileNav = () => {
 	const [menuOpen, toggleMenu] = useState<boolean>(false);
 
 	const menu = navLinks.map((item) => {

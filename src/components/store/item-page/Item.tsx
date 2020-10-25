@@ -20,12 +20,19 @@ interface Props {
 
 type AllProps = Props & RouteComponentProps;
 
-const Item = ({ store: { loading, foundItem, cart }, match, findStoreItem, addToCart, alerts }: AllProps) => {
+const Item = ({
+	store: { loading, foundItem, cart, musicVendor },
+	match,
+	findStoreItem,
+	addToCart,
+	alerts,
+}: AllProps) => {
 	useEffect(() => {
 		setTimeout(() => {
 			window.scrollTo(0, 0);
 		}, 100);
 	}, [match.params.id]);
+
 	useEffect(() => {
 		findStoreItem(match.params.id);
 	}, [match.params.id, findStoreItem]);
@@ -34,6 +41,8 @@ const Item = ({ store: { loading, foundItem, cart }, match, findStoreItem, addTo
 		option: null,
 		quantity: 1,
 	});
+
+	const maxQuantity = 5;
 
 	const { option, quantity } = selectedItem;
 	//Handle alerting user if adding cart to item fails
@@ -56,7 +65,10 @@ const Item = ({ store: { loading, foundItem, cart }, match, findStoreItem, addTo
 			? addToCart(selectedItem)
 			: setAlert({
 					sizeError: true,
-					status: 'Please choose a size',
+					status:
+						foundItem.vendor && foundItem.vendor.toLowerCase() === musicVendor
+							? 'Please choose a type'
+							: 'Please choose a size',
 			  });
 	};
 
@@ -73,13 +85,22 @@ const Item = ({ store: { loading, foundItem, cart }, match, findStoreItem, addTo
 		}
 	}, [sizeError]);
 
+	const handleArrayFromNumberAmount = () => {
+		const array = [];
+
+		for (let i = 0; i < maxQuantity; i++) {
+			array.push(i + 1);
+		}
+		return array;
+	};
+
 	return !loading && foundItem ? (
 		<div className={style.container}>
 			<div className={style.inner}>
 				<div className={style.back_btn}>
-					<Link to="/store">
+					<Link to={foundItem.vendor && foundItem.vendor.toLowerCase() === musicVendor ? '/music' : '/merch'}>
 						<FaChevronLeft />
-						Back to store
+						Continue Shopping
 					</Link>
 				</div>
 				<div className={style.item}>
@@ -109,11 +130,13 @@ const Item = ({ store: { loading, foundItem, cart }, match, findStoreItem, addTo
 								name="quantity"
 								value={quantity}
 							>
-								<option value="1">1</option>
-								<option value="2">2</option>
-								<option value="3">3</option>
-								<option value="4">4</option>
-								<option value="5">5</option>
+								{handleArrayFromNumberAmount().map((value: number) => {
+									return (
+										<option value={`${value}`} key={value}>
+											{value}
+										</option>
+									);
+								})}
 							</select>
 							{sizeError ? <StoreAlert status={status} type={'danger'} /> : null}
 							{alerts.length > 0 ? (

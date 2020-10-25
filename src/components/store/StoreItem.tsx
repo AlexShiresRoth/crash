@@ -27,7 +27,7 @@ const StoreItem = ({ item, index, store: { loading } }: Props) => {
 				</p>
 			</div>
 			<div className={style.actions}>
-				<Link to={`/store/viewitem/${item.id}`}>
+				<Link to={`/merch/viewitem/${item.id}`}>
 					<button>View</button>
 				</Link>
 			</div>
