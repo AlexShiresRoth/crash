@@ -15,14 +15,14 @@ const MusicItem = ({ item, index, store: { loading } }: Props) => {
 	return !loading ? (
 		<Link
 			to={`/music/viewitem/${item.id}`}
-			onPointerEnter={() => showTitle(true)}
-			onPointerLeave={() => showTitle(false)}
+			onPointerEnter={() => showTitle(!titleVisibility)}
+			onPointerLeave={() => showTitle(!titleVisibility)}
 		>
 			<div className={style.item} key={index}>
 				<div className={style.img_container}>
 					<img src={item.images[0].src} alt={item.title} />
 				</div>
-				{titleVisibility ? (
+				{!titleVisibility ? (
 					<div className={style.heading}>
 						<p>{item.title}</p>
 					</div>

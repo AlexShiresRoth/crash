@@ -87,9 +87,9 @@ const SingleComponent = () => {
 					</div>
 				</section>
 				<div className={style.img_container}>
-					<Link to="/store">Shop "Devils" Merch</Link>
+					<Link to="/merch">Shop "Devils" Merch</Link>
 					<div className={style.bg_img}>
-						<Link to="/store"></Link>
+						<Link to="/merch"></Link>
 					</div>
 				</div>
 			</section>
