@@ -23,6 +23,7 @@ const StoreItems = ({ store: { catalog, loading, searchResults, musicVendor } }:
 
 	const handleSearch = searchResults.map((item: any, i: number) => <StoreItem item={item} index={i} key={i} />);
 
+	console.log(catalog);
 	return (
 		<>
 			{!loading && catalog.length > 0 ? (

@@ -25,10 +25,12 @@ const MusicItem = ({ item, index, store: { loading } }: Props) => {
 				{!titleVisibility ? (
 					<div className={style.heading}>
 						<p>{item.title}</p>
+						<button>View</button>
 					</div>
 				) : (
 					<div className={style.heading_invisible}>
 						<p>{item.title}</p>
+						<button>View</button>
 					</div>
 				)}
 			</div>

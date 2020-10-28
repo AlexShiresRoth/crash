@@ -15,7 +15,7 @@ const client = Client.buildClient({
 //@access public
 router.get('/inventory', async (req, res) => {
 	try {
-		const response = await client.product.fetchAll();
+		const response = await client.product.fetchAll(200);
 
 		if (!response) {
 			return res.status(400).json({ msg: 'Oops no response!' });

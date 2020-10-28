@@ -23,12 +23,11 @@ a {
 		}
 		& .heading {
 			display: flex;
-			flex-direction: column;
-			align-items: flex-start;
-			justify-content: center;
+			align-items: center;
+			justify-content: space-around;
 			z-index: 2;
 			width: 100%;
-			height: 3rem;
+			min-height: 3rem;
 			position: absolute;
 			bottom: 0;
 			left: 0;
@@ -43,15 +42,31 @@ a {
 				transition: all 0.5s ease;
 				margin-left: 1rem;
 			}
+			& button {
+				text-transform: uppercase;
+				min-width: 6rem;
+				min-height: 2.5rem;
+				border: 1px solid #df9f4a42;
+				color: $brand-secondary;
+				background: transparent;
+				margin-right: 0.5rem;
+				transition: all 0.3s ease;
+				&:hover {
+					cursor: pointer;
+					background: $brand-secondary;
+					color: #fff;
+					border: 1px solid $brand-secondary;
+				}
+			}
 		}
 		& .heading_invisible {
 			display: flex;
 			flex-direction: column;
 			align-items: center;
-			justify-content: center;
+			justify-content: space-around;
 			z-index: 2;
 			width: 100%;
-			height: 100%;
+			min-height: 100%;
 			position: absolute;
 			bottom: 0vh;
 			left: 0;
@@ -66,6 +81,22 @@ a {
 				max-width: 80%;
 				text-align: center;
 				transition: all 0.5s ease;
+			}
+			& button {
+				text-transform: uppercase;
+				min-width: 13rem;
+				min-height: 3rem;
+				border: 1px solid #fff;
+				color: #fff;
+				background: transparent;
+				margin-right: 0.5rem;
+				transition: all 0.3s ease;
+				&:hover {
+					cursor: pointer;
+					background: $brand-secondary;
+					color: #fff;
+					border: 1px solid $brand-secondary;
+				}
 			}
 		}
 	}

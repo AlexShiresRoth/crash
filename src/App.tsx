@@ -1,7 +1,7 @@
 import React from 'react';
 import './css/main.css';
 import { Landing } from './components/pages/Landing';
-import { HashRouter as Router, Route, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { Main } from './components/pages/Main';
 import { Provider } from 'react-redux';
 import store from './store';
