@@ -27,7 +27,6 @@ function App() {
 					<Route exact path="/videos" component={Videos} />
 					<Route exact path="/redirect" component={RedirectExternal} />
 					<Route exact path="/merch/viewitem/:id" component={ItemPage} />
-					<Route exact path="/music/viewitem/:id" component={ItemPage} />
 					<Route exact path="/devils" component={Single} />
 					<Route exact path="/music" component={MusicPage} />
 				</Switch>

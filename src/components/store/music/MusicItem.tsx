@@ -14,7 +14,7 @@ const MusicItem = ({ item, index, store: { loading } }: Props) => {
 	const [titleVisibility, showTitle] = useState<boolean>(false);
 	return !loading ? (
 		<Link
-			to={`/music/viewitem/${item.id}`}
+			to={`/merch/viewitem/${item.id}`}
 			onPointerEnter={() => showTitle(!titleVisibility)}
 			onPointerLeave={() => showTitle(!titleVisibility)}
 		>

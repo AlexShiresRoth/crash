@@ -21,6 +21,7 @@ const SuggestedItems = ({ store: { catalog, loading }, fetchStoreItems, match: {
 	useEffect(() => {
 		fetchStoreItems();
 	}, [fetchStoreItems]);
+
 	const suggests = catalog
 		.filter((catItem: any) => {
 			return catItem.id !== params.id;
@@ -34,7 +35,7 @@ const SuggestedItems = ({ store: { catalog, loading }, fetchStoreItems, match: {
 					<div className={style.item_desc}>
 						<h3>{item.title}</h3>
 						<p>Price: ${item.variants[0].price}</p>
-						<Link to={`/store/viewitem/${item.id}`}>
+						<Link to={`/merch/viewitem/${item.id}`}>
 							<button>View</button>
 						</Link>
 					</div>
