@@ -268,7 +268,7 @@
 				box-shadow: 0 1px 5px $brand-dark;
 				margin: 2rem;
 				width: 100%;
-				width: 30vw;
+				width: 25vw;
 				border-radius: 3px;
 				& .col {
 					display: flex;
@@ -300,7 +300,7 @@
 				& iframe {
 					box-shadow: 0 1px 5px darken($brand-dark, 5%);
 					overflow: hidden;
-					min-height: 10rem;
+					min-height: 15rem;
 					width: 100%;
 				}
 			}
