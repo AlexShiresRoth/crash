@@ -48,7 +48,7 @@ const SingleComponent = () => {
 							<div className={style.iframe_container}>
 								<div className={style.col}>
 									<a
-										href="https://open.spotify.com/artist/4z0T4u61g7AUCjxoygPCAT?si=3ZGMARQNSIi5YrgRc8w_pQ"
+										href="https://open.spotify.com/track/2EwSLivy1olqbFlrBkiF9o?si=eK_v4ldlRyCRNayvUtg0xw"
 										rel="noopener noreferrer"
 										target="_blank"
 									>
@@ -58,7 +58,7 @@ const SingleComponent = () => {
 								</div>
 								<iframe
 									title="spotify embed"
-									src="https://open.spotify.com/embed/artist/4z0T4u61g7AUCjxoygPCAT"
+									src="https://open.spotify.com/embed/album/4rQHrquA7sIxCQYDsSHvH2"
 									frameBorder="0"
 									allow="encrypted-media"
 								></iframe>
@@ -66,7 +66,7 @@ const SingleComponent = () => {
 							<div className={style.iframe_container}>
 								<div className={style.col}>
 									<a
-										href="https://music.apple.com/us/album/howve-you-been/1234046324?app=music"
+										href="https://music.apple.com/us/album/devils/1533683903?i=1533683905"
 										rel="noopener noreferrer"
 										target="_blank"
 									>
@@ -80,7 +80,7 @@ const SingleComponent = () => {
 									frameBorder="0"
 									style={{ overflow: 'hidden', borderRadius: '0px' }}
 									sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-storage-access-by-user-activation allow-top-navigation-by-user-activation"
-									src="https://embed.music.apple.com/us/album/howve-you-been/1234046324?app=music"
+									src="https://embed.music.apple.com/us/album/devils-single/1533683903"
 								></iframe>
 							</div>
 						</div>
