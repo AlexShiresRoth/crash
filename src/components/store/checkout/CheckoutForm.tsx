@@ -11,7 +11,6 @@ interface Props {
 	store?: any;
 	alerts?: any;
 	email?: any;
-	shippingInfo: boolean;
 	clearCheckout: (val: any) => void;
 }
 
@@ -19,8 +18,7 @@ const storageToken = localStorage.getItem('checkout') || '';
 
 const CheckoutForm = ({
 	processCheckout,
-	shippingInfo,
-	store: { cart, checkout, checkoutErrors },
+	store: { cart, checkout, checkoutErrors, shippingInfo },
 	alerts,
 	clearCheckout,
 }: Props) => {
@@ -29,11 +27,13 @@ const CheckoutForm = ({
 	useEffect(() => {
 		if (storageToken !== '' || storageToken !== null) setId(storageToken);
 	}, [setId]);
+
 	const onSubmit = (e: React.FormEvent) => {
 		e.preventDefault();
 		if (!shippingInfo) return;
 		if (cart.length > 0 && checkoutId !== '') {
 			processCheckout(checkoutId);
+			if (checkout) console.log('checkout nowwww');
 			if (checkout) window.open(checkout.webUrl);
 			if (checkout) clearCheckout(null);
 		}
