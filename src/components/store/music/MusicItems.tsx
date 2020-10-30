@@ -14,7 +14,7 @@ const MusicItems = ({ store: { catalog, loading, searchResults, musicVendor } }:
 		.sort((a: any, b: any, i: number) => {
 			const aDate = new Date(a.updatedAt);
 			const bDate = new Date(b.updatedAt);
-			return aDate.getTime() > bDate.getTime() ? 1 : -1;
+			return aDate.getTime() < bDate.getTime() ? 1 : -1;
 		})
 		.filter((item: any) => {
 			return item.vendor && item.vendor.toLowerCase() === musicVendor;
