@@ -13,6 +13,13 @@ import RedirectExternal from './components/reusablecomps/RedirectExternal';
 import ItemPage from './components/pages/ItemPage';
 import Single from './components/pages/Single';
 import MusicPage from './components/pages/MusicPage';
+import ReactGA from 'react-ga';
+
+ReactGA.initialize('2139154784');
+ReactGA.pageview('/');
+ReactGA.pageview('/devils');
+ReactGA.pageview('/merch');
+ReactGA.pageview('/music');
 
 function App() {
 	return (
