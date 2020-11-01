@@ -15,7 +15,7 @@ import Single from './components/pages/Single';
 import MusicPage from './components/pages/MusicPage';
 import ReactGA from 'react-ga';
 
-ReactGA.initialize('2139154784');
+ReactGA.initialize('G-KTX0ZNDXRT');
 ReactGA.pageview('/');
 ReactGA.pageview('/devils');
 ReactGA.pageview('/merch');
