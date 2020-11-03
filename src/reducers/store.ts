@@ -35,7 +35,7 @@ const initialState = {
 	returnUrl: null,
 	processed: false,
 	lineItems: [],
-	checkoutErrors: [],
+	checkoutErrors: null,
 	musicVendor: 'single music',
 };
 
@@ -152,6 +152,7 @@ export default (state = initialState, action: any) => {
 				checkout: payload,
 				processed: true,
 				loading: false,
+				checkoutErrors: null,
 			};
 		case CHECKOUT_ERROR:
 			return {

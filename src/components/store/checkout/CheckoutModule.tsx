@@ -26,7 +26,7 @@ const CheckoutModule = ({
 		fetchCheckout(id);
 	}, [fetchCheckout, cart.length]);
 
-	if (cart.length <= 0) {
+	if (cart.length <= 0 || !cart) {
 		return <Redirect to="/merch" />;
 	}
 

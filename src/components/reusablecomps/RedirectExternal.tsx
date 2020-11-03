@@ -1,41 +1,22 @@
 import React, { useEffect } from 'react';
 import { Route, Redirect } from 'react-router';
-import LoadingSpinner from './LoadingSpinner';
 
 interface Props {
 	location: any;
 }
 const RedirectExternal = ({ location }: Props) => {
-	console.log(location.state);
-	const locationState = location.state;
+	console.log(location);
+	const locationState = location;
 
 	useEffect(() => {
-		if (locationState && locationState.redirect) window.location = locationState.redirect;
+		if (locationState) window.location.href = locationState;
 	}, [locationState]);
 
 	if (!locationState || locationState === null) {
-		return <Redirect to="/store" />;
+		return <Redirect to="/merch" />;
 	}
-	const styleProps = {
-		display: 'flex',
-		height: '100vh',
-		width: '100%',
-		justifyContent: 'center',
-		alignItems: 'center',
-	};
 
-	return (
-		<Route
-			exact
-			path="/redirect"
-			render={() => (
-				<div style={{ ...styleProps, flexDirection: 'column' }}>
-					<p>Redirecting...</p>
-					<LoadingSpinner />
-				</div>
-			)}
-		/>
-	);
+	return <Route exact path="/redirect" render={() => (window.location.href = locationState)} />;
 };
 
 export default RedirectExternal;

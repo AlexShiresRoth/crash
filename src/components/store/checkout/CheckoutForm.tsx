@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import { clearCheckout, processCheckout } from '../../../actions/store';
 import StoreAlert from '../alerts/StoreAlert';
 import TotalDisplay from './TotalDisplay';
+import LoadingSpinner from '../../reusablecomps/LoadingSpinner';
 
 interface Props {
 	processCheckout: (id: string) => any;
@@ -14,36 +15,33 @@ interface Props {
 	clearCheckout: (val: any) => void;
 }
 
-const storageToken = localStorage.getItem('checkout') || '';
+// const storageToken = localStorage.getItem('checkout') || '';
 
 const CheckoutForm = ({
 	processCheckout,
-	store: { cart, checkout, checkoutErrors, shippingInfo },
+	store: { cart, checkout, checkoutErrors, shippingInfo, processed },
 	alerts,
-	clearCheckout,
 }: Props) => {
-	const [checkoutId, setId] = useState<string>('');
-
-	useEffect(() => {
-		if (storageToken !== '' || storageToken !== null) setId(storageToken);
-	}, [setId]);
+	const [processing, setProcessing] = useState(false);
 
 	const onSubmit = (e: React.FormEvent) => {
 		e.preventDefault();
-		if (!shippingInfo) return;
-		if (cart.length > 0 && checkoutId !== '') {
-			processCheckout(checkoutId);
-			if (checkout) console.log('checkout nowwww');
-			if (checkout) window.open(checkout.webUrl);
-			if (checkout) clearCheckout(null);
-		}
+		setProcessing(true);
+		processCheckout(checkout.id);
+		console.log('processing');
+
+		return (window.location = checkout.webUrl);
 	};
 
+	useEffect(() => {
+		if (processed) setProcessing(false);
+	}, [processed]);
+	console.log(checkout.id);
 	return (
 		<div className={style.checkout}>
 			<div className={style.heading}>
 				<TotalDisplay />
-				{checkoutErrors.length > 0
+				{checkoutErrors && checkoutErrors.length > 0
 					? alerts.map((alert: any, i: number) => (
 							<StoreAlert type={alert.alertType} status={alert.msg} key={i} />
 					  ))
@@ -52,7 +50,11 @@ const CheckoutForm = ({
 			<form onSubmit={(e) => onSubmit(e)}>
 				<div className={style.btn_container}>
 					{shippingInfo ? (
-						<button onSubmit={(e) => onSubmit(e)}>Checkout Now</button>
+						processing ? (
+							<LoadingSpinner />
+						) : (
+							<button onSubmit={(e) => onSubmit(e)}>Checkout Now</button>
+						)
 					) : (
 						<button className={style.disabled} disabled={true}>
 							Please enter your shipping info to proceed to checkout
