@@ -62,11 +62,13 @@ const ShippingAddressForm = ({ submitShippingInfo, store: { checkout, shippingEr
 
 	return (
 		<div className={style.form_container}>
-			<h2>Shipping Address Form</h2>
-			<p>Currently, only shipping within the US</p>
-			{shippingErrors.length > 0
-				? alerts.map((alert, i) => <StoreAlert status={alert.msg} key={i} type={alert.alertType} />)
-				: null}
+			<div className={style.form_header}>
+				<h2>Shipping Address Form</h2>
+				<p>Currently, only shipping within the US</p>
+				{shippingErrors.length > 0
+					? alerts.map((alert, i) => <StoreAlert status={alert.msg} key={i} type={alert.alertType} />)
+					: null}
+			</div>
 			<form className={style.form} onSubmit={(e) => formSubmit(e)}>
 				<div className={style.grid}>
 					<div className={style.col}>

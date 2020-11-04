@@ -170,6 +170,9 @@ export default (state = initialState, action: any) => {
 				shippingInfo: null,
 				shippingSaved: false,
 				lineItems: [],
+				checkoutErrors: null,
+				processed: false,
+				returnUrl: null,
 			};
 
 		default:

@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import style from './Store.module.scss';
-import { connect } from 'react-redux';
-import { fetchStoreItems, startOrder, fetchCheckout } from '../../actions/store';
+import { connect, RootStateOrAny } from 'react-redux';
+import { fetchStoreItems, startOrder, fetchCheckout, clearCheckout } from '../../actions/store';
 import SearchBar from './search/SearchBar';
 import StoreItems from './StoreItems';
 import Carousel from './carousel/Carousel';
@@ -10,9 +10,18 @@ interface Props {
 	fetchStoreItems: () => any;
 	startOrder: () => any;
 	fetchCheckout: (val: any) => any;
+	clearCheckout: () => void;
+	store: {
+		checkout: any;
+	};
 }
 
-const Store = ({ fetchStoreItems, startOrder, fetchCheckout }: Props) => {
+const Store = ({ fetchStoreItems, startOrder, fetchCheckout, store: { checkout }, clearCheckout }: Props) => {
+	useEffect(() => {
+		if (checkout && checkout.order) {
+			clearCheckout();
+		}
+	}, [checkout, clearCheckout]);
 	useEffect(() => {
 		fetchStoreItems();
 	}, [fetchStoreItems]);
@@ -38,4 +47,8 @@ const Store = ({ fetchStoreItems, startOrder, fetchCheckout }: Props) => {
 	);
 };
 
-export default connect(null, { fetchStoreItems, startOrder, fetchCheckout })(Store);
+const mapStateToProps = (state: RootStateOrAny) => ({
+	store: state.store,
+});
+
+export default connect(mapStateToProps, { fetchStoreItems, startOrder, fetchCheckout, clearCheckout })(Store);

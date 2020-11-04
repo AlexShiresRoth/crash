@@ -4,7 +4,7 @@ import { Redirect } from 'react-router';
 import { connect } from 'react-redux';
 import style from './CheckoutModule.module.scss';
 import LoadingSpinner from '../../reusablecomps/LoadingSpinner';
-import { removeFromCart, fetchCheckout } from '../../../actions/store';
+import { removeFromCart, fetchCheckout, clearCheckout } from '../../../actions/store';
 import ShippingAddressForm from './ShippingAddressForm';
 import CheckoutForm from './CheckoutForm';
 import UpdateInfoToggle from './UpdateInfoToggle';
@@ -14,6 +14,7 @@ interface Props {
 	removeFromCart: (val: any, variantId: string) => any;
 	store?: any;
 	fetchCheckout: (val: string) => any;
+	clearCheckout: () => any;
 }
 
 const CheckoutModule = ({
@@ -21,6 +22,12 @@ const CheckoutModule = ({
 	removeFromCart,
 	fetchCheckout,
 }: Props) => {
+	useEffect(() => {
+		if (checkout && checkout.order) {
+			clearCheckout();
+		}
+	}, [checkout]);
+
 	useEffect(() => {
 		const id = localStorage.getItem('checkout') || '';
 		fetchCheckout(id);
@@ -35,20 +42,6 @@ const CheckoutModule = ({
 			{!loading && cart.length > 0 ? (
 				<div className={style.inner}>
 					<div className={style.container}>
-						{shippingInfo ? (
-							//if update info toggled, show update form
-							//otherwise show the address form
-							!shippingSaved ? (
-								<UpdateAddress />
-							) : (
-								<UpdateInfoToggle />
-							)
-						) : (
-							<ShippingAddressForm />
-						)}
-						<CheckoutForm />
-					</div>
-					<div className={style.container}>
 						<div className={style.items_container}>
 							<div className={style.heading}>
 								<h2>Shopping Cart</h2>
@@ -60,7 +53,7 @@ const CheckoutModule = ({
 									const itemToRemove = checkout.lineItems.filter(
 										(lineItem: any) => lineItem.variant.id === cartItem.variant.id
 									)[0];
-
+									console.log(cartItem);
 									return (
 										<div className={style.item_container} key={i}>
 											<div className={style.col}>
@@ -68,7 +61,18 @@ const CheckoutModule = ({
 											</div>
 											<div className={style.col}>
 												<h3>{cartItem.title}</h3>
+												<p>
+													Size/Type:
+													{
+														cartItem.variant.selectedOptions.filter(
+															(opt: any) => opt.name.toLowerCase() === 'size'
+														)[0].value
+													}
+												</p>
+												<p>Price: ${cartItem.variant.price}</p>
+												<p>Quantity:{cartItem.quantity}</p>
 											</div>
+											<div className={style.col}></div>
 											<div className={style.col}>
 												<button onClick={() => removeFromCart(cartItem.id, itemToRemove)}>
 													Remove X
@@ -79,7 +83,19 @@ const CheckoutModule = ({
 								})}
 							</div>
 						</div>
+						{shippingInfo ? (
+							//if update info toggled, show update form
+							//otherwise show the address form
+							!shippingSaved ? (
+								<UpdateAddress />
+							) : (
+								<UpdateInfoToggle />
+							)
+						) : (
+							<ShippingAddressForm />
+						)}
 					</div>
+					<CheckoutForm />
 				</div>
 			) : (
 				<LoadingSpinner />
@@ -96,4 +112,4 @@ const mapStateToProps = (state: any) => ({
 	store: state.store,
 });
 
-export default connect(mapStateToProps, { removeFromCart, fetchCheckout })(CheckoutModule);
+export default connect(mapStateToProps, { removeFromCart, fetchCheckout, clearCheckout })(CheckoutModule);

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import style from './CheckoutForm.module.scss';
 import { connect } from 'react-redux';
-import { clearCheckout, processCheckout } from '../../../actions/store';
+import { processCheckout } from '../../../actions/store';
 import StoreAlert from '../alerts/StoreAlert';
 import TotalDisplay from './TotalDisplay';
 import LoadingSpinner from '../../reusablecomps/LoadingSpinner';
@@ -12,14 +12,11 @@ interface Props {
 	store?: any;
 	alerts?: any;
 	email?: any;
-	clearCheckout: (val: any) => void;
 }
-
-// const storageToken = localStorage.getItem('checkout') || '';
 
 const CheckoutForm = ({
 	processCheckout,
-	store: { cart, checkout, checkoutErrors, shippingInfo, processed },
+	store: { checkout, checkoutErrors, shippingInfo, processed },
 	alerts,
 }: Props) => {
 	const [processing, setProcessing] = useState(false);
@@ -28,15 +25,15 @@ const CheckoutForm = ({
 		e.preventDefault();
 		setProcessing(true);
 		processCheckout(checkout.id);
-		console.log('processing');
 
 		return (window.location = checkout.webUrl);
 	};
 
 	useEffect(() => {
-		if (processed) setProcessing(false);
+		if (processed) {
+			setProcessing(false);
+		}
 	}, [processed]);
-	console.log(checkout.id);
 	return (
 		<div className={style.checkout}>
 			<div className={style.heading}>
@@ -51,13 +48,15 @@ const CheckoutForm = ({
 				<div className={style.btn_container}>
 					{shippingInfo ? (
 						processing ? (
-							<LoadingSpinner />
+							<>
+								<LoadingSpinner updateStyle={{ size: '1.5rem' }} /> Processing...
+							</>
 						) : (
 							<button onSubmit={(e) => onSubmit(e)}>Checkout Now</button>
 						)
 					) : (
 						<button className={style.disabled} disabled={true}>
-							Please enter your shipping info to proceed to checkout
+							Please enter your shipping info
 						</button>
 					)}
 				</div>
@@ -76,4 +75,4 @@ const mapStateToProps = (state: any) => ({
 	email: state.email,
 });
 
-export default connect(mapStateToProps, { processCheckout, clearCheckout })(CheckoutForm);
+export default connect(mapStateToProps, { processCheckout })(CheckoutForm);

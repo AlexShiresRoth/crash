@@ -25,10 +25,12 @@ const TotalDisplay = ({ store: { cart, checkout } }: Props) => {
 					<span>estimated subtotal:</span> {` `}${checkout.paymentDue}
 				</p>
 				<p>
-					estimated shipping: <strong>CALCULATED AT NEXT STEP</strong>
+					estimated shipping:
+					<br /> <span>CALCULATED AT NEXT STEP</span>
 				</p>
 				<p>
-					estimated tax: <strong>CALCULATED AT NEXT STEP</strong>
+					estimated tax:
+					<br /> <strong>CALCULATED AT NEXT STEP</strong>
 				</p>
 				<p>estimated total: ${parseFloat(checkout.paymentDue).toFixed(2)}</p>
 			</div>
