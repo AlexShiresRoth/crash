@@ -63,11 +63,7 @@ const CheckoutModule = ({
 												<h3>{cartItem.title}</h3>
 												<p>
 													Size/Type:
-													{
-														cartItem.variant.selectedOptions.filter(
-															(opt: any) => opt.name.toLowerCase() === 'size'
-														)[0].value
-													}
+													{cartItem.variant.title}
 												</p>
 												<p>Price: ${cartItem.variant.price}</p>
 												<p>Quantity:{cartItem.quantity}</p>
