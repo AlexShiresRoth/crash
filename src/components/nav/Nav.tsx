@@ -24,9 +24,9 @@ const Nav = ({ history, clearSearch }: Props) => {
 		if (!history.location.pathname.includes('store')) {
 			clearSearch();
 		}
-		if (history.location.pathname.includes('single')) {
+		if (history.location.pathname.includes('devils')) {
 			const newLinks = navLinks.filter((item: { name: string; path: string }) => {
-				return item.name === 'store';
+				return item.name === 'merch' || item.name === 'music';
 			});
 
 			filterLinks(newLinks);
@@ -43,7 +43,7 @@ const Nav = ({ history, clearSearch }: Props) => {
 				<div className={style.left}>
 					<NavLink to="/main">{logo}</NavLink>
 					<div className={style.social}>
-						<a href=" http://facebook.com/crashthecalmband" rel="noopener noreferrer" target="_blank">
+						<a href="http://facebook.com/crashthecalmband" rel="noopener noreferrer" target="_blank">
 							<TiSocialFacebook />
 						</a>
 						<a
@@ -53,7 +53,7 @@ const Nav = ({ history, clearSearch }: Props) => {
 						>
 							<TiSocialYoutube />
 						</a>
-						<a href="http://twitter.com/crashthecalmny" rel="noopener noreferrer" target="_blank">
+						<a href="http://twitter.com/crashthecalm" rel="noopener noreferrer" target="_blank">
 							<TiSocialTwitter />
 						</a>
 						<a href="http://instagram.com/crashthecalmny" rel="noopener noreferrer" target="_blank">

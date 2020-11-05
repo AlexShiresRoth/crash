@@ -15,6 +15,7 @@ import {
 	FETCH_ITEM,
 	CHECKOUT_ERROR,
 	CLEAR_CHECKOUT,
+	UPDATE_LINE_ITEM,
 } from './types';
 import { setAlert } from './alert';
 
@@ -106,10 +107,8 @@ export const searchCatalog = (data: any) => async (dispatch: any) => {
 	}
 };
 
-export const addToCart = (item: string) => async (dispatch: any) => {
+export const addToCart = (item: any) => async (dispatch: any) => {
 	const checkoutId = localStorage.getItem('checkout');
-
-	console.log(item, checkoutId);
 	try {
 		const res = await api.post(`/shopifystore/addtocart/${checkoutId}`, item);
 		console.log('added to cart', res.data);
@@ -127,12 +126,27 @@ export const addToCart = (item: string) => async (dispatch: any) => {
 	}
 };
 
+export const updateLineItem = (item: any) => async (dispatch: any) => {
+	const checkoutId = localStorage.getItem('checkout');
+	try {
+		const res = await api.put(`/shopifystore/updatelineitem/${checkoutId}`, item);
+
+		dispatch({
+			type: UPDATE_LINE_ITEM,
+			payload: res.data,
+		});
+	} catch (error) {
+		dispatch({
+			type: STORE_ERROR,
+			payload: error.response.msg,
+		});
+	}
+};
+
 export const removeFromCart = (id: string, variant: any) => async (dispatch: any) => {
 	//must always receive an id as first param
 	//second param must be variant object
 	const checkoutId = localStorage.getItem('checkout');
-
-	console.log(variant);
 	try {
 		const res = await api.post(`/shopifystore/removefromcart/${checkoutId}`, variant);
 

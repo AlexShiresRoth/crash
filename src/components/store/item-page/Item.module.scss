@@ -29,6 +29,8 @@
 			padding: 2rem;
 			border: 1px solid #eee;
 			border-radius: 3px;
+			min-width: 60vw;
+			justify-items: center;
 			& .col:nth-child(1) {
 				border-right: 1px solid #eee;
 			}
@@ -36,6 +38,8 @@
 				display: flex;
 				flex-direction: column;
 				justify-content: center;
+				width: 100%;
+				align-items: center;
 				& .image_container {
 					max-width: 20rem;
 					& img {
@@ -43,11 +47,13 @@
 						object-fit: cover;
 						transition: all 0.3s ease;
 						&:hover {
-							transform: scale(1.05);
+							transform: scale(1.5);
+							cursor: zoom-in;
 						}
 					}
 				}
 				& .item_desc {
+					width: 100%;
 					& h1 {
 						text-transform: uppercase;
 					}

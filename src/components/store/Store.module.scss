@@ -19,7 +19,7 @@
 	.section {
 		& .store_grid {
 			margin-top: 1rem;
-			grid-template-columns: repeat(3, minmax(200px, 300px));
+			grid-template-columns: repeat(4, minmax(200px, 300px));
 		}
 	}
 }
@@ -27,14 +27,22 @@
 @media screen and (max-width: 900px) {
 	.section {
 		& .store_grid {
-			grid-template-columns: repeat(2, minmax(250px, 300px));
+			grid-template-columns: repeat(3, minmax(250px, 300px));
 		}
 	}
 }
-@media screen and (max-width: 700px) {
+@media screen and (max-width: 750px) {
 	.section {
 		& .store_grid {
-			grid-template-columns: repeat(1, minmax(80vw, 85vw));
+			grid-template-columns: repeat(2, minmax(45vw, 45vw));
+		}
+	}
+}
+
+@media screen and (max-width: 550px) {
+	.section {
+		& .store_grid {
+			grid-template-columns: repeat(1, minmax(90vw, 90vw));
 		}
 	}
 }

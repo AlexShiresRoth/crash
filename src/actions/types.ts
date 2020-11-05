@@ -24,4 +24,8 @@ export const FETCH_CHECKOUT = 'FETCH_CHECKOUT';
 export const SAVE_SHIPPING = 'SAVE_SHIPPING';
 export const CHECKOUT_ERROR = 'CHECKOUT_ERROR';
 export const CLEAR_CHECKOUT = 'CLEAR_CHECKOUT';
+<<<<<<< HEAD
 export const HANDLE_VISIBILITY = 'HANDLE_VISIBILITY';
+=======
+export const UPDATE_LINE_ITEM='UPDATE_LINE_ITEM';
+>>>>>>> 751eba0a397e11a0d5f6bd6e78fa5fbc6c49096f

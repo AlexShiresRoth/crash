@@ -15,7 +15,7 @@ interface Props {
 
 const UpdateAddress = ({
 	submitShippingInfo,
-	store: { shippingInfo, shippingSaved, loading },
+	store: { shippingInfo, shippingSaved },
 	alerts,
 	toggleShippingModule,
 }: Props) => {
@@ -39,6 +39,7 @@ const UpdateAddress = ({
 
 	const [changes, setChangedState] = useState<boolean>(false);
 	const [attempted, setAttempt] = useState<boolean>(false);
+	const [processing, setProcessing] = useState<boolean>(false);
 
 	useEffect(() => {
 		//export this to make use as a reusable function
@@ -85,8 +86,13 @@ const UpdateAddress = ({
 	const formSubmit = async (e: React.FormEvent) => {
 		e.preventDefault();
 		setAttempt(true);
+		setProcessing(true);
 		if (changes) await submitShippingInfo(formData);
 	};
+
+	useEffect(() => {
+		if (alerts.length > 0 || (!changes && attempted)) setProcessing(false);
+	}, [shippingInfo, alerts, changes, attempted]);
 
 	return (
 		<div className={style.form_container}>
@@ -175,10 +181,12 @@ const UpdateAddress = ({
 					</div>
 				</div>
 				<div className={style.btn_col}>
-					{!loading ? (
+					{!processing ? (
 						<button onSubmit={(e) => formSubmit(e)}>Save Shipping Info</button>
 					) : (
-						<LoadingSpinner />
+						<>
+							Saving <LoadingSpinner updateStyle={{ size: '1rem', color: '#111' }} />
+						</>
 					)}
 				</div>
 			</form>

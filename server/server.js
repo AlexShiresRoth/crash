@@ -11,7 +11,6 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.get('/', (req, res) => res.send('API Is Running'));
-app.use('/api/store', require('./routes/store'));
 app.use('/api/email', require('./routes/email'));
 app.use('/api/shopifystore', require('./routes/shopify-store'));
 

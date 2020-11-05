@@ -15,6 +15,7 @@ import {
 	FETCH_ITEM,
 	CHECKOUT_ERROR,
 	CLEAR_CHECKOUT,
+	UPDATE_LINE_ITEM,
 } from '../actions/types';
 
 const initialState = {
@@ -35,6 +36,7 @@ const initialState = {
 	processed: false,
 	lineItems: [],
 	checkoutErrors: [],
+	musicVendor: 'single music',
 };
 
 export default (state = initialState, action: any) => {
@@ -85,6 +87,13 @@ export default (state = initialState, action: any) => {
 				searching: true,
 			};
 		case ADD_TO_CART:
+			return {
+				...state,
+				cart: [...payload.lineItems],
+				checkout: payload,
+				loading: false,
+			};
+		case UPDATE_LINE_ITEM:
 			return {
 				...state,
 				cart: [...payload.lineItems],

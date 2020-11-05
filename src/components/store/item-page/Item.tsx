@@ -20,21 +20,31 @@ interface Props {
 
 type AllProps = Props & RouteComponentProps;
 
-const Item = ({ store: { loading, foundItem, cart }, match, findStoreItem, addToCart, alerts }: AllProps) => {
+const Item = ({
+	store: { loading, foundItem, cart, musicVendor },
+	match,
+	findStoreItem,
+	addToCart,
+	alerts,
+}: AllProps) => {
 	useEffect(() => {
 		setTimeout(() => {
 			window.scrollTo(0, 0);
 		}, 100);
 	}, [match.params.id]);
+
 	useEffect(() => {
 		findStoreItem(match.params.id);
 	}, [match.params.id, findStoreItem]);
 
 	const [selectedItem, selectItem] = useState<any>({
 		option: null,
+		quantity: 1,
 	});
 
-	const { option } = selectedItem;
+	const maxQuantity = 5;
+
+	const { option, quantity } = selectedItem;
 	//Handle alerting user if adding cart to item fails
 	const [alerted, setAlert] = useState({
 		sizeError: false,
@@ -44,7 +54,7 @@ const Item = ({ store: { loading, foundItem, cart }, match, findStoreItem, addTo
 	const { sizeError, status } = alerted;
 
 	const onChange = (e: React.FormEvent<HTMLSelectElement>) =>
-		selectItem({ ...selectedItem, option: e.currentTarget.value });
+		selectItem({ ...selectedItem, [e.currentTarget.name]: e.currentTarget.value });
 
 	useEffect(() => {
 		if (option !== '') setAlert({ sizeError: false, status: '' });
@@ -55,7 +65,10 @@ const Item = ({ store: { loading, foundItem, cart }, match, findStoreItem, addTo
 			? addToCart(selectedItem)
 			: setAlert({
 					sizeError: true,
-					status: 'Please choose a size',
+					status:
+						foundItem.vendor && foundItem.vendor.toLowerCase() === musicVendor
+							? 'Please choose a type'
+							: 'Please choose a size',
 			  });
 	};
 
@@ -65,20 +78,29 @@ const Item = ({ store: { loading, foundItem, cart }, match, findStoreItem, addTo
 	};
 
 	useEffect(() => {
-		if(sizeError) {
+		if (sizeError) {
 			setTimeout(() => {
-				setAlert({sizeError: false, status:''})
-			},5000)
+				setAlert({ sizeError: false, status: '' });
+			}, 5000);
 		}
-	},[sizeError])
+	}, [sizeError]);
+
+	const handleArrayFromNumberAmount = () => {
+		const array = [];
+
+		for (let i = 0; i < maxQuantity; i++) {
+			array.push(i + 1);
+		}
+		return array;
+	};
 
 	return !loading && foundItem ? (
 		<div className={style.container}>
 			<div className={style.inner}>
 				<div className={style.back_btn}>
-					<Link to="/store">
+					<Link to={foundItem.vendor && foundItem.vendor.toLowerCase() === musicVendor ? '/music' : '/merch'}>
 						<FaChevronLeft />
-						Back to store
+						Continue Shopping
 					</Link>
 				</div>
 				<div className={style.item}>
@@ -101,6 +123,21 @@ const Item = ({ store: { loading, foundItem, cart }, match, findStoreItem, addTo
 							</p>
 						</div>
 						<form onSubmit={(e) => onSubmit(e)}>
+							<label>Select Quantity</label>
+							<select
+								onChange={(e) => onChange(e)}
+								className={style.select_box}
+								name="quantity"
+								value={quantity}
+							>
+								{handleArrayFromNumberAmount().map((value: number) => {
+									return (
+										<option value={`${value}`} key={value}>
+											{value}
+										</option>
+									);
+								})}
+							</select>
 							{sizeError ? <StoreAlert status={status} type={'danger'} /> : null}
 							{alerts.length > 0 ? (
 								<StoreAlert status={alerts[0].msg} type={alerts[0].alertType} />
@@ -110,6 +147,7 @@ const Item = ({ store: { loading, foundItem, cart }, match, findStoreItem, addTo
 								onChange={(e) => onChange(e)}
 								style={sizeError ? { border: '2px solid #8f2b2bb0' } : {}}
 								className={style.select_box}
+								name="option"
 							>
 								<option>Choose Type</option>
 								{foundItem.variants.map((variant: any, i: number) => {

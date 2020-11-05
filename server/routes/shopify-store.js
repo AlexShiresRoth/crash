@@ -15,7 +15,7 @@ const client = Client.buildClient({
 //@access public
 router.get('/inventory', async (req, res) => {
 	try {
-		const response = await client.product.fetchAll();
+		const response = await client.product.fetchAll(200);
 
 		if (!response) {
 			return res.status(400).json({ msg: 'Oops no response!' });
@@ -78,11 +78,11 @@ router.post('/search', [check('searchTerm', 'Please enter a word to search by').
 //@desc create lineitem
 //@access private
 router.post('/addtocart/:id', async (req, res) => {
-	const { option } = req.body;
-
+	const { option, quantity } = req.body;
+	//TODO ADD QUANTITY FUNCTIONALITY
 	const lineItem = {
 		variantId: option,
-		quantity: 1,
+		quantity: parseInt(quantity),
 	};
 
 	try {
@@ -92,6 +92,31 @@ router.post('/addtocart/:id', async (req, res) => {
 	} catch (error) {
 		console.error('this is an error' + error);
 		res.status(500).json({ msg: 'Internal Server Error' });
+	}
+});
+
+//@route PUT route
+//@desc update line item
+//@access private
+router.put('/updatelineitem/:id', async (req, res) => {
+	const { option, quantity } = req.body;
+
+	const updateItem = [
+		{
+			id: option,
+			quantity: parseInt(quantity),
+		},
+	];
+
+	console.log(updateItem, req.params.id);
+
+	try {
+		const response = await client.checkout.updateLineItems(req.params.id, updateItem);
+
+		res.json(response);
+	} catch (error) {
+		console.error(error);
+		return res.status(500).json({ msg: 'Internal Server' });
 	}
 });
 

@@ -27,7 +27,7 @@ const CheckoutModule = ({
 	}, [fetchCheckout, cart.length]);
 
 	if (cart.length <= 0) {
-		return <Redirect to="/store" />;
+		return <Redirect to="/merch" />;
 	}
 
 	return (
@@ -46,7 +46,7 @@ const CheckoutModule = ({
 						) : (
 							<ShippingAddressForm />
 						)}
-						<CheckoutForm shippingInfo={shippingInfo} />
+						<CheckoutForm />
 					</div>
 					<div className={style.container}>
 						<div className={style.items_container}>
