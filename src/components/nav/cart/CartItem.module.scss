@@ -37,6 +37,7 @@
 				padding: 0.5rem;
 				font-size: 0.7rem;
 				width: 100%;
+				color: #bbb;
 				&:hover {
 					color: $brand-proceed;
 				}
@@ -45,6 +46,7 @@
 		& .remove {
 			& button {
 				border: 1px solid #eee;
+				color: #bbb;
 				border-radius: 3px;
 				padding: 0.5rem;
 				font-size: 0.7rem;

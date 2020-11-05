@@ -258,7 +258,7 @@ export const processCheckout = (id: string) => async (dispatch: any) => {
 	}
 };
 
-export const clearCheckout = (val: any) => async (dispatch: any) => {
+export const clearCheckout = () => async (dispatch: any) => {
 	dispatch({
 		type: CLEAR_CHECKOUT,
 	});

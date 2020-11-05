@@ -2,48 +2,43 @@ import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import style from './CheckoutForm.module.scss';
 import { connect } from 'react-redux';
-import { clearCheckout, processCheckout } from '../../../actions/store';
+import { processCheckout } from '../../../actions/store';
 import StoreAlert from '../alerts/StoreAlert';
 import TotalDisplay from './TotalDisplay';
+import LoadingSpinner from '../../reusablecomps/LoadingSpinner';
 
 interface Props {
 	processCheckout: (id: string) => any;
 	store?: any;
 	alerts?: any;
 	email?: any;
-	clearCheckout: (val: any) => void;
 }
-
-const storageToken = localStorage.getItem('checkout') || '';
 
 const CheckoutForm = ({
 	processCheckout,
-	store: { cart, checkout, checkoutErrors, shippingInfo },
+	store: { checkout, checkoutErrors, shippingInfo, processed },
 	alerts,
-	clearCheckout,
 }: Props) => {
-	const [checkoutId, setId] = useState<string>('');
-
-	useEffect(() => {
-		if (storageToken !== '' || storageToken !== null) setId(storageToken);
-	}, [setId]);
+	const [processing, setProcessing] = useState(false);
 
 	const onSubmit = (e: React.FormEvent) => {
 		e.preventDefault();
-		if (!shippingInfo) return;
-		if (cart.length > 0 && checkoutId !== '') {
-			processCheckout(checkoutId);
-			if (checkout) console.log('checkout nowwww');
-			if (checkout) window.open(checkout.webUrl);
-			if (checkout) clearCheckout(null);
-		}
+		setProcessing(true);
+		processCheckout(checkout.id);
+
+		return (window.location = checkout.webUrl);
 	};
 
+	useEffect(() => {
+		if (processed) {
+			setProcessing(false);
+		}
+	}, [processed]);
 	return (
 		<div className={style.checkout}>
 			<div className={style.heading}>
 				<TotalDisplay />
-				{checkoutErrors.length > 0
+				{checkoutErrors && checkoutErrors.length > 0
 					? alerts.map((alert: any, i: number) => (
 							<StoreAlert type={alert.alertType} status={alert.msg} key={i} />
 					  ))
@@ -52,10 +47,16 @@ const CheckoutForm = ({
 			<form onSubmit={(e) => onSubmit(e)}>
 				<div className={style.btn_container}>
 					{shippingInfo ? (
-						<button onSubmit={(e) => onSubmit(e)}>Checkout Now</button>
+						processing ? (
+							<>
+								<LoadingSpinner updateStyle={{ size: '1.5rem' }} /> Processing...
+							</>
+						) : (
+							<button onSubmit={(e) => onSubmit(e)}>Checkout Now</button>
+						)
 					) : (
 						<button className={style.disabled} disabled={true}>
-							Please enter your shipping info to proceed to checkout
+							Please enter your shipping info
 						</button>
 					)}
 				</div>
@@ -74,4 +75,4 @@ const mapStateToProps = (state: any) => ({
 	email: state.email,
 });
 
-export default connect(mapStateToProps, { processCheckout, clearCheckout })(CheckoutForm);
+export default connect(mapStateToProps, { processCheckout })(CheckoutForm);
