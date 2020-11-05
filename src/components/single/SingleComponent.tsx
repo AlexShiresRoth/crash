@@ -23,7 +23,7 @@ const SingleComponent = () => {
 			<div className={overlayVisible ? style.overlay : style.hidden}>
 				<div className={style.inner}>
 					<img
-						src={`https://res.cloudinary.com/snackmanproductions/image/upload/v1603506986/crash/Untitled_Artwork_ri6ybz.png`}
+						src={`https://res.cloudinary.com/snackmanproductions/image/upload/c_scale,q_71,w_1177/v1603506986/crash/Untitled_Artwork_ri6ybz.png`}
 						alt="devils"
 					/>
 					<button onClick={(e) => toggleOverlay(!overlayVisible)}>Enter</button>
