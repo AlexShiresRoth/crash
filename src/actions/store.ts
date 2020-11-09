@@ -194,6 +194,7 @@ export const fetchCheckout = (id: string) => async (dispatch: any) => {
 			type: STORE_ERROR,
 			payload: error,
 		});
+		dispatch(startOrder());
 		dispatch(setAlert(error.response.data.msg, 'danger'));
 	}
 };

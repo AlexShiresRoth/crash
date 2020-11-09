@@ -7,7 +7,6 @@ import { findStoreItem } from '../../../actions/store';
 import { addToCart, removeFromCart } from '../../../actions/store';
 import LoadingSpinner from '../../reusablecomps/LoadingSpinner';
 import StoreAlert from '../alerts/StoreAlert';
-import { FaChevronLeft } from 'react-icons/fa';
 
 interface Props {
 	store?: any;
@@ -97,10 +96,15 @@ const Item = ({
 	return !loading && foundItem ? (
 		<div className={style.container}>
 			<div className={style.inner}>
-				<div className={style.back_btn}>
+				<div className={style.bread_crumbs}>
+					<Link to={`/`}>Home</Link>
+					<p>\</p>
 					<Link to={foundItem.vendor && foundItem.vendor.toLowerCase() === musicVendor ? '/music' : '/merch'}>
-						<FaChevronLeft />
-						Continue Shopping
+						Store
+					</Link>
+					<p>\</p>
+					<Link to={window.location} className={style.active}>
+						Item
 					</Link>
 				</div>
 				<div className={style.item}>
