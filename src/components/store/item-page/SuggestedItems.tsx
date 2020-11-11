@@ -135,9 +135,10 @@ const SuggestedItems = ({ store: { catalog, loading }, fetchStoreItems, match: {
 				setIndex(0);
 				setScrollAmt(0);
 				return;
+			} else {
+				setIndex((prevIndex: number) => prevIndex + 1);
+				setScrollAmt((prevAmt: number) => prevAmt - gridSize);
 			}
-			setIndex((prevIndex: number) => prevIndex + 1);
-			setScrollAmt((prevAmt: number) => prevAmt - gridSize);
 		}, 7000);
 
 		//if user is hovering element don't scroll
