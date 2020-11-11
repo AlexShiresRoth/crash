@@ -25,12 +25,14 @@ const SuggestedItems = ({ store: { catalog, loading }, fetchStoreItems, match: {
 	}, [fetchStoreItems]);
 
 	const [visible, setVisibility] = useState(false);
-
-	// const [gridSize, setGridSize] = useState(0);
-	// const [scrollAmount, setScrollAmt] = useState(0);
-
+	const [index, setIndex] = useState(0);
+	const [max, setMax] = useState(0);
+	const [maxScrollWidth, setMaxScrollWidth] = useState<number>(0);
+	const [gridSize, setGridSize] = useState(0);
+	const [scrollAmount, setScrollAmt] = useState(0);
 	const gridRef = useRef<HTMLDivElement>(null);
 	const scrollingObject = useRef<HTMLDivElement>(null);
+	let time = useRef<any>();
 
 	const goToItem = (item: any) => {
 		return history.push(`/merch/viewitem/${item.id}`);
@@ -58,60 +60,99 @@ const SuggestedItems = ({ store: { catalog, loading }, fetchStoreItems, match: {
 			);
 		});
 
-	// const handleGridSize = () => {
-	// 	setGridSize((prevWidth) =>
-	// 		gridRef.current !== null ? gridRef.current.getBoundingClientRect().width : prevWidth
-	// 	);
-	// };
+	const handleGridSize = () => {
+		setGridSize((prevWidth) =>
+			gridRef.current !== null ? gridRef.current.getBoundingClientRect().width : prevWidth
+		);
+	};
 
-	// useEffect(() => {
-	// 	if (!loading) {
-	// 		handleGridSize();
+	useEffect(() => {
+		if (gridRef.current !== null && catalog) {
+			handleGridSize();
+		}
+	}, [gridRef, catalog]);
 
-	// 		return;
-	// 	}
-	// }, [loading]);
+	useEffect(() => {
+		if (!loading && catalog) {
+			window.addEventListener('resize', handleGridSize);
+		}
+		return () => window.removeEventListener('resize', handleGridSize);
+	});
 
-	// useEffect(() => {
-	// 	if (!loading) {
-	// 		window.addEventListener('resize', handleGridSize);
-	// 	}
+	useEffect(() => {
+		if (scrollingObject.current !== null && catalog && gridRef.current !== null) {
+			setMax(Math.round(scrollingObject.current.scrollWidth / gridSize));
+			setMaxScrollWidth(scrollingObject.current.scrollWidth);
+			console.log(Math.round(scrollingObject.current.scrollWidth / gridSize));
+		}
+	}, [gridSize, loading, catalog, gridRef]);
 
-	// 	return () => window.removeEventListener('resize', handleGridSize);
-	// });
+	const scrollController = (value: number) => {
+		console.log(scrollAmount, -maxScrollWidth);
 
-	// useEffect(() => {
-	// 	if (scrollingObject.current !== null && !loading && scrollingObject.current.scrollWidth) {
-	// 		setScrollAmt(scrollingObject.current.scrollWidth);
-	// 		console.log(scrollingObject.current.scrollWidth / gridSize);
-	// 	}
-	// }, [gridSize, loading]);
+		switch (value) {
+			case 0:
+				if (scrollAmount >= 0 - gridSize) {
+					console.log('min ascroll reached', -maxScrollWidth);
+					setIndex(max);
+					setScrollAmt(-maxScrollWidth + gridSize);
+					return;
+				} else {
+					setIndex((prevIndex: number) => prevIndex - 1);
+					setScrollAmt((prevAmt: number) => prevAmt + gridSize);
+				}
+				return;
+			case 1:
+				if (scrollAmount <= -maxScrollWidth + gridSize) {
+					console.log('max ascroll reached');
+					setIndex(0);
+					setScrollAmt(0);
+					return;
+				} else {
+					setIndex((prevIndex: number) => prevIndex + 1);
+					setScrollAmt((prevAmt: number) => prevAmt - gridSize);
+				}
+				return;
+			default:
+				return;
+		}
+	};
 
-	//TODO need to complete this
-	// const scrollSection = (direction: string, scrollPX: number) => {
-	// 	if (scrollAmount && scrollingObject.current !== null) {
-	// 		if (direction === 'right') {
-	// 			return (scrollingObject.current.style.transform = `translate3d(${-scrollPX}px,0, 0)`);
-	// 		}
-	// 		if (direction === 'left') {
-	// 			return (scrollingObject.current.style.transform = `translate3d(${scrollPX}px,0, 0)`);
-	// 		}
-	// 	}
-	// };
+	useEffect(() => {
+		const scrollSection = () => {
+			if (scrollingObject.current !== null) {
+				return (scrollingObject.current.style.transform = `translate3d(${scrollAmount}px,0, 0)`);
+			}
+		};
+		scrollSection();
+	}, [index, scrollAmount]);
 
-	// useEffect(() => {
-	// 	setInterval(() => {
-	// 		scrollSection('right', scrollAmount);
-	// 	}, 5000);
+	//infinite loop carousel
+	useEffect(() => {
+		time.current = setTimeout(() => {
+			if (scrollAmount <= -maxScrollWidth + gridSize) {
+				console.log('max ascroll reached');
+				setIndex(0);
+				setScrollAmt(0);
+				return;
+			}
+			setIndex((prevIndex: number) => prevIndex + 1);
+			setScrollAmt((prevAmt: number) => prevAmt - gridSize);
+		}, 7000);
 
-	// 	return () => clearInterval();
-	// });
-
+		//if user is hovering element don't scroll
+		if (visible) {
+			return clearTimeout(time.current);
+		}
+		return () => clearTimeout(time.current);
+	}, [scrollAmount, maxScrollWidth, gridSize, visible]);
 	return !loading ? (
 		<div
 			className={style.container}
-			onPointerEnter={() => setVisibility(!visible)}
-			onPointerLeave={() => setVisibility(!visible)}
+			onPointerEnter={() => {
+				setVisibility(true);
+			}}
+			onPointerLeave={() => setVisibility(false)}
 		>
 			<div className={style.inner}>
 				<div className={style.column}>
@@ -122,14 +163,18 @@ const SuggestedItems = ({ store: { catalog, loading }, fetchStoreItems, match: {
 						<div className={style.items_container}>
 							<FaChevronLeft
 								className={`${style.arrow_left}  ${visible ? style.visible : ''}`}
-								// onPointerDown={(e) => scrollSection('left', scrollAmount)}
+								onPointerDown={(e) => scrollController(0)}
 							/>
-							<div className={style.grid} ref={scrollingObject}>
+							<div
+								className={style.grid}
+								ref={scrollingObject}
+								style={{ gridTemplateColumns: `repeat(${suggests.length}, 1fr)` }}
+							>
 								{suggests}
 							</div>
 							<FaChevronRight
 								className={`${style.arrow_right}  ${visible ? style.visible : ''}`}
-								// onPointerDown={(e) => scrollSection('right', scrollAmount)}
+								onPointerDown={(e) => scrollController(1)}
 							/>
 						</div>
 					</div>
