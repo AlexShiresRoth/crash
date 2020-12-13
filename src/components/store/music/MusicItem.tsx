@@ -13,6 +13,7 @@ interface Props {
 const MusicItem = ({ item, index, store: { loading } }: Props) => {
 	const [titleVisibility, showTitle] = useState<boolean>(false);
 	return !loading ? (
+		<div className={style.music_item}>
 		<Link
 			to={`/merch/viewitem/${item.id}`}
 			onPointerEnter={() => showTitle(!titleVisibility)}
@@ -35,6 +36,7 @@ const MusicItem = ({ item, index, store: { loading } }: Props) => {
 				)}
 			</div>
 		</Link>
+		</div>
 	) : null;
 };
 
