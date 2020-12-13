@@ -346,6 +346,14 @@
 			}
 		}
 	}
+	.text_container {
+		width: 90%;
+		max-width: 90%;
+		& p {
+			width: 90%;
+			max-width: 90%;
+		}
+	}
 }
 
 @-webkit-keyframes background {
