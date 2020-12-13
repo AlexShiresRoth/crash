@@ -72,11 +72,15 @@
 					font-style: normal;
 				}
 			}
-			& .music_video {
-				width: 60%;
+			& .music_videos {
+				display: flex;
+				justify-content: space-around;
+				align-items: center;
+				width: 100%;
 				min-height: 30rem;
 				height: 30rem;
 				& iframe {
+					width: 40vw;
 					height: 100%;
 				}
 			}
@@ -265,13 +269,6 @@
 	}
 }
 
-.worn_bg {
-	background: url('https://res.cloudinary.com/snackmanproductions/image/upload/q_70/v1604028484/crash/marian-kroell-V26lHon2fBQ-unsplash_stubqc.jpg');
-	background-position: center;
-	background-size: cover;
-	background-attachment: fixed;
-}
-
 @media screen and (max-width: 900px) {
 	.section {
 		.box {
@@ -286,9 +283,13 @@
 						font-size: 6vw;
 					}
 				}
-				& .music_video {
+				& .music_videos {
+					flex-direction: column;
 					width: 100%;
-					height: 25rem;
+					& iframe {
+						width: 100%;
+						margin: 1rem 0;
+					}
 				}
 				& .download_container {
 					& a {

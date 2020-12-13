@@ -41,10 +41,16 @@ const SingleComponent = ({ addToCart, store: { catalog }, fetchStoreItems }: Pro
 			<main className={style.section}>
 				<section className={style.box}>
 					<div className={style.inner_container}>
-						<h2>Devils, Official Music Video</h2>
-						<div className={style.music_video}>
+						<h2>Devils, Official Music Videos</h2>
+						<div className={style.music_videos}>
 							<ReactPlayer
 								url="https://youtu.be/ijbiqJY3kmo"
+								width={`100%`}
+								height={`100%`}
+								allowFullscreen={true}
+							/>
+							<ReactPlayer
+								url="https://youtu.be/xrJNa0Z5Rp8?list=PLk8oy35jC2LUgP21T1ucwYBaWMcmQ6vY-"
 								width={`100%`}
 								height={`100%`}
 								allowFullscreen={true}
@@ -132,9 +138,9 @@ const SingleComponent = ({ addToCart, store: { catalog }, fetchStoreItems }: Pro
 					</div>
 				</section>
 			</main>
-			<section className={style.section + ' ' + style.worn_bg}>
-				<div className={style.overlay}></div>
+			<section className={style.section}>
 				<div className={style.text_container}>
+					<div className={style.overlay}></div>
 					<p>
 						<em>
 							Tell me what I’m running from, where I’m going...where should I lay my head at night? What
