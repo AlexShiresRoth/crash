@@ -1,98 +1,137 @@
 import React, { useEffect, useState } from 'react';
-// import PropTypes from 'prop-types';
 import ReactPlayer from 'react-player/lazy';
 import { Link } from 'react-router-dom';
 import { FaSpotify, FaApple } from 'react-icons/fa';
 import style from './SingleComponent.module.scss';
+import { connect, RootStateOrAny } from 'react-redux';
+import { addToCart, fetchStoreItems } from '../../actions/store';
 
-const SingleComponent = () => {
-	const [overlayVisible, toggleOverlay] = useState(true);
+interface Props {
+	addToCart: (item: any) => any;
+	fetchStoreItems: () => any;
+	store: {
+		catalog: Array<any>;
+	};
+}
+
+const SingleComponent = ({ addToCart, store: { catalog }, fetchStoreItems }: Props) => {
+	const [foundSingle, setSingle] = useState<any>(null);
 
 	useEffect(() => {
-		const body = document.querySelector('html');
-		if (overlayVisible) {
-			if (typeof window !== 'undefined') {
-				if (body !== null) body.style.overflow = 'hidden';
-			}
-		} else {
-			if (body !== null) body.style.overflow = 'auto';
+		fetchStoreItems();
+	}, [fetchStoreItems]);
+
+	useEffect(() => {
+		if (catalog.length > 0) {
+			const filterCatalog = catalog
+				.filter((item: any) => {
+					return item.vendor.toLowerCase() === 'single music';
+				})
+				.filter((musicItem: { handle: string }) => {
+					return musicItem.handle === 'devils-single';
+				})[0];
+
+			setSingle(() => filterCatalog);
 		}
-	}, [overlayVisible]);
+	}, [catalog]);
+
+	console.log(foundSingle);
 	return (
 		<>
-			<div className={overlayVisible ? style.overlay : style.hidden}>
-				<div className={style.inner}>
-					<img
-						src={`https://res.cloudinary.com/snackmanproductions/image/upload/c_scale,q_71,w_1177/v1603506986/crash/Untitled_Artwork_ri6ybz.png`}
-						alt="devils"
-					/>
-					<button onClick={(e) => toggleOverlay(!overlayVisible)}>Enter</button>
-				</div>
-			</div>
-			<section className={style.section}>
-				<div className={style.video_container}>
-					<h2>Devils, a Motion Picture by Crash the Calm</h2>
-					<ReactPlayer
-						url="https://youtu.be/xrJNa0Z5Rp8"
-						width={`100%`}
-						height={`100%`}
-						allowFullscreen={true}
-					/>
-				</div>
+			<main className={style.section}>
 				<section className={style.box}>
-					<div className={style.heading}>
-						<p>Download or Stream Here</p>
-					</div>
-					<div className={style.grid}>
-						<div className={style.embeds}>
-							<div className={style.iframe_container}>
-								<div className={style.col}>
-									<a
-										href="https://open.spotify.com/track/2EwSLivy1olqbFlrBkiF9o?si=eK_v4ldlRyCRNayvUtg0xw"
-										rel="noopener noreferrer"
-										target="_blank"
-									>
-										<FaSpotify />
-										Listen on Spotify
-									</a>
-								</div>
-								<iframe
-									title="spotify embed"
-									src="https://open.spotify.com/embed/album/4rQHrquA7sIxCQYDsSHvH2"
-									frameBorder="0"
-									allow="encrypted-media"
-								></iframe>
-							</div>
-							<div className={style.iframe_container}>
-								<div className={style.col}>
-									<a
-										href="https://music.apple.com/us/album/devils/1533683903?i=1533683905"
-										rel="noopener noreferrer"
-										target="_blank"
-									>
-										<FaApple />
-										Listen on Apple Music
-									</a>
-								</div>
-								<iframe
-									title="apple music"
-									allow="autoplay *; encrypted-media *;"
-									frameBorder="0"
-									style={{ overflow: 'hidden', borderRadius: '0px' }}
-									sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-storage-access-by-user-activation allow-top-navigation-by-user-activation"
-									src="https://embed.music.apple.com/us/album/devils-single/1533683903"
-								></iframe>
-							</div>
+					<div className={style.inner_container}>
+						<h2>Devils, Official Music Video</h2>
+						<div className={style.music_video}>
+							<ReactPlayer
+								url="https://youtu.be/ijbiqJY3kmo"
+								width={`100%`}
+								height={`100%`}
+								allowFullscreen={true}
+							/>
 						</div>
 					</div>
 				</section>
-				<div className={style.img_container}>
-					<Link to="/merch">Shop "Devils" Merch</Link>
-					<div className={style.bg_img}>
-						<Link to="/merch"></Link>
+				<section className={style.box}>
+					<div className={style.inner_container}>
+						<h2>Download or Stream Here</h2>
+
+						<div className={style.grid}>
+							<div className={style.embeds}>
+								<div className={style.iframe_container}>
+									<div className={style.col}>
+										<a
+											href="https://open.spotify.com/track/2EwSLivy1olqbFlrBkiF9o?si=eK_v4ldlRyCRNayvUtg0xw"
+											rel="noopener noreferrer"
+											target="_blank"
+										>
+											<FaSpotify />
+											Listen on Spotify
+										</a>
+									</div>
+									<iframe
+										title="spotify embed"
+										src="https://open.spotify.com/embed/album/4rQHrquA7sIxCQYDsSHvH2"
+										frameBorder="0"
+										allow="encrypted-media"
+									></iframe>
+								</div>
+								<div className={style.iframe_container}>
+									<div className={style.col}>
+										<a
+											href="https://music.apple.com/us/album/devils/1533683903?i=1533683905"
+											rel="noopener noreferrer"
+											target="_blank"
+										>
+											<FaApple />
+											Listen on Apple Music
+										</a>
+									</div>
+									<iframe
+										title="apple music"
+										allow="autoplay *; encrypted-media *;"
+										frameBorder="0"
+										style={{ overflow: 'hidden', borderRadius: '0px' }}
+										sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-storage-access-by-user-activation allow-top-navigation-by-user-activation"
+										src="https://embed.music.apple.com/us/album/devils-single/1533683903"
+									></iframe>
+								</div>
+							</div>
+						</div>
+						<div className={style.download_container}>
+							{foundSingle && (
+								<Link to={`merch/viewitem/${foundSingle.id}`}>
+									<button>Download Here</button>
+								</Link>
+							)}
+						</div>
 					</div>
-				</div>
-			</section>
+				</section>
+				<section className={style.box}>
+					<div className={style.inner_container}>
+						<h2>What we're listening to</h2>
+
+						<div className={style.playlist_container}>
+							<iframe
+								src="https://open.spotify.com/embed/playlist/12UMC0BlDEj8bk6Kw9WYi5"
+								title="spotify embed"
+								frameBorder="0"
+								allow="encrypted-media"
+							></iframe>
+						</div>
+					</div>
+				</section>
+				<section className={style.box}>
+					<div className={style.inner_container}>
+						<h2>
+							<Link to="/merch">Shop "Devils" Merch</Link>
+						</h2>
+						<div className={style.bg_img}>
+							<Link to="/merch"></Link>
+						</div>
+					</div>
+				</section>
+			</main>
 			<section className={style.section + ' ' + style.worn_bg}>
 				<div className={style.overlay}></div>
 				<div className={style.text_container}>
@@ -221,4 +260,8 @@ const SingleComponent = () => {
 	);
 };
 
-export default SingleComponent;
+const mapStateToProps = (state: RootStateOrAny) => ({
+	store: state.store,
+});
+
+export default connect(mapStateToProps, { addToCart, fetchStoreItems })(SingleComponent);

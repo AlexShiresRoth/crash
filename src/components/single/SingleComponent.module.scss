@@ -9,60 +9,6 @@
 	src: url('../../fonts/OldGrowth-Regular.otf');
 }
 
-.overlay,
-.hidden {
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
-	position: fixed;
-	min-height: 100vh;
-	width: 100vw;
-	overflow: hidden;
-	background: linear-gradient(-45deg, $brand-main, $brand-secondary, $brand-accent);
-	background-size: 400% 400%;
-	z-index: 9999999999999999999;
-	top: 0;
-	left: 0;
-	transition: all 1.5s ease;
-	-webkit-animation: background 30s ease infinite;
-	-moz-animation: background 30s ease infinite;
-	animation: background 30s ease infinite;
-	& .inner {
-		display: flex;
-		flex-direction: column;
-		justify-content: center;
-		align-items: center;
-		width: 90%;
-		height: 100%;
-		position: relative;
-		& img {
-			object-fit: contain;
-			width: 100%;
-			max-width: 25rem;
-			max-height: 80vh;
-		}
-		& button {
-			width: 14rem;
-			background: transparent;
-			color: #fff;
-			padding: 1rem;
-			font-size: 1rem;
-			border: 0;
-			border-radius: 3px;
-			text-transform: uppercase;
-			font-weight: 700;
-			transition: all 0.3s ease-in-out;
-			letter-spacing: 2px;
-			animation: bg-color 60s ease infinite;
-			&:hover {
-				cursor: pointer;
-				color: #fff;
-				box-shadow: 0 1px 20px $brand-accent;
-			}
-		}
-	}
-}
 .hidden {
 	opacity: 0;
 	visibility: hidden;
@@ -74,8 +20,9 @@
 	align-items: center;
 	width: 100%;
 	background: #000;
-	padding: 4rem 0;
+	padding: 6rem 0;
 	position: relative;
+
 	& .overlay {
 		position: absolute;
 		top: 0;
@@ -87,42 +34,63 @@
 		filter: grayscale(0.3);
 		z-index: 1;
 	}
-	& .video_container {
+	& .box {
 		display: flex;
 		flex-direction: column;
+		justify-content: center;
 		align-items: center;
-		margin-top: 7rem;
-		margin-bottom: 5rem;
-		width: 90%;
-		height: 50rem;
-		display: flex;
-		& h2 {
-			color: #fff;
-			font-size: 3rem;
-			font-family: ltc-pabst-oldstyle, serif;
-			font-weight: 100;
-			font-style: normal;
-		}
-	}
-	& .img_container {
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		padding: 2rem 0;
+		border-bottom: 1px solid #ea8f4521;
 		width: 100%;
-		margin-top: 2rem;
-		& a {
-			text-decoration: none;
-			color: #fff;
-			font-size: 3rem;
-			font-family: ltc-pabst-oldstyle, serif;
-			font-weight: 100;
-			font-style: normal;
-		}
-		& .bg_img {
-			margin-top: 2rem;
+		& .inner_container {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
 			width: 90%;
-			height: 50rem;
+			min-height: 80vh;
+			padding: 4rem 0;
+			border-left: 1px solid #ea8f4521;
+			border-right: 1px solid #ea8f4521;
+			& h2 {
+				color: #fff;
+				font-size: 3rem;
+				font-family: ltc-pabst-oldstyle, serif;
+				font-weight: 100;
+				font-style: normal;
+				padding: 1rem;
+				position: relative;
+				overflow: visible;
+				background: url('https://res.cloudinary.com/snackmanproductions/image/upload/v1607883581/crash/font-bg_adx53t.png');
+				background-size: cover;
+				background-position: center;
+				width: 100%;
+				text-align: center;
+				& a {
+					color: #fff;
+					font-size: 3rem;
+					font-family: ltc-pabst-oldstyle, serif;
+					font-weight: 100;
+					font-style: normal;
+				}
+			}
+			& .music_video {
+				width: 60%;
+				min-height: 30rem;
+				height: 30rem;
+				& iframe {
+					height: 100%;
+				}
+			}
+		}
+		& .playlist_container {
+			& iframe {
+				min-width: 50vw;
+				min-height: 50vh;
+			}
+		}
+
+		& .bg_img {
+			width: 60%;
+			height: 40rem;
 			background: url('https://res.cloudinary.com/snackmanproductions/image/upload/v1603647388/crash/devilsartwork-notext-Recovered_lwje73.png');
 			background-position: 50% 60%;
 			background-size: cover;
@@ -164,162 +132,6 @@
 				left: 0;
 			}
 		}
-	}
-	& .text_container {
-		max-width: 70%;
-		width: 70%;
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		// margin: 4rem 0;
-		background: url('https://res.cloudinary.com/snackmanproductions/image/upload/v1604024363/crash/annie-spratt-xvU-X0GV9-o-unsplash_lkgczb.jpg');
-		background-size: cover;
-		background-repeat: no-repeat;
-		position: relative;
-		padding: 6rem 0;
-		opacity: 1;
-		box-shadow: 0 1px 10px #666;
-		& .img_container {
-			height: 100%;
-			position: absolute;
-			z-index: 0;
-			& img {
-				max-width: 100%;
-				object-fit: contain;
-			}
-		}
-
-		& p {
-			max-width: 50%;
-			text-align: center;
-			color: $brand-secondary;
-			font-size: 1.4rem;
-			font-family: ltc-pabst-oldstyle, serif;
-			font-weight: 100;
-			line-height: 2;
-			font-style: normal;
-			z-index: 2;
-			opacity: 0.8;
-			& em {
-				color: #eee;
-				font-weight: 100;
-			}
-			& strong {
-				font-weight: 700;
-				color: #fff;
-			}
-		}
-	}
-}
-.worn_bg {
-	background: url('https://res.cloudinary.com/snackmanproductions/image/upload/q_70/v1604028484/crash/marian-kroell-V26lHon2fBQ-unsplash_stubqc.jpg');
-	background-position: center;
-	background-size: cover;
-	background-attachment: fixed;
-}
-
-.box {
-	width: 100%;
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
-	position: relative;
-	padding: 4rem 0;
-	background: linear-gradient(-45deg, $brand-accent, darken($brand-secondary, 10%), $brand-secondary);
-	background-size: 400% 400%;
-	-webkit-animation: background 30s ease infinite;
-	-moz-animation: background 30s ease infinite;
-	animation: background 30s ease infinite;
-	& .heading {
-		z-index: 2;
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		& p {
-			z-index: 5;
-			text-decoration: none;
-			color: $brand-text;
-			font-family: ltc-pabst-oldstyle, serif;
-			font-weight: 100;
-			font-style: normal;
-			font-size: 2.5rem;
-			transition: all 0.3s ease;
-			text-transform: uppercase;
-		}
-	}
-
-	& .grid {
-		z-index: 5;
-		display: grid;
-		grid-template-columns: 1fr;
-		align-items: center;
-		grid-template-rows: auto;
-		margin: 2rem;
-		& .embeds {
-			display: flex;
-			justify-content: space-around;
-			flex-wrap: wrap;
-			min-height: 5rem;
-			& .iframe_container {
-				background: $brand-dark;
-				display: flex;
-				flex-direction: column;
-				align-items: center;
-				box-shadow: 0 1px 5px $brand-dark;
-				margin: 2rem;
-				width: 100%;
-				width: 25vw;
-				border-radius: 3px;
-				& .col {
-					display: flex;
-					flex-direction: column;
-					justify-content: center;
-					align-items: center;
-					margin: 1rem;
-					width: 100%;
-					padding: 0 1rem;
-					& a {
-						font-size: 1rem;
-						font-family: 'Lato', sans-serif, Arial, Helvetica, sans-serif;
-						color: $brand-text;
-						text-decoration: none;
-						display: flex;
-						flex-direction: column;
-						justify-content: center;
-						align-items: center;
-						text-align: center;
-						&::after {
-							height: 2px;
-						}
-						& svg {
-							font-size: 2rem;
-							color: $brand-main;
-						}
-					}
-				}
-				& iframe {
-					box-shadow: 0 1px 5px darken($brand-dark, 5%);
-					overflow: hidden;
-					min-height: 15rem;
-					width: 100%;
-				}
-			}
-		}
-	}
-}
-
-@media screen and (max-width: 900px) {
-	.box {
-		& .heading {
-			& p {
-				z-index: 5;
-				font-size: 6vw;
-				max-width: 80%;
-				text-align: center;
-			}
-		}
-
 		& .grid {
 			z-index: 5;
 			display: grid;
@@ -331,31 +143,76 @@
 				display: flex;
 				justify-content: space-around;
 				flex-wrap: wrap;
+				min-height: 5rem;
 				& .iframe_container {
 					background: $brand-dark;
 					display: flex;
 					flex-direction: column;
 					align-items: center;
-					min-height: 0;
-					height: auto;
 					box-shadow: 0 1px 5px $brand-dark;
 					margin: 2rem;
-					width: 80vw;
-					max-width: 90%;
+					width: 25vw;
+					border-radius: 3px;
 					& .col {
 						display: flex;
 						flex-direction: column;
 						justify-content: center;
 						align-items: center;
-						height: auto;
 						margin: 1rem;
 						width: 100%;
-						max-width: 90%;
 						padding: 0 1rem;
+						& a {
+							font-size: 1rem;
+							font-family: 'Lato', sans-serif, Arial, Helvetica, sans-serif;
+							color: $brand-text;
+							text-decoration: none;
+							display: flex;
+							flex-direction: column;
+							justify-content: center;
+							align-items: center;
+							text-align: center;
+							&::after {
+								height: 2px;
+							}
+							& svg {
+								font-size: 2rem;
+								color: $brand-main;
+							}
+						}
 					}
 					& iframe {
 						box-shadow: 0 1px 5px darken($brand-dark, 5%);
 						overflow: hidden;
+						min-height: 15rem;
+						width: 100%;
+					}
+				}
+				& .iframe_container_playlist {
+					& iframe {
+						min-height: 30rem;
+					}
+				}
+			}
+		}
+		& .download_container {
+			border-top: 1px solid #ea8f4521;
+			width: 90%;
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			padding: 2rem 0;
+			& a {
+				& button {
+					min-width: 30rem;
+					min-height: 3rem;
+					border: 1px solid $brand-main;
+					background: $brand-main;
+					color: #fff;
+					text-transform: uppercase;
+					transition: all 0.3s ease;
+					border-radius: 3px;
+					&:hover {
+						cursor: pointer;
 					}
 				}
 			}
@@ -363,33 +220,129 @@
 	}
 }
 
-@media screen and (max-width: 750px) {
+.text_container {
+	max-width: 70%;
+	width: 70%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	background: url('https://res.cloudinary.com/snackmanproductions/image/upload/v1604024363/crash/annie-spratt-xvU-X0GV9-o-unsplash_lkgczb.jpg');
+	background-size: cover;
+	background-repeat: no-repeat;
+	position: relative;
+	padding: 6rem 0;
+	opacity: 1;
+	box-shadow: 0 1px 10px #666;
+	& .img_container {
+		height: 100%;
+		position: absolute;
+		z-index: 0;
+		& img {
+			max-width: 100%;
+			object-fit: contain;
+		}
+	}
+
+	& p {
+		max-width: 50%;
+		text-align: center;
+		color: $brand-secondary;
+		font-size: 1.4rem;
+		font-family: ltc-pabst-oldstyle, serif;
+		font-weight: 100;
+		line-height: 2;
+		font-style: normal;
+		z-index: 2;
+		opacity: 0.8;
+		& em {
+			color: #eee;
+			font-weight: 100;
+		}
+		& strong {
+			font-weight: 700;
+			color: #fff;
+		}
+	}
+}
+
+.worn_bg {
+	background: url('https://res.cloudinary.com/snackmanproductions/image/upload/q_70/v1604028484/crash/marian-kroell-V26lHon2fBQ-unsplash_stubqc.jpg');
+	background-position: center;
+	background-size: cover;
+	background-attachment: fixed;
+}
+
+@media screen and (max-width: 900px) {
 	.section {
-		& .video_container {
-			& h2 {
-				font-size: 2rem;
-				text-align: center;
-			}
-		}
-		& .img_container {
-			& a {
-				font-size: 2rem;
-				text-align: center;
-			}
-			& .bg_img {
-				margin-top: 2rem;
+		.box {
+			& .inner_container {
 				width: 90%;
-				height: 100vh;
-				background: url('https://res.cloudinary.com/snackmanproductions/image/upload/v1603647388/crash/devilsartwork-mobile.jpg_m3djzb.png');
-				background-position: 52% 30%;
-				background-size: cover;
-			}
-		}
-		& .text_container {
-			width: 90%;
-			max-width: 90%;
-			& p {
-				max-width: 90%;
+				padding: 1rem 0;
+				& h2 {
+					z-index: 5;
+					font-size: 6vw;
+					text-align: center;
+					& a {
+						font-size: 6vw;
+					}
+				}
+				& .music_video {
+					width: 100%;
+					height: 25rem;
+				}
+				& .download_container {
+					& a {
+						& button {
+							min-width: 90vw;
+						}
+					}
+				}
+				& .bg_img {
+					width: 90%;
+					height: 30rem;
+					background: url('https://res.cloudinary.com/snackmanproductions/image/upload/c_scale,w_884/v1603647388/crash/devilsartwork-mobile.jpg_m3djzb.jpg');
+					background-position: center;
+				}
+				& .grid {
+					z-index: 5;
+					display: grid;
+					grid-template-columns: 1fr;
+					align-items: center;
+					grid-template-rows: auto;
+					margin: 2rem;
+					& .embeds {
+						display: flex;
+						justify-content: space-around;
+						flex-wrap: wrap;
+						& .iframe_container {
+							background: $brand-dark;
+							display: flex;
+							flex-direction: column;
+							align-items: center;
+							min-height: 0;
+							height: auto;
+							box-shadow: 0 1px 5px $brand-dark;
+							margin: 2rem;
+							width: 80vw;
+							max-width: 90%;
+							& .col {
+								display: flex;
+								flex-direction: column;
+								justify-content: center;
+								align-items: center;
+								height: auto;
+								margin: 1rem;
+								width: 100%;
+								max-width: 90%;
+								padding: 0 1rem;
+							}
+							& iframe {
+								box-shadow: 0 1px 5px darken($brand-dark, 5%);
+								overflow: hidden;
+							}
+						}
+					}
+				}
 			}
 		}
 	}
