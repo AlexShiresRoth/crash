@@ -1,10 +1,11 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import style from './Store.module.scss';
 import { connect, RootStateOrAny } from 'react-redux';
 import { fetchStoreItems, startOrder, fetchCheckout, clearCheckout } from '../../actions/store';
 import SearchBar from './search/SearchBar';
 import StoreItems from './StoreItems';
 import Carousel from './carousel/Carousel';
+import ViewResults from './ViewResults';
 
 interface Props {
 	fetchStoreItems: () => any;
@@ -13,10 +14,21 @@ interface Props {
 	clearCheckout: () => void;
 	store: {
 		checkout: any;
+		searchTerm: string;
+		searchResults: Array<any>;
+		catalog: Array<any>;
 	};
 }
 
-const Store = ({ fetchStoreItems, startOrder, fetchCheckout, store: { checkout }, clearCheckout }: Props) => {
+const Store = ({
+	fetchStoreItems,
+	startOrder,
+	fetchCheckout,
+	store: { checkout, searchTerm, catalog, searchResults },
+	clearCheckout,
+}: Props) => {
+	const [resultAmt, filterResults] = useState<number>(0);
+
 	useEffect(() => {
 		if (checkout && checkout.order) {
 			clearCheckout();
@@ -36,10 +48,21 @@ const Store = ({ fetchStoreItems, startOrder, fetchCheckout, store: { checkout }
 			fetchCheckout(id);
 		}
 	}, [startOrder, fetchCheckout]);
+
+	//get result amount
+	useEffect(() => {
+		if (searchTerm !== 'All') {
+			filterResults(searchResults.length);
+		} else {
+			filterResults(catalog.length);
+		}
+	}, [catalog, searchTerm, searchResults]);
+
 	return (
 		<section className={style.section}>
 			<Carousel />
 			<SearchBar />
+			<ViewResults searchTerm={searchTerm} resultAmt={resultAmt} />
 			<div className={style.store_grid}>
 				<StoreItems />
 			</div>

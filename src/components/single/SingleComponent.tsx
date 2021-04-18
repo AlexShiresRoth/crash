@@ -35,7 +35,6 @@ const SingleComponent = ({ addToCart, store: { catalog }, fetchStoreItems }: Pro
 		}
 	}, [catalog]);
 
-	console.log(foundSingle);
 	return (
 		<>
 			<main className={style.section}>

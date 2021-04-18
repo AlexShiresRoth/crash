@@ -10,7 +10,7 @@
 }
 
 .nav {
-	min-height: 6rem;
+	min-height: 4rem;
 	display: flex;
 	flex-direction: row;
 	justify-content: space-around;
@@ -21,7 +21,7 @@
 	left: 0;
 	width: 100%;
 	z-index: 9999999;
-	box-shadow: 0 1px 5px darken($brand-dark, 2%);
+	box-shadow: 0 1px 25px darken(rgba(56, 56, 56, 0.185), 2%);
 	transition: all 0.3s ease;
 	& .left {
 		display: flex;
@@ -38,7 +38,7 @@
 			font-style: normal;
 			text-transform: uppercase;
 			text-decoration: none;
-			font-size: 1.2rem;
+			font-size: 1rem;
 			height: 100%;
 			margin: 0 0.2rem;
 			& svg {
@@ -68,7 +68,7 @@
 		justify-items: center;
 		& a {
 			color: #bbb;
-			font-size: 1.1rem;
+			font-size: 0.8rem;
 			font-weight: 700;
 			text-decoration: none;
 			text-transform: uppercase;
@@ -82,7 +82,7 @@
 .nav_scrolling {
 	background: rgba(17, 17, 17, 0.719);
 	transition: all 0.3s ease;
-	min-height: 4rem;
+	min-height: 3rem;
 	& .left {
 		& a {
 			& svg {

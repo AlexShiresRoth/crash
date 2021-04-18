@@ -24,7 +24,10 @@
 		width: 90%;
 		padding: 1rem 0;
 		& button {
-			color: #ddd;
+			color: #666;
+			&:hover {
+				cursor: pointer;
+			}
 		}
 	}
 	& .checkout {

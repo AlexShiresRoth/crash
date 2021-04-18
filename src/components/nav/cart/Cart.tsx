@@ -37,11 +37,11 @@ const Cart = ({ store: { cart }, history }: CartProps) => {
 
 	return (
 		<div className={style.cart}>
-			<button onClick={() => setVisibility(!isVisible)}>
+			<a onPointerDown={() => setVisibility(!isVisible)} href="#!">
 				Cart
 				{newAdd ? <FaCartPlus className={style.added} /> : <FaShoppingCart />}
 				{cart.length > 0 ? <span>{cart.length}</span> : null}
-			</button>
+			</a>
 			{cart.length > 0 ? <CartDisplay isVisible={isVisible} setVisibility={setVisibility} /> : null}
 		</div>
 	);

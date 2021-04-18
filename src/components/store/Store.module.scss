@@ -2,23 +2,22 @@
 
 .section {
 	min-height: 100vh;
-	background: #eee;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	justify-content: center;
+	padding-bottom: 4rem;
+	width: 100%;
 	& .store_grid {
+		width: 75%;
 		display: grid;
 		grid-template-columns: repeat(4, minmax(200px, 350px));
 		gap: 1rem;
-		margin: 2rem 0;
 	}
 }
 
 @media screen and (max-width: 1500px) {
 	.section {
 		& .store_grid {
-			margin-top: 1rem;
 			grid-template-columns: repeat(4, minmax(200px, 300px));
 		}
 	}
@@ -27,6 +26,7 @@
 @media screen and (max-width: 900px) {
 	.section {
 		& .store_grid {
+			width: 90%;
 			grid-template-columns: repeat(3, minmax(250px, 300px));
 		}
 	}

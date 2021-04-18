@@ -14,7 +14,9 @@ const StoreItem = ({ item, index, store: { loading } }: Props) => {
 	return !loading ? (
 		<div className={style.item} key={index}>
 			<div className={style.img_container}>
-				<img src={item.images[0].src} alt={item.title} />
+				<Link to={`/merch/viewitem/${item.id}`}>
+					<img src={item.images[0].src} alt={item.title} />
+				</Link>
 			</div>
 			<div className={style.heading}>
 				<p>{item.title}</p>

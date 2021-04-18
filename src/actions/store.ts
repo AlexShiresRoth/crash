@@ -83,10 +83,10 @@ export const clearSearch = () => async (dispatch: any) => {
 export const searchCatalog = (data: any) => async (dispatch: any) => {
 	try {
 		const res = await api.post('/shopifystore/search', data, config);
-		console.log(res.data);
+		console.log('searching:', data);
 		dispatch({
 			type: SEARCH_STORE,
-			payload: res.data,
+			payload: { results: res.data, searchTerm: data.searchTerm },
 		});
 	} catch (error) {
 		const errors = error.response.data.errors;

@@ -5,11 +5,11 @@
 	justify-content: center;
 	align-items: center;
 	z-index: 9999999999999999;
-	& button {
+	& a {
 		background: transparent;
 		border: 0px solid transparent;
 		color: #bbb;
-		font-size: 1.1rem;
+		font-size: 0.9rem;
 		font-weight: 700;
 		text-transform: uppercase;
 		display: flex;
@@ -52,7 +52,7 @@
 		justify-content: center;
 		align-items: center;
 		z-index: 9999999999999999;
-		& button {
+		& a {
 			background: transparent;
 			border: 0px solid transparent;
 			color: #fff;

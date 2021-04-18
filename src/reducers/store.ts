@@ -21,6 +21,7 @@ import {
 const initialState = {
 	catalog: [],
 	searchResults: [],
+	searchTerm: 'All',
 	foundItem: null,
 	images: [],
 	categories: [],
@@ -82,8 +83,9 @@ export default (state = initialState, action: any) => {
 		case SEARCH_STORE:
 			return {
 				...state,
-				searchResults: payload,
+				searchResults: payload.results,
 				loading: false,
+				searchTerm: payload.searchTerm,
 				searching: true,
 			};
 		case ADD_TO_CART:
@@ -136,6 +138,7 @@ export default (state = initialState, action: any) => {
 				...state,
 				searchResults: [],
 				loading: false,
+				searchTerm: 'All',
 			};
 		case STORE_ERROR:
 			return {
