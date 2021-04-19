@@ -16,10 +16,35 @@
 	justify-content: center;
 	align-items: center;
 	border-bottom: 1px solid rgba(238, 238, 238, 0.37);
-	& .form_container {
+	& .content {
+		width: 75%;
 		display: flex;
 		align-items: center;
 		justify-content: space-between;
+	}
+	& .bread_crumbs {
+		display: flex;
+		margin: 1rem 0;
+		align-items: center;
+		width: 100%;
+		& a {
+			text-decoration: none;
+			color: #999;
+			display: flex;
+			align-items: center;
+			margin: 0 0.5rem;
+		}
+		& .active {
+			color: $brand-secondary;
+		}
+		& p {
+			margin: 0;
+			color: #999;
+		}
+	}
+	& .form_container {
+		display: flex;
+		align-items: center;
 		flex-wrap: wrap;
 		width: 75%;
 	}
@@ -75,6 +100,13 @@
 		align-items: center;
 		justify-content: center;
 		flex-wrap: wrap;
+		& .content {
+			width: 95%;
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			flex-wrap: wrap;
+		}
 		& .form_container {
 			display: flex;
 			flex-direction: column;
