@@ -1,9 +1,9 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 import CloudinaryImage from '../reusablecomps/CloudinaryImage';
 import { useState } from 'react';
 import style from './Pages.module.scss';
-import { useEffect } from 'react';
+// import { useEffect } from 'react';
 
 type Props = {
 	images: any;
@@ -14,13 +14,13 @@ const Pages = ({ images }: Props) => {
 
 	const [currentPages, setCurrent] = useState<number>(0);
 
-	const [max, setMax] = useState<number>(0);
+	// const [max, setMax] = useState<number>(0);
 
 	// const handlePageTurn = (current, ceil) => {};
 
-	useEffect(() => {
-		if (images) setMax(images.length - 1);
-	}, [images]);
+	// useEffect(() => {
+	// 	if (images) setMax(images.length - 1);
+	// }, [images]);
 
 	const imgsMap = images.map((img: { url: string; publicID: string }) => {
 		return <CloudinaryImage image={img} />;

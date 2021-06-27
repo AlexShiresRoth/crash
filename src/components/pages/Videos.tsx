@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Redirect } from 'react-router';
+// import { Redirect } from 'react-router';
 import Layout from '../layout/Layout';
 import VideosComponent from '../videos/VideosComponent';
 

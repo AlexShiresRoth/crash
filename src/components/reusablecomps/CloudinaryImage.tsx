@@ -3,8 +3,8 @@ import { AdvancedImage } from '@cloudinary/react';
 import { Cloudinary } from '@cloudinary/base';
 
 // Import any actions required for transformations.
-import { fill, scale } from '@cloudinary/base/actions/resize';
-import { useEffect } from 'react';
+import { scale } from '@cloudinary/base/actions/resize';
+// import { useEffect } from 'react';
 
 type Props = {
 	image: any;
