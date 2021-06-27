@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import PropTypes from 'prop-types';
-import CloudinaryImage from '../reusablecomps/CloudinaryImage';
+// import PropTypes from 'prop-types';
+// import CloudinaryImage from '../reusablecomps/CloudinaryImage';
 import { useEffect } from 'react';
 import { loadSongBook } from '../../actions/cloudinary';
 import { connect, RootStateOrAny } from 'react-redux';
