@@ -13,6 +13,7 @@ import RedirectExternal from './components/reusablecomps/RedirectExternal';
 import ItemPage from './components/pages/ItemPage';
 import Single from './components/pages/Single';
 import MusicPage from './components/pages/MusicPage';
+import SongBook from './components/pages/SongBook';
 
 function App() {
 	return (
@@ -29,6 +30,7 @@ function App() {
 					<Route exact path="/merch/viewitem/:id" component={ItemPage} />
 					<Route exact path="/devils" component={Single} />
 					<Route exact path="/music" component={MusicPage} />
+					<Route exact path="/songbook" component={SongBook} />
 				</Switch>
 			</Router>
 		</Provider>

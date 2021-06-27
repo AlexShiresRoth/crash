@@ -1,0 +1,45 @@
+.pages {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 100%;
+	& img {
+		object-fit: contain;
+		max-width: 100%;
+		animation: fadeIn 0.5s linear forwards;
+	}
+}
+
+.page_numbers {
+	width: 88%;
+	display: flex;
+	justify-content: space-around;
+	border-top: 1px solid #eeeeee20;
+	border-bottom: 1px solid #eeeeee20;
+	padding: 1rem;
+	& .page_select {
+		background: #66666633;
+		color: #ffffff84;
+		padding: 0.5rem 1rem;
+		border-radius: 5px;
+		border: 0;
+		transition: all 0.3s ease-in-out;
+		&:hover {
+			color: #fff;
+			cursor: pointer;
+			box-shadow: 0 1px 15px #eeeeee12;
+		}
+	}
+	& .active {
+		color: #fff;
+	}
+}
+
+@keyframes fadeIn {
+	0% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 1;
+	}
+}

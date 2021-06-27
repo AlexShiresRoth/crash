@@ -31,6 +31,17 @@
 		display: block;
 		animation: fadeIn 2s linear forwards;
 	}
+	& .border_bottom {
+		width: 100%;
+		height: 10rem;
+		position: absolute;
+		bottom: 0%;
+		left: 0;
+		background: url('https://res.cloudinary.com/snackmanproductions/image/upload/v1624138503/crash/crash-border_cm6l4i.png');
+		background-position: center;
+		background-size: cover;
+		background-repeat: no-repeat;
+	}
 	& .img_container {
 		width: 100%;
 		display: flex;

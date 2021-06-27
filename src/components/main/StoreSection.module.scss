@@ -20,6 +20,27 @@
 	background-position: center;
 	background-size: cover;
 	background-repeat: no-repeat;
+	& .border_top {
+		background: url('https://res.cloudinary.com/snackmanproductions/image/upload/v1624759712/crash/crash-border-top3_km5qdx.png');
+		background-size: cover;
+		background-position: center;
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 17rem;
+		z-index: 0;
+	}
+	& .border_bottom {
+		background: url('https://res.cloudinary.com/snackmanproductions/image/upload/v1624759671/crash/crash-border-top_jcgkdd.png');
+		background-size: cover;
+		background-position: center;
+		position: absolute;
+		bottom: 0;
+		left: 0;
+		width: 100%;
+		height: 15rem;
+	}
 	& a {
 		z-index: 5;
 		text-decoration: none;

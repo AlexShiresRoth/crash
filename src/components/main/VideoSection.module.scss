@@ -50,6 +50,26 @@
 			}
 		}
 	}
+	& .border_top {
+		background: url('https://res.cloudinary.com/snackmanproductions/image/upload/v1624138380/crash/crash-border-top_jl87vx.png');
+		background-size: cover;
+		background-position: center;
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 10rem;
+	}
+	& .border_bottom {
+		background: url('https://res.cloudinary.com/snackmanproductions/image/upload/v1624759671/crash/crash-border-top_jcgkdd.png');
+		background-size: cover;
+		background-position: center;
+		position: absolute;
+		bottom: 0;
+		left: 0;
+		width: 100%;
+		height: 17rem;
+	}
 	& .wide_box {
 		width: 100%;
 		background: $brand-dark;
@@ -77,8 +97,8 @@
 		& .video_grid {
 			display: flex;
 			gap: 1rem;
-			width: 80vw;
-			height: 60vh;
+			width: 70vw;
+			height: 70vh;
 			margin: 2rem 0;
 			overflow: hidden;
 			overflow-x: scroll;
@@ -94,11 +114,11 @@
 				transition: all 0.5s cubic-bezier(0.86, 0, 0.07, 1);
 
 				& .video_container {
-					max-width: 80vw;
-					width: 80vw;
+					max-width: 70vw;
+					width: 70vw;
 					scroll-snap-align: start;
 					& iframe {
-						width: 80vw;
+						width: 70vw;
 						height: 100%;
 					}
 				}
@@ -153,7 +173,7 @@
 				display: flex;
 				gap: 1rem;
 				width: 80vw;
-				height: 40vh;
+				height: 50vh;
 				margin: 2rem 0;
 				overflow: hidden;
 				overflow-x: scroll;
@@ -163,7 +183,7 @@
 					display: none;
 				}
 				& .videos {
-					width: 100%;
+					width: 80vw;
 					display: flex;
 					transition: all 0.5s cubic-bezier(0.86, 0, 0.07, 1);
 					& .video_container {

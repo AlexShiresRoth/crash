@@ -13,6 +13,7 @@ app.use(express.urlencoded({ extended: true }));
 app.get('/', (req, res) => res.send('API Is Running'));
 app.use('/api/email', require('./routes/email'));
 app.use('/api/shopifystore', require('./routes/shopify-store'));
+app.use('/api/cloudinary', require('./routes/cloudinary'));
 
 const server = http.createServer(app);
 

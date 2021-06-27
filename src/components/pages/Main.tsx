@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
-import { Redirect } from 'react-router';
-// import Layout from '../layout/Layout';
-// import Hub from '../main/Hub';
+// import { Redirect } from 'react-router';
+import Layout from '../layout/Layout';
+import Hub from '../main/Hub';
 
 export const Main = () => {
 	useEffect(() => {
@@ -10,9 +10,9 @@ export const Main = () => {
 		}, 100);
 	}, []);
 	return (
-		<Redirect to="/devils" />
-		// <Layout>
-		// 	<Hub />
-		// </Layout>
+		// <Redirect to="/devils" />
+		<Layout>
+			<Hub />
+		</Layout>
 	);
 };

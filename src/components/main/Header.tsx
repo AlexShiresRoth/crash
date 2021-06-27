@@ -19,6 +19,7 @@ export const Header = () => {
 				<span>|</span>
 				<Link to="/tour">Tour</Link>
 			</div>
+			<div className={style.border_bottom}></div>
 		</header>
 	);
 };
