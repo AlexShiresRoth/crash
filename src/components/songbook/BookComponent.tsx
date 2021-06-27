@@ -36,7 +36,7 @@ const BookComponent = ({ loadSongBook, cloudinary: { songbook, loadingSongBook }
 		<section className={style.container}>
 			<div className={style.inner}>
 				<div className={style.heading}>
-					<h2>A Town Named Nowhere Storybook</h2>
+					<h2>A Town Named Nowhere Songbook</h2>
 					<p>Pages</p>
 				</div>
 

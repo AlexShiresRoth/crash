@@ -1,12 +1,90 @@
-.pages {
+.pages_container {
 	display: flex;
-	align-items: center;
 	justify-content: center;
-	width: 100%;
-	& img {
-		object-fit: contain;
-		max-width: 100%;
-		animation: fadeIn 0.5s linear forwards;
+	align-items: center;
+	position: relative;
+
+	& .back_btn,
+	& .next_btn {
+		height: 100%;
+		display: flex;
+		align-items: center;
+		box-shadow: 10px 10px 10000px #222;
+		position: absolute;
+		z-index: 2;
+		top: 0;
+
+		transition: all 0.3s ease-in-out;
+		&:hover {
+			opacity: 1;
+		}
+		& button {
+			height: 4rem;
+			width: 4rem;
+			background: transparent;
+			border: 0;
+			color: #fff;
+			opacity: 0.4;
+			border-radius: 100%;
+			font-size: 1rem;
+			position: relative;
+			text-align: center;
+			transition: all 0.3s ease-in-out;
+			&::after {
+				content: ' ';
+				height: 4rem;
+				width: 4rem;
+				background: transparent;
+				border: 2px solid transparent;
+				color: #fff;
+				border-radius: 100%;
+				position: absolute;
+				top: 0;
+				left: 0;
+				transition: border-top-color 0.15s linear,
+					// Stagger border appearances
+					border-right-color 0.15s linear 0.1s,
+					border-bottom-color 0.15s linear 0.2s, border-left-color 0.15s linear 0.3s;
+			}
+			&:hover {
+				cursor: pointer;
+				color: #fff;
+				opacity: 1;
+				&::after {
+					border-top-color: #fff; // Show borders
+					border-right-color: #fff;
+					border-bottom-color: #fff;
+					border-left-color: #fff;
+				}
+			}
+		}
+	}
+	& .back_btn {
+		left: -4%;
+	}
+	& .next_btn {
+		right: -4%;
+	}
+	& .pages {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: 90%;
+		z-index: 1;
+		perspective: 1000px;
+		overflow: hidden;
+		& .image_container {
+			opacity: 0;
+			z-index: 1;
+			animation: fadeIn 0.5s linear forwards;
+		}
+		& .image_hidden {
+			transition: all 0.3s ease-in-out;
+		}
+		& img {
+			object-fit: contain;
+			max-width: 100%;
+		}
 	}
 }
 
@@ -14,6 +92,7 @@
 	width: 88%;
 	display: flex;
 	justify-content: space-around;
+	flex-wrap: wrap;
 	border-top: 1px solid #eeeeee20;
 	border-bottom: 1px solid #eeeeee20;
 	padding: 1rem;
@@ -21,6 +100,8 @@
 		background: #66666633;
 		color: #ffffff84;
 		padding: 0.5rem 1rem;
+		font-size: 0.8rem;
+		text-align: center;
 		border-radius: 5px;
 		border: 0;
 		transition: all 0.3s ease-in-out;
@@ -38,8 +119,10 @@
 @keyframes fadeIn {
 	0% {
 		opacity: 0;
+		transform: rotateY(45deg);
 	}
 	100% {
 		opacity: 1;
+		transform: rotateY(0);
 	}
 }

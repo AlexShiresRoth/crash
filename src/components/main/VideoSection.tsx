@@ -76,7 +76,6 @@ const VideoSection = ({ fetchVideos, youtube: { videos, loading } }: Props) => {
 
 	useEffect(() => {
 		const max = videos.length - 1;
-		console.log('max:', max * videoWidth, -scrollWidth);
 		if (videoRef.current && videoContainerRef.current) {
 			videoContainerRef.current.style.transform = `translate3d(${scrollWidth}px, 0,0)`;
 
@@ -91,8 +90,6 @@ const VideoSection = ({ fetchVideos, youtube: { videos, loading } }: Props) => {
 
 	//url for youtube embed
 	const videoSource = `https://www.youtube.com/watch?v=`;
-
-	console.log('videoWidth:', videoWidth, 'scrollwidth:', scrollWidth, 'currentIndex:', currentIndex);
 
 	return !loading && videos.length > 0 ? (
 		<section className={style.box} key={section.id}>
