@@ -69,10 +69,11 @@
 		display: flex;
 		align-items: center;
 		justify-content: center;
-		width: 90%;
+		width: 95%;
 		z-index: 1;
 		perspective: 1000px;
 		overflow: hidden;
+		min-height: 80vh;
 		& .image_container {
 			opacity: 0;
 			z-index: 1;
@@ -119,7 +120,7 @@
 @keyframes fadeIn {
 	0% {
 		opacity: 0;
-		transform: rotateY(45deg);
+		transform: rotateY(65deg);
 	}
 	100% {
 		opacity: 1;

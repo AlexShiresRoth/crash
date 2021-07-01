@@ -45,7 +45,7 @@ const Pages = ({ images }: Props) => {
 							onClick={() => setCurrent(i)}
 							className={style.page_select + ` ${currentPages === i ? style.active : ''}`}
 						>
-							{i + 1} - {i + 2}
+							{i + 1}
 						</button>
 					);
 				})}
@@ -54,9 +54,7 @@ const Pages = ({ images }: Props) => {
 				<div className={style.back_btn}>
 					<button onClick={() => handlePageTurn(currentPages, max, 0)}>Back</button>
 				</div>
-				<div className={style.pages}>
-					{imgsMap[currentPages]} {currentPages < max ? imgsMap[currentPages + 1] : imgsMap[0]}
-				</div>
+				<div className={style.pages}>{imgsMap[currentPages]}</div>
 				<div className={style.next_btn}>
 					<button onClick={() => handlePageTurn(currentPages, max, 1)}>Next</button>
 				</div>
