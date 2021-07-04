@@ -117,6 +117,111 @@
 	}
 }
 
+@media screen and (max-width: 760px) {
+	.guide {
+		position: absolute;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		min-height: 10vh;
+		width: 70vw;
+		background: #e1eec3; /* fallback for old browsers */
+		background: -webkit-linear-gradient(to right, #f05053, #e1eec3); /* Chrome 10-25, Safari 5.1-6 */
+		background: linear-gradient(
+			to right,
+			#f05053,
+			#e1eec3
+		); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+		box-shadow: 0 1px 60px #222222;
+		border-radius: 10px;
+		top: 30%;
+		margin: 0 auto;
+		z-index: 20;
+		padding: 1rem;
+		animation: fadeIn 1s linear forwards;
+		& h2 {
+			color: #fbfbfb;
+			margin: 0.2rem 0;
+			text-align: left;
+			font-size: 2rem;
+		}
+		& p {
+			color: #eee;
+			max-width: 70%;
+			text-align: center;
+		}
+		& button {
+			background: transparent;
+			border: 2px solid #eee;
+			color: #eee;
+			font-size: 1rem;
+			border-radius: 3px;
+			padding: 0.5rem 2rem;
+		}
+	}
+	.pages_container {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		position: relative;
+
+		& .back_btn,
+		& .next_btn {
+			display: none;
+		}
+		& .pages {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			width: 100%;
+			z-index: 1;
+			perspective: 1000px;
+			overflow: hidden;
+			min-height: 60vh;
+			& .image_container {
+				opacity: 0;
+				z-index: 1;
+				animation: fadeIn 0.5s linear forwards;
+			}
+			& .image_hidden {
+				transition: all 0.3s ease-in-out;
+			}
+			& img {
+				object-fit: contain;
+				max-width: 100%;
+			}
+		}
+	}
+
+	.page_numbers {
+		width: 88%;
+		display: flex;
+		justify-content: space-around;
+		flex-wrap: wrap;
+		border-top: 1px solid #eeeeee20;
+		border-bottom: 1px solid #eeeeee20;
+		padding: 1rem;
+		& .page_select {
+			background: #66666633;
+			color: #ffffff84;
+			padding: 0.5rem 1rem;
+			font-size: 0.8rem;
+			text-align: center;
+			border-radius: 5px;
+			border: 0;
+			transition: all 0.3s ease-in-out;
+			&:hover {
+				color: #ffffff84;
+				cursor: pointer;
+			}
+		}
+		& .active {
+			color: #fff !important;
+		}
+	}
+}
+
 @keyframes fadeIn {
 	0% {
 		opacity: 0;

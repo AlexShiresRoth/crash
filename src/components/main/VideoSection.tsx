@@ -109,8 +109,8 @@ const VideoSection = ({ fetchVideos, youtube: { videos, loading } }: Props) => {
 								<div className={style.video_container} key={i}>
 									<ReactPlayer
 										url={videoSource + video.snippet.resourceId.videoId}
-										width={'100%'}
-										height={'100%'}
+										width="100%"
+										height="100%"
 									/>
 								</div>
 							);

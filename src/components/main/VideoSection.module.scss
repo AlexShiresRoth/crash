@@ -173,20 +173,23 @@
 				display: flex;
 				gap: 1rem;
 				width: 80vw;
-				height: 50vh;
+				height: 40vh;
 				margin: 2rem 0;
 				overflow: hidden;
 				overflow-x: scroll;
 				scroll-snap-type: x mandatory;
+				scrollbar-width: none;
 				&::-webkit-scrollbar {
 					height: 0;
 					display: none;
 				}
 				& .videos {
-					width: 80vw;
+					width: 100%;
 					display: flex;
 					transition: all 0.5s cubic-bezier(0.86, 0, 0.07, 1);
+
 					& .video_container {
+						max-width: 80vw;
 						width: 80vw;
 						scroll-snap-align: start;
 						& iframe {

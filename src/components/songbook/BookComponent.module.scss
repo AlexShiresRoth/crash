@@ -26,3 +26,12 @@
 		}
 	}
 }
+
+@media screen and (max-width: 760px) {
+	.container {
+		& .inner {
+			padding: 5rem 0 0 0;
+			width: 95%;
+		}
+	}
+}
