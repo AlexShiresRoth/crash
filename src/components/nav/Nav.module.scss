@@ -10,7 +10,7 @@
 }
 
 .nav {
-	min-height: 4rem;
+	min-height: 6rem;
 	display: flex;
 	flex-direction: row;
 	justify-content: space-around;
@@ -32,7 +32,7 @@
 			flex-direction: row;
 			align-items: center;
 			justify-content: space-around;
-			color: #eee;
+			color: $brand-accent;
 			font-style: normal;
 			font-weight: 700;
 			font-style: normal;
@@ -67,7 +67,7 @@
 		gap: 2rem;
 		justify-items: center;
 		& a {
-			color: #bbb;
+			color: #fff;
 			font-size: 0.8rem;
 			font-weight: 700;
 			text-decoration: none;
@@ -81,6 +81,7 @@
 }
 .nav_scrolling {
 	background: rgba(17, 17, 17, 0.719);
+	box-shadow: 0 1px 25px darken(rgba(56, 56, 56, 0.185), 2%);
 	transition: all 0.3s ease;
 	min-height: 3rem;
 	& .left {

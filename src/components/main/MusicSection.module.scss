@@ -20,6 +20,17 @@
 	background: url('https://res.cloudinary.com/snackmanproductions/image/upload/v1602205433/crash/ctc-hero_wzgquw.jpg');
 	background-size: cover;
 	background-position: center;
+	&::before {
+		content: '';
+		height: 100%;
+		width: 100%;
+		display: block;
+		background: #e84d3d;
+		position: absolute;
+		top: 0;
+		opacity: 0.5;
+		left: 0;
+	}
 	& .heading {
 		z-index: 2;
 		display: flex;

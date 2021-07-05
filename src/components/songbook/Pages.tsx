@@ -84,11 +84,11 @@ const Pages = ({ images }: Props) => {
 	const handleSwipe = (endValue: number) => {
 		const difference = Math.abs(touchStart) - Math.abs(endValue);
 
-		if (difference > 100) {
+		if (difference > 70) {
 			handlePageTurn(currentPages, max, true);
 			return;
 		}
-		if (difference < -100) {
+		if (difference < -70) {
 			handlePageTurn(currentPages, max, false);
 			return;
 		}

@@ -5,7 +5,6 @@ import { Link } from 'react-router-dom';
 export const Header = () => {
 	return (
 		<header className={style.header}>
-			<div className={style.overlay}></div>
 			<div className={style.img_container}>
 				<img
 					src={`https://res.cloudinary.com/snackmanproductions/image/upload/v1592331145/crash/CTC_Logo_Export_n4ra8j.png`}
@@ -19,7 +18,6 @@ export const Header = () => {
 				<span>|</span>
 				<Link to="/tour">Tour</Link>
 			</div>
-			<div className={style.border_bottom}></div>
 		</header>
 	);
 };

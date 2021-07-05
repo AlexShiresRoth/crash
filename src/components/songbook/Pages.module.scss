@@ -119,7 +119,7 @@
 
 @media screen and (max-width: 760px) {
 	.guide {
-		position: absolute;
+		position: fixed;
 		display: flex;
 		flex-direction: column;
 		align-items: center;

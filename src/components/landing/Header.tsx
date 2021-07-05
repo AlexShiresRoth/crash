@@ -16,7 +16,7 @@ export const Header = () => {
 				height="100vh"
 				width="100vw"
 				playsinline={true}
-				url="https://res.cloudinary.com/snackmanproductions/video/upload/v1597021662/crash/CTC-Lyric-Test-A_3_n70rxu.mp4"
+				url="https://res.cloudinary.com/snackmanproductions/video/upload/v1625525811/crash/Nowhere_Video_Intro_L-R__2_y0co8b.mp4"
 			></ReactPlayer>
 			<div className={style.inner}>
 				<div className={style.container}>

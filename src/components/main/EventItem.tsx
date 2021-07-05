@@ -10,22 +10,19 @@ interface Props {
 }
 const EventItem = ({ event, index }: Props) => {
 	const eventDate = new Date(event.datetime);
-	const time = format(eventDate, 'PPPP p');
+	const time = format(eventDate, 'iii, MMM i');
 
 	return (
 		<div className={style.item} key={index}>
 			<div className={style.col}>
-				<Icon icon={bandsintownIcon} />
+				<h2>{time.toUpperCase()}</h2>
+			</div>
+			<div className={style.col}>
+				<p>{event.venue.name}</p>
 			</div>
 			<div className={style.col}>
 				<p>
-					<span>Date:</span> {time}
-				</p>
-				<p>
-					<span>Venue:</span> {event.venue.name}
-				</p>
-				<p>
-					<span>Location:</span> {event.venue.city}, {event.venue.region}
+					{event.venue.city}, {event.venue.region}
 				</p>
 			</div>
 			<div className={style.col}>

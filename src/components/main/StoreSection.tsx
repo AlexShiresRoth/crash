@@ -8,8 +8,8 @@ const StoreSection = () => {
 
 	return (
 		<section className={style.box}>
-			<div className={style.border_bottom}></div>
-			<div className={style.border_top}></div>
+			{/* <div className={style.border_bottom}></div> */}
+			{/* <div className={style.border_top}></div> */}
 			<Link to={section.path}>Shop Merch</Link>
 			<div className={style.container}></div>
 		</section>

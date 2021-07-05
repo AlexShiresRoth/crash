@@ -93,8 +93,8 @@ const VideoSection = ({ fetchVideos, youtube: { videos, loading } }: Props) => {
 
 	return !loading && videos.length > 0 ? (
 		<section className={style.box} key={section.id}>
-			<div className={style.border_top}></div>
-			<div className={style.border_bottom}></div>
+			{/* <div className={style.border_top}></div> */}
+			{/* <div className={style.border_bottom}></div> */}
 			<div className={style.link_container}>
 				<Link to={section.path}>Watch all music videos</Link>
 			</div>

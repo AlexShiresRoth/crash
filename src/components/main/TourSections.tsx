@@ -36,9 +36,9 @@ const TourSections = ({ fetchEvents, events: { events } }: Props) => {
 
 	return (
 		<section className={style.box}>
-			<div className={style.banner}></div>
+			{/* <div className={style.border_bottom}></div> */}
 			<div className={style.heading} ref={tourRef}>
-				<h2>Tour Dates</h2>
+				<h2>Upcoming Tour Dates</h2>
 			</div>
 			<div className={style.actions}>
 				<a
@@ -57,13 +57,16 @@ const TourSections = ({ fetchEvents, events: { events } }: Props) => {
 				</a>
 			</div>
 			<div className={style.events_container}>{eventArray}</div>
-			{!loading ? (
-				<button onClick={() => handleToggleEvents()}>
-					{allEvents ? 'Reduce Tour Display' : 'Show More Dates'}
-				</button>
-			) : (
-				<LoadingSpinner />
-			)}
+			{events.length > 10 ? (
+				!loading ? (
+					<button onClick={() => handleToggleEvents()}>
+						{allEvents ? 'Reduce Tour Display' : 'Show More Dates'}
+					</button>
+				) : (
+					<LoadingSpinner />
+				)
+			) : null}
+			<div className={style.border_bottom}></div>
 		</section>
 	);
 };

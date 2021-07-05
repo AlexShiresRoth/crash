@@ -8,6 +8,8 @@
 	background: lighten($brand-dark, 1%);
 	justify-items: center;
 	padding: 2rem;
+	z-index: 4;
+	position: relative;
 	& .col {
 		display: flex;
 		flex-direction: column;

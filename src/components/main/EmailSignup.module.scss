@@ -17,22 +17,26 @@
 	position: relative;
 	overflow: hidden;
 	background: lighten($brand-dark, 5%);
-	& .border_top {
-		background: url('https://res.cloudinary.com/snackmanproductions/image/upload/v1624814086/crash/crash-border-top3_wihtxp.png');
+	&::before {
+		content: '';
+		width: 100%;
+		height: 100%;
+		position: absolute;
+		background: url('https://res.cloudinary.com/snackmanproductions/image/upload/c_scale,q_58,w_2134/v1625521315/crash/grunge_wnmmoq.png');
+		bottom: 0%;
 		background-size: cover;
 		background-position: center;
-		position: absolute;
-		top: 0;
+		background-repeat: no-repeat;
 		left: 0;
-		width: 100%;
-		height: 10rem;
 		z-index: 0;
+		opacity: 0.2;
 	}
 	& .container {
 		display: flex;
 		flex-direction: column;
 		align-items: center;
 		margin: 7rem 0;
+		z-index: 4;
 		& img {
 			max-width: 20rem;
 		}

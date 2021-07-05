@@ -4,7 +4,9 @@ import { bitId } from '../utils/bit';
 
 export const fetchEvents = () => async (dispatch: any) => {
 	try {
-		const res = await api.get(`https://rest.bandsintown.com/artists/crashthecalm/events?app_id=${bitId}&date=all`);
+		const res = await api.get(
+			`https://rest.bandsintown.com/artists/crashthecalm/events?app_id=${bitId}&date=upcoming`
+		);
 
 		dispatch({
 			type: FETCH_EVENTS,

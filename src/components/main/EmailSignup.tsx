@@ -44,7 +44,7 @@ const EmailSignup = ({ emailSignup, alerts }: Props) => {
 
 	return (
 		<section className={style.box}>
-			<div className={style.border_top}></div>
+			{/* <div className={style.border_top}></div> */}
 			<div className={style.container}>
 				<img
 					src={`https://res.cloudinary.com/snackmanproductions/image/upload/v1590510319/crash/Crash_the_Calm-white_tatrui.png`}

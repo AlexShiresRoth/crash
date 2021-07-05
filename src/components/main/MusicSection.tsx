@@ -6,8 +6,8 @@ const MusicSection = () => {
 	const section = sections.filter((section) => section.name === 'music')[0];
 	return (
 		<section className={style.box} key={section.id}>
-			<div className={style.border_top}></div>
-			<div className={style.border_bottom}></div>
+			{/* <div className={style.border_top}></div>
+			<div className={style.border_bottom}></div> */}
 			<div className={style.heading}>
 				<p>listen On the streaming platform of your choosing</p>
 			</div>
