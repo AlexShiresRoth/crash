@@ -2,8 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import style from './EventItem.module.scss';
 import { format } from 'date-fns';
-import { Icon } from '@iconify/react';
-import bandsintownIcon from '@iconify/icons-simple-icons/bandsintown';
 interface Props {
 	event: any;
 	index: number;
