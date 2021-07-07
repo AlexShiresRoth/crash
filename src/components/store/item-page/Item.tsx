@@ -115,16 +115,19 @@ const Item = ({
 					</div>
 					<div className={style.col}>
 						<div className={style.item_desc}>
-							<h1>{foundItem.title}</h1>
+							<div className={style.item_heading}>
+								<h1>{foundItem.title}</h1>
+								<p>
+									Price: $
+									{option &&
+									foundItem.variants.filter((variant: any) => variant.id === option).length > 0
+										? foundItem.variants.filter((variant: any) => {
+												return variant.id === option;
+										  })[0].price
+										: foundItem.variants[0].price}
+								</p>
+							</div>
 							<h3>{foundItem.description}</h3>
-							<p>
-								Price: $
-								{option && foundItem.variants.filter((variant: any) => variant.id === option).length > 0
-									? foundItem.variants.filter((variant: any) => {
-											return variant.id === option;
-									  })[0].price
-									: foundItem.variants[0].price}
-							</p>
 						</div>
 						<form onSubmit={(e) => onSubmit(e)}>
 							<label>Select Quantity</label>
@@ -164,20 +167,19 @@ const Item = ({
 									);
 								})}
 							</select>
-							<button onSubmit={(e) => onSubmit(e)}>Add To Cart</button>
-						</form>
-						{cart.length > 0 ? (
-							<div className={style.checkout_box}>
-								<div className={style.divider}>
-									<span></span>
-									OR
-									<span></span>
-								</div>
-								<Link to="/Checkout">
-									<button>Checkout Now</button>
-								</Link>
+							<div className={style.btn_row}>
+								{cart.length > 0 ? (
+									<div className={style.checkout_box}>
+										<Link to="/Checkout">
+											<button>Checkout Now</button>
+										</Link>
+									</div>
+								) : (
+									<></>
+								)}
+								<button onSubmit={(e) => onSubmit(e)}>Add To Cart</button>
 							</div>
-						) : null}
+						</form>
 					</div>
 				</div>
 			</div>
