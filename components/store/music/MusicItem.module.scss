@@ -1,7 +1,7 @@
 @import "../../../sass/variables";
 .music_item {
   height: 25rem;
-  & a {
+  & .link {
     height: 100%;
     text-decoration: none;
     color: #fff;
@@ -108,7 +108,7 @@
 }
 
 @media screen and (max-width: 900px) {
-  a {
+  .link {
     text-decoration: none;
     color: #fff;
     height: 100%;

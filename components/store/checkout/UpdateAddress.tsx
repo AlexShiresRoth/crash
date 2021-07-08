@@ -11,14 +11,14 @@ import LoadingSpinner from "../../reusablecomps/LoadingSpinner";
 
 interface Props {
   submitShippingInfo: (data: any) => any;
-  store?: any;
+  shop?: any;
   alerts: Array<any>;
   toggleShippingModule: (val: boolean) => any;
 }
 
 const UpdateAddress = ({
   submitShippingInfo,
-  store: { shippingInfo, shippingSaved },
+  shop: { shippingInfo, shippingSaved },
   alerts,
   toggleShippingModule,
 }: Props) => {
@@ -212,7 +212,7 @@ const UpdateAddress = ({
 };
 
 const mapStateToProps = (state: any) => ({
-  store: state.store,
+  shop: state.shop,
   alerts: state.alerts,
 });
 

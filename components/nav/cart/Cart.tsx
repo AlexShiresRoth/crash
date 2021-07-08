@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import style from "./Cart.module.scss";
 import CartDisplay from "./CartDisplay";
 import { FaShoppingCart, FaCartPlus } from "react-icons/fa";
+import { useRouter } from "next/dist/client/router";
 
 interface Props {
   shop?: any;
@@ -11,13 +12,14 @@ interface Props {
 type CartProps = Props;
 
 const Cart = ({ shop: { cart } }: CartProps) => {
+  const router = useRouter();
   const [isVisible, setVisibility] = useState<boolean>(false);
   const [newAdd, setNewAddition] = useState<boolean>(false);
   const [cartLength, setCartLength] = useState<number>(0);
   //do not show the cart if the user is not on the store page
-  //   useEffect(() => {
-  //     if (!history.location.pathname.includes("store")) setVisibility(false);
-  //   }, [history.location.pathname]);
+  useEffect(() => {
+    if (!router.pathname.includes("store")) setVisibility(false);
+  }, [router.pathname]);
 
   useEffect(() => {
     setCartLength((prevState: any) => {

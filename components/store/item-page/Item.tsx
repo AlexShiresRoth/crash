@@ -7,11 +7,12 @@ import { addToCart, removeFromCart } from "../../../redux/actions/store";
 import LoadingSpinner from "../../reusablecomps/LoadingSpinner";
 import StoreAlert from "../alerts/StoreAlert";
 import Link from "next/link";
+import { useRouter } from "next/dist/client/router";
 
 interface Props {
   shop?: any;
   match?: any;
-  findStoreItem: (id: string) => any;
+  findStoreItem: (id: any) => any;
   addToCart: (val: any) => any;
   removeFromCart: (val: any, id: string) => any;
   alerts?: any;
@@ -19,20 +20,22 @@ interface Props {
 
 const Item = ({
   shop: { loading, foundItem, cart, musicVendor },
-  match,
   findStoreItem,
   addToCart,
   alerts,
 }: Props) => {
-  //   useEffect(() => {
-  //     setTimeout(() => {
-  //       window.scrollTo(0, 0);
-  //     }, 100);
-  //   }, [match.params.id]);
+  const { query } = useRouter();
 
-  //   useEffect(() => {
-  //     findStoreItem(match.params.id);
-  //   }, [match.params.id, findStoreItem]);
+  useEffect(() => {
+    //scroll to top of page on new item load
+    setTimeout(() => {
+      window.scrollTo(0, 0);
+    }, 100);
+  }, [query.id]);
+
+  useEffect(() => {
+    if (query.id) findStoreItem(query.id);
+  }, [query.id, findStoreItem]);
 
   const [selectedItem, selectItem] = useState<any>({
     option: null,
@@ -98,20 +101,23 @@ const Item = ({
     <div className={style.container}>
       <div className={style.inner}>
         <div className={style.bread_crumbs}>
-          <Link href={`/`}>Home</Link>
+          <Link href={`/Main`}>Home</Link>
           <p>\</p>
           <Link
             href={
               foundItem.vendor && foundItem.vendor.toLowerCase() === musicVendor
-                ? "/music"
-                : "/merch"
+                ? "/MusicPage"
+                : "/StorePage"
             }
+            as="/merch"
           >
             Store
           </Link>
           <p>\</p>
           {/* className={style.active} TODO active class for nextjs */}
-          <Link href={window.location}>Item</Link>
+          <Link href={window.location}>
+            <a className={style.active}>{foundItem.title}</a>
+          </Link>
         </div>
         <div className={style.item}>
           <div className={style.col}>
@@ -181,7 +187,9 @@ const Item = ({
                 {cart.length > 0 ? (
                   <div className={style.checkout_box}>
                     <Link href="/Checkout" as="/checkout">
-                      <button>Checkout Now</button>
+                      <a>
+                        <button>Checkout Now</button>
+                      </a>
                     </Link>
                   </div>
                 ) : (

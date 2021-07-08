@@ -5,13 +5,13 @@ import { toggleShippingModule } from "../../../redux/actions/store";
 import StoreAlert from "../alerts/StoreAlert";
 
 interface Props {
-  store?: any;
+  shop?: any;
   toggleShippingModule: (val: boolean) => any;
   alerts: Array<any>;
 }
 
 const UpdateInfoToggle = ({
-  store: { shippingSaved },
+  shop: { shippingSaved },
   toggleShippingModule,
   alerts,
 }: Props) => {
@@ -31,7 +31,7 @@ const UpdateInfoToggle = ({
 };
 
 const mapStateToProps = (state: any) => ({
-  store: state.store,
+  shop: state.shop,
   alerts: state.alerts,
 });
 

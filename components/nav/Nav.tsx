@@ -27,21 +27,21 @@ const Nav = ({ clearSearch }: Props) => {
   const [isScrolling, setScrolling] = useState(false);
   const [links, filterLinks] = useState<Array<any>>(navLinks);
 
-  // useEffect(() => {
-  //   //if location is not the store then don't have the cart popup
-  //   if (!history.location.pathname.includes("store")) {
-  //     clearSearch();
-  //   }
-  //   if (history.location.pathname.includes("devils")) {
-  //     const newLinks = navLinks.filter(
-  //       (item: { name: string; path: string }) => {
-  //         return item.name === "merch" || item.name === "music";
-  //       }
-  //     );
+  useEffect(() => {
+    //if location is not the store then don't have the cart popup
+    if (!router.pathname.includes("store")) {
+      clearSearch();
+    }
+    if (router.pathname.includes("devils")) {
+      const newLinks = navLinks.filter(
+        (item: { name: string; path: string }) => {
+          return item.name === "merch" || item.name === "music";
+        }
+      );
 
-  //     filterLinks(newLinks);
-  //   }
-  // }, [clearSearch, history.location.pathname]);
+      filterLinks(newLinks);
+    }
+  }, [clearSearch, router.pathname]);
 
   useEffect(() => {
     window.addEventListener("scroll", () =>
@@ -57,7 +57,7 @@ const Nav = ({ clearSearch }: Props) => {
         }
       >
         <div className={style.left}>
-          <Link href="/main">
+          <Link href="/Main" as="/home">
             <a>{logo}</a>
           </Link>
           <div className={style.social}>
@@ -95,7 +95,7 @@ const Nav = ({ clearSearch }: Props) => {
         <div className={style.right}>
           {links.map((item) => {
             return (
-              <Link href={item.path} key={item.id}>
+              <Link href={item.path} key={item.id} as={item.name}>
                 <a>{item.name}</a>
               </Link>
             );

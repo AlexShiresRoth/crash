@@ -118,15 +118,15 @@
             margin-top: 0.5rem;
             padding-top: 0.5rem;
             & button {
-              min-height: 2.2rem;
-              width: 6rem;
+              min-height: 2.8rem;
+              width: 8rem;
               background: $brand-dark;
               color: #fff;
               border: 0;
               border-radius: 3px;
               transition: all 0.3s ease-in-out;
               margin-top: 0.5rem;
-              font-size: 0.8rem;
+              font-size: 1rem;
               &:hover {
                 cursor: pointer;
                 box-shadow: 0 1px 10px $brand-dark;
@@ -152,19 +152,19 @@
                 }
               }
               & a {
-                width: 7rem;
+                width: 10rem;
                 & button {
                   width: 100%;
-                  min-height: 2.2rem;
-                  background: $brand-main;
+                  min-height: 2.8rem;
+                  background: $alert-success;
                   color: #fff;
                   border: 0;
-                  font-size: 0.8rem;
+                  font-size: 1rem;
                   border-radius: 3px;
                   transition: all 0.3s ease;
                   &:hover {
                     cursor: pointer;
-                    box-shadow: 0 1px 10px $brand-main;
+                    box-shadow: 0 1px 5px $alert-success;
                   }
                 }
               }

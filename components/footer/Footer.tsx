@@ -8,14 +8,15 @@ import {
   TiSocialInstagram,
 } from "react-icons/ti";
 import { FaSpotify, FaApple, FaBandcamp } from "react-icons/fa";
+import Image from "next/image";
 
 const Footer = () => {
   return (
     <footer className={style.footer}>
       <div className={style.logo}>
-        <Link href="/">
-          <img
-            src={`https://res.cloudinary.com/snackmanproductions/image/upload/v1590510319/crash/Crash_the_Calm-white_tatrui.png`}
+        <Link href="/Main" as="/home">
+          <Image
+            src="https://res.cloudinary.com/snackmanproductions/image/upload/v1590510319/crash/Crash_the_Calm-white_tatrui.png"
             alt="Crash the Calm Logo"
           />
         </Link>

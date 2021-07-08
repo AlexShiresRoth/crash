@@ -1,5 +1,4 @@
 import React, { useEffect, useRef, useState } from "react";
-import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import style from "./SuggestedItems.module.scss";
 import LoadingSpinner from "../../reusablecomps/LoadingSpinner";
@@ -9,19 +8,15 @@ import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import { useRouter } from "next/dist/client/router";
 
 interface Props {
-  store?: any;
+  shop?: any;
   fetchStoreItems: () => any;
 }
 
-type AllProps = Props;
-
 const SuggestedItems = ({
-  store: { catalog, loading },
+  shop: { catalog, loading },
   fetchStoreItems,
-}: AllProps) => {
+}: Props) => {
   const router = useRouter();
-
-  console.log("router obj", router);
 
   useEffect(() => {
     fetchStoreItems();
@@ -43,7 +38,7 @@ const SuggestedItems = ({
 
   const suggests = catalog
     .filter((catItem: any) => {
-      return catItem.id !== params.id;
+      return catItem.id !== router.query.id;
     })
     .map((item: any, i: number) => {
       return (
@@ -202,12 +197,8 @@ const SuggestedItems = ({
   );
 };
 
-SuggestedItems.propTypes = {
-  store: PropTypes.object,
-};
-
 const mapStateToProps = (state: any) => ({
-  store: state.store,
+  shop: state.shop,
 });
 
 export default connect(mapStateToProps, { fetchStoreItems })(SuggestedItems);

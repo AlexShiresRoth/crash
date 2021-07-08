@@ -8,13 +8,13 @@ import LoadingSpinner from "../../reusablecomps/LoadingSpinner";
 
 interface Props {
   submitShippingInfo: (data: any, val: boolean) => any;
-  store?: any;
+  shop?: any;
   alerts: Array<any>;
 }
 
 const ShippingAddressForm = ({
   submitShippingInfo,
-  store: { checkout, shippingErrors },
+  shop: { checkout, shippingErrors },
   alerts,
 }: Props) => {
   const [formData, setFormData] = useState<any>({
@@ -173,7 +173,7 @@ const ShippingAddressForm = ({
 };
 
 const mapStateToProps = (state: any) => ({
-  store: state.store,
+  shop: state.shop,
   alerts: state.alerts,
 });
 

@@ -1,5 +1,4 @@
 import React from "react";
-import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { removeFromCart } from "../../../redux/actions/store";
 import style from "./CartDisplay.module.scss";
@@ -7,14 +6,14 @@ import Link from "next/link";
 import CartItem from "./CartItem";
 
 interface Props {
-  store?: any;
+  shop?: any;
   removeFromCart: (val: any, variantId: any) => any;
   setVisibility: (val: boolean) => any;
   isVisible: boolean;
 }
 
 const CartDisplay = ({
-  store: { cart, loading, checkout },
+  shop: { cart, loading, checkout },
   removeFromCart,
   isVisible,
   setVisibility,
@@ -55,13 +54,9 @@ const CartDisplay = ({
   ) : null;
 };
 
-CartDisplay.propTypes = {
-  store: PropTypes.object,
-};
-
 const mapStateToProps = (state: any) => {
   return {
-    store: state.store,
+    shop: state.shop,
   };
 };
 

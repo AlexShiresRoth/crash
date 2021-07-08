@@ -23,7 +23,7 @@ export const fetchVideos = (max: number) => async (dispatch: any) => {
       type: FETCH_VIDEOS,
       payload: res.data.items,
     });
-  } catch (error: any) {
+  } catch (error) {
     console.log(error.response);
   }
 };

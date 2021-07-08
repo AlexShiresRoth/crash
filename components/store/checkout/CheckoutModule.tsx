@@ -16,13 +16,13 @@ import UpdateAddress from "./UpdateAddress";
 
 interface Props {
   removeFromCart: (val: any, variantId: string) => any;
-  store?: any;
+  shop?: any;
   fetchCheckout: (val: string) => any;
   clearCheckout: () => any;
 }
 
 const CheckoutModule = ({
-  store: { cart, loading, shippingInfo, shippingSaved, checkout },
+  shop: { cart, loading, shippingInfo, shippingSaved, checkout },
   removeFromCart,
   fetchCheckout,
 }: Props) => {
@@ -112,12 +112,8 @@ const CheckoutModule = ({
   );
 };
 
-CheckoutModule.propTypes = {
-  store: PropTypes.object,
-};
-
 const mapStateToProps = (state: any) => ({
-  store: state.store,
+  shop: state.shop,
 });
 
 export default connect(mapStateToProps, {

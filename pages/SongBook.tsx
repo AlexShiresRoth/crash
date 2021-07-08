@@ -1,22 +1,19 @@
-import React from 'react';
-import { useEffect } from 'react';
-// import PropTypes from 'prop-types';
-import Layout from '../layout/Layout';
-import BookComponent from '../songbook/BookComponent';
+import React from "react";
+import { useEffect } from "react";
+import Layout from "../UI/layout/Layout";
+import BookComponent from "../components/songbook/BookComponent";
 
 const SongBook = () => {
-	useEffect(() => {
-		if (typeof window !== 'undefined') {
-			window.scrollTo({ top: 0 });
-		}
-	}, []);
-	return (
-		<Layout>
-			<BookComponent />
-		</Layout>
-	);
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      window.scrollTo({ top: 0 });
+    }
+  }, []);
+  return (
+    <Layout>
+      <BookComponent />
+    </Layout>
+  );
 };
-
-SongBook.propTypes = {};
 
 export default SongBook;

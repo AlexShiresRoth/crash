@@ -13,7 +13,7 @@ export const emailSignup = (data: any) => async (dispatch: any) => {
     });
 
     dispatch(setAlert("You have successfully signed up!", "success"));
-  } catch (error: any) {
+  } catch (error) {
     console.log(error.response);
     const errors = error.response.data.errors;
     if (errors) {

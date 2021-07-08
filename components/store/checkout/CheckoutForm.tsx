@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import PropTypes from "prop-types";
 import style from "./CheckoutForm.module.scss";
 import { connect } from "react-redux";
 import { processCheckout } from "../../../redux/actions/store";
@@ -9,14 +8,14 @@ import LoadingSpinner from "../../reusablecomps/LoadingSpinner";
 
 interface Props {
   processCheckout: (id: string) => any;
-  store?: any;
+  shop?: any;
   alerts?: any;
   email?: any;
 }
 
 const CheckoutForm = ({
   processCheckout,
-  store: { checkout, checkoutErrors, shippingInfo, processed },
+  shop: { checkout, checkoutErrors, shippingInfo, processed },
   alerts,
 }: Props) => {
   const [processing, setProcessing] = useState(false);
@@ -66,12 +65,8 @@ const CheckoutForm = ({
   );
 };
 
-CheckoutForm.propTypes = {
-  store: PropTypes.object,
-};
-
 const mapStateToProps = (state: any) => ({
-  store: state.store,
+  shop: state.shop,
   alerts: state.alerts,
   email: state.email,
 });

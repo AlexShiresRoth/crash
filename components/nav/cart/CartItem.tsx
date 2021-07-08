@@ -12,7 +12,7 @@ interface Props {
   itemToRemove: any;
   item: any;
   updateLineItem: (val: any) => any;
-  store?: any;
+  shop?: any;
 }
 
 const CartItem = ({
@@ -21,7 +21,7 @@ const CartItem = ({
   item,
   itemToRemove,
   updateLineItem,
-  store: { cart },
+  shop: { cart },
 }: Props) => {
   const [data, setData] = useState({
     option: item.id,
@@ -115,7 +115,7 @@ CartItem.propTypes = {
 };
 
 const mapStateToProps = (state: RootStateOrAny) => ({
-  store: state.store,
+  shop: state.shop,
 });
 
 export default connect(mapStateToProps, { updateLineItem })(CartItem);
