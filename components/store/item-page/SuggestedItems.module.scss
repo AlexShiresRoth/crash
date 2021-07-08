@@ -1,0 +1,163 @@
+@import "../../../sass/variables";
+
+.container {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: #eee;
+  padding: 2rem 0;
+  & .inner {
+    display: flex;
+    justify-content: center;
+    width: 90%;
+    & .column {
+      display: flex;
+      flex-direction: column;
+      & .items {
+        display: flex;
+        align-items: center;
+        overflow-x: scroll;
+        max-width: 90vw;
+        scrollbar-width: none;
+        -ms-overflow-style: none; /* IE 11 */
+        &::-webkit-scrollbar {
+          height: 0;
+          visibility: hidden;
+        }
+        & .items_container {
+          width: 100%;
+          display: flex;
+          align-items: center;
+          overflow: visible;
+          height: 20rem;
+          & .arrow_left,
+          & .arrow_right {
+            font-size: 2rem;
+            color: #999;
+            margin: 0 1rem;
+            transition: all 0.3s ease;
+            z-index: 100;
+            position: absolute;
+            &:hover {
+              cursor: pointer;
+              color: $brand-secondary;
+            }
+          }
+          & .arrow_left {
+            transform: translate(5rem, 0);
+            opacity: 0;
+            left: 0;
+          }
+          & .arrow_right {
+            transform: translate(-5rem, 0);
+            opacity: 0;
+            right: 0;
+          }
+          & .visible {
+            transform: translate(0, 0);
+            opacity: 1;
+          }
+          & .grid {
+            display: grid;
+            width: 100%;
+            transition: all 2s cubic-bezier(0.424, 0.845, 0.355, 1.245);
+            & .item {
+              display: flex;
+              flex-direction: column;
+              justify-content: center;
+              align-items: center;
+              background: #fff;
+              border: 1px solid #eee;
+              min-width: 22rem;
+              max-width: 22rem;
+              position: relative;
+              transition: all 0.3s ease;
+              &:hover {
+                cursor: pointer;
+                padding: 1rem;
+                & .overlay {
+                  background: rgba(0, 0, 0, 0.6);
+                }
+              }
+              & .overlay {
+                position: absolute;
+                z-index: 0;
+                background: rgba(0, 0, 0, 0.4);
+                height: 100%;
+                width: 100%;
+                transition: all 0.3s ease;
+              }
+              & .img_container {
+                max-width: 100%;
+                background: #eee;
+                display: flex;
+                justify-content: center;
+                width: 100%;
+                height: 100%;
+                & img {
+                  object-fit: contain;
+                  max-width: 15rem;
+                }
+              }
+              & .item_desc {
+                position: absolute;
+                padding: 1rem;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                z-index: 1;
+                & h3 {
+                  text-transform: uppercase;
+                  color: #fff;
+                  text-align: center;
+                  margin: 0 1rem;
+                }
+                & p {
+                  color: $brand-main;
+                  text-transform: uppercase;
+                }
+              }
+              & button {
+                width: 10rem;
+                padding: 0.6rem;
+                background: transparent;
+                border: 0;
+                color: #fff;
+                border: 2px solid #fff;
+                text-transform: uppercase;
+                transition: all 0.3s ease-in-out;
+                &:hover {
+                  cursor: pointer;
+                  box-shadow: 0 1px 10px $brand-dark;
+                  background: #fff;
+                  color: $brand-main;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .container {
+    padding: 2rem 0;
+    align-items: center;
+    & .inner {
+      & .column {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        & .suggested_heading {
+          width: 90%;
+        }
+      }
+    }
+  }
+}

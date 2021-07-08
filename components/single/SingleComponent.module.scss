@@ -1,0 +1,410 @@
+@import "../../sass/variables";
+
+@font-face {
+  font-family: "Crash";
+  src: url("../../fonts/fairwater_sailor_serif.otf");
+}
+@font-face {
+  font-family: "Reg";
+  src: url("../../fonts/OldGrowth-Regular.otf");
+}
+
+.hidden {
+  opacity: 0;
+  visibility: hidden;
+  display: flex;
+}
+.section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  background: #000;
+  padding: 6rem 0;
+  position: relative;
+
+  & .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background: $brand-main;
+    opacity: 0.4;
+    filter: grayscale(0.3);
+    z-index: 1;
+  }
+  & .box {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-bottom: 1px solid #ea8f4521;
+    width: 100%;
+    & .inner_container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 90%;
+      min-height: 80vh;
+      padding: 4rem 0;
+      border-left: 1px solid #ea8f4521;
+      border-right: 1px solid #ea8f4521;
+      & h2 {
+        color: #fff;
+        font-size: 3rem;
+        font-family: ltc-pabst-oldstyle, serif;
+        font-weight: 100;
+        font-style: normal;
+        padding: 1rem;
+        position: relative;
+        overflow: visible;
+        background: url("https://res.cloudinary.com/snackmanproductions/image/upload/v1607883581/crash/font-bg_adx53t.png");
+        background-size: cover;
+        background-position: center;
+        width: 100%;
+        text-align: center;
+        & a {
+          color: #fff;
+          font-size: 3rem;
+          font-family: ltc-pabst-oldstyle, serif;
+          font-weight: 100;
+          font-style: normal;
+        }
+      }
+      & .music_videos {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        width: 100%;
+        min-height: 30rem;
+        height: 30rem;
+        & iframe {
+          width: 40vw;
+          height: 100%;
+        }
+      }
+    }
+    & .playlist_container {
+      & iframe {
+        min-width: 50vw;
+        min-height: 50vh;
+      }
+    }
+
+    & .bg_img {
+      width: 60%;
+      height: 40rem;
+      background: url("https://res.cloudinary.com/snackmanproductions/image/upload/v1603647388/crash/devilsartwork-notext-Recovered_lwje73.png");
+      background-position: 50% 60%;
+      background-size: cover;
+      background-repeat: no-repeat;
+      position: relative;
+      transition: all 0.3s ease;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      &::before {
+        position: absolute;
+        content: "View Merch";
+        font-size: 5rem;
+        color: #fff;
+        opacity: 0;
+        transition: all 0.6s ease;
+        width: 100%;
+        font-family: ltc-pabst-oldstyle, serif;
+        font-weight: 100;
+        font-style: normal;
+        display: flex;
+        justify-content: center;
+        transform: translateY(30vh);
+      }
+      &:hover {
+        filter: grayscale(1);
+        &::before {
+          opacity: 1;
+          cursor: pointer;
+          transform: translateY(0);
+        }
+      }
+      & a {
+        height: 100%;
+        width: 100%;
+        display: block;
+        position: absolute;
+        top: 0;
+        left: 0;
+      }
+    }
+    & .grid {
+      z-index: 5;
+      display: grid;
+      grid-template-columns: 1fr;
+      align-items: center;
+      grid-template-rows: auto;
+      margin: 2rem;
+      & .embeds {
+        display: flex;
+        justify-content: space-around;
+        flex-wrap: wrap;
+        min-height: 5rem;
+        & .iframe_container {
+          background: $brand-dark;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          box-shadow: 0 1px 5px $brand-dark;
+          margin: 2rem;
+          width: 25vw;
+          border-radius: 3px;
+          & .col {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            margin: 1rem;
+            width: 100%;
+            padding: 0 1rem;
+            & a {
+              font-size: 1rem;
+              font-family: "Lato", sans-serif, Arial, Helvetica, sans-serif;
+              color: $brand-text;
+              text-decoration: none;
+              display: flex;
+              flex-direction: column;
+              justify-content: center;
+              align-items: center;
+              text-align: center;
+              &::after {
+                height: 2px;
+              }
+              & svg {
+                font-size: 2rem;
+                color: $brand-main;
+              }
+            }
+          }
+          & iframe {
+            box-shadow: 0 1px 5px darken($brand-dark, 5%);
+            overflow: hidden;
+            min-height: 15rem;
+            width: 100%;
+          }
+        }
+        & .iframe_container_playlist {
+          & iframe {
+            min-height: 30rem;
+          }
+        }
+      }
+    }
+    & .download_container {
+      border-top: 1px solid #ea8f4521;
+      width: 90%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 2rem 0;
+      & a {
+        & button {
+          min-width: 30rem;
+          min-height: 3rem;
+          border: 1px solid $brand-main;
+          background: $brand-main;
+          color: #fff;
+          text-transform: uppercase;
+          transition: all 0.3s ease;
+          border-radius: 3px;
+          &:hover {
+            cursor: pointer;
+          }
+        }
+      }
+    }
+  }
+}
+
+.text_container {
+  max-width: 70%;
+  width: 70%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: url("https://res.cloudinary.com/snackmanproductions/image/upload/v1604024363/crash/annie-spratt-xvU-X0GV9-o-unsplash_lkgczb.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  position: relative;
+  padding: 6rem 0;
+  opacity: 1;
+  box-shadow: 0 1px 10px #666;
+  & .img_container {
+    height: 100%;
+    position: absolute;
+    z-index: 0;
+    & img {
+      max-width: 100%;
+      object-fit: contain;
+    }
+  }
+
+  & p {
+    max-width: 50%;
+    text-align: center;
+    color: $brand-secondary;
+    font-size: 1.4rem;
+    font-family: ltc-pabst-oldstyle, serif;
+    font-weight: 100;
+    line-height: 2;
+    font-style: normal;
+    z-index: 2;
+    opacity: 0.8;
+    & em {
+      color: #eee;
+      font-weight: 100;
+    }
+    & strong {
+      font-weight: 700;
+      color: #fff;
+    }
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .section {
+    .box {
+      & .inner_container {
+        width: 90%;
+        padding: 1rem 0;
+        & h2 {
+          z-index: 5;
+          font-size: 6vw;
+          text-align: center;
+          & a {
+            font-size: 6vw;
+          }
+        }
+        & .music_videos {
+          flex-direction: column;
+          width: 100%;
+          & iframe {
+            width: 100%;
+            margin: 1rem 0;
+          }
+        }
+        & .download_container {
+          & a {
+            & button {
+              min-width: 90vw;
+            }
+          }
+        }
+        & .bg_img {
+          width: 90%;
+          height: 30rem;
+          background: url("https://res.cloudinary.com/snackmanproductions/image/upload/c_scale,w_884/v1603647388/crash/devilsartwork-mobile.jpg_m3djzb.jpg");
+          background-position: center;
+        }
+        & .grid {
+          z-index: 5;
+          display: grid;
+          grid-template-columns: 1fr;
+          align-items: center;
+          grid-template-rows: auto;
+          margin: 2rem;
+          & .embeds {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            & .iframe_container {
+              background: $brand-dark;
+              display: flex;
+              flex-direction: column;
+              align-items: center;
+              min-height: 0;
+              height: auto;
+              box-shadow: 0 1px 5px $brand-dark;
+              margin: 2rem;
+              width: 80vw;
+              max-width: 90%;
+              & .col {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                height: auto;
+                margin: 1rem;
+                width: 100%;
+                max-width: 90%;
+                padding: 0 1rem;
+              }
+              & iframe {
+                box-shadow: 0 1px 5px darken($brand-dark, 5%);
+                overflow: hidden;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  .text_container {
+    width: 90%;
+    max-width: 90%;
+    & p {
+      width: 90%;
+      max-width: 90%;
+    }
+  }
+}
+
+@-webkit-keyframes background {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+@-moz-keyframes background {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+@keyframes background {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes bg-color {
+  0% {
+    background: $brand-dark;
+  }
+  25% {
+    background: $brand-secondary;
+  }
+  50% {
+    background: $brand-accent;
+  }
+  75% {
+    background: $brand-main;
+  }
+  100% {
+    background: $brand-dark;
+  }
+}

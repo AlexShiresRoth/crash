@@ -1,0 +1,138 @@
+@import "../../sass/variables";
+@font-face {
+  font-family: "Crash";
+  src: url("../../fonts/fairwater_sailor_serif.otf");
+}
+@font-face {
+  font-family: "Reg";
+  src: url("../../fonts/OldGrowth-Regular.otf");
+}
+
+.box {
+  width: 99.5%;
+  padding: 2rem 0 6rem 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+  background: #e84d3d22;
+  &::before {
+    content: "";
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    background: url("https://res.cloudinary.com/snackmanproductions/image/upload/c_scale,q_58,w_2134/v1625521315/crash/grunge_wnmmoq.png");
+    bottom: 0%;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    left: 0;
+    z-index: 0;
+    opacity: 0.2;
+  }
+
+  & .heading {
+    z-index: 4;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    & h2 {
+      z-index: 5;
+      color: $brand-text;
+      font-family: ltc-pabst-oldstyle, serif;
+      font-weight: 100;
+      font-style: normal;
+      font-size: 3.5rem;
+      transition: all 0.3s ease;
+      text-transform: uppercase;
+    }
+  }
+  & .actions {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+    z-index: 4;
+    & button {
+      width: 12rem;
+    }
+  }
+  & .events_container {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+    gap: 2rem;
+    width: 70%;
+    min-width: 30rem;
+    margin-top: 2rem;
+    z-index: 6;
+  }
+  & button {
+    width: 20rem;
+    border: 2px solid #e84d3d;
+    background: #e84d3d;
+    color: #fbfef9;
+    height: 3rem;
+    margin: 2rem 0;
+    border-radius: 3px;
+    box-shadow: 0 1px 10px #e84d3d33;
+    text-transform: uppercase;
+    transition: all 0.3s ease;
+    font-weight: 900;
+    &:hover {
+      cursor: pointer;
+      box-shadow: 0 0 0 0 darken($brand-dark, 5%);
+    }
+  }
+}
+
+@media screen and (max-width: 1000px) {
+  .box {
+    & .banner {
+      height: 25rem;
+      width: 100%;
+      background: url("https://res.cloudinary.com/snackmanproductions/image/upload/v1591990942/crash/crash_k9pr4a.jpg");
+      background-position: 50% 60%;
+      background-size: cover;
+      background-repeat: no-repeat;
+      filter: sepia(20%);
+    }
+    & .heading {
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      & h2 {
+        font-size: 6vw;
+        text-align: center;
+      }
+    }
+    & .actions {
+      display: grid;
+      grid-template-columns: 1fr;
+      align-items: center;
+      gap: 0.5rem;
+      width: 90%;
+      & a {
+        display: flex;
+        justify-content: center;
+      }
+      & button {
+        margin: 0.5rem 0;
+        width: 16rem;
+      }
+    }
+    & .events_container {
+      display: grid;
+      grid-template-columns: 1fr;
+      grid-template-rows: auto;
+      gap: 2rem;
+      width: 80%;
+      margin-top: 2rem;
+    }
+    & button {
+      width: 15rem;
+    }
+  }
+}

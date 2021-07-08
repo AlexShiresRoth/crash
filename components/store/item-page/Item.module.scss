@@ -1,0 +1,252 @@
+@import "../../../sass/variables";
+.container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  min-height: 60vh;
+  margin-top: 10vh;
+  & .inner {
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 10vh 0;
+    & .bread_crumbs {
+      display: flex;
+      margin: 1rem 0;
+      align-items: center;
+      width: 100%;
+      & a {
+        text-decoration: none;
+        color: #999;
+        display: flex;
+        align-items: center;
+        margin: 0 0.5rem;
+      }
+      & .active {
+        color: $brand-secondary;
+      }
+      & p {
+        margin: 0;
+        color: #999;
+      }
+    }
+    & .item {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
+      padding: 2rem;
+      border: 1px solid #eee;
+      border-radius: 3px;
+      width: 100%;
+      & .col:nth-child(1) {
+        border-right: 1px solid #eee;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+      }
+      & .col {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+        width: 90%;
+        padding: 1rem;
+        & .image_container {
+          max-width: 25rem;
+          & img {
+            max-width: 100%;
+            object-fit: cover;
+            transition: all 0.3s ease;
+            &:hover {
+              transform: scale(1.5);
+              cursor: zoom-in;
+            }
+          }
+        }
+        & .item_desc {
+          width: 100%;
+          background-color: $brand-main;
+          padding: 1rem;
+          padding-bottom: 2rem;
+          & .item_heading {
+            display: flex;
+            justify-content: space-between;
+            & h1 {
+              color: #fbfaf8;
+              text-transform: uppercase;
+              font-size: 1.2rem;
+            }
+            & p {
+              color: #444;
+              font-weight: 700;
+              font-size: 1rem;
+            }
+          }
+          & h3 {
+            color: #eee;
+            font-weight: 200;
+            font-size: 1rem;
+            margin: 0.5rem 0 1rem 0;
+            width: 80%;
+          }
+        }
+        & form {
+          display: flex;
+          flex-direction: column;
+          background: #fff;
+          margin-top: -2.8rem;
+          padding: 1rem;
+          width: 95%;
+          & label {
+            margin: 0.5rem 0;
+          }
+          & select {
+            margin: 0.2rem 0;
+            padding: 0.4rem;
+            border: 1px solid $brand-dark;
+          }
+          & .btn_row {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            gap: 1rem;
+            align-items: center;
+            border-top: 1px solid #eee;
+            margin-top: 0.5rem;
+            padding-top: 0.5rem;
+            & button {
+              min-height: 2.2rem;
+              width: 6rem;
+              background: $brand-dark;
+              color: #fff;
+              border: 0;
+              border-radius: 3px;
+              transition: all 0.3s ease-in-out;
+              margin-top: 0.5rem;
+              font-size: 0.8rem;
+              &:hover {
+                cursor: pointer;
+                box-shadow: 0 1px 10px $brand-dark;
+              }
+            }
+            & .checkout_box {
+              display: flex;
+              flex-direction: column;
+              align-items: center;
+
+              & .divider {
+                width: 100%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                margin: 1rem 0;
+                & span {
+                  width: 90%;
+                  height: 1px;
+                  background: $brand-main;
+                  display: block;
+                  margin: 0 0.5rem;
+                }
+              }
+              & a {
+                width: 7rem;
+                & button {
+                  width: 100%;
+                  min-height: 2.2rem;
+                  background: $brand-main;
+                  color: #fff;
+                  border: 0;
+                  font-size: 0.8rem;
+                  border-radius: 3px;
+                  transition: all 0.3s ease;
+                  &:hover {
+                    cursor: pointer;
+                    box-shadow: 0 1px 10px $brand-main;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    min-height: 60vh;
+    margin-top: 10vh;
+    & .inner {
+      width: 95%;
+      display: flex;
+      justify-content: center;
+      margin: 10vh 0;
+      & .item {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+        padding: 1rem;
+        border: 1px solid #eee;
+        border-radius: 3px;
+        & .col:nth-child(1) {
+          border-right: 0;
+        }
+        & .col {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          width: 95%;
+          padding: 0;
+          & .item_desc {
+            padding-bottom: 2.7rem;
+            & .item_heading {
+              flex-direction: column;
+            }
+            & h1 {
+              text-transform: uppercase;
+              font-size: 1.5rem;
+              margin: 0.2rem 0;
+            }
+            & h3 {
+              font-weight: 200;
+              font-size: 1rem;
+              margin: 0.2rem 0;
+            }
+            & p {
+              font-weight: 700;
+              font-size: 1rem;
+              margin: 0.2rem 0;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 650px) {
+  .container {
+    & .inner {
+      & .item {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 1rem;
+        padding: 1rem;
+        border: 1px solid #eee;
+        border-radius: 3px;
+        & .col {
+          & .image_container {
+            max-width: 100%;
+          }
+        }
+      }
+    }
+  }
+}

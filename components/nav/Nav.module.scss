@@ -1,0 +1,107 @@
+@import "../../sass/variables";
+
+@font-face {
+  font-family: "Crash";
+  src: url("../../fonts/fairwater_sailor_serif.otf");
+}
+@font-face {
+  font-family: "Reg";
+  src: url("../../fonts/OldGrowth-Regular.otf");
+}
+
+.nav {
+  min-height: 6rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  background: $brand-dark;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 9999999;
+  box-shadow: 0 1px 25px darken(rgba(56, 56, 56, 0.185), 2%);
+  transition: all 0.3s ease;
+  & .left {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    & a {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-around;
+      color: $brand-accent;
+      font-style: normal;
+      font-weight: 700;
+      font-style: normal;
+      text-transform: uppercase;
+      text-decoration: none;
+      font-size: 1rem;
+      height: 100%;
+      margin: 0 0.2rem;
+      & svg {
+        fill: #eee;
+        width: 100%;
+        height: auto;
+        max-width: 15rem;
+        transition: all 0.3s ease;
+      }
+    }
+    & .social {
+      display: flex;
+      justify-content: space-around;
+      & a {
+        & svg {
+          max-width: 1.3rem;
+          font-size: 1.5rem;
+        }
+      }
+    }
+  }
+  & .right {
+    display: grid;
+    grid-template-columns: repeat(8, auto);
+    grid-template-rows: 1fr;
+    gap: 2rem;
+    justify-items: center;
+    & a {
+      color: #fff;
+      font-size: 0.8rem;
+      font-weight: 700;
+      text-decoration: none;
+      text-transform: uppercase;
+      transition: all 0.3s ease;
+      &:hover {
+        color: $brand-accent;
+      }
+    }
+  }
+}
+.nav_scrolling {
+  background: rgba(17, 17, 17, 0.719);
+  box-shadow: 0 1px 25px darken(rgba(56, 56, 56, 0.185), 2%);
+  transition: all 0.3s ease;
+  min-height: 3rem;
+  & .left {
+    & a {
+      & svg {
+        max-width: 10rem;
+        transition: all 0.3s ease;
+      }
+    }
+  }
+  & .right {
+    & a,
+    & button {
+      font-size: 0.9rem;
+      transition: all 0.3s ease;
+    }
+  }
+}
+@media screen and (max-width: 1000px) {
+  .nav {
+    display: none;
+  }
+}

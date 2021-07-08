@@ -1,0 +1,110 @@
+@import "../../sass/variables";
+
+@font-face {
+  font-family: "Crash";
+  src: url("../../fonts/fairwater_sailor_serif.otf");
+}
+@font-face {
+  font-family: "Reg";
+  src: url("../../fonts/OldGrowth-Regular.otf");
+}
+
+.item {
+  display: grid;
+  grid-template-columns: 0.3fr 1fr 0.3fr 0.5fr;
+  justify-items: start;
+  border-bottom: 1px solid darken(#e84d3d33, 5%);
+  padding: 1rem;
+  & .col {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    & a {
+      margin: 0 0.5rem;
+      & button {
+        width: 10rem;
+        border: 2px solid #e84d3d;
+        background: transparent;
+        color: #e84d3d;
+        height: 3rem;
+        margin: 0.5rem 0;
+        border-radius: 3px;
+        text-transform: uppercase;
+        transition: all 0.3s ease;
+        font-weight: 900;
+        box-shadow: 0 0 0 0 transparent;
+        &:hover {
+          cursor: pointer;
+          background: #e84d3d;
+          color: #fff;
+          box-shadow: 0 0 0 0 darken($brand-dark, 5%);
+        }
+      }
+    }
+    & a:nth-child(2) {
+      button {
+        margin: 1rem 0;
+        background: #e84d3d;
+        color: #fbfef9;
+        box-shadow: 0 1px 5px darken($brand-dark, 5%);
+        transition: all 0.3s ease;
+        &:hover {
+          box-shadow: 0 0 0 0 darken($brand-dark, 5%);
+        }
+      }
+    }
+    & h2 {
+      color: $brand-text;
+      font-weight: 900;
+      font-size: 1.2rem;
+    }
+    & p {
+      color: $brand-text;
+      opacity: 0.8;
+      font-weight: 200;
+      font-size: 1.2rem;
+      margin: 0 0.5rem;
+      & span {
+        font-weight: 900;
+        color: #e84d3d;
+      }
+    }
+    & svg {
+      font-size: 2rem;
+      color: #e84d3d;
+    }
+  }
+}
+
+@media screen and (max-width: 1000px) {
+  .item {
+    display: grid;
+    grid-template-columns: 1fr;
+    justify-items: center;
+    align-items: center;
+    padding: 1rem;
+
+    & .col {
+      width: 90%;
+      align-items: center;
+      flex-direction: column;
+      & a {
+        button {
+          background: transparent;
+          height: 2.8rem;
+          width: 10rem;
+          margin: 0.5rem 0;
+          text-transform: uppercase;
+          transition: all 0.3s ease;
+          box-shadow: 0 0 0;
+        }
+      }
+
+      & p {
+        font-weight: 400;
+        font-size: 1.2rem;
+        text-align: center;
+      }
+    }
+  }
+}

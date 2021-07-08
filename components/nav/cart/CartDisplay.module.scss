@@ -1,0 +1,118 @@
+@import "../../../sass/variables";
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
+  max-height: 100vh;
+  width: 30rem;
+  max-width: 100%;
+  background: #fff;
+  overflow-y: auto;
+  position: fixed;
+  top: 0;
+  right: 0;
+  visibility: visible;
+  transform: translateX(0);
+  transition: all 0.3s cubic-bezier(1, 0, 0, 1);
+  filter: drop-shadow(0 1px 200px #999);
+  border-left: 1px solid #eee;
+  padding: 1rem;
+  z-index: 9999;
+  & .inner {
+    width: 90%;
+    padding: 1rem 0;
+    & button {
+      color: #666;
+      &:hover {
+        cursor: pointer;
+      }
+    }
+  }
+  & .checkout {
+    width: 100%;
+    display: flex;
+    border-top: 1px solid #eee;
+    margin-bottom: 3rem;
+    & button {
+      width: 100%;
+      background: $brand-dark;
+      border: 1px solid $brand-dark;
+      color: $brand-text;
+      height: 3rem;
+      border-radius: 3px;
+      margin-top: 1rem;
+      font-size: 1rem;
+      padding: 1rem;
+    }
+  }
+  & .items {
+    display: flex;
+    flex-direction: column;
+    max-height: 60vh;
+    overflow-y: auto;
+    & .item {
+      border-bottom: 1px solid #eee;
+      padding: 1rem 0;
+      display: flex;
+      align-items: center;
+      & img {
+        max-width: 6rem;
+      }
+    }
+  }
+}
+
+.hidden {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  width: 30rem;
+  background: #fff;
+  position: fixed;
+  top: 0;
+  right: 0;
+  transform: translateX(150vw);
+  transition: all 0.3s cubic-bezier(1, 0, 0, 1);
+  visibility: hidden;
+  z-index: -1;
+  padding: 1rem;
+  & .inner {
+    width: 90%;
+    padding: 1rem 0;
+  }
+  & .checkout {
+    width: 100%;
+    display: flex;
+    border-top: 1px solid #eee;
+    & button {
+      width: 100%;
+      background: $brand-dark;
+      border: 1px solid $brand-dark;
+      color: $brand-text;
+      height: 3rem;
+      margin-top: 1rem;
+    }
+  }
+  & .items {
+    display: flex;
+    flex-direction: column;
+
+    & .item {
+      border-bottom: 1px solid #eee;
+      padding: 1rem 0;
+      display: flex;
+      align-items: center;
+      & img {
+        max-width: 6rem;
+      }
+    }
+  }
+}
+@media screen and (max-width: 500px) {
+  .container {
+    width: 100%;
+    padding: 0;
+  }
+}

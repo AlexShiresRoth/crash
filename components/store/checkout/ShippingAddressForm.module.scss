@@ -1,0 +1,115 @@
+@import "../../../sass/variables";
+
+@font-face {
+  font-family: "Crash";
+  src: url("../../../fonts/fairwater_sailor_serif.otf");
+}
+@font-face {
+  font-family: "Reg";
+  src: url("../../../fonts/OldGrowth-Regular.otf");
+}
+
+.form_container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: #fff;
+  border: 1px solid #eee;
+  box-shadow: 0 1px 10px #eee;
+  padding: 2rem 0;
+  min-width: 40vw;
+  width: 100%;
+  & .form_header {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 90%;
+    border-bottom: 1px solid #eee;
+    & button {
+      background: $alert-danger;
+      border: 0;
+      color: #fff;
+      border-radius: 3px;
+      transition: all 0.3s ease;
+      padding: 0.5rem 1rem;
+      &:hover {
+        cursor: pointer;
+        box-shadow: 0 1px 10px $alert-danger;
+      }
+    }
+  }
+  & .form {
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    & .grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 2rem;
+      align-items: center;
+      padding: 2rem 0;
+      border-bottom: 1px solid #eee;
+      & .col {
+        width: 100%;
+        & .input_col {
+          width: 100%;
+          display: flex;
+          flex-direction: column;
+          margin: 0.5rem 0;
+          & label {
+            margin: 0.5rem 0;
+          }
+          & input,
+          & select {
+            font-size: 16px;
+            padding: 0 0;
+            height: 2.5rem;
+            border: 1px solid lighten($brand-dark, 30%);
+            width: 100%;
+            border-radius: 3px;
+            text-indent: 5px;
+          }
+        }
+      }
+    }
+    & .btn_col {
+      width: 50%;
+      display: flex;
+      flex-direction: column;
+      justify-self: flex-end;
+      align-self: flex-end;
+      margin: 1rem 0;
+      & button {
+        height: 3rem;
+        width: 100%;
+        background: $brand-dark;
+        color: #fff;
+        transition: all 0.3s ease;
+        border: 0;
+        border-radius: 3px;
+        &:hover {
+          cursor: pointer;
+          box-shadow: 0 1px 10px $brand-dark;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 750px) {
+  .form_container {
+    & .form_header {
+      flex-direction: column;
+      align-items: flex-start;
+      padding: 1rem 0;
+    }
+    & .form {
+      & .grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 0rem;
+        padding: 0;
+      }
+    }
+  }
+}

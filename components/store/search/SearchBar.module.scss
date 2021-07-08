@@ -1,0 +1,147 @@
+@import "../../../sass/variables";
+
+@font-face {
+  font-family: "Crash";
+  src: url("../../../fonts/fairwater_sailor_serif.otf");
+}
+@font-face {
+  font-family: "Reg";
+  src: url("../../../fonts/OldGrowth-Regular.otf");
+}
+
+.search {
+  min-height: 3rem;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-bottom: 1px solid rgba(238, 238, 238, 0.37);
+  & .content {
+    width: 75%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  & .bread_crumbs {
+    display: flex;
+    margin: 1rem 0;
+    align-items: center;
+    width: 100%;
+    & a {
+      text-decoration: none;
+      color: #999;
+      display: flex;
+      align-items: center;
+      margin: 0 0.5rem;
+    }
+    & .active {
+      color: $brand-secondary;
+    }
+    & p {
+      margin: 0;
+      color: #999;
+    }
+  }
+  & .form_container {
+    display: flex;
+    align-items: center;
+  }
+  & form {
+    border: 1px solid rgba(34, 34, 34, 0.171);
+    display: flex;
+    padding: 0.5rem;
+    margin: 1rem 0;
+    margin-right: 5rem;
+    & input {
+      border: 0;
+      &:focus {
+        outline: 0px solid transparent;
+      }
+    }
+    & button {
+      background: transparent;
+      border: 0;
+      display: flex;
+      align-items: center;
+      &:hover {
+        cursor: pointer;
+      }
+    }
+  }
+  & .clear_btn {
+    & button {
+      background: #000;
+      height: 2.5rem;
+      width: 12rem;
+      color: #fff;
+      border-radius: 3px;
+      border: 1px solid #000;
+      transition: all 0.3s ease;
+      &:hover {
+        cursor: pointer;
+        box-shadow: 0 1px 10px #000;
+      }
+      &:active {
+        outline: 0px solid transparent;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .search {
+    min-height: 5rem;
+    background: #fff;
+    border-bottom: 1px solid rgba(238, 238, 238, 0.37);
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    & .content {
+      width: 95%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+    }
+    & .form_container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      width: 95%;
+    }
+    & form {
+      width: 90%;
+      margin: 0.5rem 0;
+      margin-right: 0;
+      & input {
+        width: 90%;
+      }
+    }
+
+    & .clear_btn {
+      width: 95%;
+      margin: 0.5rem 0;
+      display: flex;
+      justify-content: center;
+      & button {
+        background: #000;
+        height: 2.5rem;
+        width: 100%;
+        color: #fff;
+        border: 1px solid #000;
+        transition: all 0.3s ease;
+        &:hover {
+          cursor: pointer;
+          box-shadow: 0 1px 10px #000;
+        }
+        &:active {
+          outline: 0px solid transparent;
+        }
+      }
+    }
+  }
+}

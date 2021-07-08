@@ -1,0 +1,51 @@
+import React from "react";
+import PropTypes from "prop-types";
+import style from "./StoreItem.module.scss";
+import { connect } from "react-redux";
+import Link from "next/link";
+
+interface Props {
+  item: any;
+  index: number;
+  shop?: any;
+}
+
+const StoreItem = ({ item, index, shop: { loading } }: Props) => {
+  return !loading ? (
+    <div className={style.item} key={index}>
+      <div className={style.img_container}>
+        <Link href={`/merch/${item.id}`}>
+          <img src={item.images[0].src} alt={item.title} />
+        </Link>
+      </div>
+      <div className={style.heading}>
+        <p>{item.title}</p>
+      </div>
+
+      <div className={style.price}>
+        <p>
+          <span>Price:</span>
+          {"$" + item.variants[0].price}
+        </p>
+      </div>
+      <div className={style.actions}>
+        <Link href={`/merch/${item.id}`}>
+          <button>View</button>
+        </Link>
+      </div>
+    </div>
+  ) : null;
+};
+
+StoreItem.propTypes = {
+  item: PropTypes.object,
+  index: PropTypes.number.isRequired,
+};
+
+const mapStateToProps = (state: { shop: any }) => {
+  return {
+    shop: state.shop,
+  };
+};
+
+export default connect(mapStateToProps, null)(StoreItem);
