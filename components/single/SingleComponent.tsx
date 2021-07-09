@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import ReactPlayer from "react-player/lazy";
-import { Link } from "react-router-dom";
+import Link from "next/link";
 import { FaSpotify, FaApple } from "react-icons/fa";
 import style from "./SingleComponent.module.scss";
 import { connect, RootStateOrAny } from "react-redux";
@@ -9,16 +9,12 @@ import { addToCart, fetchStoreItems } from "../../redux/actions/store";
 interface Props {
   addToCart: (item: any) => any;
   fetchStoreItems: () => any;
-  store: {
+  shop: {
     catalog: Array<any>;
   };
 }
 
-const SingleComponent = ({
-  addToCart,
-  store: { catalog },
-  fetchStoreItems,
-}: Props) => {
+const SingleComponent = ({ shop: { catalog }, fetchStoreItems }: Props) => {
   const [foundSingle, setSingle] = useState<any>(null);
 
   useEffect(() => {
@@ -109,8 +105,11 @@ const SingleComponent = ({
             </div>
             <div className={style.download_container}>
               {foundSingle && (
-                <Link to={`merch/viewitem/${foundSingle.id}`}>
-                  <button>Download Here</button>
+                <Link
+                  href={`StorePage/merch/${foundSingle.id}`}
+                  as={`/merch/${foundSingle.id}`}
+                >
+                  <a>Download Here</a>
                 </Link>
               )}
             </div>
@@ -118,7 +117,7 @@ const SingleComponent = ({
         </section>
         <section className={style.box}>
           <div className={style.inner_container}>
-            <h2>What we're listening to</h2>
+            <h2>What we{`'`}re listening to</h2>
 
             <div className={style.playlist_container}>
               <iframe
@@ -133,10 +132,14 @@ const SingleComponent = ({
         <section className={style.box}>
           <div className={style.inner_container}>
             <h2>
-              <Link to="/merch">Shop "Devils" Merch</Link>
+              <Link href="/StorePage" as="/merch">
+                <a>Shop {"Devils"} Merch</a>
+              </Link>
             </h2>
             <div className={style.bg_img}>
-              <Link to="/merch"></Link>
+              <Link href="/StorePage" as="/merch">
+                <a>{`merch`}</a>
+              </Link>
             </div>
           </div>
         </section>
@@ -195,8 +198,8 @@ const SingleComponent = ({
           </p>
           <p>
             <strong>
-              If there is nothing left to believe in, let's burn ourselves to
-              the ground, from the likes of fire which we use to seek light.
+              If there is nothing left to believe in, let{`'`}s burn ourselves
+              to the ground, from the likes of fire which we use to seek light.
               -George
             </strong>
           </p>
@@ -290,7 +293,7 @@ const SingleComponent = ({
 };
 
 const mapStateToProps = (state: RootStateOrAny) => ({
-  store: state.store,
+  shop: state.shop,
 });
 
 export default connect(mapStateToProps, { addToCart, fetchStoreItems })(

@@ -47,10 +47,14 @@ const SearchBar = ({
     <div className={style.search}>
       <div className={style.content}>
         <div className={style.bread_crumbs}>
-          <Link href={`/`}>Home</Link>
+          <Link href={`/Main`}>
+            <a>Home</a>
+          </Link>
           <p>\</p>
           {/* need to setup active classname for links */}
-          <Link href={"/store"}>Store</Link>
+          <Link href={"/StorePage"}>
+            <a className={style.active}>Store</a>
+          </Link>
         </div>
         <div className={style.form_container}>
           <form onSubmit={(e) => formSubmit(e)}>

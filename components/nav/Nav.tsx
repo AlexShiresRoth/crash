@@ -95,7 +95,7 @@ const Nav = ({ clearSearch }: Props) => {
         <div className={style.right}>
           {links.map((item) => {
             return (
-              <Link href={item.path} key={item.id} as={item.name}>
+              <Link href={item.path} key={item.id}>
                 <a>{item.name}</a>
               </Link>
             );

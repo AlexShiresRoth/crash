@@ -74,22 +74,15 @@
     display: flex;
     margin: 1rem 0;
     width: 100%;
+
     & a {
-      width: 100%;
-    }
-    & button {
-      height: 3rem;
-      width: 100%;
-      background: $brand-dark;
-      border: 1px solid $brand-dark;
-      color: #fff;
-      border-radius: 3px;
+      color: $brand-dark;
+      transition: all 0.3s ease-in-out;
       &:hover {
         cursor: pointer;
         background: $brand-secondary;
         color: #fff;
         outline: 0px solid transparent;
-        border: 1px solid $brand-secondary;
       }
     }
     & .in_cart {

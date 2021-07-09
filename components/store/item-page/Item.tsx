@@ -8,6 +8,7 @@ import LoadingSpinner from "../../reusablecomps/LoadingSpinner";
 import StoreAlert from "../alerts/StoreAlert";
 import Link from "next/link";
 import { useRouter } from "next/dist/client/router";
+import Image from "next/image";
 
 interface Props {
   shop?: any;
@@ -122,7 +123,12 @@ const Item = ({
         <div className={style.item}>
           <div className={style.col}>
             <div className={style.image_container}>
-              <img src={foundItem.images[0].src} alt={foundItem.title} />
+              <Image
+                src={foundItem.images[0].src}
+                alt={foundItem.title}
+                height={700}
+                width={700}
+              />
             </div>
           </div>
           <div className={style.col}>

@@ -1,6 +1,4 @@
 import React, { useEffect } from "react";
-import PropTypes from "prop-types";
-import { Redirect } from "react-router";
 import { connect } from "react-redux";
 import style from "./CheckoutModule.module.scss";
 import LoadingSpinner from "../../reusablecomps/LoadingSpinner";
@@ -13,6 +11,8 @@ import ShippingAddressForm from "./ShippingAddressForm";
 import CheckoutForm from "./CheckoutForm";
 import UpdateInfoToggle from "./UpdateInfoToggle";
 import UpdateAddress from "./UpdateAddress";
+import Image from "next/image";
+import { useRouter } from "next/dist/client/router";
 
 interface Props {
   removeFromCart: (val: any, variantId: string) => any;
@@ -26,6 +26,8 @@ const CheckoutModule = ({
   removeFromCart,
   fetchCheckout,
 }: Props) => {
+  const router = useRouter();
+
   useEffect(() => {
     if (checkout && checkout.order) {
       clearCheckout();
@@ -37,9 +39,11 @@ const CheckoutModule = ({
     fetchCheckout(id);
   }, [fetchCheckout, cart.length]);
 
-  if (cart.length <= 0 || !cart) {
-    return <Redirect to="/merch" />;
-  }
+  useEffect(() => {
+    if (cart.length <= 0 || !cart) {
+      router.push("/StorePage");
+    }
+  }, [cart, router]);
 
   return (
     <section className={style.section}>
@@ -58,13 +62,14 @@ const CheckoutModule = ({
                     (lineItem: any) =>
                       lineItem.variant.id === cartItem.variant.id
                   )[0];
-                  console.log(cartItem);
                   return (
                     <div className={style.item_container} key={i}>
                       <div className={style.col}>
-                        <img
+                        <Image
                           src={cartItem.variant.image.src}
                           alt={cartItem.title}
+                          height={600}
+                          width={600}
                         />
                       </div>
                       <div className={style.col}>
