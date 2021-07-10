@@ -38,7 +38,6 @@ const TourSections = ({ fetchEvents, events: { events } }: Props) => {
 
   return (
     <section className={style.box}>
-      {/* <div className={style.border_bottom}></div> */}
       <div className={style.heading} ref={tourRef}>
         <h2>Upcoming Tour Dates</h2>
       </div>

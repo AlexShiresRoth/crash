@@ -18,7 +18,7 @@
   transition: all 0.3s ease;
   background: #fff;
   &:hover {
-    box-shadow: 0 1px 60px rgba(146, 146, 146, 0.479);
+    box-shadow: 0 1px 30px rgba(146, 146, 146, 0.479);
     transform: translateY(-2vh);
   }
   & .img_container {
@@ -51,11 +51,26 @@
     flex-direction: column;
     justify-content: space-between;
     & p {
-      font-weight: 400;
+      font-weight: 900;
       color: $brand-dark;
       font-size: 1.2rem;
       text-transform: uppercase;
       max-width: 80%;
+      z-index: 2;
+      padding: 0.5rem;
+      position: relative;
+      &::before {
+        content: "";
+        display: block;
+        position: absolute;
+        z-index: -1;
+        bottom: 5px;
+        left: 0;
+        background: $brand-main;
+        opacity: 0.2;
+        width: 100%;
+        height: 10px;
+      }
     }
   }
 
@@ -78,11 +93,30 @@
     & a {
       color: $brand-dark;
       transition: all 0.3s ease-in-out;
+      padding: 0.5rem 2rem;
+      position: relative;
+      z-index: 1;
+      color: #fff;
+      text-decoration: none;
+
       &:hover {
         cursor: pointer;
         background: $brand-secondary;
         color: #fff;
         outline: 0px solid transparent;
+      }
+      &::after {
+        content: "";
+        display: block;
+        position: absolute;
+        z-index: -1;
+        top: 0;
+        left: 0;
+        background: $brand-main;
+        box-shadow: 0 0 0 3px #ea8e4524;
+        width: 100%;
+        height: 100%;
+        transform: rotate(-1deg);
       }
     }
     & .in_cart {

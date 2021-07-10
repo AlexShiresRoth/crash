@@ -11,7 +11,7 @@ type Props = {
 const Pages = ({ images }: Props) => {
   const [currentPages, setCurrent] = useState<number>(0);
 
-  const [max, setMax] = useState<number>(0);
+  const [max, setMax] = useState<number>(6);
 
   const [touchStart, setStart] = useState<number>(0);
 
@@ -101,7 +101,7 @@ const Pages = ({ images }: Props) => {
 
   useEffect(() => {
     if (images) {
-      setMax(images.length - 1);
+      setMax(images.slice(0, 7).length - 1);
       setPages(images);
     }
   }, [images]);

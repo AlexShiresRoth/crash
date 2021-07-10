@@ -73,16 +73,18 @@
           padding-bottom: 2rem;
           & .item_heading {
             display: flex;
-            justify-content: space-between;
+            flex-direction: column;
             & h1 {
               color: #fbfaf8;
               text-transform: uppercase;
               font-size: 1.2rem;
+              margin: 0.5rem 0;
             }
             & p {
               color: #444;
               font-weight: 700;
               font-size: 1rem;
+              margin: 0.5rem 0;
             }
           }
           & h3 {
@@ -123,7 +125,6 @@
               background: $brand-dark;
               color: #fff;
               border: 0;
-              border-radius: 3px;
               transition: all 0.3s ease-in-out;
               margin-top: 0.5rem;
               font-size: 1rem;
@@ -137,34 +138,19 @@
               flex-direction: column;
               align-items: center;
 
-              & .divider {
-                width: 100%;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                margin: 1rem 0;
-                & span {
-                  width: 90%;
-                  height: 1px;
-                  background: $brand-main;
-                  display: block;
-                  margin: 0 0.5rem;
-                }
-              }
               & a {
                 width: 10rem;
                 & button {
                   width: 100%;
                   min-height: 2.8rem;
-                  background: $alert-success;
+                  background: $brand-main;
                   color: #fff;
                   border: 0;
                   font-size: 1rem;
-                  border-radius: 3px;
                   transition: all 0.3s ease;
                   &:hover {
                     cursor: pointer;
-                    box-shadow: 0 1px 5px $alert-success;
+                    box-shadow: 0 1px 5px $brand-main;
                   }
                 }
               }
@@ -184,15 +170,15 @@
     min-height: 60vh;
     margin-top: 10vh;
     & .inner {
-      width: 95%;
+      width: 100%;
       display: flex;
       justify-content: center;
-      margin: 10vh 0;
+      margin: 3vh 0 10vh 0;
       & .item {
         display: grid;
         grid-template-columns: repeat(2, 1fr);
         gap: 1rem;
-        padding: 1rem;
+        padding: 0rem;
         border: 1px solid #eee;
         border-radius: 3px;
         & .col:nth-child(1) {
@@ -204,11 +190,24 @@
           justify-content: center;
           width: 95%;
           padding: 0;
+          & .image_container {
+            max-width: 20rem;
+            & img {
+              max-width: 100%;
+              object-fit: cover;
+              transition: all 0.3s ease;
+              &:hover {
+                transform: scale(1.5);
+                cursor: zoom-in;
+              }
+            }
+          }
           & .item_desc {
             padding-bottom: 2.7rem;
             & .item_heading {
               flex-direction: column;
             }
+
             & h1 {
               text-transform: uppercase;
               font-size: 1.5rem;
@@ -243,7 +242,7 @@
         border-radius: 3px;
         & .col {
           & .image_container {
-            max-width: 100%;
+            max-width: 80%;
           }
         }
       }

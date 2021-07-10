@@ -10,19 +10,21 @@
 }
 .box {
   width: 100%;
-  padding: 4rem 0;
+  padding: 8rem 0;
   display: flex;
   justify-content: center;
   align-items: center;
   position: relative;
   overflow: hidden;
   background: lighten($brand-dark, 5%);
+  margin: -6rem;
+  clip-path: polygon(0 9%, 100% 0%, 100% 100%, 0% 100%);
   &::before {
     content: "";
     width: 100%;
     height: 100%;
     position: absolute;
-    background: url("https://res.cloudinary.com/snackmanproductions/image/upload/c_scale,q_58,w_2134/v1625521315/crash/grunge_wnmmoq.png");
+    background: url("https://res.cloudinary.com/snackmanproductions/image/upload/c_scale,q_59,w_2553/v1625946533/crash/grungebg_ojb0nx.png");
     bottom: 0%;
     background-size: cover;
     background-position: center;
@@ -37,8 +39,11 @@
     align-items: center;
     margin: 7rem 0;
     z-index: 4;
-    & img {
+    & .img_container {
       max-width: 20rem;
+      & img {
+        width: 500px;
+      }
     }
     & h2 {
       font-size: 3rem;
@@ -84,13 +89,29 @@
 
 @media screen and (max-width: 700px) {
   .box {
+    padding: 4rem 0 8rem 0;
+    clip-path: polygon(0 4%, 100% 0%, 100% 100%, 0% 100%);
+    &::after {
+      content: "";
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      background: url("https://res.cloudinary.com/snackmanproductions/image/upload/c_scale,q_59,w_2553/v1625946533/crash/grungebg_ojb0nx.png");
+      bottom: 0%;
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      left: 0;
+      z-index: 0;
+      opacity: 0.5;
+    }
     & .container {
       display: flex;
       flex-direction: column;
       align-items: center;
       margin: 7rem 0;
-      & img {
-        max-width: 70%;
+      & .img_container {
+        max-width: 10rem;
       }
       & h2 {
         font-size: 8vw;
