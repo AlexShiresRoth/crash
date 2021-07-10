@@ -1,0 +1,74 @@
+@import '../../../../sass/variables';
+
+.checkout {
+	min-width: 20vw;
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	align-items: center;
+	background: #fff;
+	border: 1px solid #eee;
+	box-shadow: 0 1px 10px #eee;
+	padding: 2rem 0;
+	& .heading {
+		width: 100%;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+	}
+	& form {
+		display: flex;
+		flex-direction: column;
+		margin: 2rem;
+		width: 90%;
+		& .input_col {
+			display: flex;
+			flex-direction: column;
+			width: 100%;
+			& label {
+				margin: 1rem 0;
+			}
+			& input {
+				padding: 1rem;
+				border: 1px solid #eee;
+				border-radius: 3px;
+			}
+		}
+		& .btn_container {
+			margin: 1rem 0;
+			width: 100%;
+			display: flex;
+			border-top: 1px solid #eee;
+			justify-content: center;
+			& button {
+				width: 100%;
+				padding: 1rem;
+				background: rgb(19, 55, 216);
+				color: #fff;
+				border: 0;
+				transition: all 0.3s ease-in-out;
+				border-radius: 3px;
+				&:hover {
+					cursor: pointer;
+					box-shadow: 0 1px 10px rgb(19, 55, 216);
+				}
+			}
+			& .disabled {
+				background: rgba(19, 55, 216, 0.397);
+				&:hover {
+					cursor: not-allowed;
+					box-shadow: 0 0 0;
+				}
+			}
+		}
+	}
+}
+
+@media screen and (max-width: 700px) {
+	.checkout {
+		& form {
+			width: 90%;
+		}
+	}
+}
