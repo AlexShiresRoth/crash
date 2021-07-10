@@ -9,7 +9,6 @@ import {
 } from "react-icons/ti";
 import { FaSpotify, FaApple, FaBandcamp } from "react-icons/fa";
 import Image from "next/image";
-import LoadingSpinner from "../reusablecomps/LoadingSpinner";
 
 const Footer = () => {
   const logo =
