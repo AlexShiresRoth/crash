@@ -13,6 +13,7 @@ const Upsell = ({ shop: { upsellVisible } }: Props) => {
     return (
       <div className={style.modal}>
         <h1>upsell</h1>
+        <h2></h2>
       </div>
     );
   }
