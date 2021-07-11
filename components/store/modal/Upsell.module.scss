@@ -11,5 +11,24 @@
   & .upsell {
     border-radius: 3px;
     background: #fff;
+    width: 38rem;
+    & .heading {
+      display: flex;
+      justify-content: space-between;
+      border-bottom: 1px solid #eee;
+      & h2 {
+        margin-left: 1rem;
+        font-size: 1.2rem;
+      }
+      & button {
+        margin-right: 1rem;
+        background: transparent;
+        border: 0;
+        color: #111;
+        &:hover {
+          cursor: pointer;
+        }
+      }
+    }
   }
 }

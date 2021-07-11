@@ -10,7 +10,7 @@
   & .store_grid {
     width: 85%;
     display: grid;
-    grid-template-columns: repeat(4, minmax(200px, 350px));
+    grid-template-columns: repeat(4, minmax(200px, 450px));
     gap: 1rem;
   }
 }

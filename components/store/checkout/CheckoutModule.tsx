@@ -6,6 +6,7 @@ import {
   removeFromCart,
   fetchCheckout,
   clearCheckout,
+  showUpsell,
 } from "../../../redux/actions/store";
 import ShippingAddressForm from "./ShippingAddressForm";
 import CheckoutForm from "./CheckoutForm";
@@ -19,12 +20,14 @@ interface Props {
   shop?: any;
   fetchCheckout: (val: string) => any;
   clearCheckout: () => any;
+  showUpsell: (val: boolean) => any;
 }
 
 const CheckoutModule = ({
   shop: { cart, loading, shippingInfo, shippingSaved, checkout },
   removeFromCart,
   fetchCheckout,
+  showUpsell,
 }: Props) => {
   const router = useRouter();
 
@@ -38,6 +41,11 @@ const CheckoutModule = ({
     const id = localStorage.getItem("checkout") || "";
     fetchCheckout(id);
   }, [fetchCheckout, cart.length]);
+
+  useEffect(() => {
+    //close the upsell modal
+    showUpsell(false);
+  }, [showUpsell]);
 
   useEffect(() => {
     if (cart.length <= 0 || !cart) {
@@ -125,4 +133,5 @@ export default connect(mapStateToProps, {
   removeFromCart,
   fetchCheckout,
   clearCheckout,
+  showUpsell,
 })(CheckoutModule);
