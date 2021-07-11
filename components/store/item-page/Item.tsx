@@ -192,7 +192,7 @@ const Item = ({
               <div className={style.btn_row}>
                 {cart.length > 0 ? (
                   <div className={style.checkout_box}>
-                    <Link href="/Checkout" as="/checkout">
+                    <Link href="/Checkout">
                       <a>
                         <button>Checkout Now</button>
                       </a>

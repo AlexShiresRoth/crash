@@ -17,14 +17,14 @@
   align-items: center;
   border-bottom: 1px solid rgba(238, 238, 238, 0.37);
   & .content {
-    width: 75%;
+    width: 85%;
     display: flex;
     align-items: center;
     justify-content: space-between;
   }
   & .bread_crumbs {
     display: flex;
-    margin: 1rem 0;
+    margin: 1rem;
     align-items: center;
     width: 100%;
     & a {

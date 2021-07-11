@@ -228,15 +228,8 @@
       margin: 1rem 0;
       width: 100%;
       & a {
-        display: flex;
-        justify-content: center;
-        width: 100%;
-      }
-      & button {
-        height: 2.5rem;
-        width: 90%;
-        background: $brand-dark;
-        border: 1px solid $brand-dark;
+        width: 6rem;
+        text-align: center;
         color: #fff;
         &:hover {
           cursor: pointer;
@@ -246,6 +239,7 @@
           border: 1px solid $brand-secondary;
         }
       }
+
       & .in_cart {
         background: $brand-secondary;
         color: #fff;

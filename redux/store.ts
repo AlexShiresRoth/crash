@@ -2,13 +2,13 @@ import { useMemo } from "react";
 import { createStore, applyMiddleware, combineReducers } from "redux";
 import { HYDRATE } from "next-redux-wrapper";
 import thunkMiddleware from "redux-thunk";
+import { RootStateOrAny } from "react-redux";
 import { youtube } from "./reducers/youtube";
 import { store as shop } from "./reducers/store";
 import { events } from "./reducers/events";
 import { email } from "./reducers/email";
 import { alerts } from "./reducers/alerts";
 import { cloudinary } from "./reducers/cloudinary";
-import { RootStateOrAny } from "react-redux";
 
 let store: any;
 
@@ -28,7 +28,6 @@ const combinedReducer = combineReducers({
   alerts,
   cloudinary,
 });
-
 const reducer = (
   state: RootStateOrAny,
   action: { type: string; payload: any }
@@ -45,7 +44,7 @@ const reducer = (
   }
 };
 
-export const initStore = (args: any) => {
+export const initStore = (val: any) => {
   return createStore(reducer, bindMiddleware([thunkMiddleware]));
 };
 

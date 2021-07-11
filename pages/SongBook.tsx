@@ -3,7 +3,7 @@ import { useEffect } from "react";
 import Layout from "../UI/layout/Layout";
 import BookComponent from "../components/songbook/BookComponent";
 
-const SongBook = () => {
+const songbook = () => {
   useEffect(() => {
     if (typeof window !== "undefined") {
       window.scrollTo({ top: 0 });
@@ -16,4 +16,4 @@ const SongBook = () => {
   );
 };
 
-export default SongBook;
+export default songbook;

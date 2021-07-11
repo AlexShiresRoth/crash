@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import Layout from "../UI/layout/Layout";
 import CheckoutModule from "../components/store/checkout/CheckoutModule";
 
-const Checkout = () => {
+const checkout = () => {
   useEffect(() => {
     setTimeout(() => {
       window.scrollTo(0, 0);
@@ -15,4 +15,4 @@ const Checkout = () => {
   );
 };
 
-export default Checkout;
+export default checkout;
