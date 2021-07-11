@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import Layout from "../UI/layout/Layout";
 import Hub from "../components/main/Hub";
 
-const main = () => {
+const Main = () => {
   useEffect(() => {
     setTimeout(() => {
       window.scrollTo(0, 0);
@@ -15,4 +15,4 @@ const main = () => {
   );
 };
 
-export default main;
+export default Main;

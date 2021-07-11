@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import Layout from "../UI/layout/Layout";
 import VideosComponent from "../components/videos/VideosComponent";
 
-const videos = () => {
+const Videos = () => {
   useEffect(() => {
     setTimeout(() => {
       window.scrollTo(0, 0);
@@ -15,4 +15,4 @@ const videos = () => {
   );
 };
 
-export default videos;
+export default Videos;

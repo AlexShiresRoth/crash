@@ -16,6 +16,7 @@ import {
   CHECKOUT_ERROR,
   CLEAR_CHECKOUT,
   UPDATE_LINE_ITEM,
+  TOGGLE_UPSELL,
 } from "../actions/types";
 
 const initialState = {
@@ -37,6 +38,7 @@ const initialState = {
   processed: false,
   lineItems: [],
   checkoutErrors: null,
+  upsellVisible: false,
   musicVendor: "single music",
 };
 
@@ -121,6 +123,12 @@ export const store = (state = initialState, action: any) => {
         shippingSaved: true,
         loading: false,
       };
+    case TOGGLE_UPSELL: {
+      return {
+        ...state,
+        upsellVisible: payload,
+      };
+    }
     case SAVE_SHIPPING:
       return {
         ...state,

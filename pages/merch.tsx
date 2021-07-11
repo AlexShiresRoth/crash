@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import Layout from "../UI/layout/Layout";
 import Store from "../components/store/Store";
 
-const merch = () => {
+const Merch = () => {
   useEffect(() => {
     setTimeout(() => {
       window.scrollTo(0, 0);
@@ -15,4 +15,4 @@ const merch = () => {
   );
 };
 
-export default merch;
+export default Merch;

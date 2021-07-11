@@ -1,0 +1,15 @@
+.modal {
+  height: 100%;
+  width: 100vw;
+  background: #00000033;
+  box-shadow: 0 1px 60px #222;
+  position: fixed;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  & .upsell {
+    border-radius: 3px;
+    background: #fff;
+  }
+}

@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import Layout from "../UI/layout/Layout";
 import SingleComponent from "../components/single/SingleComponent";
 
-const single = () => {
+const Single = () => {
   useEffect(() => {
     window.addEventListener("load", () => {
       setTimeout(() => {
@@ -17,4 +17,4 @@ const single = () => {
   );
 };
 
-export default single;
+export default Single;

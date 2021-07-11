@@ -24,7 +24,7 @@ export const Header = () => {
             <div className={style.logo_box}>{logo}</div>
             <h1>Welcome To Nowhere</h1>
             <p>a new album by crash the calm</p>
-            <Link href="/Main">
+            <Link href="/main">
               <a>enter</a>
             </Link>
           </div>

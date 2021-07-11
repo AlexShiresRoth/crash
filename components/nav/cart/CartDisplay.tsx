@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import { removeFromCart } from "../../../redux/actions/store";
+import { removeFromCart, showUpsell } from "../../../redux/actions/store";
 import style from "./CartDisplay.module.scss";
 import Link from "next/link";
 import CartItem from "./CartItem";
@@ -10,6 +10,7 @@ interface Props {
   removeFromCart: (val: any, variantId: any) => any;
   setVisibility: (val: boolean) => any;
   isVisible: boolean;
+  showUpsell: (val: boolean) => any;
 }
 
 const CartDisplay = ({
@@ -17,6 +18,7 @@ const CartDisplay = ({
   removeFromCart,
   isVisible,
   setVisibility,
+  showUpsell,
 }: Props) => {
   return !loading ? (
     <div className={isVisible ? style.container : style.hidden}>
@@ -45,11 +47,7 @@ const CartDisplay = ({
           })}
         </div>
         <div className={style.checkout}>
-          <Link href="/Checkout">
-            <a>
-              <button>Proceed to Checkout</button>
-            </a>
-          </Link>
+          <button onClick={(e) => showUpsell(true)}>Proceed to Checkout</button>
         </div>
       </div>
     </div>
@@ -62,4 +60,6 @@ const mapStateToProps = (state: any) => {
   };
 };
 
-export default connect(mapStateToProps, { removeFromCart })(CartDisplay);
+export default connect(mapStateToProps, { removeFromCart, showUpsell })(
+  CartDisplay
+);

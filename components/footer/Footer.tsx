@@ -88,7 +88,7 @@ const Footer = () => {
             <FaApple />
           </a>
           <a
-            href=" http://crashthecalm.bandcamp.com/	"
+            href=" http://crashthecalm.bandcamp.com/"
             rel="noopener noreferrer"
             target="_blank"
           >

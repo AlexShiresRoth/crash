@@ -2,7 +2,7 @@ import React from "react";
 import Layout from "../UI/layout/Layout";
 import Music from "../components/store/music/Music";
 
-const music = () => {
+const MusicPage = () => {
   return (
     <Layout>
       <Music />
@@ -10,4 +10,4 @@ const music = () => {
   );
 };
 
-export default music;
+export default MusicPage;

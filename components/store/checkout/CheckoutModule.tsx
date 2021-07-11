@@ -41,9 +41,9 @@ const CheckoutModule = ({
 
   useEffect(() => {
     if (cart.length <= 0 || !cart) {
-      router.push("/StorePage");
+      if (!loading) router.push("/merch");
     }
-  }, [cart, router]);
+  }, [cart, router, loading]);
 
   return (
     <section className={style.section}>

@@ -16,6 +16,7 @@ import {
   CHECKOUT_ERROR,
   CLEAR_CHECKOUT,
   UPDATE_LINE_ITEM,
+  TOGGLE_UPSELL,
 } from "./types";
 import { setAlert } from "./alert";
 
@@ -270,5 +271,12 @@ export const processCheckout = (id: string) => async (dispatch: any) => {
 export const clearCheckout = () => async (dispatch: any) => {
   dispatch({
     type: CLEAR_CHECKOUT,
+  });
+};
+
+export const showUpsell = (val: boolean) => async (dispatch: any) => {
+  dispatch({
+    type: TOGGLE_UPSELL,
+    payload: val,
   });
 };
