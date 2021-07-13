@@ -7,19 +7,20 @@ import { useRouter } from "next/dist/client/router";
 
 interface Props {
   shop?: any;
+  isVisible: any;
+  setVisibility: any;
 }
 
 type CartProps = Props;
 
-const Cart = ({ shop: { cart } }: CartProps) => {
+const Cart = ({ shop: { cart }, isVisible, setVisibility }: CartProps) => {
   const router = useRouter();
-  const [isVisible, setVisibility] = useState<boolean>(false);
   const [newAdd, setNewAddition] = useState<boolean>(false);
   const [cartLength, setCartLength] = useState<number>(0);
   //do not show the cart if the user is not on the store page
   useEffect(() => {
     if (!router.pathname.includes("store")) setVisibility(false);
-  }, [router.pathname]);
+  }, [router.pathname, setVisibility]);
 
   useEffect(() => {
     setCartLength((prevState: any) => {

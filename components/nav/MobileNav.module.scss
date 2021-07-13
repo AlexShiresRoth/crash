@@ -4,6 +4,33 @@
   display: none;
 }
 @media screen and (max-width: 1000px) {
+  .cart_icon {
+    position: fixed;
+    top: 40%;
+    left: 1%;
+    z-index: 8888;
+    & button {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: $brand-main;
+      box-shadow: 0 1px 10px #11111122;
+      color: #fff;
+      border-radius: 100%;
+      width: 2.8rem;
+      height: 2.8rem;
+      border: 0;
+      font-size: 1.3rem;
+      text-align: center;
+      position: relative;
+      & span {
+        top: 0;
+        right: -1%;
+        font-size: 0.9rem;
+        position: absolute;
+      }
+    }
+  }
   .mobile_nav {
     display: flex;
     min-height: 4.5rem;

@@ -11,7 +11,6 @@ import SearchBar from "./search/SearchBar";
 import StoreItems from "./StoreItems";
 import Carousel from "./carousel/Carousel";
 import ViewResults from "./ViewResults";
-import Upsell from "./modal/Upsell";
 
 interface Props {
   fetchStoreItems: () => any;
@@ -68,7 +67,6 @@ const Store = ({
 
   return (
     <section className={style.section}>
-      <Upsell />
       <Carousel />
       <SearchBar />
       <ViewResults searchTerm={searchTerm} resultAmt={resultAmt} />

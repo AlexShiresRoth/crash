@@ -1,22 +1,27 @@
-import { useRouter } from "next/dist/client/router";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 import { useEffect } from "react";
 import { useState } from "react";
+import { FaArrowRight } from "react-icons/fa";
 import { connect, RootStateOrAny } from "react-redux";
+import { addToCart, showUpsell } from "../../../redux/actions/store";
 import style from "./Upsell.module.scss";
 
 type Props = {
   shop?: any;
+  addToCart: Function;
+  showUpsell: Function;
 };
 
-const Upsell = ({ shop: { upsellVisible, cart, catalog } }: Props) => {
-  const router = useRouter();
-
+const Upsell = ({
+  shop: { upsellVisible, cart, catalog },
+  showUpsell,
+  addToCart,
+}: Props) => {
   const [upsellItems, setItems] = useState<Array<any>>([]);
 
-  const goToCheckout = () => router.push("/checkout");
+  const checkIfInCart = (item: any) => {};
 
   useEffect(() => {
     if (catalog.length > 0) {
@@ -50,14 +55,15 @@ const Upsell = ({ shop: { upsellVisible, cart, catalog } }: Props) => {
       <div className={style.modal}>
         <div className={style.upsell}>
           <div className={style.heading}>
-            <h2>Thanks for the support!</h2>
-            <button onClick={(e) => goToCheckout()}>X</button>
+            <h2>Thanks for your support!</h2>
+            <button onClick={(e) => showUpsell(false)}>X</button>
           </div>
           <div className={style.items}>
             {upsellItems.map((item: any, index: number) => {
+              console.log(item);
               return (
                 <div className={style.item} key={index}>
-                  <div className={item.row}>
+                  <div className={style.row}>
                     <div className={style.img_container}>
                       <Image
                         src={item.images[0].src}
@@ -67,14 +73,21 @@ const Upsell = ({ shop: { upsellVisible, cart, catalog } }: Props) => {
                       />
                     </div>
                     <p>{item.title}</p>
+                    <button onClick={(e) => addToCart(item)}>
+                      Add To Cart
+                    </button>
                   </div>
                 </div>
               );
             })}
           </div>
-          <Link href="/checkout">
-            <a>Continue</a>
-          </Link>
+          <div className={style.continue_box}>
+            <Link href="/checkout">
+              <a className={style.continue}>
+                Continue <FaArrowRight size={".9rem"} />
+              </a>
+            </Link>
+          </div>
         </div>
       </div>
     );
@@ -87,4 +100,4 @@ const mapStateToProps = (state: RootStateOrAny) => ({
   shop: state.shop,
 });
 
-export default connect(mapStateToProps, {})(Upsell);
+export default connect(mapStateToProps, { showUpsell, addToCart })(Upsell);

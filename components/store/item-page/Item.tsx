@@ -102,13 +102,13 @@ const Item = ({
     <div className={style.container}>
       <div className={style.inner}>
         <div className={style.bread_crumbs}>
-          <Link href={`/Main`}>Home</Link>
+          <Link href={`/main`}>Home</Link>
           <p>\</p>
           <Link
             href={
               foundItem.vendor && foundItem.vendor.toLowerCase() === musicVendor
-                ? "/MusicPage"
-                : "/StorePage"
+                ? "/music"
+                : "/merch"
             }
             as="/merch"
           >
@@ -192,7 +192,7 @@ const Item = ({
               <div className={style.btn_row}>
                 {cart.length > 0 ? (
                   <div className={style.checkout_box}>
-                    <Link href="/Checkout">
+                    <Link href="/checkout">
                       <a>
                         <button>Checkout Now</button>
                       </a>

@@ -14,6 +14,7 @@ import {
   TiSocialInstagram,
 } from "react-icons/ti";
 import { useRouter } from "next/dist/client/router";
+import Upsell from "../store/modal/Upsell";
 
 interface NavProps {
   clearSearch: () => any;
@@ -26,7 +27,8 @@ const Nav = ({ clearSearch }: Props) => {
   console.log("routes", router);
   const [isScrolling, setScrolling] = useState(false);
   const [links, filterLinks] = useState<Array<any>>(navLinks);
-
+  //cart display
+  const [isVisible, setVisibility] = useState<boolean>(false);
   useEffect(() => {
     //if location is not the store then don't have the cart popup
     if (!router.pathname.includes("store")) {
@@ -100,10 +102,11 @@ const Nav = ({ clearSearch }: Props) => {
               </Link>
             );
           })}
-          <Cart />
+          <Cart isVisible={isVisible} setVisibility={setVisibility} />
         </div>
       </nav>
-      <MobileNav />
+      <MobileNav isVisible={isVisible} setVisibility={setVisibility} />
+      <Upsell />
     </>
   );
 };

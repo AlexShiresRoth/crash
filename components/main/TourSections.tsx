@@ -23,7 +23,8 @@ const TourSections = ({ fetchEvents, events: { events } }: Props) => {
     .slice(0, allEvents ? events.length : 10)
     .map((event: any, i: number) => {
       return <EventItem event={event} key={i} index={i} />;
-    });
+    })
+    .reverse();
 
   const [loading, setLoading] = useState<boolean>(false);
 
@@ -67,7 +68,6 @@ const TourSections = ({ fetchEvents, events: { events } }: Props) => {
           <LoadingSpinner />
         )
       ) : null}
-      <div className={style.border_bottom}></div>
     </section>
   );
 };

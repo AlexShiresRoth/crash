@@ -8,7 +8,7 @@ import CartItem from "./CartItem";
 interface Props {
   shop?: any;
   removeFromCart: (val: any, variantId: any) => any;
-  setVisibility: (val: boolean) => any;
+  setVisibility: any;
   isVisible: boolean;
   showUpsell: (val: boolean) => any;
 }

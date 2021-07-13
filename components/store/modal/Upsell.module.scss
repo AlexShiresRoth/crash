@@ -1,17 +1,22 @@
+@import "../../../sass/variables";
+
 .modal {
   height: 100%;
   width: 100vw;
   background: #00000033;
   box-shadow: 0 1px 60px #222;
   position: fixed;
-  z-index: 9999;
+  top: 0;
+  left: 0;
+  z-index: 9999999;
   display: flex;
   align-items: center;
   justify-content: center;
   & .upsell {
     border-radius: 3px;
     background: #fff;
-    width: 38rem;
+    min-width: 30vw;
+    max-width: 40rem;
     & .heading {
       display: flex;
       justify-content: space-between;
@@ -27,6 +32,174 @@
         color: #111;
         &:hover {
           cursor: pointer;
+        }
+      }
+    }
+    & .items {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+      & .item {
+        display: flex;
+        justify-content: center;
+        width: 98%;
+        border: 1px solid #eee;
+        margin: 0.5rem 0;
+        & .row {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          width: 96%;
+          & .img_container {
+            width: 5rem;
+            background: #eee;
+            display: flex;
+            & > div {
+              & img {
+                width: 100%;
+                object-fit: contain;
+              }
+            }
+          }
+          & button {
+            font-size: 0.8rem;
+            color: $brand-text;
+            background: $brand-dark;
+            border: 0;
+            padding: 0.4rem;
+            border-radius: 3px;
+            &:hover {
+              cursor: pointer;
+            }
+          }
+        }
+      }
+    }
+    & .continue_box {
+      margin: 0.5rem 0;
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      width: 98%;
+      & > a {
+        border-radius: 3px;
+        background: $brand-main;
+        color: $brand-text;
+        padding: 0.5rem;
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        & svg {
+          margin-left: 0.2rem;
+          size: 0.9rem;
+        }
+        &:hover {
+          cursor: pointer;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 760px) {
+  .modal {
+    height: 100%;
+    width: 100vw;
+    background: #00000033;
+    box-shadow: 0 1px 60px #222;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 9999999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    & .upsell {
+      border-radius: 3px;
+      background: #fff;
+      min-width: 90vw;
+      max-width: 90vw;
+      & .heading {
+        display: flex;
+        justify-content: space-between;
+        border-bottom: 1px solid #eee;
+        & h2 {
+          margin-left: 1rem;
+          font-size: 1.2rem;
+        }
+        & button {
+          margin-right: 1rem;
+          background: transparent;
+          border: 0;
+          color: #111;
+          &:hover {
+            cursor: pointer;
+          }
+        }
+      }
+      & .items {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        & .item {
+          display: flex;
+          justify-content: center;
+          width: 98%;
+          border: 1px solid #eee;
+          margin: 0.5rem 0;
+          & .row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 96%;
+            & .img_container {
+              width: 5rem;
+              background: #eee;
+              display: flex;
+              & > div {
+                & img {
+                  width: 100%;
+                  object-fit: contain;
+                }
+              }
+            }
+            & button {
+              font-size: 0.8rem;
+              color: $brand-text;
+              background: $brand-dark;
+              border: 0;
+              padding: 0.4rem;
+              border-radius: 3px;
+              &:hover {
+                cursor: pointer;
+              }
+            }
+          }
+        }
+      }
+      & .continue_box {
+        margin: 0.5rem 0;
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        width: 98%;
+        & > a {
+          border-radius: 3px;
+          background: $brand-main;
+          color: $brand-text;
+          padding: 0.5rem;
+          text-decoration: none;
+          display: flex;
+          align-items: center;
+          & svg {
+            margin-left: 0.2rem;
+            size: 0.9rem;
+          }
+          &:hover {
+            cursor: pointer;
+          }
         }
       }
     }
