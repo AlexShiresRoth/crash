@@ -6,7 +6,7 @@ import { Header } from "../components/landing/Header";
 const Landing = () => {
   const router = useRouter();
   useEffect(() => {
-    router.push("/Single");
+    router.push("/Devils");
   });
 
   return <Header />;

@@ -6,7 +6,7 @@ import { useRouter } from "next/dist/client/router";
 const Main = () => {
   const router = useRouter();
   useEffect(() => {
-    router.push("/Single");
+    router.push("/Devils");
   });
   useEffect(() => {
     setTimeout(() => {
