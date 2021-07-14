@@ -17,11 +17,11 @@ export const Header = () => {
         />
       </div>
       <div className={style.actions}>
-        <Link href="/music">Listen</Link>
+        <Link href="/Music">Listen</Link>
         <span>|</span>
-        <Link href="/videos">Watch</Link>
+        <Link href="/Videos">Watch</Link>
         <span>|</span>
-        <Link href="/tour">Tour</Link>
+        <Link href="/Merch">Support</Link>
       </div>
     </header>
   );

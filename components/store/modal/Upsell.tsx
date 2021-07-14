@@ -1,12 +1,12 @@
-import Image from "next/image";
 import Link from "next/link";
-import React from "react";
+import React, { Fragment } from "react";
 import { useEffect } from "react";
 import { useState } from "react";
 import { FaArrowRight } from "react-icons/fa";
 import { connect, RootStateOrAny } from "react-redux";
 import { addToCart, showUpsell } from "../../../redux/actions/store";
 import style from "./Upsell.module.scss";
+import UpsellItem from "./UpsellItem";
 
 type Props = {
   shop?: any;
@@ -21,12 +21,21 @@ const Upsell = ({
 }: Props) => {
   const [upsellItems, setItems] = useState<Array<any>>([]);
 
-  const checkIfInCart = (item: any) => {};
-
   useEffect(() => {
     if (catalog.length > 0) {
+      const randomized = catalog.map(
+        (item: any, index: number, array: Array<any>) => {
+          const j = Math.floor(Math.random() * index);
+          const temp = array[index];
+          array[index] = array[j];
+          array[j] = temp;
+          console.log(array[j]);
+          return array[j];
+        }
+      );
+
       //filter out items already in the cart
-      const filtered = catalog
+      const filtered = randomized
         .filter((item: any) => {
           const dupes: Array<any> = [];
 
@@ -62,22 +71,9 @@ const Upsell = ({
             {upsellItems.map((item: any, index: number) => {
               console.log(item);
               return (
-                <div className={style.item} key={index}>
-                  <div className={style.row}>
-                    <div className={style.img_container}>
-                      <Image
-                        src={item.images[0].src}
-                        height="100%"
-                        width="100%"
-                        alt={item.title}
-                      />
-                    </div>
-                    <p>{item.title}</p>
-                    <button onClick={(e) => addToCart(item)}>
-                      Add To Cart
-                    </button>
-                  </div>
-                </div>
+                <Fragment key={index}>
+                  <UpsellItem style={style} item={item} index={index} />
+                </Fragment>
               );
             })}
           </div>

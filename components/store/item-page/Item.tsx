@@ -102,15 +102,14 @@ const Item = ({
     <div className={style.container}>
       <div className={style.inner}>
         <div className={style.bread_crumbs}>
-          <Link href={`/main`}>Home</Link>
+          <Link href={`/Main`}>Home</Link>
           <p>\</p>
           <Link
             href={
               foundItem.vendor && foundItem.vendor.toLowerCase() === musicVendor
-                ? "/music"
-                : "/merch"
+                ? "/Music"
+                : "/Merch"
             }
-            as="/merch"
           >
             Store
           </Link>

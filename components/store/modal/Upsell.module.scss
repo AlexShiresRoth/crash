@@ -15,8 +15,8 @@
   & .upsell {
     border-radius: 3px;
     background: #fff;
-    min-width: 30vw;
-    max-width: 40rem;
+    min-width: 40vw;
+    max-width: 50rem;
     & .heading {
       display: flex;
       justify-content: space-between;
@@ -30,6 +30,7 @@
         background: transparent;
         border: 0;
         color: #111;
+
         &:hover {
           cursor: pointer;
         }
@@ -51,6 +52,8 @@
           justify-content: space-between;
           align-items: center;
           width: 96%;
+          overflow: visible;
+          position: relative;
           & .img_container {
             width: 5rem;
             background: #eee;
@@ -69,8 +72,68 @@
             border: 0;
             padding: 0.4rem;
             border-radius: 3px;
+            padding: 0.4rem 0.7rem;
             &:hover {
               cursor: pointer;
+            }
+          }
+          & .item_types {
+            position: absolute;
+            display: flex;
+            flex-direction: column;
+            right: 0;
+            bottom: 90%;
+            z-index: 3;
+            background: #fff;
+            border-radius: 5px;
+            padding: 0.5rem;
+            box-shadow: 0 1px 15px #00000022;
+            min-width: 10rem;
+            & .heading {
+              display: flex;
+              justify-content: space-between;
+              align-items: center;
+              position: relative;
+              & label {
+                font-size: 0.8rem;
+                margin-bottom: 0.3rem;
+              }
+              & .close_select {
+                background: $alert-danger;
+                position: absolute;
+                bottom: 30%;
+                right: 0;
+                z-index: 40;
+                width: 20px;
+                height: 20px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                color: $brand-text;
+              }
+            }
+
+            & select {
+              border-radius: 3px;
+              background: #eeeeee22;
+              padding: 0.3rem;
+            }
+            & button {
+              font-size: 0.8rem;
+              margin: 0.5rem 0;
+              padding: 0.4rem;
+            }
+
+            & .arrow_down {
+              position: absolute;
+              width: 0;
+              height: 0;
+              border-radius: 5px;
+              border-left: 20px solid transparent;
+              border-right: 20px solid transparent;
+              border-top: 20px solid #fff;
+              bottom: -10%;
+              right: 0;
             }
           }
         }

@@ -35,12 +35,11 @@ const Footer = () => {
       </div>
       <div className={style.col}>
         <h3>Site</h3>
-        <Link href="/music">music</Link>
-        <Link href="/videos">videos</Link>
-        <Link href="/interviews">interviews</Link>
-        <Link href="/tour">tour</Link>
-        <Link href="/store">store</Link>
-        <Link href="/about">about</Link>
+        <Link href="/Music">music</Link>
+        <Link href="/Videos">videos</Link>
+        <Link href="/About">about</Link>
+        <Link href="/Merch">store</Link>
+        <Link href="/SongBook">songbook</Link>
       </div>
       <div className={style.col}>
         <h3>Social</h3>

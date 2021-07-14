@@ -110,6 +110,7 @@ export const searchCatalog = (data: any) => async (dispatch: any) => {
 
 export const addToCart = (item: any) => async (dispatch: any) => {
   const checkoutId = localStorage.getItem("checkout");
+  console.log("item added to cart", item);
   try {
     const res = await api.post(`/shopifystore/addtocart/${checkoutId}`, item);
     console.log("added to cart", res.data);

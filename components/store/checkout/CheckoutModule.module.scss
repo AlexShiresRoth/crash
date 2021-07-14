@@ -89,12 +89,15 @@
                 margin: 0rem 0;
                 margin-bottom: 0.5rem;
               }
-              & img {
+              & .img_container {
                 width: 6rem;
                 max-width: 6rem;
                 box-shadow: 0 1px 3px #eee;
                 align-self: center;
                 justify-self: center;
+                & img {
+                  object-fit: contain;
+                }
               }
 
               & button {

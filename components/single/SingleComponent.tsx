@@ -132,12 +132,12 @@ const SingleComponent = ({ shop: { catalog }, fetchStoreItems }: Props) => {
         <section className={style.box}>
           <div className={style.inner_container}>
             <h2>
-              <Link href="/StorePage" as="/merch">
+              <Link href="/Merch">
                 <a>Shop {"Devils"} Merch</a>
               </Link>
             </h2>
             <div className={style.bg_img}>
-              <Link href="/StorePage" as="/merch">
+              <Link href="/Merch">
                 <a>{`merch`}</a>
               </Link>
             </div>
