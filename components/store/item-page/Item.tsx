@@ -107,8 +107,8 @@ const Item = ({
           <Link
             href={
               foundItem.vendor && foundItem.vendor.toLowerCase() === musicVendor
-                ? "/Music"
-                : "/Merch"
+                ? "/music"
+                : "/merch"
             }
           >
             Store
@@ -191,7 +191,7 @@ const Item = ({
               <div className={style.btn_row}>
                 {cart.length > 0 ? (
                   <div className={style.checkout_box}>
-                    <Link href="/checkout">
+                    <Link href="/Checkout">
                       <a>
                         <button>Checkout Now</button>
                       </a>

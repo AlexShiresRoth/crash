@@ -78,7 +78,7 @@ const Upsell = ({
             })}
           </div>
           <div className={style.continue_box}>
-            <Link href="/checkout">
+            <Link href="/Checkout">
               <a className={style.continue}>
                 Continue <FaArrowRight size={".9rem"} />
               </a>
