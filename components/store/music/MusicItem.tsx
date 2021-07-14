@@ -1,56 +1,56 @@
-import React, { useState } from 'react';
-import PropTypes from 'prop-types';
-import Link from 'next/link';
-import style from './MusicItem.module.scss';
-import { connect } from 'react-redux';
-import Image from 'next/image';
+import React, { useState } from "react";
+import PropTypes from "prop-types";
+import Link from "next/link";
+import style from "./MusicItem.module.scss";
+import { connect } from "react-redux";
+import Image from "next/image";
 
 interface Props {
-	item: any;
-	index: number;
-	shop?: any;
+  item: any;
+  index: number;
+  shop?: any;
 }
 
 const MusicItem = ({ item, index, shop: { loading } }: Props) => {
-	const [titleVisibility, showTitle] = useState<boolean>(false);
-	return !loading ? (
-		<div className={style.music_item}>
-			<Link href={`/merch/viewitem/${item.id}`}>
-				<a
-					onPointerEnter={() => showTitle(!titleVisibility)}
-					onPointerLeave={() => showTitle(!titleVisibility)}
-					className={style.link}
-				>
-					<div className={style.item} key={index}>
-						<div className={style.img_container}>
-							<Image src={item.images[0].src} alt={item.title} height="100%" width="100%" />
-						</div>
-						{!titleVisibility ? (
-							<div className={style.heading}>
-								<p>{item.title}</p>
-								<button>View</button>
-							</div>
-						) : (
-							<div className={style.heading_invisible}>
-								<p>{item.title}</p>
-								<button>View</button>
-							</div>
-						)}
-					</div>
-				</a>
-			</Link>
-		</div>
-	) : null;
-};
-
-MusicItem.propTypes = {
-	item: PropTypes.object,
-	index: PropTypes.number.isRequired,
+  const [titleVisibility, showTitle] = useState<boolean>(false);
+  return !loading ? (
+    <div className={style.music_item}>
+      <Link href={`/music/${item.id}`}>
+        <a
+          onPointerEnter={() => showTitle(!titleVisibility)}
+          onPointerLeave={() => showTitle(!titleVisibility)}
+          className={style.link}
+        >
+          <div className={style.item} key={index}>
+            <div className={style.img_container}>
+              <Image
+                src={item.images[0].src}
+                alt={item.title}
+                height="100%"
+                width="100%"
+              />
+            </div>
+            {!titleVisibility ? (
+              <div className={style.heading}>
+                <p>{item.title}</p>
+                <button>View</button>
+              </div>
+            ) : (
+              <div className={style.heading_invisible}>
+                <p>{item.title}</p>
+                <button>View</button>
+              </div>
+            )}
+          </div>
+        </a>
+      </Link>
+    </div>
+  ) : null;
 };
 
 const mapStateToProps = (state: { shop: any }) => {
-	return {
-		shop: state.shop,
-	};
+  return {
+    shop: state.shop,
+  };
 };
 export default connect(mapStateToProps, null)(MusicItem);
