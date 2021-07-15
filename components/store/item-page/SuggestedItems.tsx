@@ -59,7 +59,7 @@ const SuggestedItems = ({
           <div className={style.item_desc}>
             <h3>{item.title}</h3>
             <p>Price: ${item.variants[0].price}</p>
-            <Link href={`/merch/viewitem/${item.id}`}>
+            <Link href={`/merch/${item.id}`}>
               <a>
                 <button>View</button>
               </a>
