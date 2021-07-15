@@ -5,7 +5,7 @@ export const navLinks = [
   { path: "/music", name: "music", id: uuidv4() },
   // { path: "/Videos", name: "videos", id: uuidv4() },
   { path: "/Devils", name: "devils", id: uuidv4() },
-  { path: "/Songbook", name: "songbook", id: uuidv4() },
+  { path: "/SongBook", name: "songbook", id: uuidv4() },
   { path: "/merch", name: "merch", id: uuidv4() },
   // { path: "/About", name: "about", id: uuidv4() },
 ];
