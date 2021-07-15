@@ -138,7 +138,7 @@ const SingleComponent = ({ shop: { catalog }, fetchStoreItems }: Props) => {
             </h2>
             <div className={style.bg_img}>
               <Link href="/merch">
-                <a>{`merch`}</a>
+                <a></a>
               </Link>
             </div>
           </div>

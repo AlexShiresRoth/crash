@@ -13,6 +13,7 @@ import {
   TiSocialTwitter,
   TiSocialInstagram,
 } from "react-icons/ti";
+import { SiTiktok } from "react-icons/si";
 import { useRouter } from "next/dist/client/router";
 import Upsell from "../store/modal/Upsell";
 
@@ -64,11 +65,18 @@ const Nav = ({ clearSearch }: Props) => {
           </Link>
           <div className={style.social}>
             <a
-              href="http://facebook.com/crashthecalmband"
+              href="http://facebook.com/crashthecalmny"
               rel="noopener noreferrer"
               target="_blank"
             >
               <TiSocialFacebook />
+            </a>
+            <a
+              href="https://vm.tiktok.com/ZMdqwFjLk"
+              rel="noopener noreferrer"
+              target="_blank"
+            >
+              <SiTiktok />
             </a>
             <a
               href="http://youtube.com/channel/UCAEhEbQ5bgCoyCDWczfmuyA"

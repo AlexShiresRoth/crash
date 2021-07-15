@@ -17,6 +17,7 @@ import {
   CLEAR_CHECKOUT,
   UPDATE_LINE_ITEM,
   TOGGLE_UPSELL,
+  RESET_STORE_ITEM,
 } from "../actions/types";
 
 const initialState = {
@@ -39,6 +40,7 @@ const initialState = {
   lineItems: [],
   checkoutErrors: null,
   upsellVisible: false,
+  loadingStoreItem: true,
   musicVendor: "single music",
 };
 
@@ -67,6 +69,14 @@ export const store = (state = initialState, action: any) => {
         ...state,
         foundItem: payload,
         loading: false,
+        loadingStoreItem: false,
+      };
+
+    case RESET_STORE_ITEM:
+      return {
+        ...state,
+        foundItem: null,
+        loadingStoreItem: true,
       };
     case FETCH_CHECKOUT: {
       return {

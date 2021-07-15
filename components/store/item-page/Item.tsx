@@ -20,7 +20,7 @@ interface Props {
 }
 
 const Item = ({
-  shop: { loading, foundItem, cart, musicVendor },
+  shop: { loading, foundItem, cart, musicVendor, loadingStoreItem },
   findStoreItem,
   addToCart,
   alerts,
@@ -98,6 +98,8 @@ const Item = ({
     return array;
   };
 
+  console.log("is loading?", loadingStoreItem);
+
   return !loading && foundItem ? (
     <div className={style.container}>
       <div className={style.inner}>
@@ -122,12 +124,19 @@ const Item = ({
         <div className={style.item}>
           <div className={style.col}>
             <div className={style.image_container}>
-              <Image
-                src={foundItem.images[0].src}
-                alt={foundItem.title}
-                height={700}
-                width={700}
-              />
+              {loadingStoreItem ? (
+                <LoadingSpinner />
+              ) : (
+                <Image
+                  src={foundItem.images[0].src}
+                  alt={foundItem.title}
+                  height={700}
+                  width={700}
+                  quality={59}
+                  blurDataURL="https://res.cloudinary.com/snackmanproductions/image/upload/c_scale,q_45,w_985/v1603506986/crash/Untitled_Artwork_ri6ybz.png"
+                  placeholder="blur"
+                />
+              )}
             </div>
           </div>
           <div className={style.col}>

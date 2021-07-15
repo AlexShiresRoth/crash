@@ -23,6 +23,9 @@ const StoreItem = ({ item, index, shop: { loading } }: Props) => {
               alt={item.title}
               height={300}
               width={400}
+              quality={59}
+              blurDataURL="https://res.cloudinary.com/snackmanproductions/image/upload/c_scale,q_45,w_985/v1603506986/crash/Untitled_Artwork_ri6ybz.png"
+              placeholder="blur"
             />
           </a>
         </Link>

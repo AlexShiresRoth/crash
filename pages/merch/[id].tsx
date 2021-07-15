@@ -1,21 +1,31 @@
 import React, { useEffect } from "react";
 import Layout from "../../UI/layout/Layout";
 import Item from "../../components/store/item-page/Item";
-import { fetchCheckout, startOrder } from "../../redux/actions/store";
+import {
+  fetchCheckout,
+  resetStoreItem,
+  startOrder,
+} from "../../redux/actions/store";
 import { connect } from "react-redux";
 import SuggestedItems from "../../components/store/item-page/SuggestedItems";
 
 interface Props {
   fetchCheckout: (id: string) => any;
   startOrder: () => any;
+  resetStoreItem: () => void;
 }
 
-const ItemPage = ({ fetchCheckout, startOrder }: Props) => {
+const ItemPage = ({ fetchCheckout, startOrder, resetStoreItem }: Props) => {
   useEffect(() => {
     setTimeout(() => {
       window.scrollTo(0, 0);
     }, 100);
   }, []);
+
+  useEffect(() => {
+    resetStoreItem();
+  }, []);
+
   useEffect(() => {
     //if a checkout has not been completed update current
     if (!localStorage.getItem("checkout")) {
@@ -35,4 +45,6 @@ const ItemPage = ({ fetchCheckout, startOrder }: Props) => {
   );
 };
 
-export default connect(null, { fetchCheckout, startOrder })(ItemPage);
+export default connect(null, { fetchCheckout, startOrder, resetStoreItem })(
+  ItemPage
+);

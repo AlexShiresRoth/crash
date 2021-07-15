@@ -51,6 +51,9 @@ const SuggestedItems = ({
               alt={item.title}
               height={"100%"}
               width={"100%"}
+              quality={59}
+              blurDataURL="https://res.cloudinary.com/snackmanproductions/image/upload/c_scale,q_45,w_985/v1603506986/crash/Untitled_Artwork_ri6ybz.png"
+              placeholder="blur"
             />
           </div>
           <div className={style.item_desc}>

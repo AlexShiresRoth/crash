@@ -12,6 +12,7 @@ interface Props {
 }
 
 const MusicItem = ({ item, index, shop: { loading } }: Props) => {
+  console.log("is loading?", loading);
   const [titleVisibility, showTitle] = useState<boolean>(false);
   return !loading ? (
     <div className={style.music_item}>
@@ -28,6 +29,9 @@ const MusicItem = ({ item, index, shop: { loading } }: Props) => {
                 alt={item.title}
                 height="100%"
                 width="100%"
+                quality={59}
+                blurDataURL="https://res.cloudinary.com/snackmanproductions/image/upload/c_scale,q_45,w_985/v1603506986/crash/Untitled_Artwork_ri6ybz.png"
+                placeholder="blur"
               />
             </div>
             {!titleVisibility ? (

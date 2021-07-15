@@ -17,6 +17,7 @@ import {
   CLEAR_CHECKOUT,
   UPDATE_LINE_ITEM,
   TOGGLE_UPSELL,
+  RESET_STORE_ITEM,
 } from "./types";
 import { setAlert } from "./alert";
 
@@ -279,5 +280,11 @@ export const showUpsell = (val: boolean) => async (dispatch: any) => {
   dispatch({
     type: TOGGLE_UPSELL,
     payload: val,
+  });
+};
+
+export const resetStoreItem = () => async (dispatch: any) => {
+  dispatch({
+    type: RESET_STORE_ITEM,
   });
 };
