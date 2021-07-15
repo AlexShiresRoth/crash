@@ -52,7 +52,7 @@ const SearchBar = ({
           </Link>
           <p>\</p>
           {/* need to setup active classname for links */}
-          <Link href={"/StorePage"}>
+          <Link href={"/Merch"}>
             <a className={style.active}>Store</a>
           </Link>
         </div>

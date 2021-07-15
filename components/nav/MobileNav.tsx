@@ -13,6 +13,7 @@ import {
 import Link from "next/link";
 import { connect, RootStateOrAny } from "react-redux";
 import { FaShoppingCart } from "react-icons/fa";
+import { useRouter } from "next/dist/client/router";
 
 type Props = {
   shop: { cart: any };
@@ -21,6 +22,7 @@ type Props = {
 };
 
 const MobileNav = ({ shop: { cart }, isVisible, setVisibility }: Props) => {
+  const router = useRouter();
   //show the nav
   const [menuOpen, toggleMenu] = useState<boolean>(false);
   //show the cart
@@ -31,12 +33,13 @@ const MobileNav = ({ shop: { cart }, isVisible, setVisibility }: Props) => {
       </Link>
     );
   });
-
+  console.log("router", router);
+  const goToCheckout = () => router.push("/Checkout");
   return (
     <>
-      {cart.length > 0 && (
+      {cart.length > 0 && router.route.toLowerCase().includes("/merch") && (
         <div className={style.cart_icon}>
-          <button onClick={(_) => setVisibility(true)}>
+          <button onClick={(_) => goToCheckout()}>
             <FaShoppingCart />
             <span>{cart.length > 0 && cart.length}</span>
           </button>

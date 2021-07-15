@@ -73,12 +73,14 @@ const CheckoutModule = ({
                   return (
                     <div className={style.item_container} key={i}>
                       <div className={style.col}>
-                        <Image
-                          src={cartItem.variant.image.src}
-                          alt={cartItem.title}
-                          height={600}
-                          width={600}
-                        />
+                        <div className={style.img_container}>
+                          <Image
+                            src={cartItem.variant.image.src}
+                            alt={cartItem.title}
+                            width={"100%"}
+                            height="100%"
+                          />
+                        </div>
                       </div>
                       <div className={style.col}>
                         <h3>{cartItem.title}</h3>

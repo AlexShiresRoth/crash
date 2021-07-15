@@ -1,32 +1,53 @@
-import Image from "next/image";
+import { useRouter } from "next/dist/client/router";
 import Link from "next/link";
-import React from "react";
+import React, { Fragment } from "react";
 import { useEffect } from "react";
 import { useState } from "react";
 import { FaArrowRight } from "react-icons/fa";
 import { connect, RootStateOrAny } from "react-redux";
-import { addToCart, showUpsell } from "../../../redux/actions/store";
+import { showUpsell } from "../../../redux/actions/store";
 import style from "./Upsell.module.scss";
+import UpsellItem from "./UpsellItem";
 
 type Props = {
   shop?: any;
-  addToCart: Function;
   showUpsell: Function;
 };
 
 const Upsell = ({
   shop: { upsellVisible, cart, catalog },
   showUpsell,
-  addToCart,
 }: Props) => {
-  const [upsellItems, setItems] = useState<Array<any>>([]);
+  const router = useRouter();
 
-  const checkIfInCart = (item: any) => {};
+  const [upsellItems, setItems] = useState<Array<any>>([]);
 
   useEffect(() => {
     if (catalog.length > 0) {
+      const onlyUpsellItems = catalog.filter((item: any) => {
+        // const itemOptions = item.options.filter(
+        //   (opt: any) => opt?.name.toLowerCase() === "isupsell"
+        // );
+        return (
+          item.handle === "devils-4-piece-aluminum-alloy-grinder" ||
+          item.handle === "classic-logo-tee" ||
+          item.handle === "a-town-named-nowhere-volume-i"
+        );
+      });
+
+      const randomized = onlyUpsellItems.map(
+        (item: any, index: number, array: Array<any>) => {
+          const j = Math.floor(Math.random() * index);
+          const temp = array[index];
+          array[index] = array[j];
+          array[j] = temp;
+          console.log(array[j]);
+          return array[j];
+        }
+      );
+
       //filter out items already in the cart
-      const filtered = catalog
+      const filtered = randomized
         .filter((item: any) => {
           const dupes: Array<any> = [];
 
@@ -50,6 +71,12 @@ const Upsell = ({
     }
   }, [catalog, cart]);
 
+  useEffect(() => {
+    if (upsellItems.length === 0 && upsellVisible) {
+      router.push("/Checkout");
+    }
+  }, [upsellItems, upsellVisible]);
+
   if (upsellVisible) {
     return (
       <div className={style.modal}>
@@ -62,27 +89,14 @@ const Upsell = ({
             {upsellItems.map((item: any, index: number) => {
               console.log(item);
               return (
-                <div className={style.item} key={index}>
-                  <div className={style.row}>
-                    <div className={style.img_container}>
-                      <Image
-                        src={item.images[0].src}
-                        height="100%"
-                        width="100%"
-                        alt={item.title}
-                      />
-                    </div>
-                    <p>{item.title}</p>
-                    <button onClick={(e) => addToCart(item)}>
-                      Add To Cart
-                    </button>
-                  </div>
-                </div>
+                <Fragment key={index}>
+                  <UpsellItem style={style} item={item} index={index} />
+                </Fragment>
               );
             })}
           </div>
           <div className={style.continue_box}>
-            <Link href="/checkout">
+            <Link href="/Checkout">
               <a className={style.continue}>
                 Continue <FaArrowRight size={".9rem"} />
               </a>
@@ -100,4 +114,4 @@ const mapStateToProps = (state: RootStateOrAny) => ({
   shop: state.shop,
 });
 
-export default connect(mapStateToProps, { showUpsell, addToCart })(Upsell);
+export default connect(mapStateToProps, { showUpsell })(Upsell);

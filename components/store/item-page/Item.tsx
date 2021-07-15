@@ -102,7 +102,7 @@ const Item = ({
     <div className={style.container}>
       <div className={style.inner}>
         <div className={style.bread_crumbs}>
-          <Link href={`/main`}>Home</Link>
+          <Link href={`/Main`}>Home</Link>
           <p>\</p>
           <Link
             href={
@@ -110,7 +110,6 @@ const Item = ({
                 ? "/music"
                 : "/merch"
             }
-            as="/merch"
           >
             Store
           </Link>
@@ -192,7 +191,7 @@ const Item = ({
               <div className={style.btn_row}>
                 {cart.length > 0 ? (
                   <div className={style.checkout_box}>
-                    <Link href="/checkout">
+                    <Link href="/Checkout">
                       <a>
                         <button>Checkout Now</button>
                       </a>

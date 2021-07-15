@@ -106,7 +106,7 @@ const SingleComponent = ({ shop: { catalog }, fetchStoreItems }: Props) => {
             <div className={style.download_container}>
               {foundSingle && (
                 <Link
-                  href={`StorePage/merch/${foundSingle.id}`}
+                  href={`/merch/${foundSingle.id}`}
                   as={`/merch/${foundSingle.id}`}
                 >
                   <a>Download Here</a>
@@ -132,13 +132,13 @@ const SingleComponent = ({ shop: { catalog }, fetchStoreItems }: Props) => {
         <section className={style.box}>
           <div className={style.inner_container}>
             <h2>
-              <Link href="/StorePage" as="/merch">
+              <Link href="/merch">
                 <a>Shop {"Devils"} Merch</a>
               </Link>
             </h2>
             <div className={style.bg_img}>
-              <Link href="/StorePage" as="/merch">
-                <a>{`merch`}</a>
+              <Link href="/merch">
+                <a></a>
               </Link>
             </div>
           </div>

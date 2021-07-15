@@ -8,9 +8,7 @@ const StoreSection = () => {
 
   return (
     <section className={style.box}>
-      <Link href={section.path} as="/merch">
-        Shop Merch
-      </Link>
+      <Link href={section.path}>Shop Merch</Link>
       <div className={style.container}></div>
     </section>
   );

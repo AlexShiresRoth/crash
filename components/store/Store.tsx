@@ -22,6 +22,7 @@ interface Props {
     searchTerm: string;
     searchResults: Array<any>;
     catalog: Array<any>;
+    musicVendor: string;
   };
 }
 
@@ -29,7 +30,7 @@ const Store = ({
   fetchStoreItems,
   startOrder,
   fetchCheckout,
-  shop: { checkout, searchTerm, catalog, searchResults },
+  shop: { checkout, searchTerm, catalog, searchResults, musicVendor },
   clearCheckout,
 }: Props) => {
   const [resultAmt, filterResults] = useState<number>(0);
@@ -47,10 +48,8 @@ const Store = ({
   useEffect(() => {
     //if a checkout has not been completed update current
     if (!localStorage.getItem("checkout")) {
-      console.log("new order");
       startOrder();
     } else {
-      console.log("found order", localStorage.getItem("checkout"));
       const id = localStorage.getItem("checkout") || "";
       fetchCheckout(id);
     }
@@ -61,10 +60,17 @@ const Store = ({
     if (searchTerm !== "All") {
       filterResults(searchResults.length);
     } else {
-      filterResults(catalog.length);
+      filterResults(
+        catalog.filter((item) => item?.vendor.toLowerCase() !== musicVendor)
+          .length
+      );
     }
-  }, [catalog, searchTerm, searchResults]);
-
+  }, [catalog, searchTerm, searchResults, musicVendor]);
+  console.log(
+    "catalog",
+    catalog.map((item: any) => item?.vendor),
+    musicVendor
+  );
   return (
     <section className={style.section}>
       <Carousel />
