@@ -1,0 +1,31 @@
+@import '../../../sass/variables';
+
+.section {
+	background: $brand-dark;
+	min-height: 100vh;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	width:100%;
+	& .video_grid {
+		width:98%;
+		margin: 20vh 0;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		flex-wrap: wrap;
+		& .video_container {
+			width: 100%;
+			border: 2px solid $brand-dark;
+			height: 30rem;
+			min-width:30rem;
+			width: 45vw;
+			margin: .5rem;
+			& iframe {
+				height: 100%;
+				width: 100%;
+			}
+		}
+	}
+}

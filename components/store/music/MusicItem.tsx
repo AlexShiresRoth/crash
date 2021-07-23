@@ -12,7 +12,7 @@ interface Props {
 }
 
 const MusicItem = ({ item, index, shop: { loading } }: Props) => {
-  console.log("is loading?", loading);
+ 
   const [titleVisibility, showTitle] = useState<boolean>(false);
   return !loading ? (
     <div className={style.music_item}>
