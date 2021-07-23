@@ -2,6 +2,7 @@ import React from "react";
 import style from "./Header.module.scss";
 import Link from "next/link";
 import Image from "next/image";
+import { FaSpotify } from "react-icons/fa";
 
 export const Header = () => {
   const logo =
@@ -13,6 +14,7 @@ export const Header = () => {
           src={logo}
           height="100%"
           width="100%"
+          quality="70"
           alt="Crash the Calm Logo"
         />
       </div>
@@ -23,6 +25,14 @@ export const Header = () => {
         <span>|</span>
         <Link href="/Merch">Support</Link>
       </div>
+      <a
+        className={style.call_to_action}
+        href="http://open.spotify.com/artist/4z0T4u61g7AUCjxoygPCAT"
+        rel="noopener noreferrer"
+        target="_blank"
+      >
+        Follow On Spotify <FaSpotify />
+      </a>
     </header>
   );
 };

@@ -12,6 +12,7 @@ interface Props {
 }
 
 const StoreItem = ({ item, index, shop: { loading } }: Props) => {
+  console.log("whats an item", item);
   return !loading ? (
     <div className={style.item} key={index}>
       <div className={style.img_container}>
