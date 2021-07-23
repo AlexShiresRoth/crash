@@ -67,18 +67,9 @@ const AboutComponent = () => {
           of townspeople all taking turns as narrator at various points
           throughout the songs.
         </p>
-        <div className={style.img_container}>
-          {/* <Image
-            src="https://res.cloudinary.com/snackmanproductions/image/upload/c_scale,q_54,w_2204/v1627061901/crash/CTC_Promo_12_iono2c.jpg"
-            alt="crash"
-            height={1000}
-            width={1500}
-            blurDataURL="https://res.cloudinary.com/snackmanproductions/image/upload/c_scale,q_45,w_985/v1603506986/crash/Untitled_Artwork_ri6ybz.png"
-            placeholder="blur"
-          /> */}
-        </div>
+        <div className={style.img_container}></div>
         <p>
-          Indeed, with A Town Named Nowhere, Crash The Calm hasn't merely
+          Indeed, with A Town Named Nowhere, Crash The Calm hasn{`'`}t merely
           brought a fictitious town to life, but instead created an entire world
           out of sound. The insistent, chiming guitars that close-out “Devils,”
           for example, are as ominous as the visual of church bells ringing out
@@ -93,10 +84,10 @@ const AboutComponent = () => {
         <p>
           “One of the main themes of the whole album,” Smith explains, ”is
           losing everything and re-growing from nothing, which is where we drew
-          this idea of ‘nowhere,’ where everything is destroyed and everything
-          is gone. It’s all about the battle to overcome that barren-ness and
-          re-growing new life. It was really important to us to drive that
-          aspect home.”
+          this idea of {`‘`}nowhere,{`’`} where everything is destroyed and
+          everything is gone. It’s all about the battle to overcome that
+          barren-ness and re-growing new life. It was really important to us to
+          drive that aspect home.”
         </p>
         <p>
           Adds Dowling: “Life moves on whether you’re onboard or not.
