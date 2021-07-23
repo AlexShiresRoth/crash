@@ -19,6 +19,10 @@
   position: relative;
   overflow: visible;
   margin-top: 0rem;
+  background: url("https://res.cloudinary.com/snackmanproductions/image/upload/c_scale,q_69,w_2464/v1625095234/crash/CTC_Promo_04_xujbre.jpg");
+  background-size: cover;
+  background-attachment: fixed;
+  background-position: center;
   padding-top: 6rem;
   z-index: 0;
   & .img_container {
@@ -103,6 +107,7 @@
     width: 100%;
     position: relative;
     overflow: hidden;
+    background-attachment: unset;
     padding-top: 2rem;
     & .img_container {
       height: 4.5rem;

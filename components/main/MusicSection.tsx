@@ -14,7 +14,7 @@ const MusicSection = () => {
           <div className={style.iframe_container}>
             <div className={style.col}>
               <a
-                href="https://open.spotify.com/artist/4z0T4u61g7AUCjxoygPCAT?si=3ZGMARQNSIi5YrgRc8w_pQ"
+                href="https://open.spotify.com/album/0wKgFy2OJQJ9P916R6cIg9"
                 rel="noopener noreferrer"
                 target="_blank"
               >
@@ -22,17 +22,18 @@ const MusicSection = () => {
                 Listen on Spotify
               </a>
             </div>
+
             <iframe
-              title="spotify embed"
-              src="https://open.spotify.com/embed/artist/4z0T4u61g7AUCjxoygPCAT"
+              src="https://open.spotify.com/embed/album/0wKgFy2OJQJ9P916R6cIg9"
               frameBorder="0"
+              allowTransparency={true}
               allow="encrypted-media"
             ></iframe>
           </div>
           <div className={style.iframe_container}>
             <div className={style.col}>
               <a
-                href="https://music.apple.com/us/album/howve-you-been/1234046324?app=music"
+                href="https://music.apple.com/us/album/a-town-named-nowhere-volume-i-ep/1572368115"
                 rel="noopener noreferrer"
                 target="_blank"
               >
@@ -46,7 +47,7 @@ const MusicSection = () => {
               frameBorder="0"
               style={{ overflow: "hidden", borderRadius: "0px" }}
               sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-storage-access-by-user-activation allow-top-navigation-by-user-activation"
-              src="https://embed.music.apple.com/us/album/howve-you-been/1234046324?app=music"
+              src="https://embed.music.apple.com/us/album/a-town-named-nowhere-volume-i-ep/1572368115"
             ></iframe>
           </div>
         </div>

@@ -21,17 +21,19 @@ const VideosComponent = ({
     fetchVideos(20);
   }, [fetchVideos]);
 
-  const videosArr = videos.map((video: any, i: number) => {
-    return (
-      <div className={style.video_container} key={i}>
-        <ReactPlayer
-          url={videoSource + video.snippet.resourceId.videoId}
-          width={"100%"}
-          height={"100%"}
-        />
-      </div>
-    );
-  });
+  const videosArr = videos
+    .map((video: any, i: number) => {
+      return (
+        <div className={style.video_container} key={i}>
+          <ReactPlayer
+            url={videoSource + video.snippet.resourceId.videoId}
+            width={"100%"}
+            height={"100%"}
+          />
+        </div>
+      );
+    })
+    .reverse();
 
   return (
     <section className={style.section}>
