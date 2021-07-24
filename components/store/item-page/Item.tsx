@@ -97,8 +97,7 @@ const Item = ({
     }
     return array;
   };
-
-  console.log("is loading?", loadingStoreItem);
+  console.log("whats an item", foundItem);
 
   return !loading && foundItem ? (
     <div className={style.container}>

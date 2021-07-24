@@ -1,0 +1,20 @@
+{
+  "name": "server-vs-koa",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@shopify/koa-shopify-auth": "^3.1.66",
+    "dotenv": "^8.2.0",
+    "es6-promise": "^4.2.8",
+    "isomorphic-fetch": "^2.2.1",
+    "koa": "^2.13.0",
+    "koa-session": "^6.0.0"
+  }
+}
