@@ -106,7 +106,7 @@ const SingleComponent = ({ shop: { catalog }, fetchStoreItems }: Props) => {
             <div className={style.download_container}>
               {foundSingle && (
                 <Link
-                  href={`StorePage/merch/${foundSingle.id}`}
+                  href={`/merch/${foundSingle.id}`}
                   as={`/merch/${foundSingle.id}`}
                 >
                   <a>Download Here</a>
