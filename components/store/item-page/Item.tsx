@@ -26,6 +26,7 @@ const Item = ({
   alerts,
 }: Props) => {
   const { query } = useRouter();
+  const [currentImg, setImg] = useState<number>(0);
 
   useEffect(() => {
     //scroll to top of page on new item load
@@ -115,19 +116,38 @@ const Item = ({
             Store
           </Link>
           <p>\</p>
-          {/* className={style.active} TODO active class for nextjs */}
           <Link href={window.location}>
             <a className={style.active}>{foundItem.title}</a>
           </Link>
         </div>
         <div className={style.item}>
           <div className={style.col}>
+            <div className={style.other_imgs}>
+              {foundItem.images.map((img: any, i: number) => {
+                return (
+                  <div className={style.small_img_container} key={i}>
+                    <Image
+                      src={img.src}
+                      alt={img.src}
+                      height={`100%`}
+                      width={`100%`}
+                      quality={59}
+                      blurDataURL="https://res.cloudinary.com/snackmanproductions/image/upload/c_scale,q_45,w_985/v1603506986/crash/Untitled_Artwork_ri6ybz.png"
+                      placeholder="blur"
+                      onClick={() => setImg(i)}
+                    />
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+          <div className={style.col}>
             <div className={style.image_container}>
               {loadingStoreItem ? (
                 <LoadingSpinner />
               ) : (
                 <Image
-                  src={foundItem.images[0].src}
+                  src={foundItem.images[currentImg].src}
                   alt={foundItem.title}
                   height={700}
                   width={700}

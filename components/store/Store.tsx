@@ -11,6 +11,7 @@ import SearchBar from "./search/SearchBar";
 import StoreItems from "./StoreItems";
 import Carousel from "./carousel/Carousel";
 import ViewResults from "./ViewResults";
+import StoreAlert from "./alerts/StoreAlert";
 
 interface Props {
   fetchStoreItems: () => any;
@@ -24,6 +25,7 @@ interface Props {
     catalog: Array<any>;
     musicVendor: string;
   };
+  alerts: Array<any>;
 }
 
 const Store = ({
@@ -32,6 +34,7 @@ const Store = ({
   fetchCheckout,
   shop: { checkout, searchTerm, catalog, searchResults, musicVendor },
   clearCheckout,
+  alerts,
 }: Props) => {
   const [resultAmt, filterResults] = useState<number>(0);
 
@@ -75,12 +78,16 @@ const Store = ({
       <div className={style.store_grid}>
         <StoreItems />
       </div>
+      {alerts.length > 0 ? (
+        <StoreAlert status={alerts[0].msg} type={alerts[0].alertType} />
+      ) : null}
     </section>
   );
 };
 
 const mapStateToProps = (state: RootStateOrAny) => ({
   shop: state.shop,
+  alerts: state.alerts,
 });
 
 export default connect(mapStateToProps, {

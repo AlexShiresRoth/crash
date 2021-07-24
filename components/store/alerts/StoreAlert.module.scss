@@ -2,22 +2,31 @@
 
 .alert_box {
   width: 100%;
-  border-radius: 2px;
-  top: 0;
+  border-radius: 0px;
+  bottom: 0;
   left: 0;
   display: flex;
   justify-content: center;
   align-items: center;
-
+  position: fixed;
+  box-shadow: 0 1px 20px #00000022;
+  z-index: 999999999999;
+  padding: 0.5rem 0;
   & p {
-    color: #fff !important;
+    color: #fff;
+    font-size: 1.2rem;
+    font-weight: 700;
+    text-transform: uppercase;
   }
 }
 .danger {
   background: $alert-danger;
-  box-shadow: 0 1px 10px $alert-danger;
+  box-shadow: 0 0px 0px 2px $alert-danger;
 }
 .success {
   background: $alert-success;
-  box-shadow: 0 1px 10px $alert-success;
+  box-shadow: 0 0px 0px 10px #41ad3d63;
+  // & > p {
+  //   color: $alert-success;
+  // }
 }

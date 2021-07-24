@@ -15,7 +15,7 @@ type Props = {
 };
 
 const Upsell = ({
-  shop: { upsellVisible, cart, catalog },
+  shop: { upsellVisible, cart, catalog, checkout },
   showUpsell,
 }: Props) => {
   const router = useRouter();
