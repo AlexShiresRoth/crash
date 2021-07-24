@@ -24,7 +24,7 @@ export const sections = [
     id: uuidv4(),
   },
   {
-    path: "/Merch",
+    path: "/merch",
     mask: "/merch",
     img: "https://res.cloudinary.com/snackmanproductions/image/upload/c_scale,q_52,w_2230/v1590460627/crash/marcus-neto-gioH4gHo0-g-unsplash_k8nxpr.jpg",
     name: "merch",

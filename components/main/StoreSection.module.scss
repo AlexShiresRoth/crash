@@ -16,13 +16,24 @@
   justify-content: center;
   align-items: center;
   position: relative;
-  min-height: 80vh;
-  background: url("https://res.cloudinary.com/snackmanproductions/image/upload/v1600733769/crash/ctc-hero_n6mhxg.jpg");
+  min-height: 90vh;
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
-  clip-path: polygon(0 9%, 100% 0%, 100% 100%, 0% 100%);
 
+  background-image: url("https://res.cloudinary.com/snackmanproductions/image/upload/v1592860464/crash/album_art_full_1_ui2wtd.jpg");
+  clip-path: polygon(0 9%, 100% 0%, 100% 100%, 0% 100%);
+  &::after {
+    content: "";
+    background-color: #c67768;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0.9;
+    z-index: -1;
+  }
   & a {
     z-index: 5;
     text-decoration: none;
@@ -59,26 +70,139 @@
     position: relative;
     margin-top: 2rem;
   }
+  & .content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 90%;
+    margin-top: 6rem;
+    z-index: 2;
+    & .columns {
+      display: flex;
+      justify-content: space-around;
+      width: 80%;
+      overflow: visible;
+      & .column {
+        display: flex;
+        flex-direction: column;
+        background: #fff;
+        padding: 2rem;
+        overflow: visible;
+        box-shadow: 0 1px 20px #22222222;
+        position: relative;
+        z-index: 1;
+        &::after {
+          height: 100%;
+          width: 100%;
+          content: "";
+          display: block;
+          background-image: url("https://res.cloudinary.com/snackmanproductions/image/upload/v1625946533/crash/grungebg_ojb0nx.png");
+          background-size: cover;
+          filter: invert(1);
+          opacity: 0.7;
+          z-index: 0;
+          position: absolute;
+          top: 0;
+          left: 0;
+          transform: scale(1.5);
+        }
+        & .top_border,
+        & .bottom_border {
+          display: block;
+          clip-path: polygon(0 9%, 100% 0%, 100% 90%, 0% 100%);
+          background: #fff;
+          height: 10rem;
+          width: 100%;
+          position: absolute;
+          bottom: 80%;
+          left: 0;
+          &::after {
+            height: 100%;
+            width: 100%;
+            content: "";
+            display: block;
+            background-image: url("https://res.cloudinary.com/snackmanproductions/image/upload/v1625946533/crash/grungebg_ojb0nx.png");
+            background-size: cover;
+            filter: invert(1);
+            opacity: 0.7;
+            z-index: 0;
+            position: absolute;
+            top: 0;
+            left: 0;
+            transform: scale(1.5);
+          }
+        }
+        & .bottom_border {
+          bottom: -10%;
+        }
+        & .img_container {
+          max-width: 400px;
+          border: 1px solid $brand-accent;
+          z-index: 1;
+          &:hover {
+            cursor: pointer;
+          }
+        }
+        & .item_title {
+          background: $brand-accent;
+          color: $brand-text;
+          position: absolute;
+          top: 0%;
+          left: -10%;
+          z-index: 4;
+          padding: 0.5rem 2rem;
+          clip-path: polygon(0 9%, 100% 0%, 100% 90%, 0% 100%);
+        }
+      }
+    }
+  }
 }
 @media screen and (max-width: 1000px) {
   .box {
-    background: url("https://res.cloudinary.com/snackmanproductions/image/upload/v1600734688/crash/ctc-hero-mobile_qlkkjz.jpg");
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
     min-height: 100vh;
     justify-content: flex-start;
     padding: 6rem 0;
-    clip-path: polygon(0 4%, 100% 0%, 100% 100%, 0% 100%);
     & a {
       font-size: 8vw;
       text-align: center;
     }
-    & .container {
+    & .content {
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: center;
+      width: 90%;
+      margin-top: 2rem;
+      z-index: 2;
+      & .columns {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        width: 80%;
+        overflow: visible;
+        & .column {
+          margin: 4.5rem 0;
+
+          & .img_container {
+            max-width: 300px;
+            border: 1px solid $brand-accent;
+          }
+          & .item_title {
+            background: $brand-accent;
+            color: $brand-text;
+            position: absolute;
+            top: -20%;
+            left: -10%;
+            z-index: 4;
+            padding: 0.5rem 2rem;
+            & h2 {
+              font-size: 1rem;
+            }
+          }
+        }
+      }
     }
   }
 }

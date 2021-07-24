@@ -25,6 +25,17 @@
   background-position: center;
   padding-top: 6rem;
   z-index: 0;
+
+  &::after {
+    content: "";
+    display: block;
+    height: 100%;
+    width: 100%;
+    background: #00000032;
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
   & .img_container {
     height: 5rem;
     display: flex;

@@ -66,11 +66,7 @@ const Store = ({
       );
     }
   }, [catalog, searchTerm, searchResults, musicVendor]);
-  console.log(
-    "catalog",
-    catalog.map((item: any) => item?.vendor),
-    musicVendor
-  );
+
   return (
     <section className={style.section}>
       <Carousel />
