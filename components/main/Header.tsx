@@ -19,11 +19,11 @@ export const Header = () => {
         />
       </div>
       <div className={style.actions}>
-        <Link href="/Music">Listen</Link>
+        <Link href="/music">Listen</Link>
         <span>|</span>
         <Link href="/Videos">Watch</Link>
         <span>|</span>
-        <Link href="/Merch">Support</Link>
+        <Link href="/merch">Support</Link>
       </div>
       <a
         className={style.call_to_action}

@@ -29,3 +29,27 @@
     }
   }
 }
+@media screen and (max-width: 760px) {
+  .section {
+    & .video_grid {
+      width: 98%;
+      margin: 20vh 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+      & .video_container {
+        width: 100%;
+        border: 2px solid $brand-dark;
+        height: 22rem;
+        min-width: 80vw;
+        width: 90%;
+        margin: 0.5rem;
+        & iframe {
+          height: 100%;
+          width: 100%;
+        }
+      }
+    }
+  }
+}
