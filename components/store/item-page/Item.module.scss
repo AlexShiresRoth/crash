@@ -161,19 +161,21 @@
               align-items: center;
 
               & a {
+                margin-top: 0.5rem;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                text-decoration: none;
                 width: 10rem;
-                & button {
-                  width: 100%;
-                  min-height: 2.8rem;
-                  background: $brand-main;
-                  color: #fff;
-                  border: 0;
-                  font-size: 1rem;
-                  transition: all 0.3s ease;
-                  &:hover {
-                    cursor: pointer;
-                    box-shadow: 0 1px 5px $brand-main;
-                  }
+                min-height: 2.8rem;
+                background: $brand-main;
+                color: #fff;
+                border: 0;
+                font-size: 1rem;
+                transition: all 0.3s ease;
+                &:hover {
+                  cursor: pointer;
+                  box-shadow: 0 1px 5px $brand-main;
                 }
               }
             }
@@ -265,7 +267,8 @@
         & .col:nth-child(1) {
           display: none;
         }
-        & .col {
+        & .col:nth-child(2) {
+          align-items: center;
           & .image_container {
             max-width: 80%;
           }

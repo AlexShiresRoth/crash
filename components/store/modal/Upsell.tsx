@@ -73,7 +73,7 @@ const Upsell = ({
 
   useEffect(() => {
     if (upsellItems.length === 0 && upsellVisible) {
-      router.push("/Checkout");
+      return (window.location = checkout.webUrl);
     }
   }, [upsellItems, upsellVisible]);
 
@@ -96,11 +96,9 @@ const Upsell = ({
             })}
           </div>
           <div className={style.continue_box}>
-            <Link href="/Checkout">
-              <a className={style.continue}>
-                Continue <FaArrowRight size={".9rem"} />
-              </a>
-            </Link>
+            <a className={style.continue} href={`${checkout.webUrl}`}>
+              Continue <FaArrowRight size={".9rem"} />
+            </a>
           </div>
         </div>
       </div>

@@ -130,6 +130,7 @@ const Pages = ({ images }: Props) => {
             height={"1000px"}
             width={"1000px"}
             alt={img.publicID}
+            quality={65}
           />
         </div>
       );

@@ -53,6 +53,12 @@ const CheckoutModule = ({
     }
   }, [cart, router, loading]);
 
+  useEffect(() => {
+    if (checkout) {
+      return (window.location = checkout.webUrl);
+    }
+  }, [checkout]);
+
   return (
     <section className={style.section}>
       {!loading && cart.length > 0 ? (

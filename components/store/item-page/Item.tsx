@@ -20,7 +20,7 @@ interface Props {
 }
 
 const Item = ({
-  shop: { loading, foundItem, cart, musicVendor, loadingStoreItem },
+  shop: { loading, foundItem, cart, musicVendor, loadingStoreItem, checkout },
   findStoreItem,
   addToCart,
   alerts,
@@ -131,7 +131,7 @@ const Item = ({
                       alt={img.src}
                       height={`100%`}
                       width={`100%`}
-                      quality={59}
+                      quality={65}
                       blurDataURL="https://res.cloudinary.com/snackmanproductions/image/upload/c_scale,q_45,w_985/v1603506986/crash/Untitled_Artwork_ri6ybz.png"
                       placeholder="blur"
                       onClick={() => setImg(i)}
@@ -219,11 +219,7 @@ const Item = ({
               <div className={style.btn_row}>
                 {cart.length > 0 ? (
                   <div className={style.checkout_box}>
-                    <Link href="/Checkout">
-                      <a>
-                        <button>Checkout Now</button>
-                      </a>
-                    </Link>
+                    <a href={`${checkout.webUrl}`}>Checkout Now</a>
                   </div>
                 ) : (
                   <></>
