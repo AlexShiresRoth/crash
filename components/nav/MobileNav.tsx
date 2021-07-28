@@ -79,7 +79,7 @@ const MobileNav = ({ shop: { cart }, isVisible, setVisibility }: Props) => {
           <div className={style.centered}>
             <div className={style.social}>
               <a
-                href=" http://facebook.com/crashthecalmband"
+                href="http://facebook.com/crashthecalmny"
                 rel="noopener noreferrer"
                 target="_blank"
               >

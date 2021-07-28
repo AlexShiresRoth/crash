@@ -10,8 +10,9 @@
 }
 .box {
   width: 100%;
-  padding: 8rem 0;
+  padding: 4rem 0;
   display: flex;
+  min-height: 100vh;
   justify-content: center;
   align-items: center;
   position: relative;

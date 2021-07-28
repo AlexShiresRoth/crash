@@ -25,14 +25,24 @@ export const Header = () => {
         <span>|</span>
         <Link href="/merch">Support</Link>
       </div>
+
       <a
         className={style.call_to_action}
-        href="http://open.spotify.com/artist/4z0T4u61g7AUCjxoygPCAT"
+        href="https://open.spotify.com/artist/4z0T4u61g7AUCjxoygPCAT?si=GlY_XhoKTMGYDl2OwSIRMw&dl_branch=1"
         rel="noopener noreferrer"
         target="_blank"
       >
-        Follow On Spotify <FaSpotify />
+        Listen On Spotify <FaSpotify />
       </a>
+      <iframe
+        src="https://open.spotify.com/follow/1/?uri=spotify:artist:4z0T4u61g7AUCjxoygPCAT?si=GlY_XhoKTMGYDl2OwSIRMw&dl_branch=1&size=basic&theme=light"
+        width="150"
+        height="25"
+        scrolling="no"
+        frameBorder="0"
+        style={{ border: "none", overflow: "hidden" }}
+        allowTransparency={true}
+      ></iframe>
     </header>
   );
 };
