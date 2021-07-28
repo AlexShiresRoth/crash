@@ -2,8 +2,8 @@ import React from "react";
 import { connect } from "react-redux";
 import { removeFromCart, showUpsell } from "../../../redux/actions/store";
 import style from "./CartDisplay.module.scss";
-import Link from "next/link";
 import CartItem from "./CartItem";
+import ReactGA from "react-ga";
 
 interface Props {
   shop?: any;
@@ -47,7 +47,18 @@ const CartDisplay = ({
           })}
         </div>
         <div className={style.checkout}>
-          <button onClick={(e) => showUpsell(true)}>Proceed to Checkout</button>
+          <button
+            onClick={(e) => {
+              showUpsell(true);
+              ReactGA.event({
+                action: "Cart Display Checkout Button Click",
+                category: "User",
+                label: "Checkout Start",
+              });
+            }}
+          >
+            Proceed to Checkout
+          </button>
         </div>
       </div>
     </div>

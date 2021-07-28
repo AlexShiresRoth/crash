@@ -8,6 +8,7 @@ import { connect, RootStateOrAny } from "react-redux";
 import { showUpsell } from "../../../redux/actions/store";
 import style from "./Upsell.module.scss";
 import UpsellItem from "./UpsellItem";
+import ReactGA from "react-ga";
 
 type Props = {
   shop?: any;
@@ -96,7 +97,17 @@ const Upsell = ({
             })}
           </div>
           <div className={style.continue_box}>
-            <a className={style.continue} href={`${checkout.webUrl}`}>
+            <a
+              className={style.continue}
+              href={`${checkout.webUrl}`}
+              onClick={() => {
+                ReactGA.event({
+                  action: "continueToCheckout",
+                  category: "User",
+                  label: "Clicked on upsell continue button",
+                });
+              }}
+            >
               Continue <FaArrowRight size={".9rem"} />
             </a>
           </div>

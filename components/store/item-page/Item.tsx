@@ -9,6 +9,7 @@ import StoreAlert from "../alerts/StoreAlert";
 import Link from "next/link";
 import { useRouter } from "next/dist/client/router";
 import Image from "next/image";
+import ReactGA from "react-ga";
 
 interface Props {
   shop?: any;
@@ -66,6 +67,12 @@ const Item = ({
   }, [option]);
 
   const handleAddToCart = () => {
+    console.log(selectedItem);
+    ReactGA.event({
+      action: "addToCart",
+      category: "User",
+      label: foundItem.title,
+    });
     return option
       ? addToCart(selectedItem)
       : setAlert({
@@ -98,7 +105,6 @@ const Item = ({
     }
     return array;
   };
-  console.log("whats an item", foundItem);
 
   return !loading && foundItem ? (
     <div className={style.container}>

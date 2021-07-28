@@ -13,6 +13,7 @@ import { fetchVideos } from "../../redux/actions/youtube";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import ReactPlayer from "react-player/lazy";
 import LoadingSpinner from "../reusablecomps/LoadingSpinner";
+import { opacity } from "@cloudinary/base/actions/adjust";
 
 //TODO FIX THIS FUCKING PIECE OF SHIT SCROLLING PROBLEM THAT'S ALWAYS FUCKING RANDOM YOU FUCKIN GGARBAGE DEVELOPER
 interface Props {
@@ -30,28 +31,14 @@ const VideoSection = ({ fetchVideos, youtube: { videos, loading } }: Props) => {
   const [currentIndex, setIndex] = useState<number>(0);
   const [videoWidth, setVideoWidth] = useState<number>(0);
   const [scrollWidth, setScrollWidth] = useState<number>(0);
-  const [maxScroll, setMaxScroll] = useState<number>(0);
   const maxVideos = 7;
 
-  //Set initial width on component load
-  useEffect(() => {
-    if (videoRef.current) setVideoWidth(videoRef.current.clientWidth);
-  }, [videoRef]);
-
-  useEffect(() => {
-    if (videoContainerRef.current) {
-      setMaxScroll(videoContainerRef.current.scrollWidth);
-    }
-  }, [videoContainerRef]);
-
-  //Handle resize by reverting index to first video
-  //Then the video width needs to be reset to window size scaling
+  // //Handle resize by reverting index to first video
+  // //Then the video width needs to be reset to window size scaling
   useEffect(() => {
     const handleResize = () => {
       setIndex(0);
       setScrollWidth(0);
-      if (videoRef.current !== null)
-        setVideoWidth(videoRef.current.clientWidth);
     };
     window.addEventListener("resize", () => handleResize());
 
@@ -82,29 +69,9 @@ const VideoSection = ({ fetchVideos, youtube: { videos, loading } }: Props) => {
     }
   };
 
-  useEffect(() => {
-    //if scrolling width grows past max width of container, reset everything
-    if (Math.abs(scrollWidth) > maxScroll) {
-      setIndex(0);
-      setScrollWidth(0);
-    }
-  }, [scrollWidth, videoWidth, maxScroll]);
-
-  console.log(
-    "scrollwith",
-    scrollWidth,
-    maxScroll,
-    videoWidth,
-    videoContainerRef.current?.scrollLeft
-  );
-
   useMemo(() => {
     fetchVideos(maxVideos);
   }, [fetchVideos]);
-
-  useEffect(() => {
-    setScrollWidth(0);
-  }, []);
 
   //url for youtube embed
   const videoSource = `https://www.youtube.com/watch?v=`;
@@ -126,14 +93,24 @@ const VideoSection = ({ fetchVideos, youtube: { videos, loading } }: Props) => {
           <FaChevronLeft />
         </button>
         <div className={style.video_grid} ref={videoRef}>
-          <div
-            className={style.videos}
-            ref={videoContainerRef}
-            style={{ transform: `translate3d(${scrollWidth}px, 0, 0)` }}
-          >
+          <div className={style.videos} ref={videoContainerRef}>
             {videos.map((video: any, i: number) => {
               return (
-                <div className={style.video_container} key={i}>
+                <div
+                  className={style.video_container}
+                  key={i}
+                  style={
+                    currentIndex === i
+                      ? {
+                          zIndex: 2,
+                          opacity: 1,
+                        }
+                      : {
+                          opacity: 0,
+                          zIndex: -1,
+                        }
+                  }
+                >
                   <ReactPlayer
                     url={videoSource + video.snippet.resourceId.videoId}
                     width="100%"

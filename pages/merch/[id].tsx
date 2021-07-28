@@ -8,6 +8,11 @@ import {
 } from "../../redux/actions/store";
 import { connect } from "react-redux";
 import SuggestedItems from "../../components/store/item-page/SuggestedItems";
+import ReactGA from "react-ga";
+
+ReactGA.initialize("UA-172813905-2", { debug: true });
+
+ReactGA.pageview("/merchitempage");
 
 interface Props {
   fetchCheckout: (id: string) => any;

@@ -4,7 +4,12 @@ import Item from "../../components/store/item-page/Item";
 import { fetchCheckout, startOrder } from "../../redux/actions/store";
 import { connect } from "react-redux";
 import SuggestedItems from "../../components/store/item-page/SuggestedItems";
-import MusicItem from "../../components/store/music/MusicItem";
+
+import ReactGA from "react-ga";
+
+ReactGA.initialize("UA-172813905-2", { debug: true });
+
+ReactGA.pageview("/musicitempage");
 
 interface Props {
   fetchCheckout: (id: string) => any;
