@@ -1,18 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
-		<meta name="viewport" content="width=device-width, initial-scale=1" user-scalable="no" />
-		<meta name="theme-color" content="#000000" />
-		<meta name="description" content="Crash The Calm Official Website" />
-		<link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
-		<!--
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1"
+      user-scalable="no"
+    />
+    <meta name="theme-color" content="#000000" />
+    <meta name="description" content="Crash The Calm Official Website" />
+    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
+    <!--
       manifest.json provides metadata used when your web app is installed on a
       user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
     -->
-		<link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
-		<!--
+    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+    <!--
       Notice the use of %PUBLIC_URL% in the tags above.
       It will be replaced with the URL of the `public` folder during the build.
       Only files inside the `public` folder can be referenced from the HTML.
@@ -22,50 +26,12 @@
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
 
-		<title>Crash The Calm</title>
-		<script>
-			!(function (f, b, e, v, n, t, s) {
-				if (f.fbq) return;
-				n = f.fbq = function () {
-					n.callMethod ? n.callMethod.apply(n, arguments) : n.queue.push(arguments);
-				};
-				if (!f._fbq) f._fbq = n;
-				n.push = n;
-				n.loaded = !0;
-				n.version = '2.0';
-				n.queue = [];
-				t = b.createElement(e);
-				t.async = !0;
-				t.src = v;
-				s = b.getElementsByTagName(e)[0];
-				s.parentNode.insertBefore(t, s);
-			})(window, document, 'script', 'https://connect.facebook.net/en_US/fbevents.js');
-			fbq('init', '682418259052811');
-			fbq('track', 'PageView');
-		</script>
-		<noscript
-			><img
-				height="1"
-				width="1"
-				style="display: none"
-				src="https://www.facebook.com/tr?id=682418259052811&ev=PageView&noscript=1"
-		/></noscript>
-		<!-- Global site tag (gtag.js) - Google Analytics -->
-		<script async src="https://www.googletagmanager.com/gtag/js?id=G-KTX0ZNDXRT"></script>
-		<script>
-			window.dataLayer = window.dataLayer || [];
-			function gtag() {
-				dataLayer.push(arguments);
-			}
-			gtag('js', new Date());
-
-			gtag('config', 'G-KTX0ZNDXRT');
-		</script>
-	</head>
-	<body>
-		<noscript>You need to enable JavaScript to run this app.</noscript>
-		<div id="root"></div>
-		<!--
+    <title>Crash The Calm</title>
+  </head>
+  <body>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <div id="root"></div>
+    <!--
       This HTML file is a template.
       If you open it directly in the browser, you will see an empty page.
 
@@ -75,5 +41,6 @@
       To begin the development, run `npm start` or `yarn start`.
       To create a production bundle, use `npm run build` or `yarn build`.
       
-    --></body>
+    -->
+  </body>
 </html>
