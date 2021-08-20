@@ -12,9 +12,9 @@ export const Header = () => {
       <div className={style.img_container}>
         <Image
           src={logo}
-          height="100%"
-          width="100%"
-          quality="70"
+          height="300px"
+          width="500px"
+          quality="80"
           alt="Crash the Calm Logo"
         />
       </div>
