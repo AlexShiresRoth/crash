@@ -113,7 +113,7 @@ const Nav = ({ clearSearch }: Props) => {
           <a
             href="https://www.ultimate-guitar.com/artist/crash_the_calm_1012847"
             target="_blank"
-            rel="noopener noreferer"
+            rel="noopener noreferrer"
           >
             Tabs
           </a>
