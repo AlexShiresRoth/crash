@@ -41,14 +41,7 @@ const MusicSection = () => {
                 Listen on Apple Music
               </a>
             </div>
-            {/* <iframe
-              title="apple music"
-              allow="autoplay *; encrypted-media *;"
-              frameBorder="0"
-              style={{ overflow: "hidden", borderRadius: "0px" }}
-              sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-storage-access-by-user-activation allow-top-navigation-by-user-activation"
-              src="https://embed.music.apple.com/us/album/a-town-named-nowhere-volume-i-ep/1572368115"
-            ></iframe> */}
+
             <iframe
               title="apple music"
               allow="autoplay *; encrypted-media *;"
