@@ -5,10 +5,11 @@ import style from "./Pages.module.scss";
 import { useEffect } from "react";
 import Image from "next/image";
 type Props = {
-  images: any;
+  images: string[];
 };
 
 const Pages = ({ images }: Props) => {
+  console.log(images);
   const [currentPages, setCurrent] = useState<number>(0);
 
   const [max, setMax] = useState<number>(6);
@@ -101,7 +102,7 @@ const Pages = ({ images }: Props) => {
 
   useEffect(() => {
     if (images) {
-      setMax(images.slice(0, 7).length - 1);
+      setMax(images.length);
       setPages(images);
     }
   }, [images]);
@@ -121,21 +122,19 @@ const Pages = ({ images }: Props) => {
     });
   }, []);
 
-  const imgsMap = images.map(
-    (img: { url: string; publicID: string }, index: number) => {
-      return (
-        <div className={style.image_container} key={index}>
-          <Image
-            src={img.url}
-            height={"1000px"}
-            width={"1000px"}
-            alt={img.publicID}
-            quality={65}
-          />
-        </div>
-      );
-    }
-  );
+  const imgsMap = images.map((img: string, index: number) => {
+    return (
+      <div className={style.image_container} key={index}>
+        <Image
+          src={img}
+          height={"1000px"}
+          width={"1000px"}
+          alt={"page"}
+          quality={50}
+        />
+      </div>
+    );
+  });
 
   return (
     <>

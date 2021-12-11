@@ -1,38 +1,53 @@
-const cloudinary = require('cloudinary').v2;
-const express = require('express');
+const cloudinary = require("cloudinary").v2;
+const express = require("express");
 const router = express.Router();
 
 const cloudinaryAuth = cloudinary.config({
-	cloud_name: process.env.CLOUD_NAME,
-	api_key: process.env.API_KEY,
-	api_secret: process.env.API_SECRET,
-	secure: true,
+  cloud_name: process.env.CLOUD_NAME,
+  api_key: process.env.API_KEY,
+  api_secret: process.env.API_SECRET,
+  secure: true,
 });
 
-router.get('/songbook', async (req, res) => {
-	try {
-		const response = await cloudinary.api.resources({ max_results: 30, type: 'upload', prefix: 'crash/songbook' });
+router.get("/songbook", async (req, res) => {
+  console.log("hello");
+  try {
+    const response = await cloudinary.api.resources({
+      max_results: 22,
+      type: "upload",
+      prefix: "crash/songbook",
+    });
 
-		const justUrls = response.resources.map((resource) => ({
-			url: resource.secure_url,
-			publicId: resource.public_id,
-		}));
+    const justUrls = response.resources.map((resource) => ({
+      url: resource.secure_url,
+      publicId: resource.public_id,
+    }));
 
-		const sortedUrls = justUrls
-			.slice()
-			.sort((a, b) =>
-				parseFloat(a.url.split('-')[1].split('_')[0]) > parseFloat(b.url.split('-')[1].split('_')[0]) ? 1 : -1
-			);
+    //sort the pages by url,  page number is in the url
+    const sortedUrls = justUrls
+      .slice()
+      .sort((a, b) =>
+        parseFloat(a.url.split("page")[1]) > parseFloat(b.url.split("page")[1])
+          ? 1
+          : -1
+      );
 
-		console.log(sortedUrls);
+    const transformedImgs = sortedUrls.map((img) => {
+      const transform = cloudinary.image(img.publicId, {
+        transformation: { width: 700, quality: 50 },
+      });
+      //   console.log(transform.split("'")[1]);
+      return transform.split("'")[1];
+    });
+    console.log(transformedImgs);
 
-		res.json(sortedUrls);
-	} catch (error) {
-		console.error(error);
-		res.status(500).json(error);
-	}
+    res.json(transformedImgs);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json(error);
+  }
 });
 
-console.log('cloudinary auth?', cloudinaryAuth);
+console.log("cloudinary auth?", cloudinaryAuth);
 
 module.exports = router;
