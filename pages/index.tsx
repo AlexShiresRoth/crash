@@ -15,7 +15,7 @@ const Landing = () => {
   useEffect(() => {
     if (typeof window !== "undefined") {
       metaEvent({
-        event_source_url: window.location.href,
+        event_source_url: window?.location?.href,
         event_name: "PageView",
         content_name: router.pathname,
         value: 0,
