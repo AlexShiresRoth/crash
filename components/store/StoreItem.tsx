@@ -17,7 +17,6 @@ const StoreItem = ({ item, index, shop: { loading } }: Props) => {
       <div className={style.img_container}>
         <Link href={`/merch/${item.id}`}>
           <a>
-            {" "}
             <Image
               src={item.images[0].src}
               alt={item.title}

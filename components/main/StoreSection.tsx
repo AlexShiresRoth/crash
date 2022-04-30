@@ -34,7 +34,7 @@ const StoreSection = ({ shop: { catalog }, fetchStoreItems }: Props) => {
   }, [catalog]);
 
   if (catalog.length === 0) {
-    return <LoadingSpinner />;
+    return <LoadingSpinner updateStyle={{ color: "#222", size: "1.5rem" }} />;
   }
 
   return (

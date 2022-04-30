@@ -127,7 +127,7 @@ const CheckoutModule = ({
           <CheckoutForm />
         </div>
       ) : (
-        <LoadingSpinner />
+        <LoadingSpinner updateStyle={{ color: "#222", size: "1.5rem" }} />
       )}
     </section>
   );

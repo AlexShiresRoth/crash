@@ -48,7 +48,9 @@ const CheckoutForm = ({
           {shippingInfo ? (
             processing ? (
               <>
-                <LoadingSpinner updateStyle={{ size: "1.5rem" }} />{" "}
+                <LoadingSpinner
+                  updateStyle={{ color: "#222", size: "1.5rem" }}
+                />{" "}
                 Processing...
               </>
             ) : (

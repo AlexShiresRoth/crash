@@ -205,7 +205,7 @@ const SuggestedItems = ({
       </div>
     </div>
   ) : (
-    <LoadingSpinner />
+    <LoadingSpinner updateStyle={{ color: "#222", size: "1.5rem" }} />
   );
 };
 

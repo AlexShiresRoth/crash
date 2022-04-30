@@ -38,7 +38,11 @@ const VideosComponent = ({
   return (
     <section className={style.section}>
       <div className={style.video_grid}>
-        {!loading ? videosArr : <LoadingSpinner />}
+        {!loading ? (
+          videosArr
+        ) : (
+          <LoadingSpinner updateStyle={{ color: "#222", size: "1.5rem" }} />
+        )}
       </div>
     </section>
   );

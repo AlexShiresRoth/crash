@@ -77,7 +77,7 @@ const VideoSection = ({ fetchVideos, youtube: { videos, loading } }: Props) => {
   const videoSource = `https://www.youtube.com/watch?v=`;
 
   if (loading) {
-    return <LoadingSpinner />;
+    return <LoadingSpinner updateStyle={{ color: "#222", size: "1.5rem" }} />;
   }
   if (videos.length === 0) {
     return <p>Could not load videos</p>;

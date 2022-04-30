@@ -14,19 +14,21 @@ export const emailSignup = (data: any) => async (dispatch: any) => {
 
     dispatch(setAlert("You have successfully signed up!", "success"));
   } catch (error) {
-    console.log(error.response);
-    const errors = error.response.data.errors;
-    if (errors) {
+    console.error(error);
+    if (error instanceof Error) {
+      const errors = error?.response?.data.errors;
+      if (errors) {
+        dispatch({
+          type: EMAIL_ERROR,
+          payload: errors,
+        });
+        errors.forEach((err: any) => dispatch(setAlert(err.msg, "danger")));
+      }
       dispatch({
         type: EMAIL_ERROR,
-        payload: errors,
+        payload: error,
       });
-      errors.forEach((err: any) => dispatch(setAlert(err.msg, "danger")));
+      dispatch(setAlert(error.response.data.msg, "danger"));
     }
-    dispatch({
-      type: EMAIL_ERROR,
-      payload: error,
-    });
-    dispatch(setAlert(error.response.data.msg, "danger"));
   }
 };

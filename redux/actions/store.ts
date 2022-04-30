@@ -141,7 +141,7 @@ export const updateLineItem = (item: any) => async (dispatch: any) => {
       type: UPDATE_LINE_ITEM,
       payload: res.data,
     });
-  } catch (error) {
+  } catch (error: any) {
     dispatch({
       type: STORE_ERROR,
       payload: error.response.msg,
@@ -182,7 +182,7 @@ export const startOrder = () => async (dispatch: any) => {
       type: START_ORDER,
       payload: res.data,
     });
-  } catch (error) {
+  } catch (error: any) {
     dispatch({
       type: STORE_ERROR,
       payload: error,

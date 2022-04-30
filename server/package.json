@@ -17,6 +17,7 @@
     "es6-promise": "^4.2.8",
     "express": "^4.17.1",
     "express-validator": "^6.6.0",
+    "facebook-nodejs-business-sdk": "^13.0.0",
     "fetch": "^1.1.0",
     "isomorphic-fetch": "^2.2.1",
     "mongoose": "^5.9.22",
