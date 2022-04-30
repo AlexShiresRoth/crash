@@ -9,7 +9,7 @@ export const loadSongBook = () => async (dispatch: any) => {
       type: LOAD_SONG_BOOK,
       payload: res.data,
     });
-  } catch (error) {
+  } catch (error: any) {
     console.error("ERROR AT CLOUDINARY:", error);
     dispatch({
       type: CLOUDINARY_ERROR,

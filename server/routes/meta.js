@@ -53,8 +53,8 @@ router.post("/event", async (request, response) => {
       access_token,
       pixel_id,
       null,
-      null,
-      "TEST99866"
+      null
+      //   "TEST99866"
     ).setEvents(eventsData);
 
     const evtReq = await eventRequest.execute();

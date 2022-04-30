@@ -12,7 +12,7 @@ export const fetchEvents = () => async (dispatch: any) => {
       type: FETCH_EVENTS,
       payload: res.data,
     });
-  } catch (error) {
+  } catch (error: any) {
     dispatch({
       type: EVENT_ERROR,
       payload: error.response.data.msg,

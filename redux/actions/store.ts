@@ -33,7 +33,7 @@ export const fetchStoreItems = () => async (dispatch: any) => {
       type: FETCH_STORE,
       payload: res.data,
     });
-  } catch (error) {
+  } catch (error: any) {
     const errors = error.response.data.errors;
     console.log(errors);
     if (errors) {
@@ -59,7 +59,7 @@ export const findStoreItem = (id: string) => async (dispatch: any) => {
       type: FETCH_ITEM,
       payload: res.data,
     });
-  } catch (error) {
+  } catch (error: any) {
     dispatch({
       type: STORE_ERROR,
       payload: error,
@@ -73,7 +73,7 @@ export const clearSearch = () => async (dispatch: any) => {
     dispatch({
       type: CLEAR_SEARCH,
     });
-  } catch (error) {
+  } catch (error: any) {
     dispatch({
       type: STORE_ERROR,
       payload: error.response.data.msg,
@@ -90,7 +90,7 @@ export const searchCatalog = (data: any) => async (dispatch: any) => {
       type: SEARCH_STORE,
       payload: { results: res.data, searchTerm: data.searchTerm },
     });
-  } catch (error) {
+  } catch (error: any) {
     const errors = error.response.data.errors;
     console.log(errors);
     if (errors) {
@@ -120,7 +120,7 @@ export const addToCart = (item: any) => async (dispatch: any) => {
       payload: res.data,
     });
     dispatch(setAlert("Added to cart", "success"));
-  } catch (error) {
+  } catch (error: any) {
     dispatch({
       type: STORE_ERROR,
       payload: error.response.data.msg,
@@ -141,7 +141,7 @@ export const updateLineItem = (item: any) => async (dispatch: any) => {
       type: UPDATE_LINE_ITEM,
       payload: res.data,
     });
-  } catch (error) {
+  } catch (error: any) {
     dispatch({
       type: STORE_ERROR,
       payload: error.response.msg,
@@ -165,7 +165,7 @@ export const removeFromCart =
         payload: res.data,
       });
       dispatch(setAlert("Item removed from cart", "success"));
-    } catch (error) {
+    } catch (error: any) {
       dispatch({
         type: STORE_ERROR,
         payload: error.response.data.msg,
@@ -182,7 +182,7 @@ export const startOrder = () => async (dispatch: any) => {
       type: START_ORDER,
       payload: res.data,
     });
-  } catch (error) {
+  } catch (error: any) {
     dispatch({
       type: STORE_ERROR,
       payload: error,
@@ -199,7 +199,7 @@ export const fetchCheckout = (id: string) => async (dispatch: any) => {
       type: FETCH_CHECKOUT,
       payload: res.data,
     });
-  } catch (error) {
+  } catch (error: any) {
     dispatch({
       type: STORE_ERROR,
       payload: error,
@@ -219,7 +219,7 @@ export const submitShippingInfo = (formData: any) => async (dispatch: any) => {
     });
 
     dispatch(setAlert("We have received your shipping info", "success"));
-  } catch (error) {
+  } catch (error: any) {
     const errors = error.response.data.errors;
     if (errors) {
       dispatch({
@@ -253,7 +253,7 @@ export const processCheckout = (id: string) => async (dispatch: any) => {
       type: PROCESS_CHECKOUT,
       payload: res.data,
     });
-  } catch (error) {
+  } catch (error: any) {
     const errors = error.response.data.errors;
     if (errors) {
       dispatch({

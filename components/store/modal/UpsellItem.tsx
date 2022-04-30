@@ -98,7 +98,9 @@ const UpsellItem = ({
 
         <button onClick={(e) => setVisibility(true)}>Add To Cart</button>
 
-        {loading && <LoadingSpinner />}
+        {loading && (
+          <LoadingSpinner updateStyle={{ color: "#222", size: "1.5rem" }} />
+        )}
       </div>
     </div>
   );

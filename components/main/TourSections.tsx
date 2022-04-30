@@ -65,7 +65,7 @@ const TourSections = ({ fetchEvents, events: { events } }: Props) => {
             {allEvents ? "Reduce Tour Display" : "Show More Dates"}
           </button>
         ) : (
-          <LoadingSpinner />
+          <LoadingSpinner updateStyle={{ color: "#222", size: "1.5rem" }} />
         )
       ) : null}
     </section>

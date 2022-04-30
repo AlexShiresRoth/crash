@@ -29,7 +29,7 @@ const Carousel = ({ shop: { images, loading } }: Props) => {
   if (loading || images.length === 0) {
     return (
       <div className={style.loading_block}>
-        <LoadingSpinner />
+        <LoadingSpinner updateStyle={{ color: "#222", size: "1.5rem" }} />
       </div>
     );
   }
