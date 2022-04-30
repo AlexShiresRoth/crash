@@ -148,7 +148,6 @@ const Pages = ({ images }: Props) => {
       <div className={style.page_numbers}>
         {pages
           .map((page: any, i: number) => {
-            console.log("page max", pageMax);
             return (
               <button
                 onClick={() => setCurrent(i)}
@@ -184,7 +183,5 @@ const Pages = ({ images }: Props) => {
     </>
   );
 };
-
-Pages.propTypes = {};
 
 export default Pages;

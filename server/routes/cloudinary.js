@@ -34,7 +34,12 @@ router.get("/songbook", async (req, res) => {
 
     const transformedImgs = sortedUrls.map((img) => {
       const transform = cloudinary.image(img.publicId, {
-        transformation: { width: 700, quality: 50 },
+        transformation: {
+          width: 700,
+          quality: 50,
+          format: "auto",
+          fetch_format: "auto",
+        },
       });
       //   console.log(transform.split("'")[1]);
       return transform.split("'")[1];
