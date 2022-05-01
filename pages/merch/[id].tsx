@@ -43,6 +43,7 @@ const ItemPage = ({ fetchCheckout, startOrder, resetStoreItem }: Props) => {
       fetchCheckout(id);
     }
   }, [startOrder, fetchCheckout]);
+
   return (
     <>
       <Head>

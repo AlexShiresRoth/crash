@@ -7,7 +7,7 @@ export const loadSongBook = () => async (dispatch: any) => {
 
     dispatch({
       type: LOAD_SONG_BOOK,
-      payload: res.data,
+      payload: res.data.response,
     });
   } catch (error) {
     console.error("ERROR AT CLOUDINARY:", error);

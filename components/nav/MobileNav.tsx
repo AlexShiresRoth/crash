@@ -17,7 +17,7 @@ import { useRouter } from "next/dist/client/router";
 
 type Props = {
   shop: { cart: any };
-  isVisible: Boolean;
+  isVisible: boolean;
   setVisibility: any;
 };
 

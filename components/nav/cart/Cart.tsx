@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, Dispatch, SetStateAction } from "react";
 import { connect } from "react-redux";
 import style from "./Cart.module.scss";
 import CartDisplay from "./CartDisplay";
@@ -7,8 +7,8 @@ import { useRouter } from "next/dist/client/router";
 
 interface Props {
   shop?: any;
-  isVisible: any;
-  setVisibility: any;
+  isVisible: boolean;
+  setVisibility: Dispatch<SetStateAction<boolean>>;
 }
 
 type CartProps = Props;
@@ -17,6 +17,7 @@ const Cart = ({ shop: { cart }, isVisible, setVisibility }: CartProps) => {
   const router = useRouter();
   const [newAdd, setNewAddition] = useState<boolean>(false);
   const [cartLength, setCartLength] = useState<number>(0);
+
   //do not show the cart if the user is not on the store page
   useEffect(() => {
     if (!router.pathname.includes("store")) setVisibility(false);
@@ -54,6 +55,7 @@ const Cart = ({ shop: { cart }, isVisible, setVisibility }: CartProps) => {
 };
 
 const mapStateToProps = (state: { shop: object }) => {
+  console.log("shop", state.shop);
   return {
     shop: state.shop,
   };

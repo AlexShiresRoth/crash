@@ -5,7 +5,7 @@
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
+    "start": "ts-node server.ts"
   },
   "author": "",
   "license": "ISC",
@@ -15,7 +15,7 @@
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",
     "es6-promise": "^4.2.8",
-    "express": "^4.17.1",
+    "express": "^4.18.1",
     "express-validator": "^6.6.0",
     "facebook-nodejs-business-sdk": "^13.0.0",
     "fetch": "^1.1.0",
@@ -24,5 +24,11 @@
     "shopify-buy": "^2.11.0",
     "square-connect": "^4.20200625.0",
     "uuid": "^8.3.0"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.1",
+    "@types/node": "^17.0.30",
+    "ts-node": "^10.7.0",
+    "typescript": "^4.6.4"
   }
 }

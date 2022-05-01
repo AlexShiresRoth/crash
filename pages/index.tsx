@@ -11,7 +11,6 @@ ReactGA.pageview("/landing");
 const Landing = () => {
   const router = useRouter();
 
-  console.log(router, window.location);
   useEffect(() => {
     if (typeof window !== "undefined") {
       metaEvent({

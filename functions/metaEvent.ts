@@ -40,9 +40,9 @@ export const metaEvent = async ({
   };
 
   try {
-    const apiRequest = await api.post("/meta/event", config);
+    const apiRequest = await api.post("meta/event", JSON.stringify(config));
 
-    console.log("apiRequest", apiRequest.data);
+    console.log("apiRequest", apiRequest.data, config);
   } catch (error) {
     console.error(error);
     return error;

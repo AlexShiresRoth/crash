@@ -1,24 +1,20 @@
-require("dotenv").config();
-const express = require("express");
-const http = require("http");
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const dotenv_1 = require("dotenv");
+const express_1 = require("express");
+const http_1 = require("http");
+(0, dotenv_1.config)();
 const cors = require("cors");
-const { meta } = require("./routes/meta");
-
-const app = express();
-
+const app = (0, express_1.default)();
 app.use(cors());
-
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
-
+app.use(express_1.default.json());
+app.use(express_1.default.urlencoded({ extended: true }));
 app.get("/", (req, res) => res.send("API Is Running"));
 app.use("/api/email", require("./routes/email"));
 app.use("/api/meta", require("./routes/meta"));
 app.use("/api/shopifystore", require("./routes/shopify-store"));
 app.use("/api/cloudinary", require("./routes/cloudinary"));
-
-const server = http.createServer(app);
-
+const server = http_1.default.createServer(app);
 const PORT = process.env.PORT || "5000";
-
 server.listen(PORT, () => console.log("Server running on PORT:" + PORT));
+//# sourceMappingURL=server.js.map

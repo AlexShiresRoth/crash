@@ -7,17 +7,17 @@ import {
   SEARCH_STORE,
   CLEAR_SEARCH,
   SUBMIT_SHIPPING,
-  SHIPPING_ERROR,
   START_ORDER,
   FETCH_CHECKOUT,
   SAVE_SHIPPING,
   PROCESS_CHECKOUT,
   FETCH_ITEM,
-  CHECKOUT_ERROR,
   CLEAR_CHECKOUT,
   UPDATE_LINE_ITEM,
   TOGGLE_UPSELL,
   RESET_STORE_ITEM,
+  SHIPPING_ERROR,
+  CHECKOUT_ERROR,
 } from "./types";
 import { setAlert } from "./alert";
 
@@ -29,26 +29,20 @@ const config = {
 export const fetchStoreItems = () => async (dispatch: any) => {
   try {
     const res = await api.get("/shopifystore/inventory");
+    console.log("res", res.data);
     dispatch({
       type: FETCH_STORE,
-      payload: res.data,
+      payload: res.data.response,
     });
   } catch (error) {
-    const errors = error.response.data.errors;
-    console.log(errors);
-    if (errors) {
-      dispatch({
-        type: STORE_ERROR,
-        payload: errors,
-      });
-      errors.forEach((err: any) => dispatch(setAlert(err.msg, "danger")));
-      return;
-    }
+    console.error(error);
+
     dispatch({
       type: STORE_ERROR,
-      payload: error.response.data.msg,
+      payload: error,
     });
-    dispatch(setAlert(error.response.data.msg, "danger"));
+
+    dispatch(setAlert("Could not load store items", "danger"));
   }
 };
 
@@ -57,14 +51,15 @@ export const findStoreItem = (id: string) => async (dispatch: any) => {
     const res = await api.get(`/shopifystore/inventory/${id}`);
     dispatch({
       type: FETCH_ITEM,
-      payload: res.data,
+      payload: res.data.response,
     });
   } catch (error) {
+    console.error(error);
     dispatch({
       type: STORE_ERROR,
       payload: error,
     });
-    dispatch(setAlert(error.response.data.msg, "danger"));
+    dispatch(setAlert("Could not locate item", "danger"));
   }
 };
 
@@ -74,11 +69,12 @@ export const clearSearch = () => async (dispatch: any) => {
       type: CLEAR_SEARCH,
     });
   } catch (error) {
+    console.error(error);
     dispatch({
       type: STORE_ERROR,
-      payload: error.response.data.msg,
+      payload: error,
     });
-    dispatch(setAlert(error.response.data.msg, "danger"));
+    dispatch(setAlert("Search could not clear", "danger"));
   }
 };
 
@@ -88,24 +84,16 @@ export const searchCatalog = (data: any) => async (dispatch: any) => {
     console.log("searching:", data);
     dispatch({
       type: SEARCH_STORE,
-      payload: { results: res.data, searchTerm: data.searchTerm },
+      payload: { results: res.data.response, searchTerm: data.searchTerm },
     });
   } catch (error) {
-    const errors = error.response.data.errors;
-    console.log(errors);
-    if (errors) {
-      dispatch({
-        type: STORE_ERROR,
-        payload: errors,
-      });
-      errors.forEach((err: any) => dispatch(setAlert(err.msg, "danger")));
-      return;
-    }
+    console.error(error);
+
     dispatch({
       type: STORE_ERROR,
-      payload: error.response.data.msg,
+      payload: error,
     });
-    dispatch(setAlert(error.response.data.msg, "danger"));
+    dispatch(setAlert("Could not search", "danger"));
   }
 };
 
@@ -117,15 +105,16 @@ export const addToCart = (item: any) => async (dispatch: any) => {
     console.log("added to cart", res.data);
     dispatch({
       type: ADD_TO_CART,
-      payload: res.data,
+      payload: res.data.response,
     });
     dispatch(setAlert("Added to cart", "success"));
   } catch (error) {
+    console.error(error);
     dispatch({
       type: STORE_ERROR,
-      payload: error.response.data.msg,
+      payload: error,
     });
-    dispatch(setAlert(error.response.data.msg, "danger"));
+    dispatch(setAlert("Could not add to cart", "danger"));
   }
 };
 
@@ -139,12 +128,12 @@ export const updateLineItem = (item: any) => async (dispatch: any) => {
 
     dispatch({
       type: UPDATE_LINE_ITEM,
-      payload: res.data,
+      payload: res.data.response,
     });
-  } catch (error: any) {
+  } catch (error) {
     dispatch({
       type: STORE_ERROR,
-      payload: error.response.msg,
+      payload: error,
     });
   }
 };
@@ -162,15 +151,16 @@ export const removeFromCart =
 
       dispatch({
         type: REMOVE_FROM_CART,
-        payload: res.data,
+        payload: res.data.response,
       });
       dispatch(setAlert("Item removed from cart", "success"));
     } catch (error) {
+      console.error(error);
       dispatch({
         type: STORE_ERROR,
-        payload: error.response.data.msg,
+        payload: error,
       });
-      dispatch(setAlert(error.response.data.msg, "danger"));
+      dispatch(setAlert("Could not remove from cart", "danger"));
     }
   };
 
@@ -180,14 +170,15 @@ export const startOrder = () => async (dispatch: any) => {
 
     dispatch({
       type: START_ORDER,
-      payload: res.data,
+      payload: res.data.response,
     });
-  } catch (error: any) {
+  } catch (error) {
+    console.error(error);
     dispatch({
       type: STORE_ERROR,
       payload: error,
     });
-    dispatch(setAlert(error.response.data.msg, "danger"));
+    dispatch(setAlert("Could not start order", "danger"));
   }
 };
 
@@ -197,15 +188,16 @@ export const fetchCheckout = (id: string) => async (dispatch: any) => {
     // console.log('checkout:' + JSON.stringify(res.data));
     dispatch({
       type: FETCH_CHECKOUT,
-      payload: res.data,
+      payload: res.data.response,
     });
   } catch (error) {
+    console.error(error);
     dispatch({
       type: STORE_ERROR,
       payload: error,
     });
+    //if no checkout exists start a new process
     dispatch(startOrder());
-    dispatch(setAlert(error.response.data.msg, "danger"));
   }
 };
 
@@ -215,26 +207,18 @@ export const submitShippingInfo = (formData: any) => async (dispatch: any) => {
     console.log(res.data);
     dispatch({
       type: SUBMIT_SHIPPING,
-      payload: res.data,
+      payload: res.data.response,
     });
 
     dispatch(setAlert("We have received your shipping info", "success"));
   } catch (error) {
-    const errors = error.response.data.errors;
-    if (errors) {
-      dispatch({
-        type: SHIPPING_ERROR,
-        payload: errors,
-      });
-      errors.forEach((err: any) => dispatch(setAlert(err.msg, "danger")));
+    console.error(error);
 
-      return;
-    }
     dispatch({
       type: SHIPPING_ERROR,
-      payload: error.response.data.msg,
+      payload: error,
     });
-    dispatch(setAlert(error.response.msg, "danger"));
+    dispatch(setAlert("Please fix shipping info", "danger"));
   }
 };
 
@@ -251,22 +235,16 @@ export const processCheckout = (id: string) => async (dispatch: any) => {
     const res = await api.post(`/shopifystore/processcheckout/${id}`);
     dispatch({
       type: PROCESS_CHECKOUT,
-      payload: res.data,
+      payload: res.data.response,
     });
   } catch (error) {
-    const errors = error.response.data.errors;
-    if (errors) {
-      dispatch({
-        type: CHECKOUT_ERROR,
-        payload: errors,
-      });
-      errors.forEach((err: any) => dispatch(setAlert(err.msg, "danger")));
-    }
+    console.error(error);
+
     dispatch({
       type: CHECKOUT_ERROR,
-      payload: error.response.data.msg,
+      payload: error,
     });
-    dispatch(setAlert(error.response.msg, "danger"));
+    dispatch(setAlert("Could not process checkout", "danger"));
   }
 };
 

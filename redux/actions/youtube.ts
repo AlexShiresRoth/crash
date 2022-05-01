@@ -24,6 +24,6 @@ export const fetchVideos = (max: number) => async (dispatch: any) => {
       payload: res.data.items,
     });
   } catch (error) {
-    console.log(error.response);
+    console.log(error);
   }
 };

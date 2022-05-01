@@ -15,14 +15,14 @@ const EmailSignup = ({ emailSignup, alerts }: Props) => {
   const logo =
     "https://res.cloudinary.com/snackmanproductions/image/upload/v1590510319/crash/Crash_the_Calm-white_tatrui.png";
 
-  const [data, setData] = useState({
+  const [data, setData] = useState<{ email: string }>({
     email: "",
   });
   const [loading, setLoading] = useState<any>(false);
 
   const [loaderStyle, setStyle] = useState<any>({
-    color: "",
-    height: "",
+    color: "#fff",
+    height: "2rem",
   });
 
   const { email } = data;
@@ -30,18 +30,21 @@ const EmailSignup = ({ emailSignup, alerts }: Props) => {
   const onChange = (e: React.FormEvent<HTMLInputElement>) =>
     setData({ ...data, [e.currentTarget.name]: e.currentTarget.value });
 
-  const onSubmit = (e: React.FormEvent) => {
+  const onSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setStyle({
-      color: "#fff",
-      size: "2rem",
-    });
-    setLoading(true);
-    emailSignup(data);
-    setTimeout(() => {
+
+    try {
+      setLoading(true);
+      const request = await emailSignup(data);
+
+      console.log("email req", request);
       setLoading(false);
-      setData(() => ({ email: "" }));
-    }, 3000);
+      setData({ email: "" });
+    } catch (error) {
+      console.error(error);
+      setLoading(false);
+      setData({ email: "" });
+    }
   };
 
   return (

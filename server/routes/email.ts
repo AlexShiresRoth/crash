@@ -1,5 +1,5 @@
-const express = require("express");
-const { validationResult, check } = require("express-validator");
+import express, { Response, Request } from "express";
+import { validationResult, check } from "express-validator";
 const mailchimp = require("@mailchimp/mailchimp_marketing");
 
 const router = express.Router();
@@ -12,41 +12,36 @@ mailchimp.setConfig({
 //@route GET Route
 //@desc make sure everything is chimpy
 //@access private
-router.get("/mc", async (req, res) => {
+router.get("/mc", async (req: Request, res: Response): Promise<any> => {
   try {
     console.log("hello");
     const response = await mailchimp.ping.get();
     console.log(response);
-    res.json(response);
+    return res.status(200).json({ msg: response });
   } catch (error) {
     console.error(error);
     return res.status(500).json({ msg: "Internal Server Error" });
   }
 });
 
-//@route POST route
-//@desc create an audience
-//@access private
-router.post("/createaudience", async (req, res) => {});
-
 //@route GET route
 //@desc get lists
 //@access private
-router.get("/lists", async (req, res) => {
+router.get("/lists", async (req: Request, res: Response): Promise<any> => {
   try {
-    const response = await mailchimp.lists.getAllLists();
-    console.log(response);
-    res.json(response);
+    const response: unknown = await mailchimp.lists.getAllLists();
+
+    return res.status(200).json({ msg: response });
   } catch (error) {
     console.error(error);
-    res.status(500).json({ msg: "Internal Server Error" });
+    return res.status(500).json({ msg: "Internal Server Error" });
   }
 });
 
 //@route GET Route
 //@desc get audience members
 //@access private
-router.get("/audience", async (req, res) => {
+router.get("/audience", async (req: Request, res: Response): Promise<any> => {
   try {
     const response = await mailchimp.lists.getListMembersInfo(
       process.env.LIST_ID
@@ -57,10 +52,10 @@ router.get("/audience", async (req, res) => {
     }
 
     console.log(response);
-    res.json(response);
+    return res.status(200).json({ msg: response });
   } catch (error) {
     console.error(error);
-    res.status(500).json({ msg: "Internal Server Error" });
+    return res.status(500).json({ msg: "Internal Server Error" });
   }
 });
 
@@ -70,16 +65,16 @@ router.get("/audience", async (req, res) => {
 router.put(
   "/signup",
   [check("email", "Please enter a valid email").isEmail()],
-  async (req, res) => {
-    const errors = validationResult(req);
-
-    if (!errors.isEmpty()) {
-      return res.status(400).json({ errors: errors.array() });
-    }
-
-    const { email } = req.body;
-
+  async (req: Request, res: Response): Promise<any> => {
     try {
+      const errors = validationResult(req);
+
+      if (!errors.isEmpty()) {
+        throw new Error("Please enter a valid email");
+      }
+
+      const { email } = req.body;
+
       const response = await mailchimp.lists.addListMember(
         process.env.LIST_ID,
         {
@@ -88,13 +83,11 @@ router.put(
         }
       );
       console.log(response);
-      res.json(response);
+
+      return res.status(200).json({ msg: response });
     } catch (error) {
-      const errorDetails = JSON.parse(error.response.text);
-      console.error(errorDetails);
-      res.status(error.response.status).json({ msg: errorDetails.title });
+      return res.status(50).json({ msg: error });
     }
-    //TODO create signup
   }
 );
 

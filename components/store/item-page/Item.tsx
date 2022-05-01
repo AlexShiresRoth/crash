@@ -157,7 +157,7 @@ const Item = ({
     }, 100);
   }, [query.id]);
 
-  console.log("loading", loading, loadingAddToCart);
+  console.log("query", query);
 
   return !loading && foundItem ? (
     <div className={style.container}>
