@@ -3,7 +3,6 @@ import axios from "axios";
 //dev env
 // const url = "http://localhost:5000/";
 //production
-console.log("this should not be connecting to api!!!!");
 const url = `https://crash-the-calm.herokuapp.com/`;
 const api = axios.create({
   baseURL: url,
