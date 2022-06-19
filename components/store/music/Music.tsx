@@ -10,7 +10,6 @@ import style from "./Music.module.scss";
 import MusicItems from "./MusicItems";
 
 interface Props {
-  fetchStoreItems: () => any;
   startOrder: () => any;
   fetchCheckout: (val: any) => any;
   shop: {
@@ -18,15 +17,7 @@ interface Props {
   };
 }
 
-const Music = ({
-  fetchCheckout,
-  startOrder,
-  fetchStoreItems,
-  shop: { loading },
-}: Props) => {
-  useEffect(() => {
-    fetchStoreItems();
-  }, [fetchStoreItems]);
+const Music = ({ fetchCheckout, startOrder, shop: { loading } }: Props) => {
   useEffect(() => {
     //if a checkout has not been completed update current
     if (!localStorage.getItem("checkout")) {
@@ -59,5 +50,4 @@ const mapStateToProps = (state: RootStateOrAny) => ({
 export default connect(mapStateToProps, {
   fetchCheckout,
   startOrder,
-  fetchStoreItems,
 })(Music);

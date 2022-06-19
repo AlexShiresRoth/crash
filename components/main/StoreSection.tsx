@@ -4,21 +4,15 @@ import { sections } from "./sections";
 import style from "./StoreSection.module.scss";
 import Link from "next/link";
 import { connect, RootStateOrAny } from "react-redux";
-import { fetchStoreItems } from "../../redux/actions/store";
 import LoadingSpinner from "../reusablecomps/LoadingSpinner";
 
 type Props = {
   shop: any;
-  fetchStoreItems: () => void;
 };
 
-const StoreSection = ({ shop: { catalog }, fetchStoreItems }: Props) => {
+const StoreSection = ({ shop: { catalog } }: Props) => {
   const section = sections.filter((section) => section.name === "merch")[0];
   const [merch, setMerch] = useState<Array<any>>([]);
-
-  useMemo(() => {
-    fetchStoreItems();
-  }, [fetchStoreItems]);
 
   useEffect(() => {
     if (catalog.length > 0) {
@@ -75,4 +69,4 @@ const mapStateToProps = (state: RootStateOrAny) => ({
   shop: state.shop,
 });
 
-export default connect(mapStateToProps, { fetchStoreItems })(StoreSection);
+export default connect(mapStateToProps, {})(StoreSection);

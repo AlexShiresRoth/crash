@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import style from "./Store.module.scss";
 import { connect, RootStateOrAny } from "react-redux";
 import {
-  fetchStoreItems,
   startOrder,
   fetchCheckout,
   clearCheckout,
@@ -14,7 +13,6 @@ import ViewResults from "./ViewResults";
 import StoreAlert from "./alerts/StoreAlert";
 
 interface Props {
-  fetchStoreItems: () => any;
   startOrder: () => any;
   fetchCheckout: (val: any) => any;
   clearCheckout: () => void;
@@ -29,7 +27,6 @@ interface Props {
 }
 
 const Store = ({
-  fetchStoreItems,
   startOrder,
   fetchCheckout,
   shop: { checkout, searchTerm, catalog, searchResults, musicVendor },
@@ -43,10 +40,6 @@ const Store = ({
       clearCheckout();
     }
   }, [checkout, clearCheckout]);
-
-  useEffect(() => {
-    fetchStoreItems();
-  }, [fetchStoreItems]);
 
   useEffect(() => {
     //if a checkout has not been completed update current
@@ -91,7 +84,6 @@ const mapStateToProps = (state: RootStateOrAny) => ({
 });
 
 export default connect(mapStateToProps, {
-  fetchStoreItems,
   startOrder,
   fetchCheckout,
   clearCheckout,

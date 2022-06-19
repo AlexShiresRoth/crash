@@ -60,7 +60,7 @@ const Nav = ({ clearSearch }: Props) => {
         }
       >
         <div className={style.left}>
-          <Link href="/Main" as="/home">
+          <Link href="/Main">
             <a>{logo}</a>
           </Link>
           <div className={style.social}>

@@ -10,6 +10,7 @@ import { connect } from "react-redux";
 import SuggestedItems from "../../components/store/item-page/SuggestedItems";
 import ReactGA from "react-ga";
 import Head from "next/head";
+import api from "../../utils/api";
 
 ReactGA.initialize("UA-172813905-2", { debug: true });
 
@@ -47,7 +48,6 @@ const ItemPage = ({ fetchCheckout, startOrder, resetStoreItem }: Props) => {
   return (
     <>
       <Head>
-        {" "}
         <script
           dangerouslySetInnerHTML={{
             __html: `!(function (f, b, e, v, n, t, s) {
@@ -93,6 +93,26 @@ const ItemPage = ({ fetchCheckout, startOrder, resetStoreItem }: Props) => {
     </>
   );
 };
+
+export async function getStaticProps() {
+  const storeResponse = (await api.get("/shopifystore/inventory")) ?? [];
+
+  return {
+    props: {
+      store: storeResponse?.data,
+    },
+  };
+}
+
+export async function getStaticPaths() {
+  const storeResponse = (await api.get("/shopifystore/inventory")) ?? [];
+  const catalog = storeResponse?.data?.response ?? [];
+
+  return {
+    paths: catalog.map((item: { id: string }) => `/merch/${item.id}`) ?? [],
+    fallback: false,
+  };
+}
 
 export default connect(null, { fetchCheckout, startOrder, resetStoreItem })(
   ItemPage

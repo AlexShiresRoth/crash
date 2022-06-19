@@ -1,19 +1,36 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useMemo } from "react";
 import Layout from "../UI/layout/Layout";
 import Store from "../components/store/Store";
 import ReactGA from "react-ga";
 import Head from "next/head";
+import api from "../utils/api";
+import { fetchStoreItems } from "../redux/actions/store";
+import { connect, RootStateOrAny } from "react-redux";
 
 ReactGA.initialize("UA-172813905-2", { debug: true });
 
 ReactGA.pageview("/merch");
 
-const Merch = () => {
+type Props = {
+  store: any;
+  fetchStoreItems: (storeItems: Array<any>) => any;
+  shop: {
+    catalog: Array<any>;
+  };
+};
+
+const Merch = ({ store, fetchStoreItems, shop }: Props) => {
   useEffect(() => {
     setTimeout(() => {
       window.scrollTo(0, 0);
     }, 100);
   }, []);
+
+  useMemo(() => {
+    if (store?.response?.length > 0 || shop?.catalog.length === 0)
+      fetchStoreItems(store?.response);
+  }, [store?.response]);
+
   return (
     <>
       <Head>
@@ -62,4 +79,18 @@ const Merch = () => {
   );
 };
 
-export default Merch;
+export async function getStaticProps() {
+  const store = (await api.get("/shopifystore/inventory")) ?? [];
+
+  return {
+    props: {
+      store: store?.data,
+    },
+  };
+}
+
+const mapStateToProps = (state: RootStateOrAny) => ({
+  shop: state.shop,
+});
+
+export default connect(mapStateToProps, { fetchStoreItems })(Merch);

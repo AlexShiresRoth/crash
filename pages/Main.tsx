@@ -1,19 +1,35 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useMemo } from "react";
 import Layout from "../UI/layout/Layout";
 import Hub from "../components/main/Hub";
 import ReactGA from "react-ga";
 import Head from "next/head";
+import { connect, RootStateOrAny } from "react-redux";
+import api from "../utils/api";
+import { fetchStoreItems } from "../redux/actions/store";
 
 ReactGA.initialize("UA-172813905-2");
 
 ReactGA.pageview("/hub");
 
-const Main = () => {
+type Props = {
+  store: any;
+  fetchStoreItems: (storeItems: Array<any>) => any;
+  shop: {
+    catalog: Array<any>;
+  };
+};
+
+const Main = ({ store, shop, fetchStoreItems }: Props) => {
   useEffect(() => {
     setTimeout(() => {
       window.scrollTo(0, 0);
     }, 100);
   }, []);
+
+  useMemo(() => {
+    if (store?.response?.length > 0 || shop?.catalog.length === 0)
+      fetchStoreItems(store?.response);
+  }, [store?.response]);
 
   return (
     <>
@@ -64,4 +80,18 @@ const Main = () => {
   );
 };
 
-export default Main;
+export async function getStaticProps() {
+  const store = (await api.get("/shopifystore/inventory")) ?? [];
+
+  return {
+    props: {
+      store: store?.data,
+    },
+  };
+}
+
+const mapStateToProps = (state: RootStateOrAny) => ({
+  shop: state.shop,
+});
+
+export default connect(mapStateToProps, { fetchStoreItems })(Main);

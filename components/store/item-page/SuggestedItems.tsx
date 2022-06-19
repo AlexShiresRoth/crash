@@ -3,25 +3,16 @@ import { connect } from "react-redux";
 import style from "./SuggestedItems.module.scss";
 import LoadingSpinner from "../../reusablecomps/LoadingSpinner";
 import Link from "next/link";
-import { fetchStoreItems } from "../../../redux/actions/store";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import { useRouter } from "next/dist/client/router";
 import Image from "next/image";
 
 interface Props {
   shop?: any;
-  fetchStoreItems: () => any;
 }
 
-const SuggestedItems = ({
-  shop: { catalog, loading },
-  fetchStoreItems,
-}: Props) => {
+const SuggestedItems = ({ shop: { catalog, loading } }: Props) => {
   const router = useRouter();
-
-  useEffect(() => {
-    fetchStoreItems();
-  }, [fetchStoreItems]);
 
   const [visible, setVisibility] = useState(false);
   const [index, setIndex] = useState(0);
@@ -98,13 +89,10 @@ const SuggestedItems = ({
     ) {
       setMax(Math.round(scrollingObject.current.scrollWidth / gridSize));
       setMaxScrollWidth(scrollingObject.current.scrollWidth);
-      console.log(Math.round(scrollingObject.current.scrollWidth / gridSize));
     }
   }, [gridSize, loading, catalog, gridRef]);
 
   const scrollController = (value: number) => {
-    console.log(scrollAmount, -maxScrollWidth);
-
     switch (value) {
       case 0:
         if (scrollAmount >= 0 - gridSize) {
@@ -146,7 +134,6 @@ const SuggestedItems = ({
   useEffect(() => {
     time.current = setTimeout(() => {
       if (scrollAmount <= -maxScrollWidth + gridSize) {
-        console.log("max ascroll reached");
         setIndex(0);
         setScrollAmt(0);
         return;
@@ -213,4 +200,4 @@ const mapStateToProps = (state: any) => ({
   shop: state.shop,
 });
 
-export default connect(mapStateToProps, { fetchStoreItems })(SuggestedItems);
+export default connect(mapStateToProps, {})(SuggestedItems);

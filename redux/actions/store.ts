@@ -26,25 +26,26 @@ const config = {
   headers: { "Content-Type": "application/json" },
 };
 
-export const fetchStoreItems = () => async (dispatch: any) => {
-  try {
-    const res = await api.get("/shopifystore/inventory");
-    console.log("res", res.data);
-    dispatch({
-      type: FETCH_STORE,
-      payload: res.data.response,
-    });
-  } catch (error) {
-    console.error(error);
+//store items are received in static props & will be sent to the redux store
+export const fetchStoreItems =
+  (storeItems: Array<any>) => async (dispatch: any) => {
+    console.log("I AM BEING CALLED", storeItems);
+    try {
+      dispatch({
+        type: FETCH_STORE,
+        payload: storeItems,
+      });
+    } catch (error) {
+      console.error("COULD NOT LOAD STORE ITEMS", error);
 
-    dispatch({
-      type: STORE_ERROR,
-      payload: error,
-    });
+      dispatch({
+        type: STORE_ERROR,
+        payload: error,
+      });
 
-    dispatch(setAlert("Could not load store items", "danger"));
-  }
-};
+      dispatch(setAlert("Could not load store items", "danger"));
+    }
+  };
 
 export const findStoreItem = (id: string) => async (dispatch: any) => {
   try {
