@@ -4,22 +4,17 @@ import Link from "next/link";
 import { FaSpotify, FaApple } from "react-icons/fa";
 import style from "./SingleComponent.module.scss";
 import { connect, RootStateOrAny } from "react-redux";
-import { addToCart, fetchStoreItems } from "../../redux/actions/store";
+import { addToCart } from "../../redux/actions/store";
 
 interface Props {
   addToCart: (item: any) => any;
-  fetchStoreItems: () => any;
   shop: {
     catalog: Array<any>;
   };
 }
 
-const SingleComponent = ({ shop: { catalog }, fetchStoreItems }: Props) => {
+const SingleComponent = ({ shop: { catalog } }: Props) => {
   const [foundSingle, setSingle] = useState<any>(null);
-
-  useEffect(() => {
-    fetchStoreItems();
-  }, [fetchStoreItems]);
 
   useEffect(() => {
     if (catalog.length > 0) {
@@ -296,6 +291,4 @@ const mapStateToProps = (state: RootStateOrAny) => ({
   shop: state.shop,
 });
 
-export default connect(mapStateToProps, { addToCart, fetchStoreItems })(
-  SingleComponent
-);
+export default connect(mapStateToProps, { addToCart })(SingleComponent);
