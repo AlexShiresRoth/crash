@@ -15,7 +15,7 @@ const StoreItem = ({ item, index, shop: { loading } }: Props) => {
   return !loading ? (
     <div className={style.item} key={index}>
       <div className={style.img_container}>
-        <Link href={`/merch/${item.id}`}>
+        <Link href={`/shop/${item.id}`}>
           <a>
             <Image
               src={item.images[0].src}
@@ -40,7 +40,7 @@ const StoreItem = ({ item, index, shop: { loading } }: Props) => {
         </p>
       </div>
       <div className={style.actions}>
-        <Link href={`/merch/${item.id}`}>
+        <Link href={`/shop/${item.id}`}>
           <a>View</a>
         </Link>
       </div>

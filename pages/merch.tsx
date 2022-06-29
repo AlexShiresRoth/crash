@@ -1,96 +1,49 @@
-import React, { useEffect, useMemo } from "react";
+import React, { useEffect } from "react";
 import Layout from "../UI/layout/Layout";
-import Store from "../components/store/Store";
-import ReactGA from "react-ga";
-import Head from "next/head";
-import api from "../utils/api";
-import { fetchStoreItems } from "../redux/actions/store";
-import { connect, RootStateOrAny } from "react-redux";
+import { useRouter } from "next/dist/client/router";
+import LoadingSkeleton from "../components/reusablecomps/LoadingSkeleton";
 
-ReactGA.initialize("UA-172813905-2", { debug: true });
+import styled from "styled-components";
 
-ReactGA.pageview("/merch");
+const Section = styled.section`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  align-items: center;
+  min-height: 80vh;
+  margin: 15vh 0;
+`;
+const Columns = styled.div`
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 4;
 
-type Props = {
-  store: any;
-  fetchStoreItems: (storeItems: Array<any>) => any;
-  shop: {
-    catalog: Array<any>;
-  };
-};
+  width: 90%;
+`;
 
-const Merch = ({ store, fetchStoreItems, shop }: Props) => {
+const Merch = () => {
+  const router = useRouter();
+
   useEffect(() => {
-    setTimeout(() => {
-      window.scrollTo(0, 0);
-    }, 100);
-  }, []);
-
-  useMemo(() => {
-    if (store?.response?.length > 0 || shop?.catalog.length === 0)
-      fetchStoreItems(store?.response);
-  }, [store?.response]);
+    if (router.asPath === "/merch") {
+      router.push("/shop");
+    }
+  }, [router.asPath]);
 
   return (
     <>
-      <Head>
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `!(function (f, b, e, v, n, t, s) {
-				if (f.fbq) return;
-				n = f.fbq = function () {
-					n.callMethod ? n.callMethod.apply(n, arguments) : n.queue.push(arguments);
-				};
-				if (!f._fbq) f._fbq = n;
-				n.push = n;
-				n.loaded = !0;
-				n.version = '2.0';
-				n.queue = [];
-				t = b.createElement(e);
-				t.async = !0;
-				t.src = v;
-				s = b.getElementsByTagName(e)[0];
-				s.parentNode.insertBefore(t, s);
-			})(window, document, 'script', 'https://connect.facebook.net/en_US/fbevents.js');
-			fbq('init', '682418259052811');
-			fbq('track', 'PageView');`,
-          }}
-        ></script>
-        <script
-          async
-          src="https://www.googletagmanager.com/gtag/js?id=G-KTX0ZNDXRT"
-        ></script>
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `	window.dataLayer = window.dataLayer || [];
-			function gtag() {
-				dataLayer.push(arguments);
-			}
-			gtag('js', new Date());
-
-			gtag('config', 'G-KTX0ZNDXRT');`,
-          }}
-        ></script>
-      </Head>
       <Layout>
-        <Store />
+        <Section>
+          <h1 style={{ fontSize: "4rem" }}>Loading Store...</h1>
+          <Columns>
+            {Array.from({ length: 8 }).map((_, i) => (
+              <LoadingSkeleton numVertBars={4} key={i} />
+            ))}
+          </Columns>
+        </Section>
       </Layout>
     </>
   );
 };
 
-export async function getStaticProps() {
-  const store = (await api.get("/shopifystore/inventory")) ?? [];
-
-  return {
-    props: {
-      store: store?.data,
-    },
-  };
-}
-
-const mapStateToProps = (state: RootStateOrAny) => ({
-  shop: state.shop,
-});
-
-export default connect(mapStateToProps, { fetchStoreItems })(Merch);
+export default Merch;

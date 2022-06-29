@@ -38,7 +38,7 @@ const Nav = ({ clearSearch }: Props) => {
     if (router.pathname.includes("devils")) {
       const newLinks = navLinks.filter(
         (item: { name: string; path: string }) => {
-          return item.name === "merch" || item.name === "music";
+          return item.name === "shop" || item.name === "music";
         }
       );
 

@@ -11,7 +11,7 @@ type Props = {
 };
 
 const StoreSection = ({ shop: { catalog } }: Props) => {
-  const section = sections.filter((section) => section.name === "merch")[0];
+  const section = sections.filter((section) => section.name === "shop")[0];
   const [merch, setMerch] = useState<Array<any>>([]);
 
   useEffect(() => {
@@ -41,7 +41,7 @@ const StoreSection = ({ shop: { catalog } }: Props) => {
             return (
               <div className={style.column} key={index}>
                 <div className={style.top_border}></div>
-                <Link href={`/merch/${item.id}`}>
+                <Link href={`/shop/${item.id}`}>
                   <a className={style.img_container}>
                     {" "}
                     <Image

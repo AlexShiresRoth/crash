@@ -38,7 +38,7 @@ const Footer = () => {
         <Link href="/music">music</Link>
         <Link href="/videos">videos</Link>
         <Link href="/About">about</Link>
-        <Link href="/merch">store</Link>
+        <Link href="/shop">shop</Link>
         <Link href="/SongBook">songbook</Link>
       </div>
       <div className={style.col}>

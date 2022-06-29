@@ -37,7 +37,7 @@ const MobileNav = ({ shop: { cart }, isVisible, setVisibility }: Props) => {
   const goToCheckout = () => router.push("/Checkout");
   return (
     <>
-      {cart.length > 0 && router.route.toLowerCase().includes("/merch") && (
+      {cart.length > 0 && router.route.toLowerCase().includes("/shop") && (
         <div className={style.cart_icon}>
           <button onClick={(_) => goToCheckout()}>
             <FaShoppingCart />

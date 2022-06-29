@@ -169,7 +169,7 @@ const Item = ({
             href={
               foundItem.vendor && foundItem.vendor.toLowerCase() === musicVendor
                 ? "/music"
-                : "/merch"
+                : "/shop"
             }
           >
             Store

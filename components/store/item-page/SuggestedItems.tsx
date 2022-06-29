@@ -25,7 +25,7 @@ const SuggestedItems = ({ shop: { catalog, loading } }: Props) => {
   let time = useRef<any>();
 
   const goToItem = (item: any) => {
-    return router.push(`/merch/${item.id}`);
+    return router.push(`/shop/${item.id}`);
   };
 
   const suggests = catalog
@@ -50,7 +50,7 @@ const SuggestedItems = ({ shop: { catalog, loading } }: Props) => {
           <div className={style.item_desc}>
             <h3>{item.title}</h3>
             <p>Price: ${item.variants[0].price}</p>
-            <Link href={`/merch/${item.id}`}>
+            <Link href={`/shop/${item.id}`}>
               <a>
                 <button>View</button>
               </a>
