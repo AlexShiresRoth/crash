@@ -13,25 +13,24 @@ interface Props {
 
 type CartProps = Props;
 
-const Cart = ({ shop: { cart }, isVisible, setVisibility }: CartProps) => {
+const Cart = ({ shop, isVisible, setVisibility }: CartProps) => {
   const router = useRouter();
   const [newAdd, setNewAddition] = useState<boolean>(false);
   const [cartLength, setCartLength] = useState<number>(0);
 
   //do not show the cart if the user is not on the store page
   useEffect(() => {
-    if (!router.pathname.includes("store")) setVisibility(false);
-  }, [router.pathname, setVisibility]);
+    if (!router.asPath.includes("/store")) setVisibility(false);
+  }, [router.asPath, setVisibility]);
 
   useEffect(() => {
     setCartLength((prevState: any) => {
-      console.log(prevState, cart.length);
-      cart.length > prevState
+      shop?.cart?.length > prevState
         ? setNewAddition(() => true)
         : setNewAddition(false);
-      return cart.length;
+      return shop?.cart?.length;
     });
-  }, [cart]);
+  }, [shop?.cart]);
 
   useEffect(() => {
     setTimeout(() => {
@@ -40,14 +39,18 @@ const Cart = ({ shop: { cart }, isVisible, setVisibility }: CartProps) => {
     return () => clearTimeout();
   }, [cartLength]);
 
+  if (!shop?.cart) {
+    return null;
+  }
+
   return (
     <div className={style.cart}>
       <a onPointerDown={() => setVisibility(!isVisible)} href="#!">
         Cart
         {newAdd ? <FaCartPlus className={style.added} /> : <FaShoppingCart />}
-        {cart.length > 0 ? <span>{cart.length}</span> : null}
+        {shop?.cart?.length > 0 ? <span>{shop?.cart?.length}</span> : null}
       </a>
-      {cart.length > 0 ? (
+      {shop?.cart?.length > 0 ? (
         <CartDisplay isVisible={isVisible} setVisibility={setVisibility} />
       ) : null}
     </div>
@@ -55,7 +58,6 @@ const Cart = ({ shop: { cart }, isVisible, setVisibility }: CartProps) => {
 };
 
 const mapStateToProps = (state: { shop: object }) => {
-  console.log("shop", state.shop);
   return {
     shop: state.shop,
   };

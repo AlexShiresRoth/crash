@@ -29,7 +29,6 @@ const config = {
 //store items are received in static props & will be sent to the redux store
 export const fetchStoreItems =
   (storeItems: Array<any>) => async (dispatch: any) => {
-    console.log("I AM BEING CALLED", storeItems);
     try {
       dispatch({
         type: FETCH_STORE,
@@ -186,7 +185,8 @@ export const startOrder = () => async (dispatch: any) => {
 export const fetchCheckout = (id: string) => async (dispatch: any) => {
   try {
     const res = await api.get(`/shopifystore/findcheckout/${id}`);
-    // console.log('checkout:' + JSON.stringify(res.data));
+
+    console.log("response from checkout", res);
     dispatch({
       type: FETCH_CHECKOUT,
       payload: res.data.response,

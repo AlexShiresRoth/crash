@@ -19,8 +19,6 @@ const Upsell = ({
   shop: { upsellVisible, cart, catalog, checkout },
   showUpsell,
 }: Props) => {
-  const router = useRouter();
-
   const [upsellItems, setItems] = useState<Array<any>>([]);
 
   useEffect(() => {
@@ -42,7 +40,6 @@ const Upsell = ({
           const temp = array[index];
           array[index] = array[j];
           array[j] = temp;
-          console.log(array[j]);
           return array[j];
         }
       );
@@ -54,6 +51,8 @@ const Upsell = ({
 
           const matches: Array<any> = [];
 
+          if (!cart) return false;
+
           const ids = cart
             .map((cartItem: { variant: { id: string } }) => cartItem.variant.id)
             .concat(item.variants.map((variant: { id: string }) => variant.id));
@@ -61,8 +60,6 @@ const Upsell = ({
           ids.forEach((itemId: string) =>
             dupes.includes(itemId) ? matches.push(itemId) : dupes.push(itemId)
           );
-
-          console.log("matches", matches);
 
           return matches.length === 0;
         })
@@ -88,7 +85,6 @@ const Upsell = ({
           </div>
           <div className={style.items}>
             {upsellItems.map((item: any, index: number) => {
-              console.log(item);
               return (
                 <Fragment key={index}>
                   <UpsellItem style={style} item={item} index={index} />

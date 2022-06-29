@@ -13,24 +13,18 @@ ReactGA.pageview("/merch");
 
 type Props = {
   store: any;
-  fetchStoreItems: (storeItems: Array<any>) => any;
   shop: {
     catalog: Array<any>;
   };
 };
 
-const Shop = ({ store, fetchStoreItems, shop }: Props) => {
+const Shop = ({ store }: Props) => {
   useEffect(() => {
     setTimeout(() => {
       window.scrollTo(0, 0);
     }, 100);
   }, []);
 
-  useMemo(() => {
-    if (store?.response?.length > 0) fetchStoreItems(store?.response);
-  }, [store?.response]);
-
-  console.log("store", store);
   return (
     <>
       <Head>
@@ -73,7 +67,7 @@ const Shop = ({ store, fetchStoreItems, shop }: Props) => {
         ></script>
       </Head>
       <Layout>
-        <Store />
+        <Store shopItems={store?.response} />
       </Layout>
     </>
   );
@@ -89,8 +83,4 @@ export async function getStaticProps() {
   };
 }
 
-const mapStateToProps = (state: RootStateOrAny) => ({
-  shop: state.shop,
-});
-
-export default connect(mapStateToProps, { fetchStoreItems })(Shop);
+export default Shop;

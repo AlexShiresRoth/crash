@@ -21,7 +21,7 @@ type Props = {
   setVisibility: any;
 };
 
-const MobileNav = ({ shop: { cart }, isVisible, setVisibility }: Props) => {
+const MobileNav = ({ shop, isVisible, setVisibility }: Props) => {
   const router = useRouter();
   //show the nav
   const [menuOpen, toggleMenu] = useState<boolean>(false);
@@ -33,15 +33,16 @@ const MobileNav = ({ shop: { cart }, isVisible, setVisibility }: Props) => {
       </Link>
     );
   });
-  console.log("router", router);
+
   const goToCheckout = () => router.push("/Checkout");
+
   return (
     <>
-      {cart.length > 0 && router.route.toLowerCase().includes("/shop") && (
+      {shop?.cart?.length > 0 && router.asPath.toLowerCase().includes("/shop") && (
         <div className={style.cart_icon}>
           <button onClick={(_) => goToCheckout()}>
             <FaShoppingCart />
-            <span>{cart.length > 0 && cart.length}</span>
+            <span>{shop?.cart?.length > 0}</span>
           </button>
         </div>
       )}

@@ -58,7 +58,6 @@ export const store = (state = initialState, action: any) => {
         loading: false,
       };
     case START_ORDER:
-      localStorage.setItem("checkout", payload.id);
       return {
         ...state,
         checkout: payload,
@@ -79,12 +78,13 @@ export const store = (state = initialState, action: any) => {
         loadingStoreItem: true,
       };
     case FETCH_CHECKOUT: {
+      window?.localStorage?.setItem("checkout", payload.id);
       return {
         ...state,
         checkout: payload,
         shippingInfo:
           payload.shippingAddress !== null ? payload.shippingAddress : null,
-        cart: payload.lineItems,
+        cart: payload.lineItems ?? [],
         loading: false,
       };
     }

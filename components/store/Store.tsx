@@ -5,6 +5,7 @@ import {
   startOrder,
   fetchCheckout,
   clearCheckout,
+  fetchStoreItems,
 } from "../../redux/actions/store";
 import SearchBar from "./search/SearchBar";
 import StoreItems from "./StoreItems";
@@ -16,6 +17,7 @@ interface Props {
   startOrder: () => any;
   fetchCheckout: (val: any) => any;
   clearCheckout: () => void;
+  fetchStoreItems: (val: any) => any;
   shop: {
     checkout: any;
     searchTerm: string;
@@ -24,6 +26,7 @@ interface Props {
     musicVendor: string;
   };
   alerts: Array<any>;
+  shopItems: Array<any>;
 }
 
 const Store = ({
@@ -31,9 +34,14 @@ const Store = ({
   fetchCheckout,
   shop: { checkout, searchTerm, catalog, searchResults, musicVendor },
   clearCheckout,
+  fetchStoreItems,
+  shopItems,
   alerts,
 }: Props) => {
   const [resultAmt, filterResults] = useState<number>(0);
+
+  const handleFetchStoreItems = async (items: any) =>
+    await fetchStoreItems(items);
 
   useEffect(() => {
     if (checkout && checkout.order) {
@@ -46,7 +54,7 @@ const Store = ({
     if (!localStorage.getItem("checkout")) {
       startOrder();
     } else {
-      const id = localStorage.getItem("checkout") || "";
+      const id = localStorage.getItem("checkout");
       fetchCheckout(id);
     }
   }, [startOrder, fetchCheckout]);
@@ -62,6 +70,10 @@ const Store = ({
       );
     }
   }, [catalog, searchTerm, searchResults, musicVendor]);
+
+  useEffect(() => {
+    if (shopItems.length > 0) handleFetchStoreItems(shopItems);
+  }, [shopItems]);
 
   return (
     <section className={style.section}>
@@ -87,4 +99,5 @@ export default connect(mapStateToProps, {
   startOrder,
   fetchCheckout,
   clearCheckout,
+  fetchStoreItems,
 })(Store);
