@@ -27,10 +27,10 @@ const Shop = ({ store, fetchStoreItems, shop }: Props) => {
   }, []);
 
   useMemo(() => {
-    if (store?.response?.length > 0 || shop?.catalog.length === 0)
-      fetchStoreItems(store?.response);
+    if (store?.response?.length > 0) fetchStoreItems(store?.response);
   }, [store?.response]);
 
+  console.log("store", store);
   return (
     <>
       <Head>
