@@ -25,10 +25,8 @@ const Merch = () => {
   const router = useRouter();
 
   useEffect(() => {
-    if (router.asPath === "/merch") {
-      router.push("/shop");
-    }
-  }, [router.asPath]);
+    router.push("/shop");
+  }, []);
 
   return (
     <>

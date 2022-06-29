@@ -1,10 +1,6 @@
 import React, { useEffect } from "react";
 import { connect, RootStateOrAny } from "react-redux";
-import {
-  fetchStoreItems,
-  startOrder,
-  fetchCheckout,
-} from "../../../redux/actions/store";
+import { startOrder, fetchCheckout } from "../../../redux/actions/store";
 import LoadingSpinner from "../../reusablecomps/LoadingSpinner";
 import style from "./Music.module.scss";
 import MusicItems from "./MusicItems";
@@ -21,10 +17,8 @@ const Music = ({ fetchCheckout, startOrder, shop: { loading } }: Props) => {
   useEffect(() => {
     //if a checkout has not been completed update current
     if (!localStorage.getItem("checkout")) {
-      console.log("new order");
       startOrder();
     } else {
-      console.log("found order", localStorage.getItem("checkout"));
       const id = localStorage.getItem("checkout") || "";
       fetchCheckout(id);
     }
