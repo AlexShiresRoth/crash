@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import style from "./Store.module.scss";
 import { connect, RootStateOrAny } from "react-redux";
 import {
@@ -38,11 +38,11 @@ const Store = ({
   shopItems,
   alerts,
 }: Props) => {
-
   const [resultAmt, filterResults] = useState<number>(0);
 
-  const handleFetchStoreItems = async (items: any) =>
-    await fetchStoreItems(items);
+  const handleFetchStoreItems = useCallback(() => {
+    fetchStoreItems(shopItems);
+  }, [shopItems]);
 
   useEffect(() => {
     if (checkout && checkout.order) {
@@ -73,7 +73,7 @@ const Store = ({
   }, [catalog, searchTerm, searchResults, musicVendor]);
 
   useEffect(() => {
-    if (shopItems.length > 0) handleFetchStoreItems(shopItems);
+    if (shopItems.length > 0) handleFetchStoreItems();
   }, [shopItems, handleFetchStoreItems]);
 
   return (
