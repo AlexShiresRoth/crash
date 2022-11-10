@@ -31,7 +31,7 @@ const ItemPage = ({ fetchCheckout, startOrder, resetStoreItem }: Props) => {
 
   useEffect(() => {
     resetStoreItem();
-  }, []);
+  }, [resetStoreItem]);
 
   useEffect(() => {
     //if a checkout has not been completed update current
@@ -95,7 +95,7 @@ const ItemPage = ({ fetchCheckout, startOrder, resetStoreItem }: Props) => {
 };
 
 export async function getStaticProps() {
-  const storeResponse = (await api.get("/shopifystore/inventory")) ?? [];
+  const storeResponse:any = (await api.get("/shopifystore/inventory")) ?? [];
 
   return {
     props: {
@@ -105,8 +105,8 @@ export async function getStaticProps() {
 }
 
 export async function getStaticPaths() {
-  const storeResponse = (await api.get("/shopifystore/inventory")) ?? [];
-  const catalog = storeResponse?.data?.response ?? [];
+  const storeResponse:any = (await api.get("/shopifystore/inventory")) ?? [];
+  const catalog:any = storeResponse?.data?.response ?? [];
 
   return {
     paths: catalog.map((item: { id: string }) => `/shop/${item.id}`) ?? [],

@@ -29,7 +29,7 @@ const Main = ({ store, shop, fetchStoreItems }: Props) => {
   useMemo(() => {
     if (store?.response?.length > 0 || shop?.catalog.length === 0)
       fetchStoreItems(store?.response);
-  }, [store?.response]);
+  }, [store?.response, fetchStoreItems, shop?.catalog?.length]);
 
   return (
     <>
@@ -81,7 +81,8 @@ const Main = ({ store, shop, fetchStoreItems }: Props) => {
 };
 
 export async function getStaticProps() {
-  const store = (await api.get("/shopifystore/inventory")) ?? [];
+  const store: any =
+    (await api.get("/shopifystore/inventory")) ?? [];
 
   return {
     props: {

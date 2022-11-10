@@ -74,7 +74,7 @@ const Store = ({
 
   useEffect(() => {
     if (shopItems.length > 0) handleFetchStoreItems(shopItems);
-  }, [shopItems]);
+  }, [shopItems, handleFetchStoreItems]);
 
   return (
     <section className={style.section}>

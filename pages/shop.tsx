@@ -74,7 +74,7 @@ const Shop = ({ store }: Props) => {
 };
 
 export async function getStaticProps() {
-  const store = (await api.get("/shopifystore/inventory")) ?? [];
+  const store:any = (await api.get("/shopifystore/inventory")) ?? [];
 
   return {
     props: {

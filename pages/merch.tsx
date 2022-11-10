@@ -26,7 +26,7 @@ const Merch = () => {
 
   useEffect(() => {
     router.push("/shop");
-  }, []);
+  }, [router]);
 
   return (
     <>

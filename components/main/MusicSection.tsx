@@ -26,7 +26,6 @@ const MusicSection = () => {
             <iframe
               src="https://open.spotify.com/embed/album/7GfglCFvyl7ZuxsbkG26Q8?utm_source=generator"
               frameBorder="0"
-              allowTransparency={true}
               allow="encrypted-media"
             ></iframe>
           </div>

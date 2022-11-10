@@ -86,7 +86,7 @@ const MusicItemPage = ({ fetchCheckout, startOrder }: Props) => {
 };
 
 export async function getStaticProps() {
-  const storeResponse = (await api.get("/shopifystore/inventory")) ?? [];
+  const storeResponse:any = (await api.get("/shopifystore/inventory")) ?? [];
 
   return {
     props: {
@@ -96,8 +96,8 @@ export async function getStaticProps() {
 }
 
 export async function getStaticPaths() {
-  const storeResponse = (await api.get("/shopifystore/inventory")) ?? [];
-  const catalog = storeResponse?.data?.response ?? [];
+  const storeResponse:any = (await api.get("/shopifystore/inventory")) ?? [];
+  const catalog:any = storeResponse?.data?.response ?? [];
 
   return {
     paths: catalog.map((item: { id: string }) => `/music/${item.id}`) ?? [],

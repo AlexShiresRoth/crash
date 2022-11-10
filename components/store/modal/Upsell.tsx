@@ -73,7 +73,7 @@ const Upsell = ({
     if (upsellItems.length === 0 && upsellVisible) {
       return (window.location = checkout.webUrl);
     }
-  }, [upsellItems, upsellVisible]);
+  }, [upsellItems, upsellVisible, checkout?.webUrl]);
 
   if (upsellVisible) {
     return (
