@@ -33,10 +33,10 @@ const Cart = ({ shop, isVisible, setVisibility }: CartProps) => {
   }, [shop?.cart]);
 
   useEffect(() => {
-    setTimeout(() => {
+    let timeout = setTimeout(() => {
       setNewAddition(() => false);
     }, 2000);
-    return () => clearTimeout();
+    return () => clearTimeout(timeout);
   }, [cartLength]);
 
   if (!shop?.cart) {

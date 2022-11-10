@@ -38,6 +38,7 @@ const Store = ({
   shopItems,
   alerts,
 }: Props) => {
+
   const [resultAmt, filterResults] = useState<number>(0);
 
   const handleFetchStoreItems = async (items: any) =>

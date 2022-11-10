@@ -58,6 +58,8 @@ export const store = (state = initialState, action: any) => {
         loading: false,
       };
     case START_ORDER:
+      //add checkout id to local storage
+      localStorage.setItem("checkout", payload?.id);
       return {
         ...state,
         checkout: payload,
@@ -78,6 +80,7 @@ export const store = (state = initialState, action: any) => {
         loadingStoreItem: true,
       };
     case FETCH_CHECKOUT: {
+      //is this a failsafe for when the checkout is null?
       window?.localStorage?.setItem("checkout", payload.id);
       return {
         ...state,

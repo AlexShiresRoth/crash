@@ -99,10 +99,10 @@ export const searchCatalog = (data: any) => async (dispatch: any) => {
 
 export const addToCart = (item: any) => async (dispatch: any) => {
   const checkoutId = localStorage.getItem("checkout");
-  console.log("item added to cart", item);
+
   try {
     const res = await api.post(`/shopifystore/addtocart/${checkoutId}`, item);
-    console.log("added to cart", res.data);
+
     dispatch({
       type: ADD_TO_CART,
       payload: res.data.response,
@@ -167,7 +167,6 @@ export const removeFromCart =
 export const startOrder = () => async (dispatch: any) => {
   try {
     const res = await api.post("/shopifystore/startorder");
-
     dispatch({
       type: START_ORDER,
       payload: res.data.response,
@@ -186,7 +185,6 @@ export const fetchCheckout = (id: string) => async (dispatch: any) => {
   try {
     const res = await api.get(`/shopifystore/findcheckout/${id}`);
 
-    console.log("response from checkout", res);
     dispatch({
       type: FETCH_CHECKOUT,
       payload: res.data.response,
